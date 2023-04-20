@@ -1,6 +1,7 @@
 package com.example.appptin;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.PopupWindow;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -34,6 +37,8 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private PopupWindow popupWindow;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -78,7 +83,18 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         TextView txtResultant = rootView.findViewById(R.id.txtResultant);
         Button btnScan = rootView.findViewById(R.id.btnScan);
+        Button button_recepta = rootView.findViewById(R.id.button_recepta);
+        button_recepta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Obrir pop-up
+                popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+            }
+        });
 
+        initPopup();
+
+        //return view;
 
 
         return rootView;
@@ -124,7 +140,32 @@ public class HomeFragment extends Fragment {
         }
         }
 
+    private void initPopup() {
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.codi_recepta_popup, null);
 
+        // Crear pop-up window
+        popupWindow = new PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                true
+        );
+
+        // Configurar elements del pop-up
+        EditText editText = popupView.findViewById(R.id.editText);
+        Button btnSubmit = popupView.findViewById(R.id.btnSubmit);
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = editText.getText().toString();
+                // Mostrar el text en la pantalla home
+                // ...
+                popupWindow.dismiss();
+            }
+        });
+    }
 
     }
 
