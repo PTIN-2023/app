@@ -5,11 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".CistellaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="630dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_cistella"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_finalitzar_compra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pantalla de cistella"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="50dp"
+        android:text="Finalitzar Compra" />
 
 </FrameLayout>

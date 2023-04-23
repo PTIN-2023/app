@@ -161,7 +161,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 String text = editText.getText().toString();
                 // Mostrar el text en la pantalla home
-                // ...
                 popupWindow.dismiss();
             }
         });
