@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.appcompat.widget.SearchView;
 import com.example.appptin.databinding.ActivityMainBinding;
+import com.example.appptin.medico.MedicoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +47,12 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragments(new HomeFragment());
                     break;
                 case R.id.user:
+                    //Perfil usuari
                     replaceFragments(new UserFragment());
+
+                    //Llamar Activity del médico
+                   // Intent intent = new Intent(this, MedicoActivity.class);
+                    //startActivity(intent);
                     break;
                 case R.id.cistella:
                     replaceFragments(new CistellaFragment());
