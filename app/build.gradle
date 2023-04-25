@@ -48,4 +48,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
+    // Michael Zerpa - 25/05/2023 - dependencia para fotos circulares
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

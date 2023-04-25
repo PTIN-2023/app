@@ -19,7 +19,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="280dp"
                 android:background="@drawable/top_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0">
 
-                <com.google.android.material.imageview.ShapeableImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageView_profile_medico"
                     android:layout_width="180dp"
                     android:layout_height="180dp"
@@ -37,18 +37,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                     tools:src="@drawable/foto_perfil_usuario" />
 
-                <TextView
-                    android:id="@+id/textView2"
+                <Button
+                    android:id="@+id/btn_perfil_user_foto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Pablo Díaz"
-                    android:textColor="#ffffff"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/camara"
+                    android:text="Editar"
+                    android:textColor="#000000"
+                    android:background="@android:color/transparent"
+                    android:textSize="15dp"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_profile_medico"
                     app:layout_constraintStart_toStartOf="@+id/imageView_profile_medico"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_profile_medico" />
@@ -56,211 +56,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:orientation="vertical">
 
-                <!-- Información personal -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="INFORMACIÓ PERSONAL"
-                    android:textColor="#000000"
-                    android:textSize="20dp"
-                    android:textStyle="bold"></TextView>
-
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:rowCount="6">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_row="0"
-                        android:layout_column="0"
-                        android:text="Nom:"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_row="1"
-                        android:layout_column="0"
-                        android:text="Cognoms:"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_row="2"
-                        android:layout_column="0"
-                        android:text="Data de naixement:"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_row="3"
-                        android:layout_column="0"
-                        android:text="Gènere:"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_row="4"
-                        android:layout_column="0"
-                        android:text="País:"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_row="5"
-                        android:layout_column="0"
-                        android:text="Província:"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="0"
-                        android:layout_column="1"
-                        android:layout_marginLeft="5dp"
-                        android:text="Pablo"
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="1"
-                        android:layout_column="1"
-                        android:layout_marginLeft="5dp"
-                        android:text="Díaz Fernández"
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="2"
-                        android:layout_column="1"
-                        android:layout_marginLeft="5dp"
-                        android:text="10/06/1996"
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="3"
-                        android:layout_column="1"
-                        android:layout_marginLeft="5dp"
-                        android:text="Masculí"
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="4"
-                        android:layout_column="1"
-                        android:layout_marginLeft="5dp"
-                        android:text="Espanya"
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="5"
-                        android:layout_column="1"
-                        android:layout_marginLeft="5dp"
-                        android:text="Barcelona"
-                        android:textColor="#000000" />
-
-                </GridLayout>
-
-
-
-                <!-- Información de contacto -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="INFORMACIÓ DE CONTACTE"
-                    android:textColor="#000000"
-                    android:textSize="20dp"
-                    android:textStyle="bold"></TextView>
-
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:rowCount="2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="0"
-                        android:layout_column="0"
-                        android:text="Email:"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="1"
-                        android:layout_column="0"
-                        android:text="Telèfon:"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_row="0"
-                        android:layout_column="1"
-                        android:layout_marginLeft="5dp"
-                        android:text="pablodf@gmail.com"
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="1"
-                        android:layout_column="1"
-                        android:layout_marginLeft="5dp"
-                        android:text="668 453 764"
-                        android:textColor="#000000" />
-
-                </GridLayout>
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_cerrar_sesion_medico"
