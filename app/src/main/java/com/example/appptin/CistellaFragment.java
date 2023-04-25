@@ -7,17 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,44 +74,57 @@ public class CistellaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
         View view = inflater.inflate(R.layout.fragment_cistella, container, false);
         linearLayoutCistella = view.findViewById(R.id.linearLayout_cistella);
         // Afegir un producte exemple per defecte
-        afegirProducte("Producte de prova", 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
+        afegirProducte(view,"Producte de prova", 1, 1);
 
-        actualitzarCistella();
+        actualitzarPreu(view);
+        actualitzarCistella(view);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        actualitzarCistella();
+        //actualitzarCistella();
     }
 
-    private void afegirProducte(String nomProducte, int quantitat) {
+    private void afegirProducte(View viewPreu, String nomProducte, int quantitat, float preu) {
         HashMap<String, Object> producte = new HashMap<>();
         producte.put("nom", nomProducte);
         producte.put("quantitat", quantitat);
+        producte.put("preu", preu);
         cistella.add(producte);
 
         // Actualitzar la vista de la cistella
-        actualitzarCistella();
+        actualitzarPreu(viewPreu);
+        actualitzarCistella(viewPreu);
     }
 
-    private void actualitzarCistella() {
+    private void actualitzarCistella(View viewPreu) {
         linearLayoutCistella.removeAllViews();
 
         for (HashMap<String, Object> producte : cistella) {
             View producteView = getLayoutInflater().inflate(R.layout.productes_cistella, null);
             TextView nomProducte = producteView.findViewById(R.id.nom_producte);
+            TextView preuProducte = producteView.findViewById(R.id.preu_producte);
             TextView quantitatProducte = producteView.findViewById(R.id.quantity_textview);
             ImageButton btnEliminar = producteView.findViewById(R.id.btn_eliminar);
             ImageButton btnMenys = producteView.findViewById(R.id.decrement_button);
             ImageButton btnMes = producteView.findViewById(R.id.increment_button);
 
             nomProducte.setText((String) producte.get("nom"));
+            preuProducte.setText(Float.toString((float) producte.get("preu")) + " €");
             quantitatProducte.setText(Integer.toString((int) producte.get("quantitat")));
 
             btnEliminar.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +132,7 @@ public class CistellaFragment extends Fragment {
                 public void onClick(View v) {
                     // Acció per a eliminar el producte de la cistella
                     cistella.remove(producte);
-                    actualitzarCistella();
+                    actualitzarCistella(viewPreu);
                 }
             });
 
@@ -135,7 +143,7 @@ public class CistellaFragment extends Fragment {
                     int novaQuantitat = (int) producte.get("quantitat") - 1;
                     if (novaQuantitat >= 1) {
                         producte.put("quantitat", novaQuantitat);
-                        actualitzarCistella();
+                        actualitzarCistella(viewPreu);
                     }
                 }
             });
@@ -146,12 +154,26 @@ public class CistellaFragment extends Fragment {
                     // Acció per a incrementar la quantitat del producte a la cistella
                     int novaQuantitat = (int) producte.get("quantitat") + 1;
                     producte.put("quantitat", novaQuantitat);
-                    actualitzarCistella();
+                    actualitzarCistella(viewPreu);
                 }
             });
 
             linearLayoutCistella.addView(producteView);
         }
+        actualitzarPreu(viewPreu);
+    }
+
+    private void actualitzarPreu(View ViewPreu) {
+        float preuTotal = 0;
+
+        for (HashMap<String, Object> producte : cistella) {
+            float preuProducte = (float) producte.get("preu");
+            int quantitatProducte = (int) producte.get("quantitat");
+            preuTotal += preuProducte * quantitatProducte;
+        }
+        //View preuView = getLayoutInflater().inflate(R.layout.fragment_cistella, null);
+        TextView preuTotalView = ViewPreu.findViewById(R.id.preu_total);
+        preuTotalView.setText("Preu total: " + preuTotal + "€");
     }
 
     //Dos funcions per a ocultar la barra de cerca en aquest fragment
