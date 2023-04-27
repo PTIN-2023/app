@@ -6,73 +6,331 @@
     android:layout_height="match_parent"
     tools:context=".UserFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grey_900"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity=""
-            android:orientation="vertical" >
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Perfil"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:background="@drawable/top_background"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageView_profile_medico"
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_marginTop="32dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                    tools:src="@drawable/foto_perfil_usuario" />
+                <!-- Imagen de perfil -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/foto_perfil_usuario"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp" />
 
                 <Button
                     android:id="@+id/btn_perfil_user_foto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:drawableLeft="@drawable/camara"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@drawable/baseline_photo_camera_24"
                     android:text="Editar"
-                    android:textColor="#000000"
-                    android:fontFamily="@font/rinkart"
+                    android:textColor="#FFFFFF"
                     android:background="@android:color/transparent"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView_profile_medico"
-                    app:layout_constraintStart_toStartOf="@+id/imageView_profile_medico"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_profile_medico" />
+                    android:textSize="12dp"
+                    />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:background="@drawable/round_back_white10_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_personal"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/baseline_person_24"
+                            android:padding="5dp"/>
+
+                        <TextView
+                            android:layout_marginStart="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Dades Personals"
+                            android:textSize="16dp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@+id/iv_personal"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow_icon"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/iv_direcciones"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/baseline_house_24"
+                            android:padding="5dp"/>
+
+                        <TextView
+                            android:layout_marginStart="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Libreta d'adreces"
+                            android:textSize="16dp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@+id/iv_direcciones"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow_icon"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/iv_metodo_pago"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/baseline_credit_card_24"
+                            android:padding="5dp"/>
+
+                        <TextView
+                            android:layout_marginStart="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Mètode de pagament"
+                            android:textSize="16dp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@+id/iv_metodo_pago"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow_icon"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+
+                    </RelativeLayout>
 
 
 
-            <Button
-                android:id="@+id/btn_cerrar_sesion_medico"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:backgroundTint="#162676"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                android:text="Tancar sessió"
-                android:fontFamily="@font/rinkart"/>
+                </LinearLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:background="@drawable/round_back_white10_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-    </ScrollView>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_medico_asignado"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/baseline_local_hospital_24"
+                            android:padding="5dp"/>
+
+                        <TextView
+                            android:layout_marginStart="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Metge assignat"
+                            android:textSize="16dp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@+id/iv_medico_asignado"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow_icon"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/iv_notificacion"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/baseline_notifications_none_24"
+                            android:padding="5dp"/>
+
+                        <TextView
+                            android:layout_marginStart="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Notificacions"
+                            android:textSize="16dp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@+id/iv_notificacion"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow_icon"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/iv_configuracion"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/baseline_settings_24"
+                            android:padding="5dp"/>
+
+                        <TextView
+                            android:layout_marginStart="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Configuració"
+                            android:textSize="16dp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@+id/iv_configuracion"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow_icon"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contenedor_salir"
+                    android:background="@drawable/round_back_white10_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_salir"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/baseline_exit_to_app_24"
+                            android:padding="5dp"/>
+
+                        <TextView
+                            android:layout_marginStart="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Sortir"
+                            android:textSize="16dp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@+id/iv_salir"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow_icon"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
 
 </FrameLayout>
