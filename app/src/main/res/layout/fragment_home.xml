@@ -17,6 +17,7 @@
         android:layout_weight="1"
         android:text="Escanejar QR"
         android:textSize="20sp"
+        android:fontFamily="@font/rinkart"
         app:icon="@drawable/baseline_qr_code_scanner_24"
         app:iconGravity="textTop"
         app:iconSize="48dp"
@@ -31,6 +32,7 @@
         android:layout_width="281dp"
         android:layout_height="69dp"
         android:text="Afegir codi de recepta"
+        android:fontFamily="@font/rinkart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -44,9 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:ems="10"
+        android:fontFamily="@font/rinkart"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/btnScan"
-        tools:layout_editor_absoluteX="100dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnScan" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

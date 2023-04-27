@@ -13,7 +13,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu"
+        app:itemTextAppearanceActive="@style/Text_Font"/>
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -30,7 +31,7 @@
         android:id="@+id/listview"
         android:paddingTop="?android:attr/actionBarSize"
         android:clipToPadding="false"
-        android:scrollbarStyle="outsideOverlay"/>
+        android:scrollbarStyle="outsideOverlay" />
 
     </FrameLayout>
 

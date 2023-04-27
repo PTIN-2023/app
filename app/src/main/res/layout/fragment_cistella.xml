@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="cistella"
         android:textSize="24sp"
+        android:fontFamily="@font/rinkart"
         android:textStyle="bold"/>
 
     <ScrollView
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
             android:text="Finalitzar Compra"
+            android:fontFamily="@font/rinkart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.83"
@@ -53,6 +55,7 @@
             android:text="Preu total: 0€"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:fontFamily="@font/rinkart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.051"

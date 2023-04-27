@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".medico.fragments.perfilMedico.PerfilMedicoFragment">
+    tools:context=".medico.fragments.perfilmedico.PerfilMedicoFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -49,6 +49,7 @@
                     android:textColor="#ffffff"
                     android:textSize="20dp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/rinkart"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_profile_medico"
                     app:layout_constraintStart_toStartOf="@+id/imageView_profile_medico"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_profile_medico" />
@@ -71,6 +72,7 @@
                     android:text="INFORMACIÓ PERSONAL"
                     android:textColor="#000000"
                     android:textSize="20dp"
+                    android:fontFamily="@font/rinkart"
                     android:textStyle="bold"></TextView>
 
                 <GridLayout
@@ -91,6 +93,7 @@
                         android:layout_column="0"
                         android:text="Nom:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -101,6 +104,7 @@
                         android:layout_column="0"
                         android:text="Cognoms:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -111,6 +115,7 @@
                         android:layout_column="0"
                         android:text="Data de naixement:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -121,6 +126,7 @@
                         android:layout_column="0"
                         android:text="País:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -131,6 +137,7 @@
                         android:layout_column="0"
                         android:text="Província:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -140,7 +147,8 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="Pedro"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -149,7 +157,8 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="Fernández Alvarez"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -158,7 +167,8 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="10/06/1986"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -167,7 +177,8 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="Espanya"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -176,7 +187,8 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="Barcelona"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                 </GridLayout>
 
@@ -188,6 +200,7 @@
                     android:text="CREDENCIALS MÈDIQUES"
                     android:textColor="#000000"
                     android:textSize="20dp"
+                    android:fontFamily="@font/rinkart"
                     android:textStyle="bold"></TextView>
 
                 <GridLayout
@@ -208,6 +221,7 @@
                         android:layout_column="0"
                         android:text="Especialitat:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -217,6 +231,7 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="Metge general"
+                        android:fontFamily="@font/rinkart"
                         android:textColor="#000000" />
 
                     <TextView
@@ -226,6 +241,7 @@
                         android:layout_column="0"
                         android:text="Identificador metge:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -235,7 +251,8 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="546475676"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                 </GridLayout>
 
@@ -246,6 +263,7 @@
                     android:layout_marginTop="10dp"
                     android:text="INFORMACIÓ DE CONTACTE"
                     android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
 
@@ -266,6 +284,7 @@
                         android:layout_column="0"
                         android:text="Email:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -275,6 +294,7 @@
                         android:layout_column="0"
                         android:text="Telèfon:"
                         android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"
                         android:textStyle="bold" />
 
                     <TextView
@@ -285,7 +305,8 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="doctor@gmail.com"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -294,7 +315,8 @@
                         android:layout_column="1"
                         android:layout_marginLeft="5dp"
                         android:text="667 246 973"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                 </GridLayout>
 
@@ -306,6 +328,7 @@
                     android:layout_marginTop="10dp"
                     android:text="HORARI DE TREBALL"
                     android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
 
@@ -327,7 +350,8 @@
                         android:layout_row="0"
                         android:layout_column="0"
                         android:text="Dilluns a divendres"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -336,7 +360,8 @@
                         android:layout_row="1"
                         android:layout_column="0"
                         android:text="08:00 a 17:00"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:fontFamily="@font/rinkart"/>
 
                 </GridLayout>
 
@@ -350,7 +375,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
-                android:text="Tancar sessió" />
+                android:text="Tancar sessió"
+                android:fontFamily="@font/rinkart"/>
 
         </LinearLayout>
 

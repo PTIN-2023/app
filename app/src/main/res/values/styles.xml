@@ -5,4 +5,7 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">55%</item>
     </style>
+    <style name="Text_Font">
+        <item name="fontFamily">@font/rinkart</item>
+    </style>
 </resources>

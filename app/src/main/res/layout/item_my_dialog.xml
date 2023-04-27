@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:fontFamily="@font/rinkart"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Afegir"
+        android:fontFamily="@font/rinkart"
         app:layout_constraintLeft_toRightOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 

@@ -30,6 +30,7 @@
         app:menu="@menu/bottom_navigation_medico"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        app:labelVisibilityMode="selected"/>
+        app:labelVisibilityMode="selected"
+        app:itemTextAppearanceActive="@style/Text_Font"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

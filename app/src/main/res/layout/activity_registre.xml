@@ -21,23 +21,6 @@
         app:layout_constraintTop_toTopOf="@+id/view2"
         app:srcCompat="@drawable/recurso_1" />
 
-    <EditText
-        android:id="@+id/correu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#DDA400"
-        android:ems="10"
-        android:hint="Correu"
-        android:inputType="textEmailAddress"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usuari"
-        app:endIconMode="clear_text"/>
 
     <EditText
         android:id="@+id/usuari"
@@ -51,10 +34,30 @@
         android:hint="Nom Usuari"
         android:inputType="textPersonName"
         android:textColorHint="@color/white"
+        android:fontFamily="@font/rinkart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:endIconMode="clear_text"/>
+
+    <EditText
+        android:id="@+id/correu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#DDA400"
+        android:ems="10"
+        android:hint="Correu"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/white"
+        android:fontFamily="@font/rinkart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usuari"
         app:endIconMode="clear_text"/>
 
     <EditText
@@ -69,6 +72,7 @@
         android:hint="Contrassenya"
         android:inputType="textPassword"
         android:textColorHint="@color/white"
+        android:fontFamily="@font/rinkart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/correu"
@@ -86,6 +90,7 @@
         android:hint="Repeteix Contrassenya"
         android:inputType="textPassword"
         android:textColorHint="@color/white"
+        android:fontFamily="@font/rinkart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +108,7 @@
         android:text="Registrat"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:fontFamily="@font/rinkart"
         android:onClick="registre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
