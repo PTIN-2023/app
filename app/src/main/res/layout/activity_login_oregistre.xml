@@ -6,13 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".login_o_registre">
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="298dp"
         android:layout_height="98dp"
         android:layout_marginStart="56dp"
         android:layout_marginBottom="150dp"
-        android:background="@drawable/boton"
+        android:theme="@style/style_button"
+        android:background="@drawable/button_tmp"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:fontFamily="@font/rinkart"
@@ -28,7 +35,8 @@
         android:layout_height="98dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="150dp"
-        android:background="@drawable/boton"
+        android:theme="@style/style_button"
+        android:background="@drawable/button_tmp"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:fontFamily="@font/rinkart"
@@ -37,11 +45,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#72AADD" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

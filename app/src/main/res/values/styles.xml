@@ -8,4 +8,8 @@
     <style name="Text_Font">
         <item name="fontFamily">@font/rinkart</item>
     </style>
+    <style name="style_button" parent="android:Widget.Button">
+        <item name="fontFamily">@font/rinkart</item>
+        <item name="backgroundTint">?colorPrimaryVariant</item>
+    </style>
 </resources>
