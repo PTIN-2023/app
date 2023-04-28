@@ -16,7 +16,6 @@
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="189dp">
 
-            <!-- Aquí pots afegir els teus elements de la interfície d'usuari dins del LinearLayout -->
 
         </LinearLayout>
     </ScrollView>
