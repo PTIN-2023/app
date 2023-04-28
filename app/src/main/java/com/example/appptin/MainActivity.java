@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.appcompat.widget.SearchView;
@@ -90,6 +92,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 System.out.println("Test");
+                getMedicaments(query);
+                MedicamentsFragment MedicamentsFragment = new MedicamentsFragment();
+                // Reemplaza el fragmento actual con el MedicamentsFragment
+                replaceFragments(MedicamentsFragment);
+                // Tanquem el teclat virtual
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
                 return false;
             }
 
@@ -102,5 +111,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void getMedicaments(String text){
+
+
     }
 }

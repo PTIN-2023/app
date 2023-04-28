@@ -13,7 +13,7 @@
         android:background="@color/white" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bt_analgesics"
         android:layout_width="298dp"
         android:layout_height="98dp"
         android:layout_marginStart="56dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bt_antiacids"
         android:layout_width="298dp"
         android:layout_height="98dp"
         android:layout_marginStart="56dp"

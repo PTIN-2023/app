@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FiltreFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_Filtres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filtres"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/bt_X"
+            android:layout_width="67dp"
+            android:layout_height="wrap_content"
+            android:text="X" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_Via"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Via:"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/cb_Oral"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Oral" />
+
+                <CheckBox
+                    android:id="@+id/cb_Topica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Topica" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CheckBox" />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CheckBox" />
+
+                <CheckBox
+                    android:id="@+id/checkBox5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CheckBox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_Format"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Format:"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/cb_Comprimidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comprimidos" />
+
+                <CheckBox
+                    android:id="@+id/cb_Pomada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pomada" />
+
+                <CheckBox
+                    android:id="@+id/cb_Crema"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Crema" />
+
+                <CheckBox
+                    android:id="@+id/cb_Jarabe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jarabe" />
+
+                <CheckBox
+                    android:id="@+id/cb_Inyeccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Inyección" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_Aplicar"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:text="Aplicar" />
+
+    </LinearLayout>
+
+</FrameLayout>
