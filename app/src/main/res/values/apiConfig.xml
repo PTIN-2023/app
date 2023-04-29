@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="api_base_url">http://147.83.159.195:24105</string>
+    <string name="api_port">8080</string>
+</resources>

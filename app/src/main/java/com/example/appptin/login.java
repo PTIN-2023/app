@@ -5,7 +5,9 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +15,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -20,8 +28,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-public class login extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
 
+public class login extends AppCompatActivity {
     EditText inputcorreu, input_contrassenya;
 
     // Declarar variables globales
@@ -51,8 +61,7 @@ public class login extends AppCompatActivity {
         // Aqui fem la consulta amb la API a la base de dades per veure si existeix el usuari
 
         if(_correu != "admin@1234" && _contrassenya != "1234"){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            checkUser(_correu, _contrassenya);
         }
         //!_correu.contains("@")
         else if(_correu.isEmpty() || _correu != "admin@1234"){
@@ -115,4 +124,60 @@ public class login extends AppCompatActivity {
             }
         }
     }
+
+    private boolean checkUser(String email, String password) {
+        boolean exists = false;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/login"; // Reemplaza con la dirección de tu API
+        System.out.println(url);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("email", email);
+            jsonBody.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            //boolean exists = response.getBoolean("exists");
+                            System.out.println("MENSAJE: " + response);
+                            String password = response.isNull("password") ? null : response.getString("password");
+                            String result = response.getString("result");
+
+                            // Utiliza los valores extraídos según sea necesario
+                            if (result.equals("ok")) {
+                                System.out.println("L'usuari existeix");
+                                navigateToMainActivity();
+                            } else {
+                                System.out.println("L'usuari NO existeix");
+                                //Fer Pop-Up o algo per notificar l'usuari
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                    }
+                });
+
+        queue.add(jsonObjectRequest);
+        return exists;
+    }
+
+    private void navigateToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
+    }
+
 }
