@@ -62,8 +62,30 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
+        <activity android:name=".paciente.perfil.opciones.DatoPacienteFragment">
+
+            <!-- otras configuraciones de la actividad -->
+        </activity>
         <activity android:name=".Welcome_popup">
 
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".medico.fragments.aprobarPeticion.AprobarFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".medico.fragments.detallesPeticion.DetallesPeticionFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".medico.fragments.historialPaciente.HistorialPacienteFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".medico.fragments.historialPeticion.HistorialPeticionFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".medico.fragments.perfilmedico.PerfilMedicoFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".medico.fragments.perfilmedico.opciones.DatoMedicoFragment">
             <!-- otras configuraciones de la actividad -->
         </activity>
     </application>
