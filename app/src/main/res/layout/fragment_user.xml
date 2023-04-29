@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_900"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -21,9 +20,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:fontFamily="@font/rinkart"
+                android:textSize="28dp"
                 android:text="Perfil"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -49,15 +48,13 @@
 
                 <Button
                     android:id="@+id/btn_perfil_user_foto"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:drawableLeft="@drawable/baseline_photo_camera_24"
                     android:text="Editar"
-                    android:textColor="#FFFFFF"
-                    android:background="@android:color/transparent"
-                    android:textSize="12sp"
-                    />
+                    android:fontFamily="@font/rinkart" />
 
 
                 <LinearLayout

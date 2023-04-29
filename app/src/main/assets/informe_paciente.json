@@ -1,0 +1,253 @@
+[{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca4d"
+  },
+  "medico": "Dr. Joan Martínez García",
+  "datos_personales": {
+    "nombre": "Anna",
+    "apellidos": "González Torres",
+    "n_ident": "12345678A",
+    "fecha_nacimiento": "15/02/1990",
+    "genero": "femenino",
+    "cip": "1234567890123456",
+    "pais": "España",
+    "provincia": "Barcelona"
+  },
+  "antecedentes_personales": "Sin antecedentes relevantes",
+  "problemas_salud": "Dolor de cabeza frecuente",
+  "tratamientos": "Paracetamol 500mg, 1 comprimido cada 8 horas"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca4e"
+  },
+  "medico": "Dra. Maria López Martínez",
+  "datos_personales": {
+    "nombre": "Marc",
+    "apellidos": "Torres García",
+    "n_ident": "87654321B",
+    "fecha_nacimiento": "20/10/1985",
+    "genero": "masculino",
+    "cip": "9876543210987654",
+    "pais": "España",
+    "provincia": "Madrid"
+  },
+  "antecedentes_personales": "Hipertensión",
+  "problemas_salud": "Fatiga crónica",
+  "tratamientos": "Losartán 50mg, 1 comprimido al día"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca4f"
+  },
+  "medico": "Dr. Joan Martínez García",
+  "datos_personales": {
+    "nombre": "Eva",
+    "apellidos": "Martínez Sánchez",
+    "n_ident": "56789123C",
+    "fecha_nacimiento": "08/08/1995",
+    "genero": "femenino",
+    "cip": "4567890123456789",
+    "pais": "España",
+    "provincia": "Valencia"
+  },
+  "antecedentes_personales": "Sin antecedentes relevantes",
+  "problemas_salud": "Alergia estacional",
+  "tratamientos": "Cetirizina 10mg, 1 comprimido al día"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca50"
+  },
+  "medico": "Dr. Jordi García Soler",
+  "datos_personales": {
+    "nombre": "Pablo",
+    "apellidos": "García Moreno",
+    "n_ident": "34567891D",
+    "fecha_nacimiento": "25/03/1998",
+    "genero": "masculino",
+    "cip": "3456789012345678",
+    "pais": "España",
+    "provincia": "Sevilla"
+  },
+  "antecedentes_personales": "Intolerancia a la lactosa",
+  "problemas_salud": "Dolor de espalda",
+  "tratamientos": "Ibuprofeno 600mg, 1 comprimido cada 8 horas"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca51"
+  },
+  "medico": "Dra. Anna Torres Sánchez",
+  "datos_personales": {
+    "nombre": "Carla",
+    "apellidos": "García Hernández",
+    "n_ident": "12345678A",
+    "fecha_nacimiento": "23/05/1992",
+    "genero": "femenino",
+    "cip": "1234567890",
+    "pais": "España",
+    "provincia": "Barcelona"
+  },
+  "antecedentes_personales": "Ninguno",
+  "problemas_salud": "Dolor de cabeza frecuente",
+  "tratamientos": "Paracetamol 1g cada 8 horas"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca52"
+  },
+  "medico": "Dr. Marc Vidal Gómez",
+  "datos_personales": {
+    "nombre": "David",
+    "apellidos": "López Rodríguez",
+    "n_ident": "87654321B",
+    "fecha_nacimiento": "12/10/2000",
+    "genero": "masculino",
+    "cip": "0987654321",
+    "pais": "España",
+    "provincia": "Madrid"
+  },
+  "antecedentes_personales": "Alergia al polvo",
+  "problemas_salud": "Resfriado",
+  "tratamientos": "Ibuprofeno 600mg cada 8 horas"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca53"
+  },
+  "medico": "Dra. Laura García Pérez",
+  "datos_personales": {
+    "nombre": "Sara",
+    "apellidos": "Martínez Gómez",
+    "n_ident": "34567890C",
+    "fecha_nacimiento": "06/12/1987",
+    "genero": "femenino",
+    "cip": "2345678901",
+    "pais": "España",
+    "provincia": "Valencia"
+  },
+  "antecedentes_personales": "Hipertensión",
+  "problemas_salud": "Dolor de espalda",
+  "tratamientos": "Diclofenaco 50mg cada 12 horas"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca54"
+  },
+  "medico": "Dr. Juan Pérez García",
+  "datos_personales": {
+    "nombre": "Miguel",
+    "apellidos": "González López",
+    "n_ident": "23456789D",
+    "fecha_nacimiento": "17/04/2001",
+    "genero": "masculino",
+    "cip": "3456789012",
+    "pais": "España",
+    "provincia": "Sevilla"
+  },
+  "antecedentes_personales": "Ninguno",
+  "problemas_salud": "Herida en la pierna",
+  "tratamientos": "Curas y antibiótico"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca55"
+  },
+  "medico": "Dr. Pere Garcia Mestre",
+  "datos_personales": {
+    "nombre": "Joana",
+    "apellidos": "Martínez Cortés",
+    "n_ident": "34567891B",
+    "fecha_nacimiento": "25/01/2000",
+    "genero": "femenino",
+    "cip": "123456789",
+    "pais": "España",
+    "provincia": "Barcelona"
+  },
+  "antecedentes_personales": "Hipertensión arterial",
+  "problemas_salud": "Dolor de cabeza y mareos",
+  "tratamientos": "Enalapril y paracetamol"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca56"
+  },
+  "medico": "Dr. Joan Batlle Soler",
+  "datos_personales": {
+    "nombre": "Jordi",
+    "apellidos": "López Roig",
+    "n_ident": "23456789C",
+    "fecha_nacimiento": "02/06/1992",
+    "genero": "masculino",
+    "cip": "987654321",
+    "pais": "España",
+    "provincia": "Valencia"
+  },
+  "antecedentes_personales": "Ninguno",
+  "problemas_salud": "Fiebre y dolor de garganta",
+  "tratamientos": "Paracetamol y amoxicilina"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca57"
+  },
+  "medico": "Dr. Pere Garcia Mestre",
+  "datos_personales": {
+    "nombre": "Joana",
+    "apellidos": "Martínez Cortés",
+    "n_ident": "34567891B",
+    "fecha_nacimiento": "15/06/1980",
+    "genero": "femenino",
+    "cip": "123456789",
+    "pais": "España",
+    "provincia": "Barcelona"
+  },
+  "antecedentes_personales": "Hipertensión arterial",
+  "problemas_salud": "Dolor de cabeza y mareos",
+  "tratamientos": "Enalapril y paracetamol"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca58"
+  },
+  "medico": "Dr. Joan Batlle Soler",
+  "datos_personales": {
+    "nombre": "Jordi",
+    "apellidos": "López Roig",
+    "n_ident": "23456789C",
+    "fecha_nacimiento": "05/03/1975",
+    "genero": "masculino",
+    "cip": "987654321",
+    "pais": "España",
+    "provincia": "Valencia"
+  },
+  "antecedentes_personales": "Ninguno",
+  "problemas_salud": "Fiebre y dolor de garganta",
+  "tratamientos": "Paracetamol y amoxicilina"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca59"
+  },
+  "medico": "Dra. Laura Valls Serra",
+  "datos_personales": {
+    "nombre": "Carla",
+    "apellidos": "Sánchez Gil",
+    "n_ident": "45678901D",
+    "fecha_nacimiento": "22/09/1988",
+    "genero": "femenino",
+    "cip": "654321987",
+    "pais": "España",
+    "provincia": "Madrid"
+  },
+  "antecedentes_personales": "Alergia al polen",
+  "problemas_salud": "Picor en los ojos y congestión nasal",
+  "tratamientos": "Antihistamínicos y corticoides"
+},{
+  "_id": {
+    "$oid": "644c4e136d1ab40b275aca5a"
+  },
+  "medico": "Dr. Àlex Noguera Riera",
+  "datos_personales": {
+    "nombre": "David",
+    "apellidos": "Fernández Torres",
+    "n_ident": "56789012E",
+    "fecha_nacimiento": "28/11/1972",
+    "genero": "masculino",
+    "cip": "321987654",
+    "pais": "España",
+    "provincia": "Sevilla"
+  },
+  "antecedentes_personales": "Diabetes tipo 2",
+  "problemas_salud": "Fatiga y sequedad de boca",
+  "tratamientos": "Metformina y glibenclamida"
+}]
