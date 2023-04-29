@@ -20,11 +20,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:background="@color/design_default_color_primary"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:fontFamily="@font/rinkart"
+                android:background="?attr/colorPrimary"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:text="Informació  Pacient:">
+                android:text="Informació  Pacient">
             </TextView>
 
             <GridLayout
@@ -42,7 +43,7 @@
                     android:layout_row="0"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Nom:" />
 
@@ -53,7 +54,7 @@
                     android:layout_row="1"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Cognoms:" />
 
@@ -64,7 +65,7 @@
                     android:layout_row="2"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Nº d'identificació:" />
 
@@ -75,7 +76,7 @@
                     android:layout_row="3"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:textSize="18dp"
                     android:text="Nº Comanda:" />
 
@@ -83,7 +84,7 @@
                     android:id="@+id/txt_peticion_nombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:layout_row="0"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -94,7 +95,7 @@
                     android:id="@+id/txt_peticion_apellido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -105,7 +106,7 @@
                     android:id="@+id/txt_peticion_dni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="2"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -116,7 +117,7 @@
                     android:id="@+id/txt_peticion_pedido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="3"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -126,9 +127,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/design_default_color_primary"
+                android:background="?attr/colorPrimary"
                 android:layout_marginTop="15dp"
-                android:textColor="#000000"
+                android:fontFamily="@font/rinkart"
                 android:textSize="22dp"
                 android:textStyle="bold"
                 android:text="Llista de medicaments:" />
@@ -150,6 +151,8 @@
                     android:id="@+id/btn_aceptar_peticion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:fontFamily="@font/rinkart"
                     android:text="Aceptar"/>
                 <Space
                     android:layout_width="16dp"
@@ -159,6 +162,8 @@
                     android:id="@+id/btn_rechazar_peticion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:fontFamily="@font/rinkart"
                     android:text="Rebutjar"/>
             </LinearLayout>
 

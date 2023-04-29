@@ -58,7 +58,7 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
-        <activity android:name=".UserFragment">
+        <activity android:name=".paciente.perfil.UserFragment">
 
             <!-- otras configuraciones de la actividad -->
         </activity>

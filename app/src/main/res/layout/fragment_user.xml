@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserFragment">
+    tools:context=".paciente.perfil.UserFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/rinkart"
-                android:textSize="28dp"
+                android:textSize="30sp"
                 android:text="Perfil"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -54,7 +54,9 @@
                     android:layout_gravity="center"
                     android:drawableLeft="@drawable/baseline_photo_camera_24"
                     android:text="Editar"
-                    android:fontFamily="@font/rinkart" />
+                    android:fontFamily="@font/rinkart_italic"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
 
 
                 <LinearLayout
@@ -68,6 +70,7 @@
                     android:padding="15dp">
 
                     <RelativeLayout
+                        android:id="@+id/rl_perfil_usuario_datos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -84,8 +87,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Dades Personals"
-                            android:textSize="16dp"
-                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/rinkart_italic"
+                            android:textColor="@color/white"
                             android:textStyle="bold"
                             android:layout_toEndOf="@+id/iv_personal"
                             />
@@ -117,8 +121,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Libreta d'adreces"
-                            android:textSize="16dp"
-                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/rinkart_italic"
+                            android:textColor="@color/white"
                             android:textStyle="bold"
                             android:layout_toEndOf="@+id/iv_direcciones"
                             />
@@ -150,8 +155,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Mètode de pagament"
-                            android:textSize="16dp"
-                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/rinkart_italic"
+                            android:textColor="@color/white"
                             android:textStyle="bold"
                             android:layout_toEndOf="@+id/iv_metodo_pago"
                             />
@@ -196,8 +202,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Metge assignat"
-                            android:textSize="16dp"
-                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/rinkart_italic"
+                            android:textColor="@color/white"
                             android:textStyle="bold"
                             android:layout_toEndOf="@+id/iv_medico_asignado"
                             />
@@ -229,8 +236,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Notificacions"
-                            android:textSize="16dp"
-                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/rinkart_italic"
+                            android:textColor="@color/white"
                             android:textStyle="bold"
                             android:layout_toEndOf="@+id/iv_notificacion"
                             />
@@ -262,8 +270,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Configuració"
-                            android:textSize="16dp"
-                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/rinkart_italic"
+                            android:textColor="@color/white"
                             android:textStyle="bold"
                             android:layout_toEndOf="@+id/iv_configuracion"
                             />
@@ -280,7 +289,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/contenedor_salir"
                     android:background="@drawable/round_back_white10_20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -291,6 +299,7 @@
                     android:padding="15dp">
 
                     <RelativeLayout
+                        android:id="@+id/rl_perfil_usuario_salir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -307,11 +316,11 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Sortir"
-                            android:textSize="16dp"
-                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            android:fontFamily="@font/rinkart_italic"
+                            android:textColor="@color/white"
                             android:textStyle="bold"
-                            android:layout_toEndOf="@+id/iv_salir"
-                            />
+                            android:layout_toEndOf="@+id/iv_salir" />
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

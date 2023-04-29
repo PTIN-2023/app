@@ -1,4 +1,4 @@
-package com.example.appptin.medico.fragments.perfilmedico.opciones;
+package com.example.appptin.paciente.perfil.opciones;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -23,29 +23,25 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.appptin.R;
-import com.example.appptin.medico.fragments.perfilmedico.PerfilMedicoFragment;
+import com.example.appptin.paciente.perfil.UserFragment;
 
 import java.util.Calendar;
 
-public class DatoMedicoFragment extends Fragment {
+
+public class DatoPacienteFragment extends Fragment {
+
     private ImageView iv_regresar;
-    private EditText et_nombre, et_apellidos,et_pais, et_provincia;
+    private EditText et_nombre, et_apellidos, et_dni, et_cip , et_pais, et_provincia;
     private Button btn_guardar, btn_fecha;
-
-    private String nombre;
-    private View view;
-
     private Spinner sp_genero;
 
+    private View view;
+
+
     private DatePickerDialog datePickerDialog;
-
-    public DatoMedicoFragment() {
+    public DatoPacienteFragment() {
         // Required empty public constructor
-    }
-
-
-
-    @Override
+    }@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -55,25 +51,24 @@ public class DatoMedicoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_datos_medicos, container, false);
-
+        view =  inflater.inflate(R.layout.fragment_dato_paciente, container, false);
 
         initDatePicker();
 
-        iv_regresar = view.findViewById(R.id.iv_dato_medico_back);
-        et_nombre = view.findViewById(R.id.et_dato_medico_nombre);
-        et_apellidos = view.findViewById(R.id.et_dato_medico_apellidos);
-        btn_guardar = view.findViewById(R.id.btn_dato_medico_guardar);
-        btn_fecha = view.findViewById(R.id.btn_dato_medico_fecha);
+        iv_regresar = view.findViewById(R.id.iv_dato_paciente_back);
+        et_nombre = view.findViewById(R.id.et_dato_paciente_nombre);
+        et_apellidos = view.findViewById(R.id.et_dato_paciente_apellidos);
+        et_dni = view.findViewById(R.id.et_dato_paciente_dni);
+        et_cip = view.findViewById(R.id.et_dato_paciente_cip);
+        btn_guardar = view.findViewById(R.id.btn_dato_paciente_guardar);
+        btn_fecha = view.findViewById(R.id.btn_dato_paciente_fecha);
 
-        sp_genero = view.findViewById(R.id.sp_dato_medico_genero);
-        et_pais = view.findViewById(R.id.et_dato_medico_pais);
-        et_provincia = view.findViewById(R.id.et_dato_medico_ciudad);
+        sp_genero = view.findViewById(R.id.sp_dato_paciente_genero);
+        et_pais = view.findViewById(R.id.et_dato_paciente_pais);
+        et_provincia = view.findViewById(R.id.et_dato_paciente_ciudad);
 
         //Asignar valores
         SetGenero();
-
-        //btn_fecha.setText(getTodaysDate());
 
         //Por defecto botón desactivado
         btn_guardar.setEnabled(false);
@@ -100,9 +95,9 @@ public class DatoMedicoFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            PerfilMedicoFragment perfilMedicoFragment = new PerfilMedicoFragment();
+            UserFragment userFragment = new UserFragment();
             //Cambio de Fragment
-            fragmentTransaction.replace(R.id.frame_container, perfilMedicoFragment);
+            fragmentTransaction.replace(R.id.frameLayout, userFragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
@@ -111,7 +106,7 @@ public class DatoMedicoFragment extends Fragment {
     private View.OnClickListener guardar = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(), "Canvis desats", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Canvis desats",Toast.LENGTH_SHORT).show();
 
         }
     };
@@ -210,16 +205,18 @@ public class DatoMedicoFragment extends Fragment {
 
 
     // Metodo para información del combo del género
-    public void SetGenero() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, new String[]{" ", "Masculí", "Femení"});
+    public void SetGenero(){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, new String[]{" ","Masculí", "Femení"});
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_genero.setAdapter(adapter);
         //Evita que se active el evento OnItemSelectedListener del spinner cuando se establece el índice de selección.
         sp_genero.setSelection(0, false);
     }
 
-    // Métodos para el combo de fecha
-    private String getTodaysDate() {
+
+    /////////////// Métodos para el combo de fecha
+    private String getTodaysDate()
+    {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -229,9 +226,11 @@ public class DatoMedicoFragment extends Fragment {
     }
 
     private void initDatePicker() {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 btn_fecha.setText(date);
@@ -257,29 +256,29 @@ public class DatoMedicoFragment extends Fragment {
 
     // Formato a mostrá para el mes
     private String getMonthFormat(int month) {
-        if (month == 1)
+        if(month == 1)
             return "Gener";
-        if (month == 2)
+        if(month == 2)
             return "Febrer";
-        if (month == 3)
+        if(month == 3)
             return "Març";
-        if (month == 4)
+        if(month == 4)
             return "Abril";
-        if (month == 5)
+        if(month == 5)
             return "Maig";
-        if (month == 6)
+        if(month == 6)
             return "Juny";
-        if (month == 7)
+        if(month == 7)
             return "Juliol";
-        if (month == 8)
+        if(month == 8)
             return "Agost";
-        if (month == 9)
+        if(month == 9)
             return "Setembre";
-        if (month == 10)
+        if(month == 10)
             return "Octubre";
-        if (month == 11)
+        if(month == 11)
             return "Novembre";
-        if (month == 12)
+        if(month == 12)
             return "Desembre";
 
         //default should never happen

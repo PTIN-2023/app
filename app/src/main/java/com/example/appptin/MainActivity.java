@@ -14,8 +14,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.appcompat.widget.SearchView;
+
 import com.example.appptin.databinding.ActivityMainBinding;
 import com.example.appptin.medico.MedicoActivity;
+import com.example.appptin.paciente.perfil.UserFragment;
+import com.example.appptin.paciente.perfil.opciones.DatoPacienteFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.user:
                     //Perfil usuari
-                    //replaceFragments(new UserFragment());
+                     replaceFragments(new UserFragment());
 
-                    //Llamar Activity del médico
-                     Intent intent = new Intent(this, MedicoActivity.class);
-                     startActivity(intent);
+                     //Llamar Activity del médico
+                     //Intent intent = new Intent(this, MedicoActivity.class);
+                     //startActivity(intent);
                     break;
                 case R.id.cistella:
                     replaceFragments(new CistellaFragment());

@@ -19,7 +19,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="#000000"
+                android:fontFamily="@font/rinkart"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:background="?attr/colorPrimary"
                 android:textSize="22dp"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -36,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     android:text="Metge: "/>
@@ -46,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:textSize="18dp"
                     android:hint="Nom del Metge"/>
             </LinearLayout>
@@ -56,8 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="#000000"
-                android:background="@color/design_default_color_primary"
+                android:fontFamily="@font/rinkart"
+                android:background="?attr/colorPrimary"
                 android:textSize="22dp"
                 android:textStyle="bold"
                 android:text="Dades personals"/>
@@ -77,7 +79,7 @@
                     android:layout_row="0"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Nom:" />
 
@@ -88,7 +90,7 @@
                     android:layout_row="1"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Cognoms:" />
 
@@ -99,7 +101,7 @@
                     android:layout_row="2"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Nº d'identificació:" />
 
@@ -110,7 +112,7 @@
                     android:layout_row="3"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Data de naixement:" />
 
@@ -121,7 +123,7 @@
                     android:layout_row="4"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Gènere:" />
 
@@ -132,7 +134,7 @@
                     android:layout_row="5"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="CIP:" />
 
@@ -143,7 +145,7 @@
                     android:layout_row="6"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="País:" />
 
@@ -154,7 +156,7 @@
                     android:layout_row="7"
                     android:layout_column="0"
                     android:layout_margin="5dp"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:text="Província:" />
 
@@ -162,7 +164,7 @@
                     android:id="@+id/txt_informe_nombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="0"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -173,7 +175,7 @@
                     android:id="@+id/txt_informe_apellido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -184,7 +186,7 @@
                     android:id="@+id/txt_informe_dni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="2"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -195,7 +197,7 @@
                     android:id="@+id/txt_informe_fecha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="3"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -206,7 +208,7 @@
                     android:id="@+id/txt_informe_genero"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="4"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -217,7 +219,7 @@
                     android:id="@+id/txt_informe_cip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="5"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -228,7 +230,7 @@
                     android:id="@+id/txt_informe_pais"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="6"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -239,7 +241,7 @@
                     android:id="@+id/txt_informe_provincia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:fontFamily="@font/rinkart_italic"
                     android:layout_row="7"
                     android:layout_column="1"
                     android:layout_margin="5dp"
@@ -252,8 +254,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
-                android:textColor="#000000"
-                android:background="@color/design_default_color_primary"
+                android:fontFamily="@font/rinkart"
+                android:background="?attr/colorPrimary"
                 android:textSize="22dp"
                 android:textStyle="bold"
                 android:text="Antecedents personals"/>
@@ -262,7 +264,7 @@
                 android:id="@+id/txt_informe_antecedente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:fontFamily="@font/rinkart_italic"
                 android:textSize="18dp"
                 android:hint="Descripció dels antecedents personals del pacient"/>
 
@@ -271,8 +273,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
-                android:textColor="#000000"
-                android:background="@color/design_default_color_primary"
+                android:fontFamily="@font/rinkart"
+                android:background="?attr/colorPrimary"
                 android:textSize="22dp"
                 android:textStyle="bold"
                 android:text="Problemes de salut actuals"/>
@@ -281,26 +283,26 @@
                 android:id="@+id/txt_informe_problema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:fontFamily="@font/rinkart_italic"
                 android:textSize="18dp"
                 android:hint="Descripció dels problemes de salut actuals del pacient."/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:background="@color/design_default_color_primary"
+                android:fontFamily="@font/rinkart"
+                android:background="?attr/colorPrimary"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:text="Tractaments mèdics i farmacològics."/>
+                android:text="Tractaments mèdics i farmacològics"/>
 
             <TextView
                 android:id="@+id/txt_informe_tratamiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:fontFamily="@font/rinkart_italic"
                 android:textSize="18dp"
                 android:hint="Descripció del tractament mèdic i framacològics."/>
 
