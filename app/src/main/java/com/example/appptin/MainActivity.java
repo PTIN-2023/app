@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.user:
                     //Perfil usuari
-                    replaceFragments(new UserFragment());
+                    //replaceFragments(new UserFragment());
 
                     //Llamar Activity del médico
-                   // Intent intent = new Intent(this, MedicoActivity.class);
-                    //startActivity(intent);
+                     Intent intent = new Intent(this, MedicoActivity.class);
+                     startActivity(intent);
                     break;
                 case R.id.cistella:
                     replaceFragments(new CistellaFragment());
