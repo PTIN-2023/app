@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.appptin.CistellaFragment;
 import com.example.appptin.R;
-import com.example.appptin.login;
+import com.example.appptin.welcome_page;
 import com.example.appptin.paciente.perfil.opciones.DatoPacienteFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -62,7 +62,7 @@ public class UserFragment extends Fragment {
         public void onClick(View view) {
             Toast.makeText(getActivity(),"Sessió tancada",Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(getActivity(), login.class);
+            Intent intent = new Intent(getActivity(), welcome_page.class);
             startActivity(intent);
         }
     };

@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.medico.MedicoActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -149,11 +150,19 @@ public class login extends AppCompatActivity {
                             System.out.println("MENSAJE: " + response);
                             String password = response.isNull("password") ? null : response.getString("password");
                             String result = response.getString("result");
+                            String role = response.getString("role");
 
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {
                                 System.out.println("L'usuari existeix");
-                                navigateToMainActivity();
+                                if (role.equals("pacient")){
+                                    navigateToMainActivity();
+
+                                }
+                                else if (role.equals("metge")){
+                                    navigateToMetgeActivity();
+                                }
+
                             } else {
                                 System.out.println("L'usuari NO existeix");
                                 //Fer Pop-Up o algo per notificar l'usuari
@@ -176,6 +185,12 @@ public class login extends AppCompatActivity {
 
     private void navigateToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
+    }
+
+    private void navigateToMetgeActivity() {
+        Intent intent = new Intent(this, MedicoActivity.class);
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }
