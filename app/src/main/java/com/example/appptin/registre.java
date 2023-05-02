@@ -78,8 +78,8 @@ public class registre extends AppCompatActivity {
             try {
                 jsonBody.put("name", _usuari);
                 jsonBody.put("email", _correu);
-                jsonBody.put("role", "pacient");
-                jsonBody.put("phone", _telefon); // Añade el número de teléfono del usuario aquí
+                jsonBody.put("role", "paciente");
+                jsonBody.put("id", _telefon); // Añade el número de teléfono del usuario aquí
                 jsonBody.put("password", _contrassenya);
             } catch (JSONException e) {
                 e.printStackTrace();

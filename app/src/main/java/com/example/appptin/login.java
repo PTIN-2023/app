@@ -155,7 +155,7 @@ public class login extends AppCompatActivity {
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {
                                 System.out.println("L'usuari existeix");
-                                if (role.equals("pacient")){
+                                if (role.equals("paciente")){
                                     navigateToMainActivity();
 
                                 }
