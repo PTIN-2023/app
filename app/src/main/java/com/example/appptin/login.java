@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.gestor.GestorActivity;
 import com.example.appptin.medico.MedicoActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -158,8 +159,11 @@ public class login extends AppCompatActivity {
                                     navigateToMainActivity();
 
                                 }
-                                else if (role.equals("metge")){
+                                else if (role.equals("doctor")){
                                     navigateToMetgeActivity();
+                                }
+                                else if (role.equals("manager")){
+                                    navigateToGestorActivity();
                                 }
 
                             } else {
@@ -190,6 +194,12 @@ public class login extends AppCompatActivity {
 
     private void navigateToMetgeActivity() {
         Intent intent = new Intent(this, MedicoActivity.class);
+        startActivity(intent);
+        finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
+    }
+
+    private void navigateToGestorActivity() {
+        Intent intent = new Intent(this, GestorActivity.class);
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }
