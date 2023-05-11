@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,9 +15,7 @@ import android.widget.ListView;
 import androidx.appcompat.widget.SearchView;
 
 import com.example.appptin.databinding.ActivityMainBinding;
-import com.example.appptin.medico.MedicoActivity;
-import com.example.appptin.paciente.perfil.UserFragment;
-import com.example.appptin.paciente.perfil.opciones.DatoPacienteFragment;
+import com.example.appptin.paciente.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
 

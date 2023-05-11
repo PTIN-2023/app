@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -54,8 +53,8 @@ public class login extends AppCompatActivity {
     public void login(View view) {
 
         // get user and password
-        inputcorreu = (EditText) findViewById(R.id.correu);
-        input_contrassenya = (EditText) findViewById(R.id.contrassenya);
+        inputcorreu = (EditText) findViewById(R.id.email);
+        input_contrassenya = (EditText) findViewById(R.id.password);
         String _correu = (inputcorreu.getText()).toString();
         String _contrassenya = (input_contrassenya.getText()).toString();
 
@@ -135,8 +134,8 @@ public class login extends AppCompatActivity {
         System.out.println(url);
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("email", email);
-            jsonBody.put("password", password);
+            jsonBody.put("user_email", email);
+            jsonBody.put("user_password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -155,7 +154,7 @@ public class login extends AppCompatActivity {
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {
                                 System.out.println("L'usuari existeix");
-                                if (role.equals("paciente")){
+                                if (role.equals("patient")){
                                     navigateToMainActivity();
 
                                 }

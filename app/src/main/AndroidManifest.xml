@@ -58,11 +58,11 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
-        <activity android:name=".paciente.perfil.UserFragment">
+        <activity android:name=".paciente.UserFragment">
 
             <!-- otras configuraciones de la actividad -->
         </activity>
-        <activity android:name=".paciente.perfil.opciones.DatoPacienteFragment">
+        <activity android:name=".paciente.opciones.DatoPacienteFragment">
 
             <!-- otras configuraciones de la actividad -->
         </activity>

@@ -28,11 +28,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import com.example.appptin.login;
-
 public class registre extends AppCompatActivity {
 
-    EditText inputcorreu, input_contrassenya, input_repetir_contrassenya, input_usuari, input_telefon;
+    EditText input_given_name, input_full_name, input_email, input_password, input_re_password, input_phone, input_city, input_address;
 
     GoogleSignInClient googleSignInClient;
     @Override
@@ -51,43 +49,54 @@ public class registre extends AppCompatActivity {
     public void registre(View view) {
         // get user and password
 
-        inputcorreu = (EditText) findViewById(R.id.correu);
-        input_usuari = (EditText) findViewById(R.id.usuari);
-        input_telefon = (EditText) findViewById(R.id.telefon);
-        input_contrassenya = (EditText) findViewById(R.id.contrassenya);
-        input_repetir_contrassenya = (EditText) findViewById(R.id.repetir_contrassenya);
-        String _usuari = (input_usuari.getText()).toString();
-        String _correu = (inputcorreu.getText()).toString();
-        String _telefon = (input_telefon.getText()).toString();
-        String _contrassenya = (input_contrassenya.getText()).toString();
-        String _repetir_contrassenya = (input_repetir_contrassenya.getText()).toString();
+        input_given_name = findViewById(R.id.given_name);
+        input_full_name = findViewById(R.id.user_full_name);
+        input_email = findViewById(R.id.email);
+        input_phone = findViewById(R.id.phone);
+        input_password = findViewById(R.id.password);
+        input_re_password = findViewById(R.id.re_password);
+        input_city = findViewById(R.id.password);
+        input_address = findViewById(R.id.password);
 
-        // Aqui fem la consulta amb la API a la base de dades per veure si existeix el usuari
-        if(!_correu.contains("@")){
-            showerror(inputcorreu, "El correu es incorrecte o està buit");
-        }
-        else{
-            Intent intent = new Intent(this, Welcome_popup.class);
-            startActivity(intent);
-        }
+        String given_name = input_given_name.getText().toString();
+        String full_name = input_full_name.getText().toString();
+        String email = input_email.getText().toString();
+        String phone = input_phone.getText().toString();
+        String password = input_password.getText().toString();
+        String re_password = input_re_password.getText().toString();
+        String city = input_city.getText().toString();
+        String address = input_address.getText().toString();
 
-        if (!_correu.contains("@")) {
-            showerror(inputcorreu, "El correu es incorrecte o està buit");
-        } else {
-            JSONObject jsonBody = new JSONObject();
-            try {
-                jsonBody.put("name", _usuari);
-                jsonBody.put("email", _correu);
-                jsonBody.put("role", "paciente");
-                jsonBody.put("id", _telefon); // Añade el número de teléfono del usuario aquí
-                jsonBody.put("password", _contrassenya);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        System.out.println("Email: " + email);
+
+        // Aqui hem de fer la consulta amb la API a la base de dades per veure si existeix el usuari
+
+
+        if (!email.contains("@")) {
+            showerror(input_email, "El correu es incorrecte o està buit");
+        }
+        else if (password != re_password){
+            showerror(input_password, "Les contrasenyes no coincideixen");
+        }
+        else {
             RequestQueue queue = Volley.newRequestQueue(this);
             Resources r = getResources();
             String apiUrl = r.getString(R.string.api_base_url);
-            String url = apiUrl + "/api/register"; // Reemplaza con la dirección de tu API
+
+            JSONObject jsonBody = new JSONObject();
+            try {
+                jsonBody.put("user_full_name", full_name);
+                jsonBody.put("user_given_name", given_name);
+                jsonBody.put("user_email", email);
+                jsonBody.put("user_phone", phone);
+                jsonBody.put("user_city", city);
+                jsonBody.put("user_address", address);
+                jsonBody.put("user_password", address);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String url = r.getString(R.string.api_base_url) + "/api/register"; // Reemplaza con la dirección de tu API
             System.out.println(url);
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest

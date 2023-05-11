@@ -24,7 +24,7 @@
         app:srcCompat="@drawable/recurso_1" />
 
     <EditText
-        android:id="@+id/correu"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -43,7 +43,7 @@
         app:endIconMode="clear_text"/>
 
     <EditText
-        android:id="@+id/contrassenya"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -58,7 +58,7 @@
         android:fontFamily="@font/rinkart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/correu"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:endIconMode="password_toggle"/>
 
     <Button
@@ -76,7 +76,7 @@
         android:onClick="login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contrassenya" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <ImageButton
         android:id="@+id/boton_google"

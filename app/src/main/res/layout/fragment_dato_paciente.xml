@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".paciente.perfil.opciones.DatoPacienteFragment">
+    tools:context=".paciente.opciones.DatoPacienteFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

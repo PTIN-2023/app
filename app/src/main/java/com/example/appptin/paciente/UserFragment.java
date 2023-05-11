@@ -1,11 +1,10 @@
-package com.example.appptin.paciente.perfil;
+package com.example.appptin.paciente;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -15,10 +14,9 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.example.appptin.CistellaFragment;
 import com.example.appptin.R;
 import com.example.appptin.welcome_page;
-import com.example.appptin.paciente.perfil.opciones.DatoPacienteFragment;
+import com.example.appptin.paciente.opciones.DatoPacienteFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

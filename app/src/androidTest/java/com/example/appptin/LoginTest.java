@@ -39,8 +39,8 @@ public class LoginTest {
     @Test
     public void testValidLogin() {
         // Find the views and enter valid credentials
-        onView(withId(R.id.correu)).perform(typeText("josep@gmail.com"));
-        onView(withId(R.id.contrassenya)).perform(typeText("josep"));
+        onView(withId(R.id.email)).perform(typeText("josep@gmail.com"));
+        onView(withId(R.id.password)).perform(typeText("josep"));
         closeSoftKeyboard();
 
         // Click the login button

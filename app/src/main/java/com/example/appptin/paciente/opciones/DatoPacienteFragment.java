@@ -1,4 +1,4 @@
-package com.example.appptin.paciente.perfil.opciones;
+package com.example.appptin.paciente.opciones;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -23,7 +23,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.appptin.R;
-import com.example.appptin.paciente.perfil.UserFragment;
+import com.example.appptin.paciente.UserFragment;
 
 import java.util.Calendar;
 
