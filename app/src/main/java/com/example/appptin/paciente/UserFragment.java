@@ -11,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.appptin.R;
+import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
 import com.example.appptin.welcome_page;
 import com.example.appptin.paciente.opciones.DatosPacienteFragment;
 
@@ -22,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserFragment extends Fragment {
     private CircleImageView foto_perfil;
-    private RelativeLayout rl_salir, rl_dades;
+    private RelativeLayout rl_salir, rl_dades, rl_config;
     private Patient patient;
 
     private static final String ARG_PATIENT= "patient";
@@ -60,10 +62,12 @@ public class UserFragment extends Fragment {
         foto_perfil.setImageResource(R.drawable.foto_perfil_usuario);
         rl_dades = view.findViewById(R.id.rl_perfil_usuario_datos);
         rl_salir = view.findViewById(R.id.rl_perfil_usuario_salir);
+        rl_config = view.findViewById(R.id.rl_perfil_usuario_config);
 
         // Asignar Listeners
         rl_salir.setOnClickListener(salirClickListener);
         rl_dades.setOnClickListener(abrirFragmentDatos);
+        rl_config.setOnClickListener(abrirFragmentConfig);
 
         return view;
     }
@@ -84,6 +88,16 @@ public class UserFragment extends Fragment {
            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             DatosPacienteFragment datosPacienteFragment = DatosPacienteFragment.newInstance(patient);
             transaction.replace(R.id.frameLayout, datosPacienteFragment);
+            transaction.commit();
+        }
+    };
+
+    private View.OnClickListener abrirFragmentConfig = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            ConfigPacienteFragment configPacienteFragment = new ConfigPacienteFragment();
+            transaction.replace(R.id.frameLayout, configPacienteFragment);
             transaction.commit();
         }
     };
