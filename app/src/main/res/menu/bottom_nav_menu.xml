@@ -19,7 +19,7 @@
         android:title="Cistella"/>
 
     <item
-        android:id="@+id/opcions"
-        android:icon="@drawable/baseline_dehaze_24"
-        android:title="Opcions"/>
+        android:id="@+id/scanQR"
+        android:icon="@drawable/scan_icon"
+        android:title="QR"/>
 </menu>
