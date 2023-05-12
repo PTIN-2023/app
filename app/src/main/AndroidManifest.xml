@@ -91,6 +91,12 @@
         <activity android:name=".medico.fragments.perfilmedico.opciones.DatoMedicoFragment">
             <!-- otras configuraciones de la actividad -->
         </activity>
+        <activity android:name=".gestor.fragments.pefilgestor.PerfilGestorFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".gestor.fragments.pefilgestor.opciones.DatoGestorFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
     </application>
 
 </manifest>
