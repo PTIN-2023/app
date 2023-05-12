@@ -72,6 +72,10 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
+        <activity android:name=".paciente.opciones.ConfigPacienteFragment">
+
+            <!-- otras configuraciones de la actividad -->
+        </activity>
         <activity android:name=".Welcome_popup">
 
             <!-- otras configuraciones de la actividad -->
