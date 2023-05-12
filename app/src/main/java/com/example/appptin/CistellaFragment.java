@@ -1,17 +1,25 @@
 package com.example.appptin;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -36,6 +44,8 @@ public class CistellaFragment extends Fragment {
 
     private LinearLayout linearLayoutCistella;
     private List<HashMap<String, Object>> cistella = new ArrayList<>();
+
+    private PopupWindow popupWindow;
 
     public CistellaFragment() {
         // Required empty public constructor
@@ -77,6 +87,9 @@ public class CistellaFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
         View view = inflater.inflate(R.layout.fragment_cistella, container, false);
         linearLayoutCistella = view.findViewById(R.id.linearLayout_cistella);
+
+        Button finalitzar_compra = view.findViewById(R.id.btn_finalitzar_compra);
+
         // Afegir un producte exemple per defecte
         afegirProducte(view,"Producte de prova", 1, 1);
         afegirProducte(view,"Producte de prova", 1, 1);
@@ -87,6 +100,16 @@ public class CistellaFragment extends Fragment {
         afegirProducte(view,"Producte de prova", 1, 1);
         afegirProducte(view,"Producte de prova", 1, 1);
         afegirProducte(view,"Producte de prova", 1, 1);
+
+        finalitzar_compra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Obrir pop-up
+                popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+            }
+        });
+
+        initPopup();
 
         actualitzarPreu(view);
         actualitzarCistella(view);
@@ -174,6 +197,43 @@ public class CistellaFragment extends Fragment {
         //View preuView = getLayoutInflater().inflate(R.layout.fragment_cistella, null);
         TextView preuTotalView = ViewPreu.findViewById(R.id.preu_total);
         preuTotalView.setText("Preu total: " + preuTotal + "€");
+    }
+
+    private void initPopup() {
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.fragment_popup_finalitzar_compra, null);
+
+        // Crear pop-up window
+        popupWindow = new PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                true
+        );
+
+        // Configurar elements del pop-up
+        Button btn_finNo = popupView.findViewById(R.id.btn_finalitzar_compraNo);
+        Button btn_finSi = popupView.findViewById(R.id.btn_finalitzar_compraSi);
+
+
+        btn_finNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Mostrar el text en la pantalla home
+                popupWindow.dismiss();
+            }
+        });
+
+        //Canviar a la activity de pagament al clickar el botó de "Si"
+        //al pop-up de finalitzar compra
+        btn_finSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Mostrar el text en la pantalla home
+                Intent intent = new Intent(getActivity(), PagamentActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //Dos funcions per a ocultar la barra de cerca en aquest fragment
