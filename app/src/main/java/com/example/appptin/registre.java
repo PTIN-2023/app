@@ -46,7 +46,7 @@ public class registre extends AppCompatActivity {
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
     }
 
-    public void registre(View view) {
+    public void registre(View view) throws JSONException {
         // get user and password
 
         input_given_name = findViewById(R.id.given_name);
@@ -67,21 +67,23 @@ public class registre extends AppCompatActivity {
         String city = input_city.getText().toString();
         String address = input_address.getText().toString();
 
-        System.out.println("Email: " + email);
-
         // Aqui hem de fer la consulta amb la API a la base de dades per veure si existeix el usuari
 
 
         if (!email.contains("@")) {
             showerror(input_email, "El correu es incorrecte o està buit");
         }
-        else if (password != re_password){
+        else if (!password.equals(re_password)){
             showerror(input_password, "Les contrasenyes no coincideixen");
         }
         else {
             RequestQueue queue = Volley.newRequestQueue(this);
             Resources r = getResources();
             String apiUrl = r.getString(R.string.api_base_url);
+
+            System.out.println("Email: " + email);
+            System.out.println("Password: " + password);
+            System.out.println("Re-Password: " + re_password);
 
             JSONObject jsonBody = new JSONObject();
             try {
@@ -95,7 +97,6 @@ public class registre extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             String url = r.getString(R.string.api_base_url) + "/api/register"; // Reemplaza con la dirección de tu API
             System.out.println(url);
 
@@ -105,7 +106,7 @@ public class registre extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             try {
                                 String result = response.getString("result");
-
+                                System.out.println(result);
                                 if (result.equals("ok")) {
                                     // Registro exitoso, navegar a la siguiente actividad (por ejemplo, Welcome_popup)
                                     Intent intent = new Intent(getApplication(), login.class);

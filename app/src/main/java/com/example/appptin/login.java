@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.medico.MedicoActivity;
+import com.example.appptin.paciente.Patient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -147,15 +148,27 @@ public class login extends AppCompatActivity {
                         try {
                             //boolean exists = response.getBoolean("exists");
                             System.out.println("MENSAJE: " + response);
+                            String given_name = response.getString("user_given_name");
+                            //String email = response.getString("user_email");
                             String password = response.isNull("password") ? null : response.getString("password");
                             String result = response.getString("result");
-                            String role = response.getString("role");
+                            String role = response.getString("user_role");
+                            String token = response.getString("user_token");
 
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {
                                 System.out.println("L'usuari existeix");
                                 if (role.equals("patient")){
-                                    navigateToMainActivity();
+                                    Patient patient = new Patient(
+                                            token,
+                                            null,
+                                            given_name,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null);
+                                    navigateToMainActivity(patient);
 
                                 }
                                 else if (role.equals("metge")){
@@ -182,8 +195,9 @@ public class login extends AppCompatActivity {
         return exists;
     }
 
-    private void navigateToMainActivity() {
+    private void navigateToMainActivity(Patient patient) {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("patient", patient);
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }

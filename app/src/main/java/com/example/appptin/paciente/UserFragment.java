@@ -16,22 +16,35 @@ import android.widget.Toast;
 
 import com.example.appptin.R;
 import com.example.appptin.welcome_page;
-import com.example.appptin.paciente.opciones.DatoPacienteFragment;
+import com.example.appptin.paciente.opciones.DatosPacienteFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserFragment extends Fragment {
     private CircleImageView foto_perfil;
     private RelativeLayout rl_salir, rl_dades;
+    private Patient patient;
+
+    private static final String ARG_PATIENT= "patient";
 
     public UserFragment() {
         // Required empty public constructor
     }
 
+    public static UserFragment newInstance(Patient patient) {
+        UserFragment fragment = new UserFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_PATIENT, patient);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments() != null) {
+            patient = (Patient) getArguments().getSerializable(ARG_PATIENT);
+        }
     }
 
     @Override
@@ -69,8 +82,8 @@ public class UserFragment extends Fragment {
         @Override
         public void onClick(View view) {
            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            DatoPacienteFragment datoPacienteFragment = new DatoPacienteFragment();
-            transaction.replace(R.id.frameLayout, datoPacienteFragment);
+            DatosPacienteFragment datosPacienteFragment = DatosPacienteFragment.newInstance(patient);
+            transaction.replace(R.id.frameLayout, datosPacienteFragment);
             transaction.commit();
         }
     };

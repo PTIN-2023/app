@@ -62,7 +62,7 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
-        <activity android:name=".paciente.opciones.DatoPacienteFragment">
+        <activity android:name=".paciente.opciones.DatosPacienteFragment">
 
             <!-- otras configuraciones de la actividad -->
         </activity>

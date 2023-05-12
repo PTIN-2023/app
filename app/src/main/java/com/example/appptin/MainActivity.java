@@ -15,13 +15,14 @@ import android.widget.ListView;
 import androidx.appcompat.widget.SearchView;
 
 import com.example.appptin.databinding.ActivityMainBinding;
+import com.example.appptin.paciente.Patient;
 import com.example.appptin.paciente.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     String[] components = {"paracetamol", "naproxeno", "dalsi", "diazepam", "dercutane", "pantoprazol", "tiamulina"};
-
+    Patient patient;
     ArrayAdapter<String> arrayAdapter;
     ActivityMainBinding binding;
 
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         listView = findViewById(R.id.listview);
+
+        patient = (Patient) getIntent().getSerializableExtra("patient");
 
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,components);
         listView.setAdapter(arrayAdapter);
@@ -50,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.user:
                     //Perfil usuari
-                     replaceFragments(new UserFragment());
+                    UserFragment fragment = UserFragment.newInstance(patient);
+                    replaceFragments(fragment);
 
                      //Llamar Activity del médico
                      //Intent intent = new Intent(this, MedicoActivity.class);

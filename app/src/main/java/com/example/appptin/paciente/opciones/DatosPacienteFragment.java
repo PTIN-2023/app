@@ -22,14 +22,18 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.appptin.MainActivity;
 import com.example.appptin.R;
+import com.example.appptin.paciente.Patient;
 import com.example.appptin.paciente.UserFragment;
 
 import java.util.Calendar;
 
 
-public class DatoPacienteFragment extends Fragment {
+public class DatosPacienteFragment extends Fragment {
 
+    private static final String ARG_PATIENT= "patient";
+    private Patient patient;
     private ImageView iv_regresar;
     private EditText et_nombre, et_apellidos, et_dni, et_cip , et_pais, et_provincia;
     private Button btn_guardar, btn_fecha;
@@ -39,19 +43,29 @@ public class DatoPacienteFragment extends Fragment {
 
 
     private DatePickerDialog datePickerDialog;
-    public DatoPacienteFragment() {
+    public DatosPacienteFragment() {
         // Required empty public constructor
-    }@Override
+    }
+    public static DatosPacienteFragment newInstance(Patient patient) {
+        DatosPacienteFragment fragment = new DatosPacienteFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_PATIENT, patient);
+        fragment.setArguments(args);
+        return fragment;
+    }
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments() != null) {
+            patient = (Patient) getArguments().getSerializable(ARG_PATIENT);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_dato_paciente, container, false);
+        view =  inflater.inflate(R.layout.fragment_datos_paciente, container, false);
 
         initDatePicker();
 
@@ -67,6 +81,8 @@ public class DatoPacienteFragment extends Fragment {
         et_pais = view.findViewById(R.id.et_dato_paciente_pais);
         et_provincia = view.findViewById(R.id.et_dato_paciente_ciudad);
 
+        System.out.println(patient.getGiven_name());
+        et_nombre.setText(patient.getGiven_name());
         //Asignar valores
         SetGenero();
 
