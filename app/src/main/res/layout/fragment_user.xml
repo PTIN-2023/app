@@ -253,35 +253,37 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/rl_perfil_usuario_config"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp">
+
 
                         <ImageView
                             android:id="@+id/iv_configuracion"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/baseline_settings_24"
-                            android:padding="5dp"/>
+                            android:padding="5dp"
+                            android:src="@drawable/baseline_settings_24" />
 
                         <TextView
-                            android:layout_marginStart="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="Configuració"
-                            android:textSize="17sp"
-                            android:fontFamily="@font/rinkart_italic"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
+                            android:layout_marginStart="20dp"
                             android:layout_toEndOf="@+id/iv_configuracion"
-                            />
+                            android:fontFamily="@font/rinkart_italic"
+                            android:text="Configuració"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/right_arrow_icon"
                             android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true" />
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/right_arrow_icon" />
 
 
                     </RelativeLayout>
