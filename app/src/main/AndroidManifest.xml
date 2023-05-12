@@ -18,6 +18,9 @@
             android:name=".medico.MedicoActivity"
             android:exported="false" />
         <activity
+            android:name=".gestor.GestorActivity"
+            android:exported="false" />
+        <activity
             android:name=".welcome_page"
             android:exported="true">
             <intent-filter>
@@ -86,6 +89,12 @@
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".medico.fragments.perfilmedico.opciones.DatoMedicoFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".gestor.fragments.pefilgestor.PerfilGestorFragment">
+            <!-- otras configuraciones de la actividad -->
+        </activity>
+        <activity android:name=".gestor.fragments.pefilgestor.opciones.DatoGestorFragment">
             <!-- otras configuraciones de la actividad -->
         </activity>
     </application>

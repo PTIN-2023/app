@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
 
                 case R.id.home:
-                    replaceFragments(new HomeFragment());
+                    replaceFragments(new MedicamentsFragment());
+                    //Lo primero que aparece son los medicamentos
                     break;
                 case R.id.user:
                     //Perfil usuari
@@ -63,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.cistella:
                     replaceFragments(new CistellaFragment());
                     break;
-                case R.id.opcions:
-                    replaceFragments(new OpcionsFragment());
+                case R.id.scanQR:
+                    replaceFragments(new HomeFragment());
+                    //Ahora el scan QR se muestra donde antes iba la pantalla opciones
                     break;
 
             }

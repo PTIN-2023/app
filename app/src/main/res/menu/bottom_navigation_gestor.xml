@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_inventario"
+        android:icon="@drawable/inventory_24dp_removebg_preview"
+        android:title="Inventari" />
+
+    <item
+        android:id="@+id/menu_gestionarUsuarios"
+        android:icon="@drawable/baseline_people_black_24dp"
+        android:title="Gestions" />
+
+    <item
+        android:id="@+id/menu_mapa"
+        android:icon="@drawable/maps_icon_16"
+        android:title="Mapa" />
+
+    <item
+        android:id="@+id/menu_opciones"
+        android:icon="@drawable/truck_removebg_preview__1_"
+        android:title="Pedidos" />
+
+    <item
+        android:id="@+id/menu_perfilGestor"
+        android:icon="@drawable/baseline_account_circle_black_24dp"
+        android:title="User" />
+</menu>
