@@ -15,6 +15,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".PagamentActivity"
+            android:exported="false" />
+        <activity
             android:name=".medico.MedicoActivity"
             android:exported="false" />
         <activity
@@ -74,27 +77,35 @@
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".medico.fragments.aprobarPeticion.AprobarFragment">
+
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".medico.fragments.detallesPeticion.DetallesPeticionFragment">
+
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".medico.fragments.historialPaciente.HistorialPacienteFragment">
+
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".medico.fragments.historialPeticion.HistorialPeticionFragment">
+
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".medico.fragments.perfilmedico.PerfilMedicoFragment">
+
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".medico.fragments.perfilmedico.opciones.DatoMedicoFragment">
+
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".gestor.fragments.pefilgestor.PerfilGestorFragment">
+
             <!-- otras configuraciones de la actividad -->
         </activity>
         <activity android:name=".gestor.fragments.pefilgestor.opciones.DatoGestorFragment">
+
             <!-- otras configuraciones de la actividad -->
         </activity>
     </application>
