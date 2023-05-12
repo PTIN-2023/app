@@ -1,11 +1,13 @@
 package com.example.appptin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,components);
         listView.setAdapter(arrayAdapter);
 
+        setDayNight();
 
         //Al iniciar app volem que obri directament pantalla Home
-        replaceFragments(new HomeFragment());
+        replaceFragments(new MedicamentsFragment());
         listView.setVisibility(listView.INVISIBLE);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -123,4 +126,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    //Función para activar modo oscuro
+    public void setDayNight(){
+        SharedPreferences sp = getSharedPreferences("SP", this.MODE_PRIVATE);
+        int theme = sp.getInt("Theme", 1);
+        if(theme==0){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else{
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
 }
