@@ -27,7 +27,7 @@
     <string name="id_data_naixement">Data de naixement</string>
     <string name="id_pais">País</string>
     <string name="id_genere">Gènere</string>
-    <string name="id_hint_pais" >País origen</string>
+    <string name="id_hint_pais">País origen</string>
     <string name="id_ciutat">Ciutat</string>
     <string name="id_hint_ciutat">Ciutat origen</string>
     <string name="id_guardar_canvis">Guardar canvis</string>

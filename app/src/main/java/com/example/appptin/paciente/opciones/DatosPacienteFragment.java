@@ -107,15 +107,12 @@ public class DatosPacienteFragment extends Fragment {
     private View.OnClickListener regresar = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Retrocede en la pila de fragmentos
+                fragmentManager.popBackStack();
+            }
 
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            UserFragment userFragment = new UserFragment();
-            //Cambio de Fragment
-            fragmentTransaction.replace(R.id.frameLayout, userFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
         }
     };
 

@@ -16,12 +16,6 @@ import android.widget.Switch;
 import com.example.appptin.MainActivity;
 import com.example.appptin.R;
 import com.example.appptin.paciente.UserFragment;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ConfigPacienteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ConfigPacienteFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -116,13 +110,10 @@ public class ConfigPacienteFragment extends Fragment {
         public void onClick(View view) {
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            UserFragment userFragment = new UserFragment();
-            //Cambio de Fragment
-            fragmentTransaction.replace(R.id.frameLayout, userFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Retrocede en la pila de fragmentos
+                fragmentManager.popBackStack();
+            }
         }
     };
 
