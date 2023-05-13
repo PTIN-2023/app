@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/rinkart"
-                android:text="Dades Personals"
+                android:text="@string/dades_personals"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
-                        android:text="Nom"
+                        android:text="@string/id_nom"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -61,7 +61,7 @@
                         android:id="@+id/et_dato_gestor_nombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nom del gestor"
+                        android:hint="@string/id_hint_nom"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -78,14 +78,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Cognoms"
+                        android:text="@string/id_cognoms"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_dato_gestor_apellidos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Cognoms del gestor"
+                        android:hint="@string/id_hint_cognoms"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Data de naixemnet"
+                        android:text="@string/id_data_naixement"
                         android:textSize="20sp"/>
 
                     <Button
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Gènere"
+                        android:text="@string/id_genere"
                         android:textSize="20sp"/>
 
                     <Spinner
@@ -152,14 +152,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="País"
+                        android:text="@string/id_pais"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_dato_gestor_pais"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="País d'origen"
+                        android:hint="@string/id_hint_pais"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -176,14 +176,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Ciutat"
+                        android:text="@string/id_ciutat"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_dato_gestor_ciudad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ciutat d'origen"
+                        android:hint="@string/id_hint_ciutat"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -197,7 +197,7 @@
                     android:fontFamily="@font/rinkart_italic"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="guardar canvis"/>
+                    android:text="@string/id_guardar_canvis"/>
 
             </LinearLayout>
 
