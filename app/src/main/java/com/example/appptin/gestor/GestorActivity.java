@@ -6,15 +6,21 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.appptin.R;
 import com.example.appptin.gestor.fragments.pefilgestor.PerfilGestorFragment;
+import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class GestorActivity extends AppCompatActivity {
+import java.util.Locale;
+
+public class GestorActivity extends AppCompatActivity  implements ConfigGestorFragment.LanguageChangeListener {
 
     PerfilGestorFragment gestorFragment;
 
@@ -61,6 +67,11 @@ public class GestorActivity extends AppCompatActivity {
         else{
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+    }
+
+    public void onLanguageChanged() {
+        finish();
+        startActivity(getIntent());
     }
 
 }
