@@ -14,8 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.appptin.R;
+import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.DatoGestorFragment;
 import com.example.appptin.login;
+import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -24,7 +26,7 @@ public class PerfilGestorFragment extends Fragment {
 
     CircleImageView foto_perfil;
 
-    RelativeLayout rl_salir, rl_dades;
+    RelativeLayout rl_salir, rl_dades, rl_config;
 
     public PerfilGestorFragment() {
         // Required empty public constructor
@@ -46,10 +48,11 @@ public class PerfilGestorFragment extends Fragment {
         foto_perfil.setImageResource(R.drawable.avatar_gestor);
         rl_dades = view.findViewById(R.id.rl_perfil_gestor_datos);
         rl_salir = view.findViewById(R.id.rl_perfil_gestor_salir);
-
+        rl_config = view.findViewById(R.id.rl_perfil_gestor_config);
         // Asignar Listeners
         rl_salir.setOnClickListener(salirClickListener);
         rl_dades.setOnClickListener(abrirFragmentDatos);
+        rl_config.setOnClickListener(abrirFragmentConfig);
 
         return view;
     }
@@ -73,6 +76,16 @@ public class PerfilGestorFragment extends Fragment {
             transaction.replace(R.id.frame_container, datosGestorFragment);
             transaction.commit();
 
+        }
+    };
+
+    private View.OnClickListener abrirFragmentConfig = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            ConfigGestorFragment configGestorFragment = new ConfigGestorFragment();
+            transaction.replace(R.id.frame_container, configGestorFragment);
+            transaction.commit();
         }
     };
 

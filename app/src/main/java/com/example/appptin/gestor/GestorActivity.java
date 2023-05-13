@@ -2,9 +2,11 @@ package com.example.appptin.gestor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -26,6 +28,8 @@ public class GestorActivity extends AppCompatActivity {
 
         gestorFragment = new PerfilGestorFragment();
 
+        setDayNight();
+
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener nOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,6 +49,18 @@ public class GestorActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment);
         transaction.commit();
 
+    }
+
+    //Función para activar modo oscuro
+    public void setDayNight(){
+        SharedPreferences sp = getSharedPreferences("SP", this.MODE_PRIVATE);
+        int theme = sp.getInt("Theme", 1);
+        if(theme==0){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else{
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
 }
