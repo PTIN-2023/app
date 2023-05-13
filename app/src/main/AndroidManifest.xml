@@ -104,6 +104,10 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
+        <activity android:name=".medico.fragments.perfilmedico.opciones.ConfigMedicoFragment">
+
+            <!-- otras configuraciones de la actividad -->
+        </activity>
         <activity android:name=".gestor.fragments.pefilgestor.PerfilGestorFragment">
 
             <!-- otras configuraciones de la actividad -->
