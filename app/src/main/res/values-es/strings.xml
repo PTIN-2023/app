@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">App PTIN</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //GESTOR
+    //bottom_navigation_gestor.xml
+    <string name="inventari">Inventario</string>
+    <string name="gestions">Gestiones</string>
+    <string name="mapa">Mapa</string>
+    <string name="comandes">Pedidos</string>
+    <string name="usuari">Usuario</string>
+    //fragment_perfil_gestor.xml
+    <string name="perfil">Perfil</string>
+    <string name="editar">EDITAR</string>
+    <string name="dades_personals">Datos Personales</string>
+    <string name="notificacions">Notificaciones</string>
+    <string name="configuració">Configuración</string>
+    <string name="sortir">Salir</string>
+    //fragment_config_gestor.xml
+    <string name="tema_oscuro">Tema Oscuro</string>
+    <string name="idioma">Idioma</string>
+    //fragment_dato_gestor.xml
+    <string name="id_nom">Nombre</string>
+    <string name="id_hint_nom">Nombre del gestor</string>
+    <string name="id_cognoms">Apellidos</string>
+    <string name="id_hint_cognoms">Apellidos del gestor</string>
+    <string name="id_data_naixement">Data de nacimiento</string>
+    <string name="id_pais">País</string>
+    <string name="id_genere">Género</string>
+    <string name="id_hint_pais">País de origen</string>
+    <string name="id_ciutat">Ciudad</string>
+    <string name="id_hint_ciutat">Ciudad de origen</string>
+    <string name="id_guardar_canvis">Guardar cambios</string>
+</resources>
