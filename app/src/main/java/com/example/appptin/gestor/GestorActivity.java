@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.appptin.R;
+import com.example.appptin.gestor.fragments.inventario.InventarioGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.PerfilGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +24,7 @@ import java.util.Locale;
 public class GestorActivity extends AppCompatActivity  implements ConfigGestorFragment.LanguageChangeListener {
 
     PerfilGestorFragment gestorFragment;
+    InventarioGestorFragment inventarioGestorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,11 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         BottomNavigationView navigation = findViewById(R.id.bottom_navegation_gestor);
         navigation.setOnNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
 
+        //Crear los fragments para el menú
+        inventarioGestorFragment = new InventarioGestorFragment();
         gestorFragment = new PerfilGestorFragment();
+
+        loadFragment(inventarioGestorFragment);
 
         setDayNight();
 
@@ -42,6 +48,10 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
+                case R.id.menu_inventario:
+                    loadFragment(inventarioGestorFragment);
+                    return true;
+
                 case R.id.menu_perfilGestor:
                     loadFragment(gestorFragment);
                     return true;

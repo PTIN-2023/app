@@ -1,6 +1,5 @@
-package com.example.appptin.medico.fragments.historialPeticion;
+package com.example.appptin.gestor.fragments.inventario;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -17,79 +16,65 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.appptin.R;
-import com.example.appptin.medico.conexion.Conexion_json;
-import com.example.appptin.medico.conexion.InformacionBase;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class HistorialPeticionFragment extends Fragment {
+public class InventarioGestorFragment extends Fragment {
 
-    // Variables necesarias
-    View view;
+    View vista;
     SearchView searchView;
     RecyclerView recyclerView;
-    ArrayList<InformacionBase> arrayList;
-    ArrayList<InformacionBase> searchList;
     TextView titulo;
-    String campo;
+    ArrayList<MedicamentosClass> arrayList;
+    ArrayList<MedicamentosClass> searchList;
 
-    // Codigo para diferenciar entre los diferentes fragments
-    int codi;
-    int posicion;
-    Context cont;
     Spinner spinnerSort;
-    boolean ordenAscendente;
     private String opcionSeleccionada = "";
+    boolean ordenAscendente;
 
-    public HistorialPeticionFragment(String texto, int codigo,int posicion, Context context) throws IOException {
-        this.campo = texto;
-        this.codi = codigo;
-        this.posicion = posicion;
-
+    public InventarioGestorFragment() {
+        //Prueba
         arrayList = new ArrayList<>();
-
-        this.cont = context;
-
-        //Leer datos de Json
-        conexion();
+        arrayList.add(new MedicamentosClass("Medicament 1","red"));
+        arrayList.add(new MedicamentosClass("Medicament 2","green"));
+        arrayList.add(new MedicamentosClass("Medicament 3","green"));
+        arrayList.add(new MedicamentosClass("Medicament 4","red"));
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_historial_peticion, container, false);
+        vista = inflater.inflate(R.layout.fragment_inventario_gestor, container, false);
 
-        //Por defecto ordenar por nombre Ascendiente
-        opcionSeleccionada = getResources().getStringArray(R.array.sort_options)[0];
+        //Por defecto ordenar por nombre Ascendiente de medicamentos
+        opcionSeleccionada = getResources().getStringArray(R.array.sort_options_inventario)[0];
 
-        Lista(view);
+        asignar_elementos(vista);
 
-        return view;
+        return vista;
     }
 
-    public void Lista(View view) {
+    public void asignar_elementos(View view) {
         //Asociación de los obejtos creados en el XML (diseño)
-        recyclerView = view.findViewById(R.id.recyclerView);
-        searchView = view.findViewById(R.id.searchView);
-        titulo = view.findViewById(R.id.textView_historial);
-        spinnerSort = view.findViewById(R.id.sp_historial_peticion_ordenar);
+        recyclerView = view.findViewById(R.id.rv_inventario);
+        searchView = view.findViewById(R.id.sv_inventario);
+        titulo = view.findViewById(R.id.txt_titol_inventario);
+        spinnerSort = view.findViewById(R.id.sp_iventario_gestor_ordenar);
 
-        titulo.setText(campo);
+        titulo.setText("Inventari");
 
         //Agregar los elementos del RecyclerView
         Creacion_elementos_RecyclerView(arrayList);
 
         //Adapter para el SPINER
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sort_options, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sort_options_inventario, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSort.setAdapter(adapter);
 
@@ -100,61 +85,36 @@ public class HistorialPeticionFragment extends Fragment {
         searchView.setOnQueryTextListener(buscador);
 
     }
-
-    public void conexion(){
-        //Envío el contexto
-        Conexion_json con = new Conexion_json(this.cont);
-
-        String Filename="";
-        if(codi == 1 || codi == 2) Filename = "peticions_per_aprovar.json";
-        else if (codi == 3) Filename = "informe_paciente.json";
-
-        //Creo la conexión
-        String jsonString = con.readJsonFromFile(Filename);
-
-        //Obtener lista de elementos
-        //ArrayList<PeticionClass> peticionList = con.getPedidosFromJson(jsonString);
-        if(codi == 1 || codi == 2)  arrayList  = con.getPedidosFromJson(jsonString);
-        else if ( codi ==3) arrayList  = con.getInformePacientesFromJson(jsonString);
-
-    }
-
-    private void Creacion_elementos_RecyclerView(ArrayList<InformacionBase> lista_elementos ){
+    private void Creacion_elementos_RecyclerView(ArrayList<MedicamentosClass> lista_elementos ){
         //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         // Creación del adapter con la nueva lista de elementos búscados
-        PeticionAdapter peticionAdapter = new PeticionAdapter(getActivity(), lista_elementos,codi,getParentFragmentManager());
+        MedicamentosAdapter medicamentosAdapter = new MedicamentosAdapter(getActivity(), lista_elementos,getParentFragmentManager());
 
-        recyclerView.setAdapter(peticionAdapter);
+        recyclerView.setAdapter(medicamentosAdapter);
 
     }
 
     //EVENTOS
-
     private SearchView.OnQueryTextListener buscador = new SearchView.OnQueryTextListener(){
         //Acción al realizar una búsqueda al presionar  el botón de cerca
         @Override
         public boolean onQueryTextSubmit(String query) {
-            spinnerSort.setEnabled(false);
-            //Guardar los Objetos de la clase PeticionClass relacionados a la búsqueda
+            //Guardar los Objetos de la clase MedicamentoClass relacionados a la búsqueda
             searchList = new ArrayList<>();
             if (query.length() > 0) {
                 //Recorrer todos los Objetos (los elementos de la lista)
                 for (int i = 0; i < arrayList.size(); i++) {
                     // Comprobar si coincide el texto con algún elemento ya sea por DNI, nombre o apellidos
-                    if (arrayList.get(i).getDni().toUpperCase().contains(query.toUpperCase())
-                            || arrayList.get(i).getNombre().toUpperCase().contains(query.toUpperCase())
-                            || arrayList.get(i).getApellidos().toUpperCase().contains(query.toUpperCase())) {
-
+                    if (arrayList.get(i).getNombre_medicamento().toUpperCase().contains(query.toUpperCase())) {
                         //Afegir element
                         searchList.add(arrayList.get(i));
                     }
                 }
 
                 Creacion_elementos_RecyclerView(searchList);
-
             }
             //En caso de no localzarse ningún objeto (elementos) se carga la lista de objetos completos
             else {
@@ -164,30 +124,29 @@ public class HistorialPeticionFragment extends Fragment {
             return false;
         }
 
-        //Acción al cambiar el texto de búsqueda
         @Override
         public boolean onQueryTextChange(String newText) {
-            spinnerSort.setEnabled(false);
+            //Guardar los Objetos de la clase MedicamentoClass relacionados a la búsqueda
             searchList = new ArrayList<>();
             if (newText.length() > 0) {
+                //Recorrer todos los Objetos (los elementos de la lista)
                 for (int i = 0; i < arrayList.size(); i++) {
-                    if (arrayList.get(i).getDni().toUpperCase().contains(newText.toUpperCase())
-                            || arrayList.get(i).getNombre().toUpperCase().contains(newText.toUpperCase())
-                            || arrayList.get(i).getApellidos().toUpperCase().contains(newText.toUpperCase())) {
+                    // Comprobar si coincide el texto con algún elemento ya sea por DNI, nombre o apellidos
+                    if (arrayList.get(i).getNombre_medicamento().toUpperCase().contains(newText.toUpperCase())) {
                         //Afegir element
                         searchList.add(arrayList.get(i));
                     }
                 }
                 Creacion_elementos_RecyclerView(searchList);
-
-            } else {
+            }
+            //En caso de no localzarse ningún objeto (elementos) se carga la lista de objetos completos
+            else {
                 spinnerSort.setEnabled(true);
                 Creacion_elementos_RecyclerView(arrayList);
             }
             return false;
         }
     };
-
 
     private AdapterView.OnItemSelectedListener seleccion_spiner = new AdapterView.OnItemSelectedListener(){
 
@@ -206,31 +165,29 @@ public class HistorialPeticionFragment extends Fragment {
         }
     };
 
-    // Ordenación por Nombre
-    Comparator<InformacionBase> comparadorNombre = new Comparator<InformacionBase>() {
+    //Ordenar por nombre medicamento
+    Comparator<MedicamentosClass> comparadorNombre = new Comparator<MedicamentosClass>() {
         @Override
         //Comparar por nombre
-        public int compare(InformacionBase t1, InformacionBase t2) {
+        public int compare(MedicamentosClass t1, MedicamentosClass t2) {
             //Ascendiente
             if(ordenAscendente)
-                return t1.getNombre().compareTo(t2.getNombre());
+                return t1.getNombre_medicamento().compareTo(t2.getNombre_medicamento());
                 //Descendiente
             else
-                return t2.getNombre().compareTo(t1.getNombre());
+                return t2.getNombre_medicamento().compareTo(t1.getNombre_medicamento());
         }
 
     };
 
-    private void ordenarArrayList(ArrayList<InformacionBase> lista_elementos) {
+    private void ordenarArrayList(ArrayList<MedicamentosClass> lista_elementos) {
         //Lee las opciones del fichero values/arrays.xml
-        String[] opciones = getResources().getStringArray(R.array.sort_options);
+        String[] opciones = getResources().getStringArray(R.array.sort_options_inventario);
 
         if (opcionSeleccionada.equals(opciones[0])) {
             // Ordenar por nombre ascendente
             ordenAscendente = true;
             Collections.sort(arrayList, comparadorNombre);
-
-            //
             Creacion_elementos_RecyclerView(lista_elementos);
 
         } else if (opcionSeleccionada.equals(opciones[1])) {
@@ -240,5 +197,4 @@ public class HistorialPeticionFragment extends Fragment {
             Creacion_elementos_RecyclerView(lista_elementos);
         }
     }
-
 }

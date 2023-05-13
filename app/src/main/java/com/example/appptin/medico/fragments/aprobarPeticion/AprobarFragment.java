@@ -121,7 +121,7 @@ public class AprobarFragment extends Fragment {
                 //Fragment anterior
                 HistorialPeticionFragment peticionFragment = null;
                 try {
-                    peticionFragment = new HistorialPeticionFragment("Peticions per aprovar", 1, posicion, true,context);
+                    peticionFragment = new HistorialPeticionFragment("Peticions per aprovar", 1, posicion,context);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -145,7 +145,7 @@ public class AprobarFragment extends Fragment {
                 //Fragment anterior
                 HistorialPeticionFragment peticionFragment = null;
                 try {
-                    peticionFragment = new HistorialPeticionFragment("Peticions per aprovar", 3, posicion, true,context);
+                    peticionFragment = new HistorialPeticionFragment("Peticions per aprovar", 3, posicion,context);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

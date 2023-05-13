@@ -36,19 +36,19 @@ public class MedicoActivity extends AppCompatActivity {
         setDayNight();
 
         try {
-            aprobarFragment = new HistorialPeticionFragment("Peticions per aprovar",1,0,false,this);
+            aprobarFragment = new HistorialPeticionFragment("Peticions per aprovar",1,0,this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         try {
-            peticionFragment = new HistorialPeticionFragment("Historial Peticions",2,0,false,this);
+            peticionFragment = new HistorialPeticionFragment("Historial Peticions",2,0,this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         try {
-            pacienteFragment = new HistorialPeticionFragment("Historial Pacients",3,0,false,this);
+            pacienteFragment = new HistorialPeticionFragment("Historial Pacients",3,0,this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

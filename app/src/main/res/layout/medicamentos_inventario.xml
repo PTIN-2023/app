@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginTop="10dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
+    android:padding="3dp">
+
+    <RelativeLayout
+        android:id="@+id/contenedor_medicamentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5sp">
+        <TextView
+            android:id="@+id/txt_medicamento_inventario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="Medicament"
+            android:fontFamily="@font/rinkart_italic"
+            android:textSize="20sp"/>
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

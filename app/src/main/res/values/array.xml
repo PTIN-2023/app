@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_options">
+        <item>Nom (ascendent)</item>
+        <item>Nom (descendent)</item>
+        <item>Més nou</item>
+        <item>Més antic</item>
+    </string-array>
+    <string-array name="sort_options_inventario">
+        <item>Medicament (ascendent)</item>
+        <item>Medicament (descendent)</item>
+        <item>Quantitat (de menor a major) </item>
+        <item>vendes (de menor a major)</item>
+        <item>Ciutat (ascendent)</item>
+    </string-array>
+</resources>
