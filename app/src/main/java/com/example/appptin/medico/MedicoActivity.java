@@ -2,6 +2,7 @@ package com.example.appptin.medico;
 import com.example.appptin.R;
 import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
 import com.example.appptin.medico.fragments.perfilmedico.PerfilMedicoFragment;
+import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,7 @@ import android.view.MenuItem;
 
 import java.io.IOException;
 
-public class MedicoActivity extends AppCompatActivity {
+public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFragment.LanguageChangeListener{
 
     //AprobarFragment aprobarFragment = new AprobarFragment();
     HistorialPeticionFragment aprobarFragment;
@@ -96,6 +97,11 @@ public class MedicoActivity extends AppCompatActivity {
         else{
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+    }
+
+    public void onLanguageChanged() {
+        finish();
+        startActivity(getIntent());
     }
 
 }

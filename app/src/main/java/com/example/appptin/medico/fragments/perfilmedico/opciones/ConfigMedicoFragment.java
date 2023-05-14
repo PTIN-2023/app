@@ -1,6 +1,9 @@
 package com.example.appptin.medico.fragments.perfilmedico.opciones;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,15 +13,21 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.example.appptin.MainActivity;
 import com.example.appptin.R;
+import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
 import com.example.appptin.medico.MedicoActivity;
 import com.example.appptin.medico.fragments.perfilmedico.PerfilMedicoFragment;
 import com.example.appptin.paciente.UserFragment;
 import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
+
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +43,11 @@ public class ConfigMedicoFragment extends Fragment {
 
     private ImageView iv_regresar;
     private View view;
+
+    private Spinner sp_idioma;
+    private LanguageChangeListener mListener;
+
+    private String selectedLanguage;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -77,10 +91,13 @@ public class ConfigMedicoFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_config_medico, container, false);
 
         iv_regresar = view.findViewById(R.id.iv_config_medico_back);
+        sp_idioma = view.findViewById(R.id.sp_medico_idioma);
 
         // LISTENERS
         iv_regresar.setOnClickListener(regresar);
 
+        SetIdioma();
+        cambiar_idioma();
 
 
         final MedicoActivity ma = (MedicoActivity) getActivity();
@@ -128,5 +145,52 @@ public class ConfigMedicoFragment extends Fragment {
             fragmentTransaction.commit();
         }
     };
+
+    public interface LanguageChangeListener {
+        void onLanguageChanged();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ConfigMedicoFragment.LanguageChangeListener) {
+            mListener = (ConfigMedicoFragment.LanguageChangeListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement LanguageChangeListener");
+        }
+    }
+
+    private void cambiar_idioma() {
+        sp_idioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Se ha seleccionado una opción, habilito el botón de guardar cambios
+                selectedLanguage = parent.getItemAtPosition(position).toString();
+                // Actualiza la configuración del idioma en el contexto de la aplicación
+                Resources res = getResources();
+                Configuration config = res.getConfiguration();
+                Locale locale = new Locale(selectedLanguage);
+                Locale.setDefault(locale);
+                config.setLocale(locale);
+                res.updateConfiguration(config, res.getDisplayMetrics());
+                if (mListener != null) {
+                    mListener.onLanguageChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Acciones a realizar cuando no se selecciona ninguna opción del Spinner
+            }
+        });
+    }
+
+    public void SetIdioma() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, new String[]{" ", "cat", "es"});
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_idioma.setAdapter(adapter);
+        //Evita que se active el evento OnItemSelectedListener del spinner cuando se establece el índice de selección.
+        sp_idioma.setSelection(0, false);
+    }
 
 }
