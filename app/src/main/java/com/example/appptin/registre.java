@@ -19,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -109,7 +111,7 @@ public class registre extends AppCompatActivity {
                                 System.out.println(result);
                                 if (result.equals("ok")) {
                                     // Registro exitoso, navegar a la siguiente actividad (por ejemplo, Welcome_popup)
-                                    Intent intent = new Intent(getApplication(), login.class);
+                                    Intent intent = new Intent(getApplication(), MainActivity.class);
                                     startActivity(intent);
                                 } else {
                                     // Error en el registro
