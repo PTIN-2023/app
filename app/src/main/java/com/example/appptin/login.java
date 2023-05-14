@@ -46,6 +46,8 @@ public class login extends AppCompatActivity {
 
     // Declarar variables globales
     GoogleSignInClient googleSignInClient;
+    private String oauthToken;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,24 +125,31 @@ public class login extends AppCompatActivity {
                 // Inicio de sesión exitoso
                 GoogleSignInAccount account = task.getResult(ApiException.class);
 
+                // Obtener el token de OAuth 2.0
+                String oauthToken = account.getIdToken();
+
+                // Guardar el token en una variable
+                // Puedes usar una variable global o una SharedPreferences
+                // En este ejemplo, se guarda en una variable global llamada oauthToken
+                this.oauthToken = oauthToken;
+
                 // Aquí se puede obtener el nombre, correo electrónico y otros datos del usuario de la cuenta de Google
                 // y utilizarlos para el inicio de sesión en la aplicación
                 SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("email", account.getEmail());
-                editor.putString("name", account.getDisplayName());
                 editor.apply();
 
                 // Guardamos en variables el correo y el password para acceder a la base de datos
                 String email = preferences.getString("email", "");
 
-
+                checkUser(email, oauthToken);
 
                 // Cambiamos de actividad
                 // Aquí se puede obtener el nombre, correo electrónico y otros datos del usuario de la cuenta de Google
                 // y utilizarlos para el inicio de sesión en la aplicación
-                Intent intent = new Intent(this, Welcome_popup.class); // Reemplaza NuevaActividad con el nombre de la actividad a la que quieres ir
-                startActivity(intent);
+                //Intent intent = new Intent(this, Welcome_popup.class); // Reemplaza NuevaActividad con el nombre de la actividad a la que quieres ir
+                //startActivity(intent);
 
             } catch (ApiException e) {
                 // Inicio de sesión fallido
