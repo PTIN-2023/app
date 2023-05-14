@@ -16,9 +16,27 @@
         android:fontFamily="@font/rinkart"
         android:textStyle="bold"/>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10sp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:queryHint="Search Here" />
+
+    </androidx.cardview.widget.CardView>
+
     <ScrollView
         android:layout_width="399dp"
-        android:layout_height="454dp"
+        android:layout_height="430dp"
         android:layout_gravity="center">
 
         <LinearLayout
@@ -31,15 +49,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp">
 
         <Button
             android:id="@+id/btn_finalitzar_compra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            android:text="Finalitzar Compra"
             android:fontFamily="@font/rinkart"
+            android:text="Finalitzar Compra"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.83"
@@ -52,10 +70,10 @@
             android:id="@+id/preu_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/rinkart"
             android:text="Preu total: 0€"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:fontFamily="@font/rinkart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.051"

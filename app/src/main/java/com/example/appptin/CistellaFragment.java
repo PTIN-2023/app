@@ -84,7 +84,7 @@ public class CistellaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        //((AppCompatActivity)getActivity()).getSupportActionBar().show();
         View view = inflater.inflate(R.layout.fragment_cistella, container, false);
         linearLayoutCistella = view.findViewById(R.id.linearLayout_cistella);
 

@@ -24,6 +24,14 @@ public class PagamentActivity extends AppCompatActivity {
         paypalDetailsLayout = findViewById(R.id.paypal_details_layout);
 
         Button btnPaypal = findViewById(R.id.btn_paypal_payment);
+        Button btnCard = findViewById(R.id.btn_card_payment);
+
+        btnCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCardDetails(v);
+            }
+        });
 
         btnPaypal.setOnClickListener(new View.OnClickListener() {
             @Override

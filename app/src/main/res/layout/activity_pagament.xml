@@ -16,7 +16,7 @@
         android:layout_marginBottom="24dp"/>
 
     <Button
-        android:id="@+id/card_payment_button"
+        android:id="@+id/btn_card_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Targeta de Crèdit"
