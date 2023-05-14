@@ -19,8 +19,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.appptin.databinding.ActivityMainBinding;
 import com.example.appptin.paciente.Patient;
 import com.example.appptin.paciente.UserFragment;
+import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements ConfigPacienteFragment.LanguageChangeListener{
 
     ListView listView;
     String[] components = {"paracetamol", "naproxeno", "dalsi", "diazepam", "dercutane", "pantoprazol", "tiamulina"};
@@ -137,6 +138,11 @@ public class MainActivity extends AppCompatActivity {
         else{
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+    }
+
+    public void onLanguageChanged() {
+        finish();
+        startActivity(getIntent());
     }
 
 }
