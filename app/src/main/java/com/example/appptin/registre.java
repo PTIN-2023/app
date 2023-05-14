@@ -35,6 +35,8 @@ public class registre extends AppCompatActivity {
     EditText input_given_name, input_full_name, input_email, input_password, input_re_password, input_phone, input_city, input_address;
 
     GoogleSignInClient googleSignInClient;
+    private String oauthToken;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,58 +81,7 @@ public class registre extends AppCompatActivity {
             showerror(input_password, "Les contrasenyes no coincideixen");
         }
         else {
-            RequestQueue queue = Volley.newRequestQueue(this);
-            Resources r = getResources();
-            String apiUrl = r.getString(R.string.api_base_url);
-
-            System.out.println("Email: " + email);
-            System.out.println("Password: " + password);
-            System.out.println("Re-Password: " + re_password);
-
-            JSONObject jsonBody = new JSONObject();
-            try {
-                jsonBody.put("user_full_name", full_name);
-                jsonBody.put("user_given_name", given_name);
-                jsonBody.put("user_email", email);
-                jsonBody.put("user_phone", phone);
-                jsonBody.put("user_city", city);
-                jsonBody.put("user_address", address);
-                jsonBody.put("user_password", address);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String url = r.getString(R.string.api_base_url) + "/api/register"; // Reemplaza con la dirección de tu API
-            System.out.println(url);
-
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                    (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                String result = response.getString("result");
-                                System.out.println(result);
-                                if (result.equals("ok")) {
-                                    // Registro exitoso, navegar a la siguiente actividad (por ejemplo, Welcome_popup)
-                                    Intent intent = new Intent(getApplication(), MainActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    // Error en el registro
-                                    // Muestra un mensaje de error al usuario
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // Error al realizar la solicitud
-                            error.printStackTrace();
-                        }
-                    });
-
-            // Añade la solicitud a la cola de solicitudes
-            queue.add(jsonObjectRequest);
+            addUser(given_name, full_name, email, phone, password, city, address);
         }
     }
 
@@ -150,31 +101,42 @@ public class registre extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
+
         // Resultado del inicio de sesión de Google
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 // Inicio de sesión exitoso
+                //System.out.println("Hola papito");
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+
+                // Obtener el token de OAuth 2.0
+                String oauthToken = account.getIdToken();
+
+                // Guardar el token en una variable
+                // Puedes usar una variable global o una SharedPreferences
+                // En este ejemplo, se guarda en una variable global llamada oauthToken
+                this.oauthToken = oauthToken;
 
                 // Aquí se puede obtener el nombre, correo electrónico y otros datos del usuario de la cuenta de Google
                 // y utilizarlos para el inicio de sesión en la aplicación
                 SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("user", account.getDisplayName());
                 editor.putString("email", account.getEmail());
-                editor.putString("name", account.getDisplayName());
+
+
                 editor.apply();
 
                 // Guardamos en variables el correo y el password para acceder a la base de datos
                 String email = preferences.getString("email", "");
+                String user = preferences.getString("name", "");
 
 
-
+                //addUser(user, user, email, "12345", oauthToken, "barcelona", "av andorra 500");
                 // Cambiamos de actividad
-                // Aquí se puede obtener el nombre, correo electrónico y otros datos del usuario de la cuenta de Google
-                // y utilizarlos para el inicio de sesión en la aplicación
-                Intent intent = new Intent(this, Welcome_popup.class); // Reemplaza NuevaActividad con el nombre de la actividad a la que quieres ir
-                startActivity(intent);
+                addUser(user, user, email, "12345", oauthToken, "barcelona", "av andorra 500");
 
             } catch (ApiException e) {
                 // Inicio de sesión fallido
@@ -182,4 +144,60 @@ public class registre extends AppCompatActivity {
             }
         }
     }
+
+    public void addUser(String given_name, String full_name, String email, String phone, String password, String city, String address){
+        System.out.println("Email: " + email);
+        System.out.println("Password: " + oauthToken);
+
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("user_full_name", given_name);
+            jsonBody.put("user_given_name", full_name);
+            jsonBody.put("user_email", email);
+            jsonBody.put("user_phone", "123");
+            jsonBody.put("user_city", "and");
+            jsonBody.put("user_address", "vilanova 101");
+            jsonBody.put("user_password", oauthToken);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = r.getString(R.string.api_base_url) + "/api/register"; // Reemplaza con la dirección de tu API
+        System.out.println(url);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String result = response.getString("result");
+                            System.out.println(result);
+                            if (result.equals("ok")) {
+                                // Registro exitoso, navegar a la siguiente actividad (por ejemplo, Welcome_popup)
+                                Intent intent = new Intent(getApplication(), MainActivity.class);
+                                startActivity(intent);
+                            } else {
+                                // Error en el registro
+                                // Muestra un mensaje de error al usuario
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                    }
+                });
+
+        // Añade la solicitud a la cola de solicitudes
+        queue.add(jsonObjectRequest);
+    }
+
 }

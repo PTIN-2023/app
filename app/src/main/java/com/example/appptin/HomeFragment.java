@@ -129,7 +129,7 @@ public class HomeFragment extends Fragment {
             if (result.getContents() == null) {
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Lectura cancelada")
-                        .setMessage("No se ha leído ningún contenido")
+                        .setMessage("No s'ha llegit cap contingut")
                         .setPositiveButton(android.R.string.ok, null)
                         .show();
             } else {

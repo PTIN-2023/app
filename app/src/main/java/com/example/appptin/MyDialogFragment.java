@@ -45,7 +45,7 @@ public class MyDialogFragment extends DialogFragment {
             View itemView = inflater.inflate(R.layout.item_my_dialog, null);
             TextView textView = itemView.findViewById(R.id.textView);
             textView.setText(item);
-            Button button = itemView.findViewById(R.id.bt_analgesics);
+            Button button = itemView.findViewById(R.id.button);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
