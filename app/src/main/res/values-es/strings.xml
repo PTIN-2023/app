@@ -33,4 +33,22 @@
     <string name="id_ciutat">Ciudad</string>
     <string name="id_hint_ciutat">Ciudad de origen</string>
     <string name="id_guardar_canvis">Guardar cambios</string>
+    //fragment_inventario_gestor.xml
+    <string name="filtres">Filtros</string>
+    <string name="sort_option_medicament_asc">Medicamento (ascendente)</string>
+    <string name="sort_option_medicament_desc">Medicamento (descendente)</string>
+    <string name="sort_option_quantitat">Cantidad (de menor a mayor)</string>
+    <string name="sort_option_vendes">Ventas (de menor a mayor)</string>
+    <string name="sort_option_ciutat_asc">Ciudad (ascendente)</string>
+    //fragment_inventario_medicamento.xml
+    <string name="texto_inventari">INVENTARIO</string>
+    <string name="texto_medicament">Medicamento :</string>
+    <string name="texto_quantitat_magatzem">Cantidad almacén :</string>
+    <string name="texto_quantitat_venuda">Cantidad vendida :</string>
+    <string name="texto_ciutat_comprat">Ciudad que más ha comprado :</string>
+    <string name="hint_nom_medicament">Nombre del medicamento</string>
+    <string name="hint_numero_esgotat">Número / Agotado</string>
+    <string name="hint_valor_numeric">Valor numérico</string>
+    <string name="hint_nom_ciutat">Nombre Ciudad</string>
+
 </resources>

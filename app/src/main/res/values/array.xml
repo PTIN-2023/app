@@ -7,10 +7,10 @@
         <item>Més antic</item>
     </string-array>
     <string-array name="sort_options_inventario">
-        <item>Medicament (ascendent)</item>
-        <item>Medicament (descendent)</item>
-        <item>Quantitat (de menor a major) </item>
-        <item>vendes (de menor a major)</item>
-        <item>Ciutat (ascendent)</item>
+        <item>@string/sort_option_medicament_asc</item>
+        <item>@string/sort_option_medicament_desc</item>
+        <item>@string/sort_option_quantitat</item>
+        <item>@string/sort_option_vendes</item>
+        <item>@string/sort_option_ciutat_asc</item>
     </string-array>
 </resources>
