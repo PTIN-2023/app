@@ -35,7 +35,7 @@ public class DatosPacienteFragment extends Fragment {
     private static final String ARG_PATIENT= "patient";
     private Patient patient;
     private ImageView iv_regresar;
-    private EditText et_nombre, et_apellidos, et_dni, et_cip , et_pais, et_provincia;
+    private EditText et_given_name, et_user_name, et_city, et_address , et_pais, et_provincia;
     private Button btn_guardar, btn_fecha;
     private Spinner sp_genero;
 
@@ -70,19 +70,21 @@ public class DatosPacienteFragment extends Fragment {
         initDatePicker();
 
         iv_regresar = view.findViewById(R.id.iv_dato_paciente_back);
-        et_nombre = view.findViewById(R.id.et_dato_paciente_nombre);
-        et_apellidos = view.findViewById(R.id.et_dato_paciente_apellidos);
-        et_dni = view.findViewById(R.id.et_dato_paciente_dni);
-        et_cip = view.findViewById(R.id.et_dato_paciente_cip);
+        et_given_name = view.findViewById(R.id.et_user_given_name);
+        et_user_name = view.findViewById(R.id.et_user_name);
+        et_city = view.findViewById(R.id.et_user_city);
+        et_address = view.findViewById(R.id.et_user_address);
+        //et_dni = view.findViewById(R.id.et_dato_paciente_dni);
+        //et_cip = view.findViewById(R.id.et_dato_paciente_cip);
         btn_guardar = view.findViewById(R.id.btn_dato_paciente_guardar);
-        btn_fecha = view.findViewById(R.id.btn_dato_paciente_fecha);
+        //btn_fecha = view.findViewById(R.id.btn_dato_paciente_fecha);
 
-        sp_genero = view.findViewById(R.id.sp_dato_paciente_genero);
-        et_pais = view.findViewById(R.id.et_dato_paciente_pais);
-        et_provincia = view.findViewById(R.id.et_dato_paciente_ciudad);
+        //sp_genero = view.findViewById(R.id.sp_dato_paciente_genero);
+
+        //et_provincia = view.findViewById(R.id.et_dato_paciente_ciudad);
 
         System.out.println(patient.getGiven_name());
-        et_nombre.setText(patient.getGiven_name());
+        et_given_name.setText(patient.getGiven_name());
         //Asignar valores
         SetGenero();
 
@@ -92,8 +94,8 @@ public class DatosPacienteFragment extends Fragment {
         // LISTENERS
         iv_regresar.setOnClickListener(regresar);
         btn_guardar.setOnClickListener(guardar);
-        setNombreListener();
-        setApellidosListener();
+        setGivenNameListener();
+        setUserNameListener();
         btn_fecha.setOnClickListener(canviar_fecha);
         setGeneroListener();
         setPaisListener();
@@ -124,8 +126,8 @@ public class DatosPacienteFragment extends Fragment {
         }
     };
 
-    private void setNombreListener() {
-        et_nombre.addTextChangedListener(new TextWatcher() {
+    private void setGivenNameListener() {
+        et_given_name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -141,8 +143,8 @@ public class DatosPacienteFragment extends Fragment {
         });
     }
 
-    private void setApellidosListener() {
-        et_apellidos.addTextChangedListener(new TextWatcher() {
+    private void setUserNameListener() {
+        et_user_name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }

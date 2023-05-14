@@ -1,6 +1,7 @@
 package com.example.appptin.paciente;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,11 +19,21 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.appptin.MainActivity;
 import com.example.appptin.R;
 import com.example.appptin.paciente.opciones.ClienteDireccionFragment;
 import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
 import com.example.appptin.welcome_page;
 import com.example.appptin.paciente.opciones.DatosPacienteFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -87,10 +98,7 @@ public class UserFragment extends Fragment {
     private View.OnClickListener salirClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(),"Sessió tancada",Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(getActivity(), welcome_page.class);
-            startActivity(intent);
+            logout();
         }
     };
 
@@ -142,6 +150,55 @@ public class UserFragment extends Fragment {
             CircleImageView imageView = view.findViewById(R.id.profile_image);
             imageView.setImageURI(imageUri);
         }
+    }
+
+    private boolean logout() {
+        boolean exists = false;
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/logout"; // Reemplaza con la dirección de tu API
+        System.out.println(url);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("user_token", patient.getToken());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            System.out.println("MENSAJE: " + response);
+                            String result = response.getString("result");
+
+                            // Utiliza los valores extraídos según sea necesario
+                            if (result.equals("ok")) {
+                                System.out.println("S'ha tancat la sessió");
+                                Toast.makeText(getActivity(),"Sessió tancada",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getActivity(), welcome_page.class);
+                                startActivity(intent);
+
+                            } else {
+                                System.out.println("Token de sesió incorrecte");
+                                //Fer Pop-Up o algo per notificar l'usuari
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                    }
+                });
+
+        queue.add(jsonObjectRequest);
+        return exists;
     }
 
 }
