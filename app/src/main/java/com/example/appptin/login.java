@@ -33,6 +33,14 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 public class login extends AppCompatActivity {
     EditText inputcorreu, input_contrassenya;
 
@@ -60,6 +68,20 @@ public class login extends AppCompatActivity {
         String _correu = (inputcorreu.getText()).toString();
         String _contrassenya = (input_contrassenya.getText()).toString();
 
+        // Encriptar contrassenya (comentat fins que els de la api implementing els tokens)
+        /*
+        Map<String, Object> message = new HashMap<>();
+        message.put("password",_contrassenya);
+        message.put("exp", new Date(System.currentTimeMillis()+300000));
+        message.put("iss","appA4");
+
+        String secret = "jwt1234-piramide-quadrada-gas-salvatge-iceberg-piña-Meren";
+
+        String token = Jwts.builder()
+                .setClaims(message)
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
+        */
         // Aqui fem la consulta amb la API a la base de dades per veure si existeix el usuari
 
         if(_correu != "admin@1234" && _contrassenya != "1234"){
