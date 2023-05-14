@@ -25,7 +25,7 @@
                 android:fontFamily="@font/rinkart"
                 android:textSize="25sp"
                 android:gravity="center"
-                android:hint=" Títol "/>
+                android:hint="@string/inventari"/>
 
 
         </LinearLayout>
@@ -58,7 +58,7 @@
                 android:id="@+id/btn_inv_gestor_filtro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Filtres"
+                android:text="@string/filtres"
                 android:fontFamily="@font/rinkart"
                 android:layout_alignParentEnd="true" />
 

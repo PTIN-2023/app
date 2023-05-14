@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/rinkart"
-                android:text="INVENTARI"
+                android:text="@string/texto_inventari"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
-                        android:text="Medicament :"
+                        android:text="@string/texto_medicament"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -64,7 +64,7 @@
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="Nom del medicament"
+                        android:hint="@string/hint_nom_medicament"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -80,7 +80,7 @@
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
                         android:layout_marginRight="10dp"
-                        android:text="Quantitat magatzem :"
+                        android:text="@string/texto_quantitat_magatzem"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -91,7 +91,7 @@
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="Número / Esgotat"
+                        android:hint="@string/hint_numero_esgotat"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -107,7 +107,7 @@
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
                         android:layout_marginRight="10dp"
-                        android:text="Quantitat venuda :"
+                        android:text="@string/texto_quantitat_venuda"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -118,7 +118,7 @@
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="Valor numèric"
+                        android:hint="@string/hint_valor_numeric"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -133,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
-                        android:text="Ciutat que més ha comprat :"
+                        android:text="@string/texto_ciutat_comprat"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -144,7 +144,7 @@
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="Nom Ciutat"
+                        android:hint="@string/hint_nom_ciutat"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
