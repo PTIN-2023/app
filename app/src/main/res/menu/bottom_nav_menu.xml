@@ -6,17 +6,17 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/baseline_home_24"
-        android:title="Home"/>
+        android:title="@string/titulo_home"/>
 
     <item
         android:id="@+id/user"
         android:icon="@drawable/baseline_person_24"
-        android:title="User"/>
+        android:title="@string/titulo_usuario"/>
 
     <item
         android:id="@+id/cistella"
         android:icon="@drawable/baseline_shopping_bag_24"
-        android:title="Cistella"/>
+        android:title="@string/cistella"/>
 
     <item
         android:id="@+id/scanQR"

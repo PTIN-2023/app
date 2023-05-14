@@ -3,7 +3,9 @@
     <string name="app_name">App PTIN</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     //GESTOR
+
     //bottom_navigation_gestor.xml
     <string name="inventari">Inventari</string>
     <string name="gestions">Gestions</string>
@@ -49,5 +51,27 @@
     <string name="hint_numero_esgotat">Número / Esgotat</string>
     <string name="hint_valor_numeric">Valor numèric</string>
     <string name="hint_nom_ciutat">Nom Ciutat</string>
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    //MEDICO
+
+    //bottom_navigation_medico.xml
+    <string name="titulo_home">Inici</string>
+    <string name="titulo_peticiones">Peticions</string>
+    <string name="titulo_pacientes">Pacients</string>
+    <string name="titulo_usuario">Usuari</string>
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    //PACIENTE
+
+    //bottom_nav_menu.xml
+    <string name="cistella">Cistella</string>
 
 </resources>
