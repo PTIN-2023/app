@@ -55,4 +55,36 @@ public class Patient implements  Serializable{
     public String getUser_picture() {
         return user_picture;
     }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+
+    public void setGiven_name(String given_name) {
+        this.given_name = given_name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setUser_picture(String user_picture) {
+        this.user_picture = user_picture;
+    }
 }
