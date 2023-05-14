@@ -26,7 +26,6 @@ public class InventarioGestorFragment extends Fragment {
     View vista;
     SearchView searchView;
     RecyclerView recyclerView;
-    TextView titulo;
     ArrayList<MedicamentosClass> arrayList;
     ArrayList<MedicamentosClass> searchList;
 
@@ -65,10 +64,7 @@ public class InventarioGestorFragment extends Fragment {
         //Asociación de los obejtos creados en el XML (diseño)
         recyclerView = view.findViewById(R.id.rv_inventario);
         searchView = view.findViewById(R.id.sv_inventario);
-        titulo = view.findViewById(R.id.txt_titol_inventario);
         spinnerSort = view.findViewById(R.id.sp_iventario_gestor_ordenar);
-
-        titulo.setText("Inventari");
 
         //Agregar los elementos del RecyclerView
         Creacion_elementos_RecyclerView(arrayList);
