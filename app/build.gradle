@@ -56,6 +56,8 @@ dependencies {
     // Aitor Alonso - 14/05/2023 - dependencia Jwt para la encriptacion de la password
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    // Arnau Roca - 15/05/2023 - dependencia mapes
+    implementation ('com.mapbox.maps:android:10.13.0')
 
 
 }

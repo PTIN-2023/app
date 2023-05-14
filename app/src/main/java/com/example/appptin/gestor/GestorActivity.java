@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.example.appptin.R;
 import com.example.appptin.gestor.fragments.inventario.InventarioGestorFragment;
+import com.example.appptin.gestor.fragments.inventario.MapaGestor;
 import com.example.appptin.gestor.fragments.pefilgestor.PerfilGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -54,6 +55,10 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
 
                 case R.id.menu_perfilGestor:
                     loadFragment(gestorFragment);
+                    return true;
+                case R.id.menu_mapa:
+                    Intent intent = new Intent(GestorActivity.this, MapaGestor.class);
+                    startActivity(intent);
                     return true;
             }
             return false;

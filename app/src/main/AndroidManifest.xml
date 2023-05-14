@@ -116,6 +116,9 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
+        <activity
+            android:name=".gestor.fragments.inventario.MapaGestor">
+        </activity>
         <activity android:name=".gestor.fragments.pefilgestor.opciones.ConfigGestorFragment">
 
             <!-- otras configuraciones de la actividad -->
