@@ -22,7 +22,7 @@
             android:id="@+id/nom_producte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Producte"
+            android:text="@string/producte"
             android:fontFamily="@font/rinkart"
             android:textSize="18dp" />
 

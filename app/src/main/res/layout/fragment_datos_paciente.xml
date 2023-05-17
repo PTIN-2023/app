@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/rinkart"
-                android:text="Dades Personals"
+                android:text="@string/dades_personals"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
-                        android:text="Usuari"
+                        android:text="@string/titulo_usuario"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="Usuari"
+                        android:hint="@string/titulo_usuario"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -77,7 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
-                        android:text="Nom"
+                        android:text="@string/id_nom"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="Nom"
+                        android:hint="@string/id_nom"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Correu electronic"
+                        android:text="@string/correo_elec"
                         android:textSize="20sp"/>
 
                     <EditText
@@ -110,7 +110,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="Correu electronic"
+                        android:hint="@string/correo_elec"
                         android:textSize="20sp" />
 
 
@@ -240,14 +240,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Ciutat"
+                        android:text="@string/id_ciutat"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_user_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ciutat"
+                        android:hint="@string/id_ciutat"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -264,14 +264,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Adreça"
+                        android:text="@string/address"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_user_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Adreça"
+                        android:hint="@string/address"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -285,7 +285,7 @@
                     android:fontFamily="@font/rinkart_italic"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="guardar canvis"/>
+                    android:text="@string/save_changes"/>
 
             </LinearLayout>
 

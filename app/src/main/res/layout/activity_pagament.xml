@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Selecciona un mètode de pagament"
+        android:text="@string/payment_method_title"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -19,7 +19,7 @@
         android:id="@+id/btn_card_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Targeta de Crèdit"
+        android:text="@string/card_payment"
         android:textSize="18sp"
         android:textColor="#ffffff"
         android:layout_marginBottom="32dp"
@@ -37,7 +37,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Número de targeta"
+            android:hint="@string/card_number_hint"
             android:inputType="text" />
 
         <!--  -->
@@ -48,7 +48,7 @@
         android:id="@+id/btn_paypal_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PayPal"
+        android:text="@string/paypal_payment"
         android:textSize="18sp"
         android:textColor="#ffffff"
         android:layout_marginBottom="32dp"
@@ -65,7 +65,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dades del comprador"
+            android:text="@string/dades_comprador"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -74,13 +74,13 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/paypal_email_hint"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telèfon"
+            android:hint="@string/paypal_phone_hint"
             android:inputType="number"
             android:layout_marginBottom="24dp"/>
 
@@ -90,7 +90,7 @@
         android:id="@+id/crypto_payment_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Criptomonedes"
+        android:text="@string/crypto_payment"
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:layout_marginBottom="24dp"
@@ -99,7 +99,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Resumen de la comanda"
+        android:text="@string/order_summary"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#000000"

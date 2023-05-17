@@ -23,7 +23,7 @@
             android:layout_height="35dp"
             android:fontFamily="@font/rinkart"
             android:gravity="center"
-            android:text="Esteu segur de voler continuar amb la seva comanda?"
+            android:text="@string/popup_finalitzar_compra"
             android:textSize="16dp" />
 
         <Space

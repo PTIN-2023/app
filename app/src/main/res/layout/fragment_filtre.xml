@@ -15,7 +15,7 @@
             android:id="@+id/tv_Filtres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Filtres"
+            android:text="@string/filtres"
             android:textAlignment="center"
             android:textSize="24sp" />
 
@@ -41,20 +41,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Via:"
+                    android:text="@string/via"
                     android:textSize="20sp" />
 
                 <CheckBox
                     android:id="@+id/cb_Oral"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Oral" />
+                    android:text="@string/oral" />
 
                 <CheckBox
                     android:id="@+id/cb_Topica"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Topica" />
+                    android:text="@string/topical" />
 
                 <CheckBox
                     android:id="@+id/checkBox3"
@@ -85,38 +85,38 @@
                     android:id="@+id/tv_Format"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Format:"
+                    android:text="@string/format"
                     android:textSize="20sp" />
 
                 <CheckBox
                     android:id="@+id/cb_Comprimidos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Comprimidos" />
+                    android:text="@string/comprimidos" />
 
                 <CheckBox
                     android:id="@+id/cb_Pomada"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pomada" />
+                    android:text="@string/pomada" />
 
                 <CheckBox
                     android:id="@+id/cb_Crema"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Crema" />
+                    android:text="@string/crema" />
 
                 <CheckBox
                     android:id="@+id/cb_Jarabe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Jarabe" />
+                    android:text="@string/jarabe" />
 
                 <CheckBox
                     android:id="@+id/cb_Inyeccion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Inyección" />
+                    android:text="@string/inyeccion" />
             </LinearLayout>
 
         </LinearLayout>
@@ -125,7 +125,7 @@
             android:id="@+id/bt_Aplicar"
             android:layout_width="match_parent"
             android:layout_height="62dp"
-            android:text="Aplicar" />
+            android:text="@string/apply" />
 
     </LinearLayout>
 

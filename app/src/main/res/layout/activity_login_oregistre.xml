@@ -42,7 +42,7 @@
         android:textColor="@color/white"
         android:textSize="30sp"
         android:fontFamily="@font/rinkart"
-        android:text="REGISTRE"
+        android:text="@string/registre"
         android:onClick="registre"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -27,7 +27,7 @@
                 android:fontFamily="@font/rinkart"
                 android:textSize="25sp"
                 android:gravity="center"
-                android:hint=" Medicaments "/>
+                android:hint="@string/medicam"/>
 
         </LinearLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
                 android:layout_margin="8dp"
-                android:text="Filtres"
+                android:text="@string/filters"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

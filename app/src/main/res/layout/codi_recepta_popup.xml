@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="Introdueix el codi de la recepta"
+            android:text="@string/intro_codi_recepta"
             android:gravity="center"
             android:fontFamily="@font/rinkart"/>
 
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Enviar"
+            android:text="@string/enviar"
             android:fontFamily="@font/rinkart"/>
 
     </LinearLayout>

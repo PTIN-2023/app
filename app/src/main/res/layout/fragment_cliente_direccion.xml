@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/rinkart"
-                android:text="Modificar Adreça"
+                android:text="@string/modify_address"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
-                        android:text="Adreça"
+                        android:text="@string/address"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -61,7 +61,7 @@
                         android:id="@+id/et_cliente_direccion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="ADREÇA"
+                        android:hint="@string/ADRESS"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -69,7 +69,7 @@
                         android:id="@+id/et_cliente_direccion_opcional"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="OPCIONAL"
+                        android:hint="@string/optional"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -86,14 +86,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Localitat / Ciutat"
+                        android:text="@string/city"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_cliente_direccion_localidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="LOCALITAT / CIUTAT"
+                        android:hint="@string/CITY"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -110,14 +110,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Província"
+                        android:text="@string/province"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_cliente_direccion_provincia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="PROVÍNCIA"
+                        android:hint="@string/PROVINCE"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -134,14 +134,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="Codi postal"
+                        android:text="@string/postal_code"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_cliente_direccion_cp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CODI POSTAL"
+                        android:hint="@string/POSTAL_CODE"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -158,14 +158,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="País"
+                        android:text="@string/country"
                         android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_cliente_direccion_pais"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="PAÍS"
+                        android:hint="@string/COUNTRY"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
@@ -179,7 +179,7 @@
                     android:layout_marginTop="30sp"
                     android:fontFamily="@font/rinkart_italic"
                     android:textSize="20sp"
-                    android:text="guardar canvis"/>
+                    android:text="@string/save_changes"/>
 
             </LinearLayout>
 
