@@ -73,4 +73,96 @@
     //bottom_nav_menu.xml
     <string name="cistella">Cesta</string>
 
+    //fragment_home.xml
+    <string name="scanQR">Escanear QR</string>
+    <string name="afegir_codi_recepta">Añadir código de receta</string>
+
+    //activity_login_oregistre.xml
+    <string name="registre">Registro</string>
+
+    //activity_login.xml
+    <string name="correu">Correo</string>
+    <string name="contrassenya">Contraseña</string>
+
+    //activity_registre.xml
+    <string name="given_name">Nombre Usuario</string>
+    <string name="user_full_name">Nombre y apellidos</string>
+    <string name="email">Correo</string>
+    <string name="phone">Teléfono</string>
+    <string name="Address">Dirección</string>
+    <string name="password">Contraseña</string>
+    <string name="re_password">Repite Contraseña</string>
+    <string name="bt_antialergics">Regístrate</string>
+
+    //activity_pagament.xml
+    <string name="payment_method_title">Selecciona un método de pago</string>
+    <string name="card_payment">Tarjeta de Crédito</string>
+    <string name="paypal_payment">PayPal</string>
+    <string name="crypto_payment">Criptomonedas</string>
+    <string name="card_number_hint">Número de tarjeta</string>
+    <string name="paypal_email_hint">Email</string>
+    <string name="paypal_phone_hint">Teléfono</string>
+    <string name="order_summary">Resumen de la comanda</string>
+    <string name="dades_comprador">Datos del comprador</string>
+
+    //codi_recepta_popup.xml
+    <string name="intro_codi_recepta">Introduce el código de la receta</string>
+    <string name="enviar">Enviar</string>
+
+    //fragment_cistella.xml
+    <string name="finalitzar_compra">Finalizar Compra</string>
+
+    //fragment_cliente_direccion.xml
+    <string name="modify_address">Modificar Dirección</string>
+    <string name="address">Dirección</string>
+    <string name="ADRESS">DIRECCIÓN</string>
+    <string name="optional">OPCIONAL</string>
+    <string name="city">Localidad / Ciudad</string>
+    <string name="CITY">LOCALIDAD / CIUDAD</string>
+    <string name="province">Provincia</string>
+    <string name="postal_code">Código postal</string>
+    <string name="country">País</string>
+    <string name="PROVINCE">PROVINCIA</string>
+    <string name="POSTAL_CODE">CÓDIGO POSTAL</string>
+    <string name="COUNTRY">PAÍS</string>
+    <string name="save_changes">guardar cambios</string>
+
+    //fragment_datos_paciente.xml
+    <string name="correo_elec">Correo electrónico</string>
+
+    //fragment_filtre.xml
+    <string name="filters">Filtros</string>
+    <string name="via">Vía:</string>
+    <string name="format">Formato:</string>
+    <string name="oral">Oral</string>
+    <string name="topical">Tópica</string>
+    <string name="comprimidos">Comprimidos</string>
+    <string name="pomada">Pomada</string>
+    <string name="crema">Crema</string>
+    <string name="jarabe">Jarabe</string>
+    <string name="inyeccion">Inyección</string>
+    <string name="apply">Aplicar</string>
+
+    //fragment_medicaments.xml
+    <string name="medicam"> Medicamentos </string>
+
+    //fragment_popup_finalitzar_compra.xml
+    <string name="popup_finalitzar_compra">Está seguro de querer continuar con su comanda?</string>
+
+    //item_my_dialog.xml
+    <string name="afegir">Añadir</string>
+
+    //productes_cistella.xml
+    <string name="producte">Producto</string>
+
+    //fragment_user.xml
+    <string name="personal_data">Datos Personales</string>
+    <string name="address_book">Libreta de direcciones</string>
+    <string name="payment_method">Método de pago</string>
+    <string name="assigned_doctor">Médico asignado</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="settings">Configuración</string>
+    <string name="logout">Salir</string>
+
+
 </resources>
