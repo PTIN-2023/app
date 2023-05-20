@@ -25,7 +25,7 @@
                 android:textSize="22dp"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:text="Informe mèdic"/>
+                android:text="@string/info_medico"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
                     android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
                     android:textStyle="bold"
-                    android:text="Metge: "/>
+                    android:text="@string/medico"/>
 
                 <TextView
                     android:id="@+id/txt_informe_medico"
@@ -50,7 +50,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/rinkart_italic"
                     android:textSize="18dp"
-                    android:hint="Nom del Metge"/>
+                    android:hint="@string/nom_medico"/>
             </LinearLayout>
 
 
@@ -62,7 +62,7 @@
                 android:background="?attr/colorPrimary"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:text="Dades personals"/>
+                android:text="@string/dades_personals"/>
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                     android:layout_margin="5dp"
                     android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
-                    android:text="Nom:" />
+                    android:text="@string/nom_info_pacient" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
                     android:layout_margin="5dp"
                     android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
-                    android:text="Cognoms:" />
+                    android:text="@string/cognoms_info_pacient" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                     android:layout_margin="5dp"
                     android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
-                    android:text="Nº d'identificació:" />
+                    android:text="@string/n_id_info_pacient" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                     android:layout_margin="5dp"
                     android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
-                    android:text="Data de naixement:" />
+                    android:text="@string/data_naixement" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                     android:layout_margin="5dp"
                     android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
-                    android:text="Gènere:" />
+                    android:text="@string/info_medico_genero" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -147,7 +147,7 @@
                     android:layout_margin="5dp"
                     android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
-                    android:text="País:" />
+                    android:text="@string/info_medico_pais" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
                     android:layout_margin="5dp"
                     android:fontFamily="@font/rinkart"
                     android:textSize="18dp"
-                    android:text="Província:" />
+                    android:text="@string/info_medico_pais" />
 
                 <TextView
                     android:id="@+id/txt_informe_nombre"
@@ -169,7 +169,7 @@
                     android:layout_column="1"
                     android:layout_margin="5dp"
                     android:textSize="18dp"
-                    android:hint="Nom del Pacient" />
+                    android:hint="@string/info_pacient_nom" />
 
                 <TextView
                     android:id="@+id/txt_informe_apellido"
@@ -180,7 +180,7 @@
                     android:layout_column="1"
                     android:layout_margin="5dp"
                     android:textSize="18dp"
-                    android:hint="Cognoms del Pacient" />
+                    android:hint="@string/info_pacient_cognom" />
 
                 <TextView
                     android:id="@+id/txt_informe_dni"
@@ -213,7 +213,7 @@
                     android:layout_column="1"
                     android:layout_margin="5dp"
                     android:textSize="18dp"
-                    android:hint="Masculí o femení" />
+                    android:hint="@string/info_medico_mas_fem" />
 
                 <TextView
                     android:id="@+id/txt_informe_cip"
@@ -224,7 +224,7 @@
                     android:layout_column="1"
                     android:layout_margin="5dp"
                     android:textSize="18dp"
-                    android:hint="Nº targeta sanitària" />
+                    android:hint="@string/info_medico_n_t_sanitaria" />
 
                 <TextView
                     android:id="@+id/txt_informe_pais"
@@ -235,7 +235,7 @@
                     android:layout_column="1"
                     android:layout_margin="5dp"
                     android:textSize="18dp"
-                    android:hint="País" />
+                    android:hint="@string/id_pais" />
 
                 <TextView
                     android:id="@+id/txt_informe_provincia"
@@ -246,7 +246,7 @@
                     android:layout_column="1"
                     android:layout_margin="5dp"
                     android:textSize="18dp"
-                    android:hint="Provincia" />
+                    android:hint="@string/province" />
             </GridLayout>
 
             <TextView
@@ -258,7 +258,7 @@
                 android:background="?attr/colorPrimary"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:text="Antecedents personals"/>
+                android:text="@string/info_medico_antecedents_personals"/>
 
             <TextView
                 android:id="@+id/txt_informe_antecedente"
@@ -266,7 +266,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rinkart_italic"
                 android:textSize="18dp"
-                android:hint="Descripció dels antecedents personals del pacient"/>
+                android:hint="@string/info_medico_descripcio_antecedents"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -277,7 +277,7 @@
                 android:background="?attr/colorPrimary"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:text="Problemes de salut actuals"/>
+                android:text="@string/info_medico_problemes_salut"/>
 
             <TextView
                 android:id="@+id/txt_informe_problema"
@@ -285,7 +285,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rinkart_italic"
                 android:textSize="18dp"
-                android:hint="Descripció dels problemes de salut actuals del pacient."/>
+                android:hint="@string/info_medico_descripcio_problemes"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -296,7 +296,7 @@
                 android:layout_marginBottom="5dp"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:text="Tractaments mèdics i farmacològics"/>
+                android:text="@string/info_medico_tractaments_medics"/>
 
             <TextView
                 android:id="@+id/txt_informe_tratamiento"
@@ -304,7 +304,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rinkart_italic"
                 android:textSize="18dp"
-                android:hint="Descripció del tractament mèdic i framacològics."/>
+                android:hint="@string/info_medico_descripcio_tractament"/>
 
         </LinearLayout>
     </ScrollView>

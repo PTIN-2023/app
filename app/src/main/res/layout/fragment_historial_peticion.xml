@@ -27,7 +27,7 @@
                 android:fontFamily="@font/rinkart"
                 android:textSize="25sp"
                 android:gravity="center"
-                android:hint=" Títol "/>
+                android:hint="@string/historial_peticions"/>
 
         </LinearLayout>
 
