@@ -64,6 +64,56 @@
     <string name="titulo_pacientes">Pacients</string>
     <string name="titulo_usuario">Usuari</string>
 
+    //fragment_aprobar.xml
+    <string name="info_pacient">Informació  Pacient</string>
+    <string name="nom_info_pacient">Nom:</string>
+    <string name="cognoms_info_pacient">Cognoms:</string>
+    <string name="n_id_info_pacient">Nº de identificació:</string>
+    <string name="n_comanda_info_pacient">Nº Comanda:</string>
+    <string name="info_pacient_nom">Nom del Pacient</string>
+    <string name="info_pacient_cognom">Cognoms del Pacient</string>
+    <string name="n_ref_comanda">Nº de referència comanda</string>
+    <string name="llista_medicaments">Llista de medicaments:</string>
+    <string name="info_pacient_aceptar">Acceptar</string>
+    <string name="info_pacient_rebutjar">Rebutjar</string>
+
+    //fragment_datos_medicos.xml
+    <string name="id_nom_metge">Nom del metge</string>
+    <string name="id_cognom_metge">Cognoms del metge</string>
+
+    //fragment_detalles_peticion.xml
+
+    //fragment_historial_paciente.xml
+    <string name="info_medico">Informe mèdic</string>
+    <string name="medico">Metge: </string>
+    <string name="nom_medico">Nom del Metge</string>
+    <string name="data_naixement">Data de naixement:</string>
+    <string name="info_medico_genero">Gènere:</string>
+    <string name="info_medico_pais">País:</string>
+    <string name="info_medico_provincia">Província:</string>
+    <string name="info_medico_mas_fem">Masculí o femení</string>
+    <string name="info_medico_n_t_sanitaria">Nº targeta sanitària</string>
+    <string name="info_medico_antecedents_personals">Antecedents personals</string>
+    <string name="info_medico_descripcio_antecedents">Descripció dels antecedents personals del pacient</string>
+    <string name="info_medico_problemes_salut">Problemes de salut actuals</string>
+    <string name="info_medico_tractaments_medics">Tractaments mèdics i farmacològics</string>
+    <string name="info_medico_descripcio_problemes">Descripció dels problemes de salut actuals del pacient.</string>
+    <string name="info_medico_descripcio_tractament">Descripció del tractament mèdic i framacològics.</string>
+
+    //fragment_historial_peticion.xml
+    <string name="historial_peticions">Historial de Peticions</string>
+    <string name="sort_options_nom_a">Nom (ascendent)</string>
+    <string name="sort_options_nom_d">Nom (descendent)</string>
+    <string name="mes_nou">Més nou</string>
+    <string name="mes_antic">Més antic</string>
+
+    //medicamentos_inventario.xml
+    <string name="medica">Medicament</string>
+
+    //fragment_perfil_medico.xml
+    <string name="credencials_medic">Credencials Mèdiques</string>
+    <string name="info_contacte">Informació de Contacte</string>
+    
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////

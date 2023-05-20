@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="sort_options">
-        <item>Nom (ascendent)</item>
-        <item>Nom (descendent)</item>
-        <item>Més nou</item>
-        <item>Més antic</item>
+        <item>@string/sort_options_nom_a</item>
+        <item>@string/sort_options_nom_d</item>
+        <item>@string/mes_nou</item>
+        <item>@string/mes_antic</item>
     </string-array>
     <string-array name="sort_options_inventario">
         <item>@string/sort_option_medicament_asc</item>
