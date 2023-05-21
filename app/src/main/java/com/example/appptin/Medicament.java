@@ -1,5 +1,7 @@
 package com.example.appptin;
 
+import java.util.ArrayList;
+
 public class Medicament {
     private String medName;
     private String nationalCode;
@@ -8,9 +10,9 @@ public class Medicament {
     private boolean prescriptionNeeded;
     private double pvp;
     private String form;
-    private String excipients;
+    private ArrayList<String> excipients;
 
-    public Medicament(String medName, String nationalCode, String useType, String typeOfAdministration, boolean prescriptionNeeded, double pvp, String form, String excipients) {
+    public Medicament(String medName, String nationalCode, String useType, String typeOfAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients) {
         this.medName = medName;
         this.nationalCode = nationalCode;
         this.useType = useType;
@@ -49,7 +51,7 @@ public class Medicament {
         return form;
     }
 
-    public String getExcipients() {
+    public ArrayList<String> getExcipients() {
         return excipients;
     }
 
@@ -82,6 +84,6 @@ public class Medicament {
     }
 
     public void setExcipients(String excipients) {
-        this.excipients = excipients;
+        this.excipients.add(excipients);
     }
 }

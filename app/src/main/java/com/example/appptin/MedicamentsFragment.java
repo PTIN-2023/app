@@ -11,21 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -99,20 +96,24 @@ public class MedicamentsFragment extends Fragment {
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_available_medicines"; // Reemplaça amb l'adreça completa de l'API per obtenir els medicaments disponibles
-        JSONObject jsonBody = new JSONObject();
+        JSONArray  jsonBody = new JSONArray();
 
         // Ejemplo de medicamentos de prueba
-        List<Medicament> medicaments = new ArrayList();
-        medicaments.add(new Medicament("Medicamento 1", "123456789", "Uso 1", "Administración 1", true, 10.0, "Forma 1", "Excipiente 1"));
-        medicaments.add(new Medicament("Medicamento 2", "987654321", "Uso 2", "Administración 2", false, 15.0, "Forma 2", "Excipiente 2"));
-        medicaments.add(new Medicament("Medicamento 3", "567890123", "Uso 3", "Administración 3", true, 20.0, "Forma 3", "Excipiente 3"));
-        medicaments.add(new Medicament("Medicamento 4", "321098765", "Uso 4", "Administración 4", false, 25.0, "Forma 4", "Excipiente 4"));
-
+        /*ArrayList<Medicament> medicaments = new ArrayList();
+        ArrayList<String> excipiente = new ArrayList<>();
+        excipiente.add("Excipiente 1");
+        medicaments.add(new Medicament("Medicamento 1", "123456789", "Uso 1", "Administración 1", true, 10.0, "Forma 1", excipiente));
+        medicaments.add(new Medicament("Medicamento 2", "987654321", "Uso 2", "Administración 2", false, 15.0, "Forma 2", excipiente));
+        medicaments.add(new Medicament("Medicamento 3", "567890123", "Uso 3", "Administración 3", true, 20.0, "Forma 3", excipiente));
+        medicaments.add(new Medicament("Medicamento 4", "321098765", "Uso 4", "Administración 4", false, 25.0, "Forma 4", excipiente));
+        */
         // Llamar a la función para agregar las vistas de los medicamentos
-        agregarVistasMedicamentos(medicaments);
+         //agregarVistasMedicamentos(medicaments);
 
         try {
-            jsonBody.put("session_token", login.getSession_token());
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("session_token", login.getSession_token());
+            jsonBody.put(jsonObject);
         //    jsonBody.put("filter", False);
         //    jsonBody.put("meds_per_page", 1);
         //    jsonBody.put("page", 1);
@@ -137,40 +138,36 @@ public class MedicamentsFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+        ArrayList<Medicament> list_medicament = new ArrayList<>();
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(JSONArray response) {
+
                 try {
-                    String result = response.getString("result");
-                    if (result.equals("ok")) {
-                        JSONArray medicineList = response.getJSONArray("medicine_list");
-                        List<Medicament> medicaments = new ArrayList();
-                        for (int i = 0; i < medicineList.length(); i++) {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
 
-                            JSONObject medicamentObj = medicineList.getJSONObject(i);
-                           // String identifier = medicamentObj.getString("medicine_identifier");
-                           // String imageUrl = medicamentObj.getString("medicine_image_url");
+                        // Acceder a los campos del objeto JSON
+                        String typeOfAdministration = jsonObject.getString("administracio");
+                        String nationalCode = jsonObject.getString("codi_nacional");
+                        String form = jsonObject.getString("form");
+                        String medName = jsonObject.getString("med_name");
+                        String useType = jsonObject.getString("presentacio");
+                        double pvp = jsonObject.getDouble("preu");
 
-                            String name = medicamentObj.getString("med_name");
-                            String nationalCode = medicamentObj.getString("nationalcode");
-                            String excipient = medicamentObj.getString("excipient");
-                            double pvp = medicamentObj.getDouble("preu");
-                            boolean prescriptionNeeded = medicamentObj.getBoolean("req_recepta");
-                            String form = medicamentObj.getString("presentacio");
-                            String typeOfAdministration = medicamentObj.getString("administracio");
-                            String useType = medicamentObj.getString("tipus_us");
-
-                            medicaments.add(new Medicament(name, nationalCode, useType, typeOfAdministration,
-                                    prescriptionNeeded, pvp, form, excipient));
+                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("prospecto");
+                        ArrayList<String> excipients = new ArrayList<String>();
+                        for (int j = 0; j < jsonarray_prospecto.length(); j++) {
+                            excipients.add(jsonarray_prospecto.getString(j));
                         }
 
+                        boolean prescriptionNeeded = jsonObject.getBoolean("req_recepta");
+                        String tipusUs = jsonObject.getString("tipus_us");
 
+                        list_medicament.add(new Medicament(medName,nationalCode,useType,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
 
-                        // Aquí tens la llista de medicaments, pots fer amb ella el que necessitis
-                    } else {
-                        // En cas que el resultat sigui diferent de "ok"
-                        // Maneig de l'error o notificació a l'usuari
                     }
+                    agregarVistasMedicamentos(list_medicament);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -178,11 +175,13 @@ public class MedicamentsFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // En cas d'error en la crida a l'API
+                // Manejo de errores de la solicitud
                 error.printStackTrace();
             }
         });
-        queue.add(jsonObjectRequest);
+
+        queue.add(jsonArrayRequest);
+
         Button filtres = view.findViewById(R.id.bt_Filtres);
 
         filtres.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +196,7 @@ public class MedicamentsFragment extends Fragment {
     }
 
     // Función para agregar las vistas de los medicamentos
-    private void agregarVistasMedicamentos(List<Medicament> medicaments) {
+    private void agregarVistasMedicamentos(ArrayList<Medicament> medicaments) {
         //LinearLayout scroll_medicaments = getView().findViewById(R.id.scroll_medicaments);
 
         for (Medicament medicament : medicaments) {
@@ -224,7 +223,7 @@ public class MedicamentsFragment extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             ));
-            nombreTextView.setText("prova");
+            nombreTextView.setText(medicament.getMedName());
 
             // Agregar el ImageView y el TextView al LinearLayout del medicamento
             medicamentoLayout.addView(imageView);
