@@ -63,5 +63,8 @@ dependencies {
     // Arnau Roca - 15/05/2023 - dependencia mapes
     implementation ('com.mapbox.maps:android:10.13.0')
 
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+
 
 }
