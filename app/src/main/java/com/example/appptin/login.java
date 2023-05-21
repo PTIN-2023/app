@@ -40,6 +40,12 @@ public class login extends AppCompatActivity {
     GoogleSignInClient googleSignInClient;
     private String oauthToken;
 
+    public static String getSession_token() {
+        return session_token;
+    }
+
+    private static String session_token;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +187,8 @@ public class login extends AppCompatActivity {
                             String result = response.getString("result");
                             String role = response.getString("user_role");
                             String token = response.getString("user_token");
+
+                            session_token=token;
 
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {
