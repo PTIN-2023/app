@@ -69,6 +69,7 @@ public class DatosPacienteFragment extends Fragment {
 
         initDatePicker();
 
+        //Campos pantalla
         iv_regresar = view.findViewById(R.id.iv_dato_paciente_back);
         et_given_name = view.findViewById(R.id.et_user_given_name);
         et_user_name = view.findViewById(R.id.et_user_name);
@@ -83,10 +84,12 @@ public class DatosPacienteFragment extends Fragment {
 
         //et_provincia = view.findViewById(R.id.et_dato_paciente_ciudad);
 
+
+
         System.out.println(patient.getGiven_name());
         et_given_name.setText(patient.getGiven_name());
         //Asignar valores
-        SetGenero();
+        //SetGenero();
 
         //Por defecto botón desactivado
         btn_guardar.setEnabled(false);

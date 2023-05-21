@@ -23,12 +23,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.gestor.GestorActivity;
+import com.example.appptin.medico.MedicoActivity;
+import com.example.appptin.paciente.Patient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+
+import com.example.appptin.login;
 
 public class registre extends AppCompatActivity {
 
@@ -178,8 +183,7 @@ public class registre extends AppCompatActivity {
                             System.out.println(result);
                             if (result.equals("ok")) {
                                 // Registro exitoso, navegar a la siguiente actividad (por ejemplo, Welcome_popup)
-                                Intent intent = new Intent(getApplication(), MainActivity.class);
-                                startActivity(intent);
+                                checkUser(email, password);
                             } else {
                                 // Error en el registro
                                 // Muestra un mensaje de error al usuario
@@ -198,6 +202,97 @@ public class registre extends AppCompatActivity {
 
         // Añade la solicitud a la cola de solicitudes
         queue.add(jsonObjectRequest);
+    }
+
+    private boolean checkUser(String email, String password) {
+        boolean exists = false;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/login"; // Reemplaza con la dirección de tu API
+        System.out.println(url);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("user_email", email);
+            jsonBody.put("user_password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            //boolean exists = response.getBoolean("exists");
+                            System.out.println("MENSAJE: " + response);
+                            String given_name = response.getString("user_given_name");
+                            //String email = response.getString("user_email");
+                            String password = response.isNull("password") ? null : response.getString("password");
+                            String result = response.getString("result");
+                            String role = response.getString("user_role");
+                            String token = response.getString("user_token");
+
+                            // Utiliza los valores extraídos según sea necesario
+                            if (result.equals("ok")) {
+                                System.out.println("L'usuari existeix");
+                                if (role.equals("patient")){
+                                    Patient patient = new Patient(
+                                            token,
+                                            null,
+                                            given_name,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null);
+                                    navigateToMainActivity(patient);
+
+                                }
+                                else if (role.equals("doctor")){
+                                    navigateToMetgeActivity();
+                                }
+                                else if (role.equals("manager")){
+                                    navigateToGestorActivity();
+                                }
+
+                            } else {
+                                System.out.println("L'usuari NO existeix");
+                                //Fer Pop-Up o algo per notificar l'usuari
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                    }
+                });
+
+        queue.add(jsonObjectRequest);
+        return exists;
+    }
+
+    private void navigateToMainActivity(Patient patient) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("patient", patient);
+        startActivity(intent);
+        finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
+    }
+
+    private void navigateToMetgeActivity() {
+        Intent intent = new Intent(this, MedicoActivity.class);
+        startActivity(intent);
+        finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
+    }
+
+    private void navigateToGestorActivity() {
+        Intent intent = new Intent(this, GestorActivity.class);
+        startActivity(intent);
+        finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }
 
 }

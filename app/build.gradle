@@ -49,13 +49,17 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
+
     // Michael Zerpa - 25/05/2023 - dependencia para fotos circulares
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
+
     // Aitor Alonso - 14/05/2023 - dependencia Jwt para la encriptacion de la password
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
     // Arnau Roca - 15/05/2023 - dependencia mapes
     implementation ('com.mapbox.maps:android:10.13.0')
 

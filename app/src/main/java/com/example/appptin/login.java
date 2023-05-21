@@ -3,6 +3,7 @@ package com.example.appptin;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -11,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -32,14 +32,6 @@ import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class login extends AppCompatActivity {
     EditText inputcorreu, input_contrassenya;
@@ -62,7 +54,7 @@ public class login extends AppCompatActivity {
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
     }
 
-    public void login(View view) {
+    public void login(View view) throws JSONException {
 
         // get user and password
         inputcorreu = (EditText) findViewById(R.id.email);
@@ -154,11 +146,14 @@ public class login extends AppCompatActivity {
             } catch (ApiException e) {
                 // Inicio de sesión fallido
                 Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
-    private boolean checkUser(String email, String password) {
+    private boolean checkUser(String email, String password) throws JSONException {
+
         boolean exists = false;
         RequestQueue queue = Volley.newRequestQueue(this);
         Resources r = getResources();
@@ -225,7 +220,6 @@ public class login extends AppCompatActivity {
                         error.printStackTrace();
                     }
                 });
-
         queue.add(jsonObjectRequest);
         return exists;
     }
