@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,8 +23,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.PopupWindow;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.appptin.paciente.Patient;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class HomeFragment extends Fragment {
 
@@ -124,6 +135,9 @@ public class HomeFragment extends Fragment {
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
 
         if (result != null) {
             if (result.getContents() == null) {
@@ -133,15 +147,77 @@ public class HomeFragment extends Fragment {
                         .setPositiveButton(android.R.string.ok, null)
                         .show();
             } else {
-                String[] items = result.getContents().split("\n");
+                String contents = result.getContents();
+                if (contents.charAt(0) == '1') {  //Si es un 1 és un paquet
+                    // El primer caràcter és un "1"
+                    // Realitza les accions desitjades
+                    System.out.println("El primer caràcter és un 1");
+                    // Treu el primer caràcter del contingut
+                    String resultant = contents.substring(1);
+                    String url = apiUrl + "/api/check_qr"; // Reemplaza con la dirección de tu API
+
+                    JSONObject jsonBody = new JSONObject();
+                    try {
+                        jsonBody.put("session_token", login.getSession_token());
+                        jsonBody.put("_id", resultant);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                            (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        //boolean exists = response.getBoolean("exists");
+                                        String result = response.getString("result");
+                                        System.out.println("MENSAJE: " + response);
+                                        // Utiliza los valores extraídos según sea necesario
+                                        if (result.equals("ok")) {
+                                            System.out.println("Tot ha anat bé");
+
+                                        } else {
+                                            System.out.println("Alguna cosa ha fallat");
+                                            //Fer Pop-Up o algo per notificar l'usuari
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+
+                            }
+                            ,new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        // Error al realizar la solicitud
+                                        error.printStackTrace();
+                        }
+                    });
+                    queue.add(jsonObjectRequest);
+
+                } else if (contents.charAt(0) == '0') {
+                    // El primer caràcter és un "0"
+                    // Realitza les accions desitjades
+                    System.out.println("El primer caràcter és un 0");
+                    // Treu el primer caràcter del contingut
+                    String resultant = contents.substring(1);
+                } else {
+                    // El primer caràcter no és ni "1" ni "0"
+                    // Realitza les accions desitjades
+                    System.out.println("El primer caràcter no és ni 1 ni 0");
+                }
+
+                // Treu el primer caràcter del contingut
+                String resultant = contents.substring(1);
+
+                String[] items = resultant.split("\n");
                 MyDialogFragment.newInstance(items).show(getChildFragmentManager(), "myDialog");
-                txtResultant.setText(result.getContents());
+                txtResultant.setText(resultant);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-        }
-
+    }
     private void initPopup() {
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.codi_recepta_popup, null);
