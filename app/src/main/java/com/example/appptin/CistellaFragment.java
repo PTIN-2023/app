@@ -22,6 +22,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,16 +94,12 @@ public class CistellaFragment extends Fragment {
 
         Button finalitzar_compra = view.findViewById(R.id.btn_finalitzar_compra);
 
-        // Afegir un producte exemple per defecte
-        afegirProducte(view,"Producte de prova", 1, 1);
-        afegirProducte(view,"Producte de prova", 1, 1);
-        afegirProducte(view,"Producte de prova", 1, 1);
-        afegirProducte(view,"Producte de prova", 1, 1);
-        afegirProducte(view,"Producte de prova", 1, 1);
-        afegirProducte(view,"Producte de prova", 1, 1);
-        afegirProducte(view,"Producte de prova", 1, 1);
-        afegirProducte(view,"Producte de prova", 1, 1);
-        afegirProducte(view,"Producte de prova", 1, 1);
+        // Afegir un productes
+        try {
+            afegirProducte(view);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
         finalitzar_compra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,12 +122,33 @@ public class CistellaFragment extends Fragment {
         //actualitzarCistella();
     }
 
-    private void afegirProducte(View viewPreu, String nomProducte, int quantitat, float preu) {
-        HashMap<String, Object> producte = new HashMap<>();
-        producte.put("nom", nomProducte);
-        producte.put("quantitat", quantitat);
-        producte.put("preu", preu);
-        cistella.add(producte);
+    private void afegirProducte(View viewPreu) throws JSONException {
+
+        //Leer JSONArray creado en la ventana Medicamentos que contiene la lista de medicamentos añadidos
+
+        JSONArray lista_cesta = MainActivity.getListaMedicamentos();
+
+        for (int i = 0; i < lista_cesta.length(); i++) {
+            JSONObject jsonObject = lista_cesta.getJSONObject(i);
+            // Obtener los valores de los campos del objeto JSON
+            String nationalCode = jsonObject.getString("nationalCode");
+            String medName = jsonObject.getString("medName");
+            float pvp = (float) jsonObject.getDouble("pvp");
+            int cantidad = jsonObject.getInt("quantitat");
+
+
+            // Crear HashMap con los valores del OBJECT
+            HashMap<String, Object> producte = new HashMap<>();
+            producte.put("nationalCode", nationalCode);
+            producte.put("nom", medName);
+            producte.put("quantitat", cantidad);
+            producte.put("preu", pvp);
+
+            // Añadirlos a la lista
+            cistella.add(producte);
+
+        }
+
 
         // Actualitzar la vista de la cistella
         actualitzarPreu(viewPreu);
@@ -137,6 +158,8 @@ public class CistellaFragment extends Fragment {
     private void actualitzarCistella(View viewPreu) {
         linearLayoutCistella.removeAllViews();
 
+        // Listar todos los productos a mostrar
+        int i = 0;
         for (HashMap<String, Object> producte : cistella) {
             View producteView = getLayoutInflater().inflate(R.layout.productes_cistella, null);
             TextView nomProducte = producteView.findViewById(R.id.nom_producte);
@@ -150,15 +173,19 @@ public class CistellaFragment extends Fragment {
             preuProducte.setText(Float.toString((float) producte.get("preu")) + " €");
             quantitatProducte.setText(Integer.toString((int) producte.get("quantitat")));
 
+            // Eliminar producto
+            int finalI = i;
             btnEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Acció per a eliminar el producte de la cistella
                     cistella.remove(producte);
                     actualitzarCistella(viewPreu);
+                    MainActivity.deleteToCart(finalI);
                 }
             });
 
+            // Restar cantidad producto
             btnMenys.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -167,10 +194,16 @@ public class CistellaFragment extends Fragment {
                     if (novaQuantitat >= 1) {
                         producte.put("quantitat", novaQuantitat);
                         actualitzarCistella(viewPreu);
+                        try {
+                            MainActivity.getCantidadMedicamento(finalI,-1);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             });
 
+            // Sumar Cantidad producto
             btnMes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -178,14 +211,20 @@ public class CistellaFragment extends Fragment {
                     int novaQuantitat = (int) producte.get("quantitat") + 1;
                     producte.put("quantitat", novaQuantitat);
                     actualitzarCistella(viewPreu);
+                    try {
+                        MainActivity.getCantidadMedicamento(finalI,1);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             });
-
+            i+=1;
             linearLayoutCistella.addView(producteView);
         }
         actualitzarPreu(viewPreu);
-    }
 
+
+    }
     private void actualitzarPreu(View ViewPreu) {
         float preuTotal = 0;
 
@@ -235,6 +274,8 @@ public class CistellaFragment extends Fragment {
             }
         });
     }
+
+
 
     //Dos funcions per a ocultar la barra de cerca en aquest fragment
     /*@Override

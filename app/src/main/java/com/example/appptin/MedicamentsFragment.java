@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -56,14 +57,13 @@ public class MedicamentsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private JSONArray lista_cesta;
 
     private LinearLayout linearLayoutMedicaments;
     private AlertDialog.Builder builder;
 
     public MedicamentsFragment() {
         // Instancia de la lista de medicamentos para la cesta
-        lista_cesta = new JSONArray();
+
     }
 
     /**
@@ -246,7 +246,6 @@ public class MedicamentsFragment extends Fragment {
                     URL url = new URL(imageUrl);
                     InputStream inputStream = url.openConnection().getInputStream();
                     final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -303,25 +302,27 @@ public class MedicamentsFragment extends Fragment {
         builder.setMessage(messageBuilder);
 
         // Establecer el botón "Añadir a la cesta"
-        builder.setPositiveButton("Añadir a la cesta", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Afegir", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Acción a realizar al hacer clic en "Añadir a la cesta"
                 // Por ejemplo, agregar el producto a la cesta
-                //addToCart();
+                try {
+                    addToCart(medicament);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
         // Establecer el botón "Cancelar"
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("cancel·lar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //cerrar el diálogo
                 dialog.dismiss();
             }
         });
-
-
     }
 
     // Método para aplicar formato negrita a una subcadena dentro del texto
@@ -331,16 +332,25 @@ public class MedicamentsFragment extends Fragment {
         return spannableString;
     }
     private void addToCart(Medicament medicament) throws JSONException {
-        JSONObject objeto = new JSONObject();
-        objeto.put("medName", medicament.getMedName());
-        objeto.put("pvp", medicament.getPvp());
+        //Comprobar si el elemento existe
+        int indice = MainActivity.existeMedicamento(medicament.getNationalCode());
+        if ( indice < 0) {
+            JSONObject objeto = new JSONObject();
+            objeto.put("nationalCode", medicament.getNationalCode());
+            objeto.put("medName", medicament.getMedName());
+            objeto.put("pvp", medicament.getPvp());
+            objeto.put("quantitat", 1); //por defecto
 
-        lista_cesta.put(objeto);
+            MainActivity.setListaMedicamentos(objeto);
+            JSONArray lista = MainActivity.getListaMedicamentos();
+            Toast.makeText(getContext(), "Añadido cistella " + medicament.getMedName() + " tam: " + lista.length(), Toast.LENGTH_SHORT).show();
+         }
+        //Si existe, sumar la cantidad
+        else{
+            MainActivity.getCantidadMedicamento(indice,1);
+        }
+
     }
 
-    // Se llamará desde la ventana CESTA cuando se elimine un medicamento de la lista
-    public void deleteToCart(int indice){
-        lista_cesta.remove(indice);
-    }
 
 }

@@ -11,10 +11,10 @@
         android:id="@+id/cistella_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/rinkart"
         android:text="@string/cistella"
         android:textSize="24sp"
-        android:fontFamily="@font/rinkart"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"

@@ -21,6 +21,10 @@ import com.example.appptin.paciente.Patient;
 import com.example.appptin.paciente.UserFragment;
 import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity  implements ConfigPacienteFragment.LanguageChangeListener{
 
     ListView listView;
@@ -28,6 +32,9 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
     Patient patient;
     ArrayAdapter<String> arrayAdapter;
     ActivityMainBinding binding;
+
+    // Variable utilizada para alacenar la lista de medicamentos añadidos para mostrar en la cesta
+    private static JSONArray lista_cesta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,8 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
         //Al iniciar app volem que obri directament pantalla Home
         replaceFragments(new MedicamentsFragment());
         listView.setVisibility(listView.INVISIBLE);
+
+        lista_cesta = new JSONArray();
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -144,5 +153,43 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
         finish();
         startActivity(getIntent());
     }
+
+    public static JSONArray getListaMedicamentos(){
+        return lista_cesta;
+    }
+    public static void setListaMedicamentos(JSONObject objeto){
+        lista_cesta.put(objeto);
+    }
+    // Se llamará desde la ventana CESTA cuando se elimine un medicamento de la lista
+    public static void deleteToCart(int indice){
+        lista_cesta.remove(indice);
+    }
+
+    public static int existeMedicamento(String codi_nacional) throws JSONException {
+
+        int existe = -1;
+        for (int i = 0; i < lista_cesta.length(); i++) {
+            JSONObject objeto = lista_cesta.getJSONObject(i);
+            String nationalCode = objeto.getString("nationalCode");
+            if (nationalCode.equals(codi_nacional)) {
+                existe = i;
+                break;
+            }
+        }
+
+        return existe;
+    }
+
+    public static void getCantidadMedicamento(int i, int elem) throws JSONException {
+        if(i > -1){
+            JSONObject objeto = lista_cesta.getJSONObject(i);
+            int cantidad = objeto.getInt("quantitat");
+            cantidad+=elem;
+            objeto.put("quantitat", cantidad);
+            lista_cesta.put(i,objeto);
+        }
+
+    }
+
 
 }
