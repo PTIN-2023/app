@@ -343,7 +343,7 @@ public class MedicamentsFragment extends Fragment {
 
             MainActivity.setListaMedicamentos(objeto);
             JSONArray lista = MainActivity.getListaMedicamentos();
-            Toast.makeText(getContext(), "Añadido cistella " + medicament.getMedName() + " tam: " + lista.length(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Afegit " + medicament.getMedName() , Toast.LENGTH_SHORT).show();
          }
         //Si existe, sumar la cantidad
         else{
