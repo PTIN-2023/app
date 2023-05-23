@@ -43,6 +43,12 @@ public class Medicament {
         return prescriptionNeeded;
     }
 
+    public String getPrescriptionNeeded() {
+        String resposta = "No";
+        if(isPrescriptionNeeded()) resposta = "Si";
+        return  resposta;
+    }
+
     public double getPvp() {
         return pvp;
     }
@@ -53,6 +59,14 @@ public class Medicament {
 
     public ArrayList<String> getExcipients() {
         return excipients;
+    }
+    public String getExcipientsList() {
+        String lista="";
+
+        for (String elemento : getExcipients()) {
+            lista += "  * "+ elemento +"\n";
+        }
+        return lista;
     }
 
     public void setMedName(String medName) {

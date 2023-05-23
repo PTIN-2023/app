@@ -1,12 +1,19 @@
 package com.example.appptin;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +40,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,11 +56,14 @@ public class MedicamentsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private JSONArray lista_cesta;
 
     private LinearLayout linearLayoutMedicaments;
+    private AlertDialog.Builder builder;
 
     public MedicamentsFragment() {
-        // Required empty public constructor
+        // Instancia de la lista de medicamentos para la cesta
+        lista_cesta = new JSONArray();
     }
 
     /**
@@ -97,19 +106,6 @@ public class MedicamentsFragment extends Fragment {
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_available_medicines"; // Reemplaça amb l'adreça completa de l'API per obtenir els medicaments disponibles
         JSONArray  jsonBody = new JSONArray();
-
-        // Ejemplo de medicamentos de prueba
-        /*ArrayList<Medicament> medicaments = new ArrayList();
-        ArrayList<String> excipiente = new ArrayList<>();
-        excipiente.add("Excipiente 1");
-        medicaments.add(new Medicament("Medicamento 1", "123456789", "Uso 1", "Administración 1", true, 10.0, "Forma 1", excipiente));
-        medicaments.add(new Medicament("Medicamento 2", "987654321", "Uso 2", "Administración 2", false, 15.0, "Forma 2", excipiente));
-        medicaments.add(new Medicament("Medicamento 3", "567890123", "Uso 3", "Administración 3", true, 20.0, "Forma 3", excipiente));
-        medicaments.add(new Medicament("Medicamento 4", "321098765", "Uso 4", "Administración 4", false, 25.0, "Forma 4", excipiente));
-        */
-        // Llamar a la función para agregar las vistas de los medicamentos
-         //agregarVistasMedicamentos(medicaments);
-
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("session_token", login.getSession_token());
@@ -191,7 +187,6 @@ public class MedicamentsFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -231,6 +226,14 @@ public class MedicamentsFragment extends Fragment {
 
             // Agregar el LinearLayout del medicamento al contenedor principal
             linearLayoutMedicaments.addView(medicamentoLayout);
+
+            // Agregar el OnClickListener al LinearLayout del medicamento seleccionado
+            medicamentoLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    abrirMedicamentoSeleccionado(medicament);
+                }
+            });
         }
     }
 
@@ -266,4 +269,78 @@ public class MedicamentsFragment extends Fragment {
         fragmentTransaction.replace(R.id.frameLayout,fragment);
         fragmentTransaction.commit();
     }
+
+    private void abrirMedicamentoSeleccionado(Medicament medicament) {
+        //Crear el diseño del diálogo que contiene la inf del medicameno
+        CrearDialogoMedicamento(medicament);
+
+        // Crear y mostrar el diálogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    private void CrearDialogoMedicamento(Medicament medicament){
+
+        // Crear un objeto AlertDialog.Builder
+        builder  = new AlertDialog.Builder(getActivity());
+
+        // Crear un objeto SpannableStringBuilder para formatear el texto
+        SpannableStringBuilder messageBuilder = new SpannableStringBuilder();
+
+       // Agregar el texto normal y aplicar formato negrita a los valores de los campos
+        messageBuilder.append("\n")
+                .append(formatInBold(" - Nom: ")).append(medicament.getMedName()).append("\n")
+                .append(formatInBold(" - Codi Nacional: ")).append(medicament.getNationalCode()).append("\n")
+                .append(formatInBold(" - Tipus: ")).append(medicament.getUseType()).append("\n")
+                .append(formatInBold(" - Administració: ")).append(medicament.getTypeOfAdministration()).append("\n")
+                .append(formatInBold(" - Prescripció: ")).append(medicament.getPrescriptionNeeded()).append("\n")
+                .append(formatInBold(" - Preu: ")).append(String.valueOf(medicament.getPvp())).append("€ \n")
+                .append(formatInBold(" - Forma: ")).append(medicament.getForm()).append("\n")
+                .append(formatInBold(" - Excipients: \n")).append(medicament.getExcipientsList()).append(" \n");
+        // Establecer el título y el mensaje del diálogo
+        builder.setTitle("Detalls del medicaments");
+        builder.setMessage(messageBuilder);
+
+        // Establecer el botón "Añadir a la cesta"
+        builder.setPositiveButton("Añadir a la cesta", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Acción a realizar al hacer clic en "Añadir a la cesta"
+                // Por ejemplo, agregar el producto a la cesta
+                //addToCart();
+            }
+        });
+
+        // Establecer el botón "Cancelar"
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //cerrar el diálogo
+                dialog.dismiss();
+            }
+        });
+
+
+    }
+
+    // Método para aplicar formato negrita a una subcadena dentro del texto
+    private SpannableString formatInBold(String text) {
+        SpannableString spannableString = new SpannableString(text);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return spannableString;
+    }
+    private void addToCart(Medicament medicament) throws JSONException {
+        JSONObject objeto = new JSONObject();
+        objeto.put("medName", medicament.getMedName());
+        objeto.put("pvp", medicament.getPvp());
+
+        lista_cesta.put(objeto);
+    }
+
+    // Se llamará desde la ventana CESTA cuando se elimine un medicamento de la lista
+    public void deleteToCart(int indice){
+        lista_cesta.remove(indice);
+    }
+
 }
