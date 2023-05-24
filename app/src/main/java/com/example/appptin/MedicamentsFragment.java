@@ -135,6 +135,14 @@ public class MedicamentsFragment extends Fragment {
             e.printStackTrace();
         }
         ArrayList<Medicament> list_medicament = new ArrayList<>();
+        //list_medicament.add(new Medicament(medName,nationalCode,useType,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
+        ArrayList<String> exci = new ArrayList<>();
+        exci.add("1111");
+        exci.add("2222");
+        exci.add("333");
+        list_medicament.add(new Medicament("aaa","aaa","aaa","aaa",true,2.4,"aaa",exci));
+        agregarVistasMedicamentos(list_medicament);
+        /*
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -177,7 +185,7 @@ public class MedicamentsFragment extends Fragment {
         });
 
         queue.add(jsonArrayRequest);
-
+*/
         Button filtres = view.findViewById(R.id.bt_Filtres);
 
         filtres.setOnClickListener(new View.OnClickListener() {
@@ -351,6 +359,4 @@ public class MedicamentsFragment extends Fragment {
         }
 
     }
-
-
 }
