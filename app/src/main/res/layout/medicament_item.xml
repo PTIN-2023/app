@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/medicament_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
         android:src="@drawable/avatar_gestor" />
 
     <LinearLayout
@@ -20,11 +20,12 @@
 
         <TextView
             android:id="@+id/med_Nom"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Medicament Name"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="Medicament Name" />
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/med_Preu"
@@ -34,6 +35,7 @@
             android:text="Medicament Price" />
 
     </LinearLayout>
+
 
 </LinearLayout>
 

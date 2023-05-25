@@ -99,7 +99,7 @@ public class DatosPacienteFragment extends Fragment {
         btn_guardar.setOnClickListener(guardar);
         setGivenNameListener();
         setUserNameListener();
-        btn_fecha.setOnClickListener(canviar_fecha);
+        //btn_fecha.setOnClickListener(canviar_fecha);
         setGeneroListener();
         setPaisListener();
         setProvinciaListener();

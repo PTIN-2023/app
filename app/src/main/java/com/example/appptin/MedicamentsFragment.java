@@ -112,10 +112,10 @@ public class MedicamentsFragment extends Fragment {
         recyclerMedicaments.setAdapter(adapter);
 
         //Medicament de prova
-        /*Medicament medicamentDeProva1 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
+        Medicament medicamentDeProva1 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
         Medicament medicamentDeProva2 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
         list_medicament.add(medicamentDeProva1);
-        list_medicament.add(medicamentDeProva2);*/
+        list_medicament.add(medicamentDeProva2);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
@@ -161,7 +161,7 @@ public class MedicamentsFragment extends Fragment {
                         JSONObject jsonObject = response.getJSONObject(i);
 
                         // Acceder a los campos del objeto JSON
-                        String typeOfAdministration = jsonObject.getString("administracio");
+                        String typeOfAdministration = jsonObject.getString("type_of_administration");
                         String nationalCode = jsonObject.getString("codi_nacional");
                         String form = jsonObject.getString("form");
                         String medName = jsonObject.getString("med_name");
@@ -224,8 +224,8 @@ public class MedicamentsFragment extends Fragment {
             // Crear el ImageView y cargar la imagen desde la URL
             ImageView imageView = new ImageView(getActivity());
             imageView.setLayoutParams(new LinearLayout.LayoutParams(
-                    225, // Ancho deseado en píxeles
-                    225  // Alto deseado en píxeles
+                    275, // Ancho deseado en píxeles
+                    275  // Alto deseado en píxeles
             ));
             // Establecer la imagen de muestra desde el recurso drawable
             imageView.setImageResource(R.drawable.avatar_gestor);
