@@ -1,5 +1,6 @@
 package com.example.appptin;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
@@ -9,6 +10,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -58,7 +62,7 @@ public class MedicamentsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private LinearLayout linearLayoutMedicaments;
+    private RecyclerView recyclerMedicaments;
     private AlertDialog.Builder builder;
 
     public MedicamentsFragment() {
@@ -93,13 +97,25 @@ public class MedicamentsFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_medicaments, container, false);
-        linearLayoutMedicaments = view.findViewById(R.id.medicaments_layout);
+        recyclerMedicaments = view.findViewById(R.id.medicaments_recycler);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerMedicaments.setLayoutManager(layoutManager);
+        ArrayList<Medicament> list_medicament = new ArrayList<>();
+        MedicamentAdapter adapter = new MedicamentAdapter(list_medicament);
+        recyclerMedicaments.setAdapter(adapter);
+
+        //Medicament de prova
+        /*Medicament medicamentDeProva1 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
+        Medicament medicamentDeProva2 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
+        list_medicament.add(medicamentDeProva1);
+        list_medicament.add(medicamentDeProva2);*/
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
@@ -134,7 +150,8 @@ public class MedicamentsFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ArrayList<Medicament> list_medicament = new ArrayList<>();
+        //
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -192,7 +209,9 @@ public class MedicamentsFragment extends Fragment {
 
     // Función para agregar las vistas de los medicamentos
     private void agregarVistasMedicamentos(ArrayList<Medicament> medicaments) {
-        //LinearLayout scroll_medicaments = getView().findViewById(R.id.scroll_medicaments);
+        //Adapter del medicament recyclerView
+        MedicamentAdapter adapter = new MedicamentAdapter(medicaments);
+        recyclerMedicaments.setAdapter(adapter);
 
         for (Medicament medicament : medicaments) {
             // Crear el LinearLayout para cada medicamento
@@ -225,7 +244,7 @@ public class MedicamentsFragment extends Fragment {
             medicamentoLayout.addView(nombreTextView);
 
             // Agregar el LinearLayout del medicamento al contenedor principal
-            linearLayoutMedicaments.addView(medicamentoLayout);
+            recyclerMedicaments.addView(medicamentoLayout);
 
             // Agregar el OnClickListener al LinearLayout del medicamento seleccionado
             medicamentoLayout.setOnClickListener(new View.OnClickListener() {

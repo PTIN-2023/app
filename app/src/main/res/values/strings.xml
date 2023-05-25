@@ -113,7 +113,7 @@
     //fragment_perfil_medico.xml
     <string name="credencials_medic">Credencials Mèdiques</string>
     <string name="info_contacte">Informació de Contacte</string>
-    
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,7 +214,6 @@
     <string name="notifications">Notificacions</string>
     <string name="settings">Configuració</string>
     <string name="logout">Sortir</string>
-
 
 
 </resources>
