@@ -117,6 +117,29 @@ public class MedicamentsFragment extends Fragment {
         list_medicament.add(medicamentDeProva1);
         list_medicament.add(medicamentDeProva2);
 
+        // Agafar filtres
+        Bundle args = getArguments();
+        if (args != null) {
+            String medName = args.getString("medName");
+            String pvpMin = args.getString("minPrice");
+            String pvpMax = args.getString("maxPrice");
+            boolean prescriptionNeeded = args.getBoolean("prescriptionNeeded");
+            ArrayList type_of_administration = args.getStringArrayList("via");
+            ArrayList form = args.getStringArrayList("format");
+
+            // mostrem resultats
+            System.out.println("Nom Medicament: " + medName + "\nMin Price: " + pvpMin + "\nMax Price: " + pvpMax + "\nPrescription Needed: " + prescriptionNeeded);
+            System.out.println("Via: ");
+            for(int i = 0; i < type_of_administration.size(); i++){
+                System.out.println(type_of_administration.get(i));
+            }
+            System.out.println("Format: ");
+            for(int i = 0; i < form.size(); i++){
+                System.out.println(form.get(i));
+            }
+        }
+
+
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
