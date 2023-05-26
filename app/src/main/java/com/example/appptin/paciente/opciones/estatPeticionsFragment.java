@@ -122,10 +122,10 @@ public class estatPeticionsFragment extends Fragment {
 
                         // Acceder a los campos del objeto JSON
                         //Variables iguals a variables del constructor de Peticio
-                        double ID = jsonObject.getDouble("ID");
-                        String email_pacient = jsonObject.getString("email_pacient");
-                        String aprovat = jsonObject.getString("aprovat");
-                        String reason = jsonObject.getString("reason");
+                        double ID = jsonObject.getDouble("medicine_identifier");
+                        //String email_pacient = jsonObject.getString("email_pacient");
+                        //String aprovat = jsonObject.getString("aprovat");
+                        //String reason = jsonObject.getString("reason");
                         String data = jsonObject.getString("date");
                         String state = jsonObject.getString("state");
 
@@ -136,7 +136,7 @@ public class estatPeticionsFragment extends Fragment {
                         }
 
 
-                        list_peticions.add(new Peticio(ID,email_pacient,aprovat,reason,data,state,medsComanda));
+                        list_peticions.add(new Peticio(ID,"a","a","a",data,state,medsComanda));
 
                     }
                     afegirLayoutPeticio(list_peticions);
@@ -162,20 +162,26 @@ public class estatPeticionsFragment extends Fragment {
         recyclerPeticions.setAdapter(adapter);
 
         for (Peticio peticio : peticions) {
-            // Crear el LinearLayout para cada medicamento
+            // Crear el LinearLayout para cada peticio
             LinearLayout peticioLayout = new LinearLayout(getActivity());
             peticioLayout.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             peticioLayout.setOrientation(LinearLayout.VERTICAL);
 
-            // Crear el TextView y configurar el nombre del medicamento
+            // Configurar el ID de la peticio
             TextView nombreTextView = new TextView(getActivity());
             nombreTextView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             ));
-            nombreTextView.setText((int) peticio.getID());
+
+            // Obtindre la referència al TextView del XML desitjat
+            // Pots utilitzar la següent línia de codi per obtenir la referència al TextView del XML:
+             TextView textView = (TextView) peticioLayout.findViewById(R.id.ID);
+            // On "nomTextView" és l'identificador del TextView en el XML
+
+            textView.setText("Nou text per a ID");
 
             // Agregar el ImageView y el TextView al LinearLayout del medicamento
             //peticioLayout.addView(imageView);

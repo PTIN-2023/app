@@ -162,22 +162,22 @@ public class MedicamentsFragment extends Fragment {
 
                         // Acceder a los campos del objeto JSON
                         String typeOfAdministration = jsonObject.getString("type_of_administration");
-                        String nationalCode = jsonObject.getString("codi_nacional");
+                        //String nationalCode = jsonObject.getString("codi_nacional");
                         String form = jsonObject.getString("form");
-                        String medName = jsonObject.getString("med_name");
-                        String useType = jsonObject.getString("presentacio");
-                        double pvp = jsonObject.getDouble("preu");
+                        String medName = jsonObject.getString("medicine_name");
+                        //String useType = jsonObject.getString("presentacio");
+                        double pvp = jsonObject.getDouble("pvp");
 
-                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("prospecto");
+                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("contents");
                         ArrayList<String> excipients = new ArrayList<String>();
                         for (int j = 0; j < jsonarray_prospecto.length(); j++) {
                             excipients.add(jsonarray_prospecto.getString(j));
                         }
 
-                        boolean prescriptionNeeded = jsonObject.getBoolean("req_recepta");
-                        String tipusUs = jsonObject.getString("tipus_us");
+                        boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
+                        //String tipusUs = jsonObject.getString("tipus_us");
 
-                        list_medicament.add(new Medicament(medName,nationalCode,useType,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
+                        list_medicament.add(new Medicament(medName,null,null,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
 
                     }
                     agregarVistasMedicamentos(list_medicament);
@@ -232,16 +232,20 @@ public class MedicamentsFragment extends Fragment {
             //cargarImagenDesdeURL(medicament.getImageUrl(), imageView);
 
             // Crear el TextView y configurar el nombre del medicamento
-            TextView nombreTextView = new TextView(getActivity());
+            /*TextView nombreTextView = new TextView(getActivity());
             nombreTextView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             ));
-            nombreTextView.setText(medicament.getMedName());
+            nombreTextView.setText(medicament.getMedName());*/
 
             // Agregar el ImageView y el TextView al LinearLayout del medicamento
-            medicamentoLayout.addView(imageView);
-            medicamentoLayout.addView(nombreTextView);
+            //medicamentoLayout.addView(imageView);
+            //medicamentoLayout.addView(nombreTextView);
+
+            TextView textView = (TextView) recyclerMedicaments.findViewById(R.id.med_Nom);
+            textView.setText(medicament.getMedName());
+
 
             // Agregar el LinearLayout del medicamento al contenedor principal
             recyclerMedicaments.addView(medicamentoLayout);
