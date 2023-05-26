@@ -58,7 +58,7 @@
                 android:layout_weight="1"
                 android:textSize="20dp"
                 android:gravity="center"
-                android:text="Data de compra" />
+                android:text="@string/data_compra" />
 
             <TextView
                 android:id="@+id/estat"
@@ -67,7 +67,7 @@
                 android:layout_weight="1"
                 android:textSize="20dp"
                 android:gravity="center"
-                android:text="Estat" />
+                android:text="@string/estat" />
 
             <TextView
                 android:id="@+id/detalls"
@@ -76,7 +76,7 @@
                 android:layout_weight="1"
                 android:textSize="20dp"
                 android:gravity="center"
-                android:text="Detalls" />
+                android:text="@string/detalls" />
 
         </LinearLayout>
 
