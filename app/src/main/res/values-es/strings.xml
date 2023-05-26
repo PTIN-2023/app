@@ -213,5 +213,9 @@
     <string name="settings">Configuración</string>
     <string name="logout">Salir</string>
 
+    //fragment_estat_paquets.xml // peticio_item.xml
+    <string name="data_compra">Fecha de compra</string>
+    <string name="estat">Estado</string>
+    <string name="detalls">Detalles</string>
 
 </resources>
