@@ -15,6 +15,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".PagamentActivity"
             android:exported="false" />
         <activity
@@ -116,9 +119,7 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
-        <activity
-            android:name=".gestor.fragments.inventario.MapaGestor">
-        </activity>
+        <activity android:name=".gestor.fragments.inventario.MapaGestor"></activity>
         <activity android:name=".gestor.fragments.pefilgestor.opciones.ConfigGestorFragment">
 
             <!-- otras configuraciones de la actividad -->

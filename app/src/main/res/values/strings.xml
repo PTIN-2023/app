@@ -113,7 +113,7 @@
     //fragment_perfil_medico.xml
     <string name="credencials_medic">Credencials Mèdiques</string>
     <string name="info_contacte">Informació de Contacte</string>
-    
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,6 +215,9 @@
     <string name="settings">Configuració</string>
     <string name="logout">Sortir</string>
 
-
+    //fragment_estat_paquets.xml // peticio_item.xml
+    <string name="data_compra">Data de compra</string>
+    <string name="estat">Estat</string>
+    <string name="detalls">Detalls</string>
 
 </resources>

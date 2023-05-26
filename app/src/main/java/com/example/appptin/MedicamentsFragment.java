@@ -1,5 +1,6 @@
 package com.example.appptin;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
@@ -9,6 +10,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -58,7 +62,7 @@ public class MedicamentsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private LinearLayout linearLayoutMedicaments;
+    private RecyclerView recyclerMedicaments;
     private AlertDialog.Builder builder;
 
     public MedicamentsFragment() {
@@ -93,13 +97,48 @@ public class MedicamentsFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_medicaments, container, false);
-        linearLayoutMedicaments = view.findViewById(R.id.medicaments_layout);
+        recyclerMedicaments = view.findViewById(R.id.medicaments_recycler);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerMedicaments.setLayoutManager(layoutManager);
+        ArrayList<Medicament> list_medicament = new ArrayList<>();
+        MedicamentAdapter adapter = new MedicamentAdapter(list_medicament);
+        recyclerMedicaments.setAdapter(adapter);
+
+        //Medicament de prova
+        Medicament medicamentDeProva1 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
+        Medicament medicamentDeProva2 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
+        list_medicament.add(medicamentDeProva1);
+        list_medicament.add(medicamentDeProva2);
+
+        // Agafar filtres
+        Bundle args = getArguments();
+        if (args != null) {
+            String medName = args.getString("medName");
+            String pvpMin = args.getString("minPrice");
+            String pvpMax = args.getString("maxPrice");
+            boolean prescriptionNeeded = args.getBoolean("prescriptionNeeded");
+            ArrayList type_of_administration = args.getStringArrayList("via");
+            ArrayList form = args.getStringArrayList("format");
+
+            // mostrem resultats
+            System.out.println("Nom Medicament: " + medName + "\nMin Price: " + pvpMin + "\nMax Price: " + pvpMax + "\nPrescription Needed: " + prescriptionNeeded);
+            System.out.println("Via: ");
+            for(int i = 0; i < type_of_administration.size(); i++){
+                System.out.println(type_of_administration.get(i));
+            }
+            System.out.println("Format: ");
+            for(int i = 0; i < form.size(); i++){
+                System.out.println(form.get(i));
+            }
+        }
+
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
@@ -134,7 +173,8 @@ public class MedicamentsFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ArrayList<Medicament> list_medicament = new ArrayList<>();
+        //
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -144,23 +184,23 @@ public class MedicamentsFragment extends Fragment {
                         JSONObject jsonObject = response.getJSONObject(i);
 
                         // Acceder a los campos del objeto JSON
-                        String typeOfAdministration = jsonObject.getString("administracio");
-                        String nationalCode = jsonObject.getString("codi_nacional");
+                        String typeOfAdministration = jsonObject.getString("type_of_administration");
+                        //String nationalCode = jsonObject.getString("codi_nacional");
                         String form = jsonObject.getString("form");
-                        String medName = jsonObject.getString("med_name");
-                        String useType = jsonObject.getString("presentacio");
-                        double pvp = jsonObject.getDouble("preu");
+                        String medName = jsonObject.getString("medicine_name");
+                        //String useType = jsonObject.getString("presentacio");
+                        double pvp = jsonObject.getDouble("pvp");
 
-                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("prospecto");
+                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("contents");
                         ArrayList<String> excipients = new ArrayList<String>();
                         for (int j = 0; j < jsonarray_prospecto.length(); j++) {
                             excipients.add(jsonarray_prospecto.getString(j));
                         }
 
-                        boolean prescriptionNeeded = jsonObject.getBoolean("req_recepta");
-                        String tipusUs = jsonObject.getString("tipus_us");
+                        boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
+                        //String tipusUs = jsonObject.getString("tipus_us");
 
-                        list_medicament.add(new Medicament(medName,nationalCode,useType,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
+                        list_medicament.add(new Medicament(medName,null,null,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
 
                     }
                     agregarVistasMedicamentos(list_medicament);
@@ -192,7 +232,9 @@ public class MedicamentsFragment extends Fragment {
 
     // Función para agregar las vistas de los medicamentos
     private void agregarVistasMedicamentos(ArrayList<Medicament> medicaments) {
-        //LinearLayout scroll_medicaments = getView().findViewById(R.id.scroll_medicaments);
+        //Adapter del medicament recyclerView
+        MedicamentAdapter adapter = new MedicamentAdapter(medicaments);
+        recyclerMedicaments.setAdapter(adapter);
 
         for (Medicament medicament : medicaments) {
             // Crear el LinearLayout para cada medicamento
@@ -205,27 +247,31 @@ public class MedicamentsFragment extends Fragment {
             // Crear el ImageView y cargar la imagen desde la URL
             ImageView imageView = new ImageView(getActivity());
             imageView.setLayoutParams(new LinearLayout.LayoutParams(
-                    225, // Ancho deseado en píxeles
-                    225  // Alto deseado en píxeles
+                    275, // Ancho deseado en píxeles
+                    275  // Alto deseado en píxeles
             ));
             // Establecer la imagen de muestra desde el recurso drawable
             imageView.setImageResource(R.drawable.avatar_gestor);
             //cargarImagenDesdeURL(medicament.getImageUrl(), imageView);
 
             // Crear el TextView y configurar el nombre del medicamento
-            TextView nombreTextView = new TextView(getActivity());
+            /*TextView nombreTextView = new TextView(getActivity());
             nombreTextView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             ));
-            nombreTextView.setText(medicament.getMedName());
+            nombreTextView.setText(medicament.getMedName());*/
 
             // Agregar el ImageView y el TextView al LinearLayout del medicamento
-            medicamentoLayout.addView(imageView);
-            medicamentoLayout.addView(nombreTextView);
+            //medicamentoLayout.addView(imageView);
+            //medicamentoLayout.addView(nombreTextView);
+
+            TextView textView = (TextView) recyclerMedicaments.findViewById(R.id.med_Nom);
+            textView.setText(medicament.getMedName());
+
 
             // Agregar el LinearLayout del medicamento al contenedor principal
-            linearLayoutMedicaments.addView(medicamentoLayout);
+            recyclerMedicaments.addView(medicamentoLayout);
 
             // Agregar el OnClickListener al LinearLayout del medicamento seleccionado
             medicamentoLayout.setOnClickListener(new View.OnClickListener() {
@@ -343,7 +389,7 @@ public class MedicamentsFragment extends Fragment {
 
             MainActivity.setListaMedicamentos(objeto);
             JSONArray lista = MainActivity.getListaMedicamentos();
-            Toast.makeText(getContext(), "Añadido cistella " + medicament.getMedName() + " tam: " + lista.length(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Afegit " + medicament.getMedName() , Toast.LENGTH_SHORT).show();
          }
         //Si existe, sumar la cantidad
         else{

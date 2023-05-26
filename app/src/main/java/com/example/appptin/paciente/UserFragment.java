@@ -31,6 +31,7 @@ import com.example.appptin.paciente.opciones.ClienteDireccionFragment;
 import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
 import com.example.appptin.welcome_page;
 import com.example.appptin.paciente.opciones.DatosPacienteFragment;
+import com.example.appptin.paciente.opciones.estatPeticionsFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserFragment extends Fragment {
     private CircleImageView foto_perfil;
-    private RelativeLayout rl_salir, rl_dades, rl_config, rl_direccion;
+    private RelativeLayout rl_salir, rl_dades, rl_config, rl_direccion, rl_notificacions;
     private Patient patient;
     Button editar_foto;
     View view;
@@ -84,6 +85,8 @@ public class UserFragment extends Fragment {
         rl_config = view.findViewById(R.id.rl_perfil_usuario_config);
         rl_direccion = view.findViewById(R.id.rl_perfil_usuario_direccion);
         editar_foto = view.findViewById(R.id.btn_perfil_user_foto);
+        //Relative layout notificacions
+        rl_notificacions = view.findViewById(R.id.rl_notificacions);
 
         // Asignar Listeners
         rl_salir.setOnClickListener(salirClickListener);
@@ -91,6 +94,7 @@ public class UserFragment extends Fragment {
         rl_config.setOnClickListener(abrirFragmentConfig);
         rl_direccion.setOnClickListener(abrirFragmentDireccion);
         editar_foto.setOnClickListener(asignarImagen);
+        rl_notificacions.setOnClickListener(obrirNotificacions);
 
         return view;
     }
@@ -139,6 +143,17 @@ public class UserFragment extends Fragment {
         public void onClick(View view) {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(intent, REQUEST_CODE);
+        }
+    };
+
+    private View.OnClickListener obrirNotificacions = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            estatPeticionsFragment estatPeticionsFragment = new estatPeticionsFragment();
+            transaction.replace(R.id.frameLayout, estatPeticionsFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     };
 
