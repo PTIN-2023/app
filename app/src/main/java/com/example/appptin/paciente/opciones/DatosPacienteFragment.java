@@ -35,7 +35,7 @@ public class DatosPacienteFragment extends Fragment {
     private static final String ARG_PATIENT= "patient";
     private Patient patient;
     private ImageView iv_regresar;
-    private EditText et_given_name, et_user_name, et_city, et_address , et_pais, et_provincia;
+    private EditText et_given_name, et_user_name, et_city, et_address , et_email, et_provincia, et_pais;
     private Button btn_guardar, btn_fecha;
     private Spinner sp_genero;
 
@@ -73,6 +73,7 @@ public class DatosPacienteFragment extends Fragment {
         iv_regresar = view.findViewById(R.id.iv_dato_paciente_back);
         et_given_name = view.findViewById(R.id.et_user_given_name);
         et_user_name = view.findViewById(R.id.et_user_name);
+        et_email = view.findViewById(R.id.et_email);
         et_city = view.findViewById(R.id.et_user_city);
         et_address = view.findViewById(R.id.et_user_address);
         //et_dni = view.findViewById(R.id.et_dato_paciente_dni);
@@ -88,6 +89,11 @@ public class DatosPacienteFragment extends Fragment {
 
         System.out.println(patient.getGiven_name());
         et_given_name.setText(patient.getGiven_name());
+        et_email.setText(patient.getEmail());
+        et_user_name.setText(patient.getFull_name());
+        et_city.setText(patient.getCity());
+        et_address.setText(patient.getAddress());
+
         //Asignar valores
         //SetGenero();
 
@@ -99,10 +105,10 @@ public class DatosPacienteFragment extends Fragment {
         btn_guardar.setOnClickListener(guardar);
         setGivenNameListener();
         setUserNameListener();
-        btn_fecha.setOnClickListener(canviar_fecha);
-        setGeneroListener();
+        //btn_fecha.setOnClickListener(canviar_fecha);
+        /*setGeneroListener();
         setPaisListener();
-        setProvinciaListener();
+        setProvinciaListener();*/
 
 
         return view;

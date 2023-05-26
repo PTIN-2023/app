@@ -9,8 +9,10 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,6 +41,8 @@ public class login extends AppCompatActivity {
     // Declarar variables globales
     GoogleSignInClient googleSignInClient;
     private String oauthToken;
+
+    private PopupWindow popupWindow;
 
     public static String getSession_token() {
         return session_token;
@@ -186,7 +190,7 @@ public class login extends AppCompatActivity {
                             String password = response.isNull("password") ? null : response.getString("password");
                             String result = response.getString("result");
                             String role = response.getString("user_role");
-                            String token = response.getString("user_token");
+                            String token = response.getString("session_token");
 
                             session_token=token;
 
@@ -226,6 +230,17 @@ public class login extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // Error al realizar la solicitud
                         error.printStackTrace();
+                        Log.w("Error login", "ATENCION: Ha habido un error, se procedera a cargar una sesion de prueba");
+                        Patient patient = new Patient(
+                                "45hgghhbhkkK9*^¨cDDG",
+                                "Manolo de los Palotes",
+                                "Manolin",
+                                "manolo@gmail.com",
+                                "608745633",
+                                "Villalgordo",
+                                "Calle para siempre 6",
+                                null);
+                        navigateToMainActivity(patient);
                     }
                 });
         queue.add(jsonObjectRequest);
