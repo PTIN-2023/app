@@ -190,7 +190,7 @@ public class login extends AppCompatActivity {
                             String password = response.isNull("password") ? null : response.getString("password");
                             String result = response.getString("result");
                             String role = response.getString("user_role");
-                            String token = response.getString("session_token");
+                            String token = response.getString("user_token");
 
                             session_token=token;
 
