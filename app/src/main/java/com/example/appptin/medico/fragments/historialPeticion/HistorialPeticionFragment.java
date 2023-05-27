@@ -305,7 +305,7 @@ public class HistorialPeticionFragment extends Fragment {
 
                     if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
                         // Error interno del servidor (código de respuesta 500)
-                        Log.e(TAG, "FALLO EN EL SERVIDOR LLAMADA:  list_doctor_pending_confirmations");
+                        Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
                     } else {
                         // Otro tipo de error de solicitud
                         Log.e(TAG, "FALLO EN EL CLIENTE");
@@ -316,7 +316,6 @@ public class HistorialPeticionFragment extends Fragment {
         queue.add(jsonArrayRequest);
 
     }
-
     private void api_informacion_historial_peticiones(){
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -354,7 +353,7 @@ public class HistorialPeticionFragment extends Fragment {
 
                         if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
                             // Error interno del servidor (código de respuesta 500)
-                            Log.e(TAG, "FALLO EN EL SERVIDOR LLAMADA:  list_doctor_approved_confirmations");
+                            Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
                         } else {
                             // Otro tipo de error de solicitud
                             Log.e(TAG, "FALLO EN EL CLIENTE");
@@ -365,6 +364,4 @@ public class HistorialPeticionFragment extends Fragment {
         queue.add(jsonArrayRequest);
 
     }
-
-
 }

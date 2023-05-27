@@ -149,27 +149,27 @@ public class MedicamentsFragment extends Fragment {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("session_token", login.getSession_token());
             jsonBody.put(jsonObject);
-        //    jsonBody.put("filter", False);
-        //    jsonBody.put("meds_per_page", 1);
-        //    jsonBody.put("page", 1);
-        //    if (medName != null && !medName.isEmpty()) {
-        //        jsonBody.put("med_name", medName);
-        //    }
-        //    if (pvpMin != null) {
-        //        jsonBody.put("pvp_min", pvpMin);
-        //    }
-        //    if (pvpMax != null) {
-        //        jsonBody.put("pvp_max", pvpMax);
-        //    }
-        //    if (prescriptionNeeded != null) {
-        //        jsonBody.put("prescription_needed", prescriptionNeeded);
-        //    }
-        //    if (form != null && !form.isEmpty()) {
-        //        jsonBody.put("form", form);
-        //    }
-        //    if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
-        //        jsonBody.put("type_of_administration", typeOfAdministration);
-        //    }
+            //    jsonBody.put("filter", False);
+            //    jsonBody.put("meds_per_page", 1);
+            //    jsonBody.put("page", 1);
+            //    if (medName != null && !medName.isEmpty()) {
+            //        jsonBody.put("med_name", medName);
+            //    }
+            //    if (pvpMin != null) {
+            //        jsonBody.put("pvp_min", pvpMin);
+            //    }
+            //    if (pvpMax != null) {
+            //        jsonBody.put("pvp_max", pvpMax);
+            //    }
+            //    if (prescriptionNeeded != null) {
+            //        jsonBody.put("prescription_needed", prescriptionNeeded);
+            //    }
+            //    if (form != null && !form.isEmpty()) {
+            //        jsonBody.put("form", form);
+            //    }
+            //    if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
+            //        jsonBody.put("type_of_administration", typeOfAdministration);
+            //    }
         } catch (JSONException e) {
             e.printStackTrace();
         }
