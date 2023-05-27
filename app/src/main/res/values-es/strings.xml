@@ -209,7 +209,7 @@
     <string name="address_book">Libreta de direcciones</string>
     <string name="payment_method">Método de pago</string>
     <string name="assigned_doctor">Médico asignado</string>
-    <string name="notifications">Notificaciones</string>
+    <string name="notifications">Historial Peticiones</string>
     <string name="settings">Configuración</string>
     <string name="logout">Salir</string>
 

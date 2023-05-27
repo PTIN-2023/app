@@ -211,7 +211,7 @@
     <string name="address_book">Llibreta adreces</string>
     <string name="payment_method">Mètode de pagament</string>
     <string name="assigned_doctor">Metge assignat</string>
-    <string name="notifications">Notificacions</string>
+    <string name="notifications">Historial Peticions</string>
     <string name="settings">Configuració</string>
     <string name="logout">Sortir</string>
 
