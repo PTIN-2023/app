@@ -38,6 +38,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.medico.conexion.InformacionBase;
+import com.example.appptin.medico.fragments.historialPeticion.PeticionAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,17 +109,15 @@ public class MedicamentsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_medicaments, container, false);
         recyclerMedicaments = view.findViewById(R.id.medicaments_recycler);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerMedicaments.setLayoutManager(layoutManager);
+
         ArrayList<Medicament> list_medicament = new ArrayList<>();
-        MedicamentAdapter adapter = new MedicamentAdapter(list_medicament);
-        recyclerMedicaments.setAdapter(adapter);
+
 
         //Medicament de prova
-        /*Medicament medicamentDeProva1 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
-        Medicament medicamentDeProva2 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
-        list_medicament.add(medicamentDeProva1);
-        list_medicament.add(medicamentDeProva2);*/
+        //Medicament medicamentDeProva1 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
+        //Medicament medicamentDeProva2 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
+        //list_medicament.add(medicamentDeProva1);
+        //list_medicament.add(medicamentDeProva2);
 
         // Agafar filtres
         Bundle args = getArguments();
@@ -230,10 +230,12 @@ public class MedicamentsFragment extends Fragment {
                         boolean prescriptionNeeded = jsonObject.getBoolean("req_recepta");
                         String tipusUs = jsonObject.getString("tipus_us");
 
-                        list_medicament.add(new Medicament(medName,null,null,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
+                        list_medicament.add(new Medicament(medName,nationalCode,useType,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
 
                     }
-                    agregarVistasMedicamentos(list_medicament);
+                    //Agregar los elementos del RecyclerView
+                    Creacion_elementos_RecyclerView(list_medicament);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -249,7 +251,6 @@ public class MedicamentsFragment extends Fragment {
         queue.add(jsonArrayRequest);
 
         Button filtres = view.findViewById(R.id.bt_Filtres);
-
         filtres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -258,55 +259,6 @@ public class MedicamentsFragment extends Fragment {
         });
 
         return view;
-    }
-
-    // Función para agregar las vistas de los medicamentos
-    private void agregarVistasMedicamentos(ArrayList<Medicament> medicaments) {
-        for (Medicament medicament : medicaments) {
-            LinearLayout medicamentoLayout = new LinearLayout(getActivity());
-            medicamentoLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            medicamentoLayout.setOrientation(LinearLayout.VERTICAL);
-
-            ImageView imageView = new ImageView(getActivity());
-            imageView.setLayoutParams(new LinearLayout.LayoutParams(
-                    275,
-                    275
-            ));
-            //imageView.setImageResource(R.drawable.avatar_gestor);
-
-            medicamentoLayout.addView(imageView);
-
-            // Crear un TextView per al nom del medicament
-            TextView nombreTextView = new TextView(getActivity());
-            nombreTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-            nombreTextView.setText(medicament.getMedName());
-
-            // Crear un TextView per al preu PVP del medicament
-            TextView pvpTextView = new TextView(getActivity());
-            pvpTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-            pvpTextView.setText(String.valueOf(medicament.getPvp()));
-
-            // Afegir els TextViews al LinearLayout del medicament
-            medicamentoLayout.addView(nombreTextView);
-            medicamentoLayout.addView(pvpTextView);
-
-            medicamentoLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    abrirMedicamentoSeleccionado(medicament);
-                }
-            });
-
-            recyclerMedicaments.getAdapter().notifyDataSetChanged();
-        }
     }
 
     // Función para cargar una imagen desde una URL y establecerla en un ImageView
@@ -351,79 +303,19 @@ public class MedicamentsFragment extends Fragment {
 
     }
 
-    /*private void CrearDialogoMedicamento(Medicament medicament){
+    private void Creacion_elementos_RecyclerView(ArrayList<Medicament> lista_elementos ){
+        //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerMedicaments.setLayoutManager(layoutManager);
 
-        // Crear un objeto AlertDialog.Builder
-        builder  = new AlertDialog.Builder(getActivity());
+        // Creación del adapter con la nueva lista de elementos búscados
+        MedicamentAdapter adapter = new MedicamentAdapter(lista_elementos,getActivity());
 
-        // Crear un objeto SpannableStringBuilder para formatear el texto
-        SpannableStringBuilder messageBuilder = new SpannableStringBuilder();
+        recyclerMedicaments.setAdapter(adapter);
 
-       // Agregar el texto normal y aplicar formato negrita a los valores de los campos
-        messageBuilder.append("\n")
-                .append(formatInBold(" - Nom: ")).append(medicament.getMedName()).append("\n")
-                .append(formatInBold(" - Codi Nacional: ")).append(medicament.getNationalCode()).append("\n")
-                .append(formatInBold(" - Tipus: ")).append(medicament.getUseType()).append("\n")
-                .append(formatInBold(" - Administració: ")).append(medicament.getTypeOfAdministration()).append("\n")
-                .append(formatInBold(" - Prescripció: ")).append(medicament.getPrescriptionNeeded()).append("\n")
-                .append(formatInBold(" - Preu: ")).append(String.valueOf(medicament.getPvp())).append("€ \n")
-                .append(formatInBold(" - Forma: ")).append(medicament.getForm()).append("\n")
-                .append(formatInBold(" - Excipients: \n")).append(medicament.getExcipientsList()).append(" \n");
-        // Establecer el título y el mensaje del diálogo
-        builder.setTitle("Detalls del medicaments");
-        builder.setMessage(messageBuilder);
+    }
 
-        // Establecer el botón "Añadir a la cesta"
-        builder.setPositiveButton("Afegir", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Acción a realizar al hacer clic en "Añadir a la cesta"
-                // Por ejemplo, agregar el producto a la cesta
-                try {
-                    addToCart(medicament);
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
 
-        // Establecer el botón "Cancelar"
-        builder.setNegativeButton("cancel·lar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //cerrar el diálogo
-                dialog.dismiss();
-            }
-        });
-    }*/
-
-    // Método para aplicar formato negrita a una subcadena dentro del texto
-    /*private SpannableString formatInBold(String text) {
-        SpannableString spannableString = new SpannableString(text);
-        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return spannableString;
-    }*/
-
-    /*private void addToCart(Medicament medicament) throws JSONException {
-        //Comprobar si el elemento existe
-        int indice = MainActivity.existeMedicamento(medicament.getNationalCode());
-        if ( indice < 0) {
-            JSONObject objeto = new JSONObject();
-            objeto.put("nationalCode", medicament.getNationalCode());
-            objeto.put("medName", medicament.getMedName());
-            objeto.put("pvp", medicament.getPvp());
-            objeto.put("quantitat", 1); //por defecto
-
-            MainActivity.setListaMedicamentos(objeto);
-            JSONArray lista = MainActivity.getListaMedicamentos();
-            Toast.makeText(getContext(), "Afegit " + medicament.getMedName() , Toast.LENGTH_SHORT).show();
-         }
-        //Si existe, sumar la cantidad
-        else{
-            MainActivity.getCantidadMedicamento(indice,1);
-        }
-
-    }*/
 
 
 }

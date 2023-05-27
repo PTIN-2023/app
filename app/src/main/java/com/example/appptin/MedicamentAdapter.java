@@ -1,7 +1,6 @@
 package com.example.appptin;
 
-import static java.security.AccessController.getContext;
-
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
@@ -17,12 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.appptin.MainActivity;
-import com.example.appptin.Medicament;
-import com.example.appptin.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,9 +28,13 @@ import java.util.ArrayList;
 public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.MedicamentViewHolder> {
 
     private ArrayList<Medicament> medicaments;
+    private AlertDialog.Builder builder;
+    private FragmentActivity activity;
 
-    public MedicamentAdapter(ArrayList<Medicament> medicaments) {
+    public MedicamentAdapter(ArrayList<Medicament> medicaments, FragmentActivity activity) {
         this.medicaments = medicaments;
+        this.activity = activity;
+        builder = new AlertDialog.Builder(activity);
     }
 
     @NonNull
@@ -45,18 +44,52 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
         return new MedicamentViewHolder(view);
     }
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull MedicamentViewHolder holder, int position) {
         Medicament medicament = medicaments.get(position);
-        holder.bind(medicament);
+        //holder.bind(medicament);
+
+        // Asignar el valor de los componentes
+        holder.txtNom.setText(medicament.getMedName());
+        holder.txtPvp.setText(String.valueOf(medicament.getPvp()) + "€");
+        // Lògica per assignar la imatge basada en el nom del medicament
+        if (medicament.getMedName().equals("Paracetamol")) {
+            holder.imgMedicament.setImageResource(R.drawable.paracetamol);
+        } else if (medicament.getMedName().equals("Ibuprofeno")) {
+            holder.imgMedicament.setImageResource(R.drawable.ibuprofe);
+        } else if (medicament.getMedName().equals("Amoxicilina")) {
+            holder.imgMedicament.setImageResource(R.drawable.amoxicilina);
+        } else if (medicament.getMedName().equals("Lorazepam")) {
+            holder.imgMedicament.setImageResource(R.drawable.lorazepam);
+        } else if (medicament.getMedName().equals("Diclofenac")) {
+            holder.imgMedicament.setImageResource(R.drawable.diclofenaco);
+        } else if (medicament.getMedName().equals("Hydrocortisone")) {
+            holder.imgMedicament.setImageResource(R.drawable.hydrocortisona);
+        } else if (medicament.getMedName().equals("Talcum Powder")) {
+            holder.imgMedicament.setImageResource(R.drawable.talcum_powder);
+        } else if (medicament.getMedName().equals("Jarabe per a la Toss")) {
+            holder.imgMedicament.setImageResource(R.drawable.flutox);
+        }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Medicament medicament = medicaments.get(position);
+                //CrearDialogoMedicamento(medicament);
+                holder.CrearDialogoMedicamento(medicament);
+
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
         return medicaments.size();
     }
 
-    public class MedicamentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MedicamentViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtNom;
         private TextView txtPvp;
@@ -68,45 +101,14 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
             txtNom = itemView.findViewById(R.id.med_Nom);
             txtPvp = itemView.findViewById(R.id.med_Pvp);
             imgMedicament = itemView.findViewById(R.id.medicament_image);
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
-        public void bind(Medicament medicament) {
-            txtNom.setText(medicament.getMedName());
-            txtPvp.setText(String.valueOf(medicament.getPvp()) + "€");
-            // Lògica per assignar la imatge basada en el nom del medicament
-            if (medicament.getMedName().equals("Paracetamol")) {
-                imgMedicament.setImageResource(R.drawable.paracetamol);
-            } else if (medicament.getMedName().equals("Ibuprofeno")) {
-                imgMedicament.setImageResource(R.drawable.ibuprofe);
-            } else if (medicament.getMedName().equals("Amoxicilina")) {
-                imgMedicament.setImageResource(R.drawable.amoxicilina);
-            } else if (medicament.getMedName().equals("Lorazepam")) {
-            imgMedicament.setImageResource(R.drawable.lorazepam);
-            } else if (medicament.getMedName().equals("Diclofenac")) {
-                imgMedicament.setImageResource(R.drawable.diclofenaco);
-            } else if (medicament.getMedName().equals("Hydrocortisone")) {
-                imgMedicament.setImageResource(R.drawable.hydrocortisona);
-            } else if (medicament.getMedName().equals("Talcum Powder")) {
-                imgMedicament.setImageResource(R.drawable.talcum_powder);
-            } else if (medicament.getMedName().equals("Jarabe per a la Toss")) {
-                imgMedicament.setImageResource(R.drawable.flutox);
-            }
-        }
-
-        @Override
-        public void onClick(View v) {
-            int position = getAdapterPosition();
-            if (position != RecyclerView.NO_POSITION) {
-                Medicament medicament = medicaments.get(position);
-                CrearDialogoMedicamento(medicament);
-            }
-        }
 
         private void CrearDialogoMedicamento(Medicament medicament) {
 
             // Crear un objeto AlertDialog.Builder
-            AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+            //builder = new AlertDialog.Builder(activity);
 
             // Crear un objeto SpannableStringBuilder para formatear el texto
             SpannableStringBuilder messageBuilder = new SpannableStringBuilder();
@@ -163,8 +165,11 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
                 }
             });
 
-            // Mostrar el diálogo
+            // Crear y mostrar el diálogo
+            builder.create();
             builder.show();
+
+
         }
 
         private void addToCart(Medicament medicament) throws JSONException {
@@ -177,8 +182,9 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
                 objeto.put("pvp", medicament.getPvp());
                 objeto.put("quantitat", 1); //por defecto
 
+                // Guardar el objeto en el JSONArray publico
                 MainActivity.setListaMedicamentos(objeto);
-                JSONArray lista = MainActivity.getListaMedicamentos();
+
                 Toast.makeText(itemView.getContext(), "Afegit " + medicament.getMedName(), Toast.LENGTH_SHORT).show();
             } else {
                 MainActivity.getCantidadMedicamento(indice, 1);
@@ -192,3 +198,4 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
         }
     }
 }
+
