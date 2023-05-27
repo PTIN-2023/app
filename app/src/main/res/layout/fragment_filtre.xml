@@ -23,7 +23,7 @@
             android:id="@+id/textViewName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nom medicament"
+            android:text="@string/med_name"
             android:textSize="20dp"/>
 
         <EditText
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Inserir nom medicament"
+            android:hint="@string/insert_med_name"
             tools:ignore="DuplicateIds" />
 
         <!-- Price range slider -->
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="26dp"
-            android:text="Preu"
+            android:text="@string/price"
             android:textSize="20dp"/>
 
 
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Min Price" />
+            android:hint="@string/min_price" />
 
         <EditText
             android:id="@+id/editTextMaxPrice"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Max Price" />
+            android:hint="@string/max_price" />
 
         <!-- Prescription needed checkbox -->
         <CheckBox
@@ -68,51 +68,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="26dp"
-            android:text="Necessitat prescripció" />
+            android:text="@string/prescription_needed" />
 
         <!-- Pill ingestion methods checkboxes -->
         <TextView
             android:id="@+id/textViewVia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Via"
+            android:text="@string/viaa"
             android:textSize="20dp"/>
 
         <CheckBox
             android:id="@+id/checkBoxOral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="oral" />
+            android:text="@string/orall" />
 
         <CheckBox
             android:id="@+id/checkBoxInyectable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="inyectable" />
+            android:text="@string/injectable" />
 
         <CheckBox
             android:id="@+id/checkBoxSublingual"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="sublingual" />
+            android:text="@string/sublingual" />
 
         <CheckBox
             android:id="@+id/checkBoxRectal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="rectal" />
+            android:text="@string/rectal" />
 
         <CheckBox
             android:id="@+id/checkBoxVaginal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="vaginal" />
+            android:text="@string/vaginal" />
 
         <CheckBox
             android:id="@+id/checkBoxOcular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ocular" />
+            android:text="@string/ocular" />
 
         <!-- Pill format checkboxes -->
         <TextView
@@ -120,62 +120,62 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="26dp"
-            android:text="Format"
+            android:text="@string/formatt"
             android:textSize="20dp"/>
 
         <CheckBox
             android:id="@+id/checkBoxTabletas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="tabletas" />
+            android:text="@string/tablets" />
 
         <CheckBox
             android:id="@+id/checkBoxLiquidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="liquidos" />
+            android:text="@string/liquids" />
 
         <CheckBox
             android:id="@+id/checkBoxCapsulas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="capsulas" />
+            android:text="@string/capsules" />
 
         <CheckBox
             android:id="@+id/checkBoxTopicos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="topicos" />
+            android:text="@string/topicals" />
 
         <CheckBox
             android:id="@+id/checkBoxSupositorios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="supositorios" />
+            android:text="@string/suppositories" />
 
         <CheckBox
             android:id="@+id/checkBoxGotas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="gotas" />
+            android:text="@string/drops" />
 
         <CheckBox
             android:id="@+id/checkBoxInhaladores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="inhaladores" />
+            android:text="@string/inhalers" />
 
         <CheckBox
             android:id="@+id/checkBoxInyecciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="inyecciones" />
+            android:text="@string/injections" />
 
         <CheckBox
             android:id="@+id/checkBoxImplantes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="implantes" />
+            android:text="@string/implants" />
 
         <!-- Apply button -->
         <Button
