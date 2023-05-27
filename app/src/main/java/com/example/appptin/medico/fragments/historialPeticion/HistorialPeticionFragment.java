@@ -1,6 +1,7 @@
 package com.example.appptin.medico.fragments.historialPeticion;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +18,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.appptin.Medicament;
 import com.example.appptin.R;
+import com.example.appptin.login;
 import com.example.appptin.medico.conexion.Conexion_json;
 import com.example.appptin.medico.conexion.InformacionBase;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +40,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class HistorialPeticionFragment extends Fragment {
+    private static final String TAG = "HistorialPeticionFragment";
 
     // Variables necesarias
     View view;
@@ -71,6 +86,10 @@ public class HistorialPeticionFragment extends Fragment {
         //Por defecto ordenar por nombre Ascendiente
         opcionSeleccionada = getResources().getStringArray(R.array.sort_options)[0];
 
+        //Llamadas a la api
+        api_llamada();
+
+        // Creación de los elementos del diseño
         Lista(view);
 
         return view;
@@ -132,7 +151,6 @@ public class HistorialPeticionFragment extends Fragment {
     }
 
     //EVENTOS
-
     private SearchView.OnQueryTextListener buscador = new SearchView.OnQueryTextListener(){
         //Acción al realizar una búsqueda al presionar  el botón de cerca
         @Override
@@ -241,4 +259,109 @@ public class HistorialPeticionFragment extends Fragment {
         }
     }
 
+    // API
+    private void api_llamada(){
+
+        // Información de las peticiones por confirmar
+        if (codi == 1) api_informacion_peticiones_aprobar();
+        // Historial de peticiones
+        else if (codi == 2) api_informacion_historial_peticiones();
+    }
+
+    private void api_informacion_peticiones_aprobar(){
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/list_doctor_pending_confirmations";
+        JSONArray jsonBody = new JSONArray();
+
+        // Datos enviados
+        try {
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("session_token", login.getSession_token());
+            jsonObject.put("confirmations_per_page", 5);
+            jsonObject.put("page", 1);
+
+            jsonBody.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Datos devueltos
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
+                public void onResponse(JSONArray response) {
+                    // Manejar la respuesta exitosa
+                    System.out.println(" ******** Se reciben datos *******");
+                    // Otro código de manejo de la respuesta JSON
+                }
+            },
+                new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // Manejo de errores de la solicitud
+                    error.printStackTrace();
+
+                    if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                        // Error interno del servidor (código de respuesta 500)
+                        Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
+                    } else {
+                        // Otro tipo de error de solicitud
+                        Log.e(TAG, "FALLO EN EL CLIENTE");
+                    }
+                }
+            });
+
+        queue.add(jsonArrayRequest);
+
+    }
+    private void api_informacion_historial_peticiones(){
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/list_doctor_approved_confirmations";
+        JSONArray jsonBody = new JSONArray();
+
+        // Datos enviados
+        try {
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("session_token", login.getSession_token());
+            jsonObject.put("confirmations_per_page", 5);
+            jsonObject.put("page", 1);
+
+            jsonBody.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Datos devueltos
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
+            public void onResponse(JSONArray response) {
+                // Manejar la respuesta exitosa
+                System.out.println(" ******** Se reciben datos *******");
+                // Otro código de manejo de la respuesta JSON
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Manejo de errores de la solicitud
+                        error.printStackTrace();
+
+                        if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                            // Error interno del servidor (código de respuesta 500)
+                            Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
+                        } else {
+                            // Otro tipo de error de solicitud
+                            Log.e(TAG, "FALLO EN EL CLIENTE");
+                        }
+                    }
+                });
+
+        queue.add(jsonArrayRequest);
+
+    }
 }

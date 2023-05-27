@@ -23,6 +23,7 @@ import com.example.appptin.medico.fragments.aprobarPeticion.AprobarFragment;
 import com.example.appptin.medico.fragments.detallesPeticion.DetallesPeticionFragment;
 import com.example.appptin.medico.fragments.historialPaciente.HistorialPacienteFragment;
 import com.example.appptin.medico.fragments.historialPaciente.InformePaciente;
+import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
 
 public class PeticionAdapter extends RecyclerView.Adapter<PeticionAdapter.MyHolder> {
     Context context;
@@ -76,18 +77,21 @@ public class PeticionAdapter extends RecyclerView.Adapter<PeticionAdapter.MyHold
                 Fragment cambiofragment = null;
 
                 // carga la ventana del fragment según el Nº de código
+                // Lista de peticiones pendientes por confirmar
                 if (codi == 1){
                     result.putSerializable("MiObjeto", (PeticionClass) arrayList.get(position));
                     activity.setFragmentResult("key_aprobar_peticion", result);
 
                     cambiofragment = new AprobarFragment(activity,context);
                 }
+                // Historico de las peticiones
                 else if (codi == 2){
                     result.putSerializable("MiObjeto", (PeticionClass) arrayList.get(position));
                     activity.setFragmentResult("key_aprobar_peticion", result);
 
                     cambiofragment = new DetallesPeticionFragment(activity,context);
                 }
+                // Historial Paciente
                 else if (codi == 3){
                     result.putSerializable("MiObjeto", (InformePaciente) arrayList.get(position));
                     activity.setFragmentResult("key_aprobar_peticion", result);

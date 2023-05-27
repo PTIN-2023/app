@@ -1,6 +1,7 @@
 package com.example.appptin.medico.fragments.aprobarPeticion;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +20,28 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
+import com.example.appptin.login;
 import com.example.appptin.medico.conexion.Conexion_json;
 import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
 import com.example.appptin.medico.fragments.historialPeticion.PeticionClass;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class AprobarFragment extends Fragment {
+    private static final String TAG = "AprobarFragment";
     RecyclerView recyclerView;
     ArrayList<String> medicamentos = new ArrayList<String>();
     TextView textView_nombre, textView_apellido, textView_dni, textView_pedido;
@@ -57,7 +69,7 @@ public class AprobarFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Obtener resultados recibidos de otro Fragment
+        // Obtener resultados recibidos del Fragment principal (Historial peticion)
         getParentFragmentManager().setFragmentResultListener("key_aprobar_peticion", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
@@ -108,32 +120,11 @@ public class AprobarFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Petició aceptada", Toast.LENGTH_SHORT).show();
 
-                // Eliminar Objeto del json
+                // Regresar a la ventana anterior
+                regresar_ventana();
 
-              /*  try {
-                    Eliminar_Peticio();
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                */
-                //Fragment anterior
-                HistorialPeticionFragment peticionFragment = null;
-                try {
-                    peticionFragment = new HistorialPeticionFragment("Peticions per aprovar", 1, posicion,context);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-                //Regresar al Fragment anterior
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                //Cambio de Fragment
-                fragmentTransaction.replace(R.id.frame_container, peticionFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                // Enviar confirmación de orden a la API
+                api_confimacion_denegacion_orden(true);
             }
         });
 
@@ -142,37 +133,71 @@ public class AprobarFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Petició Rebutjada", Toast.LENGTH_SHORT).show();
 
-                //Fragment anterior
-                HistorialPeticionFragment peticionFragment = null;
-                try {
-                    peticionFragment = new HistorialPeticionFragment("Peticions per aprovar", 3, posicion,context);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                // Regresar a la ventana anterior
+                regresar_ventana();
 
-                //Regresar al Fragment anterior
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                //Cambio de Fragment
-                fragmentTransaction.replace(R.id.frame_container, peticionFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                // Enviar denegación de orden a la API
+                api_confimacion_denegacion_orden(false);
             }
         });
 
     }
-    public void Eliminar_Peticio() throws JSONException, IOException {
 
-        //Envío el contexto
-        Conexion_json con = new Conexion_json(context);
+    // Regresar a la ventana Madre
+    private void regresar_ventana(){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            // Retrocede en la pila de fragmentos
+            fragmentManager.popBackStack();
+        }
+    }
 
-        String fichero = "peticions_per_aprovar.json";
-        //Creo la conexión
-        String jsonString = con.readJsonFromFile(fichero);
+    // API
+    private void api_confimacion_denegacion_orden(boolean approved){
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/doctor_confirm_order";
+        JSONArray jsonBody = new JSONArray();
 
-        //Eliminar el objeto
-        con.deleteObjectJson(jsonString,peticion.getId(),fichero);
+        // Datos enviados
+        try {
+            JSONObject jsonObject = new JSONObject();
 
+            jsonObject.put("session_token", login.getSession_token());
+            //jsonObject.put("order_identifier", ??????);
+            jsonObject.put("approved", approved);
+            //jsonObject.put("reason", "????????????");
+
+            jsonBody.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Datos devueltos
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
+            public void onResponse(JSONArray response) {
+                // Manejar la respuesta exitosa
+                System.out.println(" ******** Se reciben datos *******");
+                // Otro código de manejo de la respuesta JSON
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Manejo de errores de la solicitud
+                        error.printStackTrace();
+
+                        if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                            // Error interno del servidor (código de respuesta 500)
+                            Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
+                        } else {
+                            // Otro tipo de error de solicitud
+                            Log.e(TAG, "FALLO EN EL CLIENTE");
+                        }
+                    }
+                });
+
+        queue.add(jsonArrayRequest);
     }
 }
