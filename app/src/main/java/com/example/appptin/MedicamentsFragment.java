@@ -2,7 +2,9 @@ package com.example.appptin;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -146,30 +148,34 @@ public class MedicamentsFragment extends Fragment {
         String url = apiUrl + "/api/list_available_medicines"; // Reemplaça amb l'adreça completa de l'API per obtenir els medicaments disponibles
         JSONArray  jsonBody = new JSONArray();
         try {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+            String session_token = sharedPreferences.getString("session_token", "Valor nulo");
+            System.out.println(session_token);
+
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("session_token", login.getSession_token());
+            jsonObject.put("session_token", session_token);
             jsonBody.put(jsonObject);
-        //    jsonBody.put("filter", False);
-        //    jsonBody.put("meds_per_page", 1);
-        //    jsonBody.put("page", 1);
-        //    if (medName != null && !medName.isEmpty()) {
-        //        jsonBody.put("med_name", medName);
-        //    }
-        //    if (pvpMin != null) {
-        //        jsonBody.put("pvp_min", pvpMin);
-        //    }
-        //    if (pvpMax != null) {
-        //        jsonBody.put("pvp_max", pvpMax);
-        //    }
-        //    if (prescriptionNeeded != null) {
-        //        jsonBody.put("prescription_needed", prescriptionNeeded);
-        //    }
-        //    if (form != null && !form.isEmpty()) {
-        //        jsonBody.put("form", form);
-        //    }
-        //    if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
-        //        jsonBody.put("type_of_administration", typeOfAdministration);
-        //    }
+            jsonBody.put("filter", False);
+            jsonBody.put("meds_per_page", 1);
+            jsonBody.put("page", 1);
+            if (medName != null && !medName.isEmpty()) {
+                jsonBody.put("med_name", medName);
+            }
+            if (pvpMin != null) {
+                jsonBody.put("pvp_min", pvpMin);
+            }
+            if (pvpMax != null) {
+                jsonBody.put("pvp_max", pvpMax);
+            }
+            if (prescriptionNeeded != null) {
+                jsonBody.put("prescription_needed", prescriptionNeeded);
+            }
+            if (form != null && !form.isEmpty()) {
+                jsonBody.put("form", form);
+            }
+            if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
+                jsonBody.put("type_of_administration", typeOfAdministration);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -2,6 +2,8 @@ package com.example.appptin.paciente.opciones;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -87,12 +89,22 @@ public class DatosPacienteFragment extends Fragment {
 
 
 
-        System.out.println(patient.getGiven_name());
+        /*System.out.println(patient.getGiven_name());
         et_given_name.setText(patient.getGiven_name());
         et_email.setText(patient.getEmail());
         et_user_name.setText(patient.getFull_name());
         et_city.setText(patient.getCity());
-        et_address.setText(patient.getAddress());
+        et_address.setText(patient.getAddress());*/
+
+        Context context = this.getContext();
+        // Obtiene las SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+
+        // Obtiene los valores de las SharedPreferences
+        String given_name = sharedPreferences.getString("given_name", "Valor vacio");
+
+        et_given_name.setText(given_name);
+
 
         //Asignar valores
         //SetGenero();

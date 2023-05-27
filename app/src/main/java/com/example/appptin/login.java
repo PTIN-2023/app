@@ -89,7 +89,7 @@ public class login extends AppCompatActivity {
         // Aqui fem la consulta amb la API a la base de dades per veure si existeix el usuari
 
         if(_correu != "admin@1234" && _contrassenya != "1234"){
-            checkUser(_correu, _contrassenya);
+            login(_correu, _contrassenya);
         }
         //!_correu.contains("@")
         else if(_correu.isEmpty() || _correu != "admin@1234"){
@@ -137,7 +137,7 @@ public class login extends AppCompatActivity {
 
                 // Aquí se puede obtener el nombre, correo electrónico y otros datos del usuario de la cuenta de Google
                 // y utilizarlos para el inicio de sesión en la aplicación
-                SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("email", account.getEmail());
                 editor.apply();
@@ -145,7 +145,7 @@ public class login extends AppCompatActivity {
                 // Guardamos en variables el correo y el password para acceder a la base de datos
                 String email = preferences.getString("email", "");
 
-                checkUser(email, oauthToken);
+                login(email, oauthToken);
 
                 // Cambiamos de actividad
                 // Aquí se puede obtener el nombre, correo electrónico y otros datos del usuario de la cuenta de Google
@@ -162,13 +162,13 @@ public class login extends AppCompatActivity {
         }
     }
 
-    private boolean checkUser(String email, String password) throws JSONException {
+    private boolean login(String email, String password) throws JSONException {
 
         boolean exists = false;
         RequestQueue queue = Volley.newRequestQueue(this);
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
-        String url = apiUrl + "/api/login"; // Reemplaza con la dirección de tu API
+        String url = apiUrl + "/api/login";
         System.out.println(url);
         JSONObject jsonBody = new JSONObject();
         try {
@@ -190,16 +190,18 @@ public class login extends AppCompatActivity {
                             String password = response.isNull("password") ? null : response.getString("password");
                             String result = response.getString("result");
                             String role = response.getString("user_role");
-                            String token = response.getString("user_token");
-
-                            session_token=token;
+                            String session_token = response.getString("user_token");
 
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {
                                 System.out.println("L'usuari existeix");
                                 if (role.equals("patient")){
+
+                                    //Acabamos de llenar el SharedPreferences
+                                    getUserInfo(session_token);
+
                                     Patient patient = new Patient(
-                                            token,
+                                            session_token,
                                             null,
                                             given_name,
                                             null,
@@ -265,5 +267,80 @@ public class login extends AppCompatActivity {
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }
+
+    private void getUserInfo(String session_token) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/get_user_info";
+        System.out.println(url);
+        System.out.println(session_token);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("token", session_token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            //boolean exists = response.getBoolean("exists");
+                            System.out.println("MENSAJE: " + response);
+                            String result = response.getString("result");
+
+                            // Utiliza los valores extraídos según sea necesario
+                            if (result.equals("ok")) {
+                                System.out.println("L'usuari existeix");
+                                // Obtiene las SharedPreferences
+                                SharedPreferences sharedPreferences = getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+
+                                // Edita las SharedPreferences
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString("session_token", session_token);
+                                editor.putString("user_full_name", response.getString("user_full_name"));
+                                editor.putString("user_given_name", response.getString("user_given_name"));
+                                editor.putString("user_email", response.getString("user_email"));
+                                editor.putString("user_phone", response.getString("user_phone"));
+                                editor.putString("user_city", response.getString("user_city"));
+                                editor.putString("user_address", response.getString("user_address"));
+                                editor.putString("user_picture", response.getString("user_picture"));
+
+                                // Aplica los cambios
+                                editor.apply();
+
+                            }
+                            else {
+                                System.out.println("Error");
+                            }
+                        }
+                        catch (JSONException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                        Log.w("Error login", "ATENCION: Ha habido un error, se procedera a cargar una sesion de prueba");
+                        Patient patient = new Patient(
+                                "45hgghhbhkkK9*^¨cDDG",
+                                "Manolo de los Palotes",
+                                "Manolin",
+                                "manolo@gmail.com",
+                                "608745633",
+                                "Villalgordo",
+                                "Calle para siempre 6",
+                                null);
+                        navigateToMainActivity(patient);
+                    }
+                });
+        queue.add(jsonObjectRequest);
+    }
+
 
 }
