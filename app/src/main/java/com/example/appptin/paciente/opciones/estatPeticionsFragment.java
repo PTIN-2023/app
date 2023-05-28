@@ -1,6 +1,8 @@
 package com.example.appptin.paciente.opciones;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -103,16 +105,29 @@ public class estatPeticionsFragment extends Fragment {
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_patient_orders"; // Reemplaça amb l'adreça completa de l'API per obtenir els medicaments disponibles
-        JSONArray jsonBody = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+
         try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("session_token", login.getSession_token());
-            jsonBody.put(jsonObject);
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+            String session_token = sharedPreferences.getString("session_token", "Valor nulo");
+            System.out.println(session_token);
+
+            //JSONObject jsonObject = new JSONObject();
+            jsonObject.put("session_token", session_token);
+            int orders_per_page = 1;
+            jsonObject.put("orders_per_page", orders_per_page);
+            int page = 1;
+            jsonObject.put("page", page);
+            //jsonBody.put(jsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
+
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.put(jsonObject);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
