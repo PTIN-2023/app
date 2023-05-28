@@ -199,7 +199,7 @@ public class MedicamentsFragment extends Fragment {
             //    if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
             //        jsonBody.put("type_of_administration", typeOfAdministration);
             //    }
-            
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

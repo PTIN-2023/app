@@ -152,7 +152,7 @@ public class registre extends AppCompatActivity {
 
     public void addUser(String given_name, String full_name, String email, String phone, String password, String city, String address){
         System.out.println("Email: " + email);
-        System.out.println("Password: " + oauthToken);
+        System.out.println("Password: " + password);
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -164,10 +164,10 @@ public class registre extends AppCompatActivity {
             jsonBody.put("user_full_name", given_name);
             jsonBody.put("user_given_name", full_name);
             jsonBody.put("user_email", email);
-            jsonBody.put("user_phone", "123");
-            jsonBody.put("user_city", "and");
-            jsonBody.put("user_address", "vilanova 101");
-            jsonBody.put("user_password", oauthToken);
+            jsonBody.put("user_phone", phone);
+            jsonBody.put("user_city", city);
+            jsonBody.put("user_address", address);
+            jsonBody.put("user_password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -37,7 +37,7 @@ public class DatosPacienteFragment extends Fragment {
     private static final String ARG_PATIENT= "patient";
     private Patient patient;
     private ImageView iv_regresar;
-    private EditText et_given_name, et_user_name, et_city, et_address , et_email, et_provincia, et_pais;
+    private EditText et_user_given_name, et_user_full_name, et_city, et_address , et_email, et_provincia, et_pais;
     private Button btn_guardar, btn_fecha;
     private Spinner sp_genero;
 
@@ -73,8 +73,8 @@ public class DatosPacienteFragment extends Fragment {
 
         //Campos pantalla
         iv_regresar = view.findViewById(R.id.iv_dato_paciente_back);
-        et_given_name = view.findViewById(R.id.et_user_given_name);
-        et_user_name = view.findViewById(R.id.et_user_name);
+        et_user_given_name = view.findViewById(R.id.et_user_given_name);
+        et_user_full_name = view.findViewById(R.id.et_user_name);
         et_email = view.findViewById(R.id.et_email);
         et_city = view.findViewById(R.id.et_user_city);
         et_address = view.findViewById(R.id.et_user_address);
@@ -101,9 +101,11 @@ public class DatosPacienteFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
 
         // Obtiene los valores de las SharedPreferences
-        String given_name = sharedPreferences.getString("given_name", "Valor vacio");
-
-        et_given_name.setText(given_name);
+        et_user_given_name.setText(sharedPreferences.getString("user_given_name", "Valor vacio"));
+        et_user_full_name.setText(sharedPreferences.getString("user_full_name", "Valor vacio"));
+        et_email.setText(sharedPreferences.getString("user_email", "Valor vacio"));
+        et_city.setText(sharedPreferences.getString("user_city", "Valor vacio"));
+        et_address.setText(sharedPreferences.getString("user_address", "Valor vacio"));
 
 
         //Asignar valores
@@ -150,7 +152,7 @@ public class DatosPacienteFragment extends Fragment {
     };
 
     private void setGivenNameListener() {
-        et_given_name.addTextChangedListener(new TextWatcher() {
+        et_user_given_name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -167,7 +169,7 @@ public class DatosPacienteFragment extends Fragment {
     }
 
     private void setUserNameListener() {
-        et_user_name.addTextChangedListener(new TextWatcher() {
+        et_user_full_name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }

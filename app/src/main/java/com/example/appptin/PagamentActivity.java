@@ -43,6 +43,13 @@ public class PagamentActivity extends AppCompatActivity {
         Button btnCard = findViewById(R.id.btn_card_payment);
         Button btnContinue = findViewById(R.id.btn_continue);
 
+
+        //Fake JSON amb medicaments per sortir del pas
+        JSONArray medicine_identifiers = new JSONArray();
+        medicine_identifiers.put("841013");
+        medicine_identifiers.put("841009");
+        medicine_identifiers.put("753210");
+
         btnCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,8 +81,10 @@ public class PagamentActivity extends AppCompatActivity {
 
                 JSONObject jsonBody = new JSONObject();
                 try {
-                    jsonBody.put("token", session_token);
-                    jsonBody.put("medicine_identifiers", lista_cesta);
+                    System.out.println(medicine_identifiers);
+                    System.out.println(session_token);
+                    jsonBody.put("session_token", session_token);
+                    jsonBody.put("medicine_identifiers", medicine_identifiers); //Canviar per medicaments de la cistella
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

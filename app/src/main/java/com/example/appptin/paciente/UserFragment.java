@@ -1,6 +1,8 @@
 package com.example.appptin.paciente;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -176,7 +178,8 @@ public class UserFragment extends Fragment {
         System.out.println(url);
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("user_token", patient.getToken());
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+            jsonBody.put("user_token", sharedPreferences.getString("session_token", "No value"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
