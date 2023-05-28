@@ -131,7 +131,7 @@ public class CistellaFragment extends Fragment {
         for (int i = 0; i < lista_cesta.length(); i++) {
             JSONObject jsonObject = lista_cesta.getJSONObject(i);
             // Obtener los valores de los campos del objeto JSON
-            String nationalCode = jsonObject.getString("codi_");
+            String nationalCode = jsonObject.getString("nationalCode");
             String medName = jsonObject.getString("medName");
             float pvp = (float) jsonObject.getDouble("pvp");
             int cantidad = jsonObject.getInt("quantitat");
