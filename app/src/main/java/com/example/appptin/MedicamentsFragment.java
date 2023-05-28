@@ -195,31 +195,30 @@ public class MedicamentsFragment extends Fragment {
             public void onResponse(JSONObject response) {
 
                 try {
-                    System.out.println("Lo tenemos");
                     String result = response.getString("result");
 
                     if (result.equals("ok")) {
                         JSONArray arraymed = response.getJSONArray("medicines");
                         System.out.println(arraymed);
-                        for (int i = 0; i < response.length(); i++) {
+                        for (int i = 0; i < arraymed.length(); i++) {
                             JSONObject jsonObject = arraymed.getJSONObject(i);
 
                             // Acceder a los campos del objeto JSON
-                            String typeOfAdministration = jsonObject.getString("administracio");
-                            String nationalCode = jsonObject.getString("codi_nacional");
+                            String typeOfAdministration = jsonObject.getString("type_of_administration");
+                            String nationalCode = jsonObject.getString("national_code");
                             String form = jsonObject.getString("form");
-                            String medName = jsonObject.getString("medicine_identifier");
-                            String useType = jsonObject.getString("presentacio");
-                            double pvp = jsonObject.getDouble("preu");
+                            String medName = jsonObject.getString("medicine_name");
+                            String useType = jsonObject.getString("use_type");
+                            double pvp = jsonObject.getDouble("pvp");
 
-                            JSONArray jsonarray_prospecto = jsonObject.getJSONArray("prospecto");
+                            JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipients");
                             ArrayList<String> excipients = new ArrayList<String>();
                             for (int j = 0; j < jsonarray_prospecto.length(); j++) {
                                 excipients.add(jsonarray_prospecto.getString(j));
                             }
 
-                            boolean prescriptionNeeded = jsonObject.getBoolean("req_recepta");
-                            String tipusUs = jsonObject.getString("tipus_us");
+                            boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
+                            //String tipusUs = jsonObject.getString("tipus_us");
 
                             list_medicament.add(new Medicament(medName, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
 
