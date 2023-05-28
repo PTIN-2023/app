@@ -35,8 +35,7 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
+
 
 public class login extends AppCompatActivity {
     EditText inputcorreu, input_contrassenya;
@@ -193,7 +192,7 @@ public class login extends AppCompatActivity {
                             String password = response.isNull("password") ? null : response.getString("password");
                             String result = response.getString("result");
                             String role = response.getString("user_role");
-                            String session_token = response.getString("user_token");
+                            session_token = response.getString("user_token");
 
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {

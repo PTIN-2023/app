@@ -27,14 +27,17 @@ import java.util.ArrayList;
 
 public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.MedicamentViewHolder> {
 
+    private final FragmentActivity context;
     private ArrayList<Medicament> medicaments;
     private AlertDialog.Builder builder;
     private FragmentActivity activity;
 
-    public MedicamentAdapter(ArrayList<Medicament> medicaments, FragmentActivity activity) {
+    public MedicamentAdapter(ArrayList<Medicament> medicaments, FragmentActivity context) {
         this.medicaments = medicaments;
-        this.activity = activity;
-        builder = new AlertDialog.Builder(activity);
+        this.context = context;
+        if (context != null) {
+            builder = new AlertDialog.Builder(context);
+        }
     }
 
     @NonNull
