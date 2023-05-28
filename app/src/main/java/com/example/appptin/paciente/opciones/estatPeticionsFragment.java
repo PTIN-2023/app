@@ -93,7 +93,7 @@ public class estatPeticionsFragment extends Fragment {
         recyclerPeticions.setLayoutManager(layoutManager);
 
         ArrayList<Peticio> list_peticions = new ArrayList<>();
-        PeticioAdapter adapter = new PeticioAdapter(list_peticions);
+        PeticioAdapter adapter = new PeticioAdapter(list_peticions,getActivity());
         recyclerPeticions.setAdapter(adapter);
 
         Peticio peticioProva = new Peticio(1, "a@a", "a", "a", "a", "a", new ArrayList<>());
@@ -129,14 +129,14 @@ public class estatPeticionsFragment extends Fragment {
                         String data = jsonObject.getString("date");
                         String state = jsonObject.getString("state");
 
-                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("prospecto");
-                        ArrayList<Double> medsComanda = new ArrayList<Double>();
+                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipient");
+                        ArrayList<String> excipients = new ArrayList<String>();
                         for (int j = 0; j < jsonarray_prospecto.length(); j++) {
-                            medsComanda.add(jsonarray_prospecto.getDouble(j));
+                            excipients.add(jsonarray_prospecto.getString(j));
                         }
 
 
-                        list_peticions.add(new Peticio(ID,"a","a","a",data,state,medsComanda));
+                        list_peticions.add(new Peticio(ID,"a","a","a",data,state,excipients));
 
                     }
                     afegirLayoutPeticio(list_peticions);
@@ -158,7 +158,7 @@ public class estatPeticionsFragment extends Fragment {
 
     private void afegirLayoutPeticio(ArrayList<Peticio> peticions) {
         //Adapter del medicament recyclerView
-        PeticioAdapter adapter = new PeticioAdapter(peticions);
+        PeticioAdapter adapter = new PeticioAdapter(peticions,getActivity());
         recyclerPeticions.setAdapter(adapter);
 
         for (Peticio peticio : peticions) {
