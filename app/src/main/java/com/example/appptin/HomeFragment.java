@@ -175,45 +175,41 @@ public class HomeFragment extends Fragment {
                             (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    try {
-                                        //boolean exists = response.getBoolean("exists");
-                                        System.out.println("a8a: " + response);
-                                        if(response.getString("valid")!= null){
-                                            resultat = response.getString("valid");
-                                            description = "";
-                                        }
-                                        else{
+                                    //boolean exists = response.getBoolean("exists");
+                                    System.out.println("a8a: " + response);
+                                    // if(response.getString("valid")!= null){
+                                    //     resultat = response.getString("valid");
+                                    //     description = "";
+                                    // }
+                                    // else{
 
 
-                                        resultat = response.getString("result");
-                                        if(response.getString("description")!=null){
-                                            description = response.getString("description");
-                                        }
-                                        else{
-                                            description ="";
-                                        }
+                                    // resultat = response.getString("result");
+                                    // if(response.getString("description")!=null){
+                                    //     description = response.getString("description");
+                                    // }
+                                    // else{
+                                    //     description ="";
+                                    // }
 
-                                        //String valid = response.getString("valid");
-                                        // Utiliza los valores extraídos según sea necesario
+                                    // //String valid = response.getString("valid");
+                                    // // Utiliza los valores extraídos según sea necesario
 
-                                        System.out.println("holaaaa" + resultat + " " + description);
-                                        }
+                                    // System.out.println("holaaaa" + resultat + " " + description);
+                                    // }
 
-                                        // Treu el primer caràcter del contingut
-                                        //String resultant = contents.substring(1);
-                                        String resu = (resultat + " " + description);
-                                        String[] items = resu.split("\n");
-                                        //MyDialogFragment.newInstance(items).show(getChildFragmentManager(), "myDialog");
-                                        txtResultant.setText(resu);
+                                    // Treu el primer caràcter del contingut
+                                    //String resultant = contents.substring(1);
+                                    String resu = (resultat + " " + description);
+                                    String[] items = resu.split("\n");
+                                    //MyDialogFragment.newInstance(items).show(getChildFragmentManager(), "myDialog");
+                                    txtResultant.setText((CharSequence) response);
 
-                                        if (result.equals("ok")) {
-                                            System.out.println("Tot ha anat bé");
-                                        } else {
-                                            System.out.println("Alguna cosa ha fallat");
-                                            //Fer Pop-Up o algo per notificar l'usuari
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+                                    if (result.equals("ok")) {
+                                        System.out.println("Tot ha anat bé");
+                                    } else {
+                                        System.out.println("Alguna cosa ha fallat");
+                                        //Fer Pop-Up o algo per notificar l'usuari
                                     }
                                 }
 
