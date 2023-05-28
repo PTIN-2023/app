@@ -35,6 +35,9 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+
 public class login extends AppCompatActivity {
     EditText inputcorreu, input_contrassenya;
 
@@ -272,7 +275,7 @@ public class login extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
-        String url = apiUrl + "/api/get_user_info";
+        String url = apiUrl + "/api/user_info";
         System.out.println(url);
         System.out.println(session_token);
         JSONObject jsonBody = new JSONObject();
@@ -299,6 +302,7 @@ public class login extends AppCompatActivity {
 
                                 // Edita las SharedPreferences
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
 
                                 editor.putString("session_token", session_token);
                                 editor.putString("user_full_name", response.getString("user_full_name"));
