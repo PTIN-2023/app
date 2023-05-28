@@ -37,6 +37,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.medico.conexion.InformacionBase;
 import com.example.appptin.medico.fragments.historialPeticion.PeticionAdapter;
@@ -120,20 +121,28 @@ public class MedicamentsFragment extends Fragment {
         //list_medicament.add(medicamentDeProva2);
 
         // Agafar filtres
+        String medName = null;
+        String pvpMin = null;
+        String pvpMax = null;
+        boolean prescriptionNeeded = false;
+        ArrayList typeOfAdministration = null;
+        ArrayList form = null;
+
+
         Bundle args = getArguments();
         if (args != null) {
-            String medName = args.getString("medName");
-            String pvpMin = args.getString("minPrice");
-            String pvpMax = args.getString("maxPrice");
-            boolean prescriptionNeeded = args.getBoolean("prescriptionNeeded");
-            ArrayList type_of_administration = args.getStringArrayList("via");
-            ArrayList form = args.getStringArrayList("format");
+            medName = args.getString("medName");
+            pvpMin = args.getString("minPrice");
+            pvpMax = args.getString("maxPrice");
+            prescriptionNeeded = args.getBoolean("prescriptionNeeded");
+            typeOfAdministration = args.getStringArrayList("via");
+            form = args.getStringArrayList("format");
 
             // mostrem resultats
             System.out.println("Nom Medicament: " + medName + "\nMin Price: " + pvpMin + "\nMax Price: " + pvpMax + "\nPrescription Needed: " + prescriptionNeeded);
             System.out.println("Via: ");
-            for(int i = 0; i < type_of_administration.size(); i++){
-                System.out.println(type_of_administration.get(i));
+            for(int i = 0; i < typeOfAdministration.size(); i++){
+                System.out.println(typeOfAdministration.get(i));
             }
             System.out.println("Format: ");
             for(int i = 0; i < form.size(); i++){
@@ -146,99 +155,86 @@ public class MedicamentsFragment extends Fragment {
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_available_medicines"; // Reemplaça amb l'adreça completa de l'API per obtenir els medicaments disponibles
-        JSONArray  jsonBody = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
         try {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
             String session_token = sharedPreferences.getString("session_token", "Valor nulo");
             System.out.println(session_token);
 
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("session_token", session_token);
-            jsonBody.put(jsonObject);
 
-/*            jsonBody.put("filter", False);
-            jsonBody.put("meds_per_page", 1);
-            jsonBody.put("page", 1);
+            jsonObject.put("session_token", session_token);
+            jsonObject.put("filter", false);
+            jsonObject.put("meds_per_page", 1);
+            jsonObject.put("page", 1);
             if (medName != null && !medName.isEmpty()) {
-                jsonBody.put("med_name", medName);
+                jsonObject.put("med_name", medName);
             }
             if (pvpMin != null) {
-                jsonBody.put("pvp_min", pvpMin);
+                jsonObject.put("pvp_min", pvpMin);
             }
             if (pvpMax != null) {
-                jsonBody.put("pvp_max", pvpMax);
+                jsonObject.put("pvp_max", pvpMax);
             }
-            if (prescriptionNeeded != null) {
-                jsonBody.put("prescription_needed", prescriptionNeeded);
+            if (prescriptionNeeded != false) {
+                jsonObject.put("prescription_needed", prescriptionNeeded);
             }
             if (form != null && !form.isEmpty()) {
-                jsonBody.put("form", form);
+                jsonObject.put("form", form);
             }
             if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
-                jsonBody.put("type_of_administration", typeOfAdministration);
-           }*/
-
-            //    jsonBody.put("filter", False);
-            //    jsonBody.put("meds_per_page", 1);
-            //    jsonBody.put("page", 1);
-            //    if (medName != null && !medName.isEmpty()) {
-            //        jsonBody.put("med_name", medName);
-            //    }
-            //    if (pvpMin != null) {
-            //        jsonBody.put("pvp_min", pvpMin);
-            //    }
-            //    if (pvpMax != null) {
-            //        jsonBody.put("pvp_max", pvpMax);
-            //    }
-            //    if (prescriptionNeeded != null) {
-            //        jsonBody.put("prescription_needed", prescriptionNeeded);
-            //    }
-            //    if (form != null && !form.isEmpty()) {
-            //        jsonBody.put("form", form);
-            //    }
-            //    if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
-            //        jsonBody.put("type_of_administration", typeOfAdministration);
-            //    }
+                jsonObject.put("type_of_administration", typeOfAdministration);
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
+
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
 
                 try {
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = response.getJSONObject(i);
+                    System.out.println("Lo tenemos");
+                    String result = response.getString("result");
 
-                        // Acceder a los campos del objeto JSON
-                        String typeOfAdministration = jsonObject.getString("administracio");
-                        String nationalCode = jsonObject.getString("codi_nacional");
-                        String form = jsonObject.getString("form");
-                        String medName = jsonObject.getString("medicine_identifier");
-                        String useType = jsonObject.getString("presentacio");
-                        double pvp = jsonObject.getDouble("preu");
+                    if (result.equals("ok")) {
+                        JSONArray arraymed = response.getJSONArray("medicines");
+                        System.out.println(arraymed);
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject jsonObject = arraymed.getJSONObject(i);
 
-                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("prospecto");
-                        ArrayList<String> excipients = new ArrayList<String>();
-                        for (int j = 0; j < jsonarray_prospecto.length(); j++) {
-                            excipients.add(jsonarray_prospecto.getString(j));
+                            // Acceder a los campos del objeto JSON
+                            String typeOfAdministration = jsonObject.getString("administracio");
+                            String nationalCode = jsonObject.getString("codi_nacional");
+                            String form = jsonObject.getString("form");
+                            String medName = jsonObject.getString("medicine_identifier");
+                            String useType = jsonObject.getString("presentacio");
+                            double pvp = jsonObject.getDouble("preu");
+
+                            JSONArray jsonarray_prospecto = jsonObject.getJSONArray("prospecto");
+                            ArrayList<String> excipients = new ArrayList<String>();
+                            for (int j = 0; j < jsonarray_prospecto.length(); j++) {
+                                excipients.add(jsonarray_prospecto.getString(j));
+                            }
+
+                            boolean prescriptionNeeded = jsonObject.getBoolean("req_recepta");
+                            String tipusUs = jsonObject.getString("tipus_us");
+
+                            list_medicament.add(new Medicament(medName, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
+
                         }
-
-                        boolean prescriptionNeeded = jsonObject.getBoolean("req_recepta");
-                        String tipusUs = jsonObject.getString("tipus_us");
-
-                        list_medicament.add(new Medicament(medName,nationalCode,useType,typeOfAdministration,prescriptionNeeded,pvp,form,excipients));
-
+                        //Agregar los elementos del RecyclerView
+                        Creacion_elementos_RecyclerView(list_medicament);
                     }
-                    //Agregar los elementos del RecyclerView
-                    Creacion_elementos_RecyclerView(list_medicament);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+
+
+
             }
         }, new Response.ErrorListener() {
             @Override
