@@ -296,7 +296,7 @@ public class registre extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
-        String url = apiUrl + "/api/get_user_info";
+        String url = apiUrl + "/api/user_info";
         System.out.println(url);
         System.out.println(session_token);
         JSONObject jsonBody = new JSONObject();
