@@ -314,6 +314,7 @@ public class login extends AppCompatActivity {
                                 editor.putString("user_picture", response.getString("user_picture"));
 
                                 // Aplica los cambios
+                                System.out.println("EL TOKEN ES --> " + session_token);
                                 editor.apply();
 
                             }

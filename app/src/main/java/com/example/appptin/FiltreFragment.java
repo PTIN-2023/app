@@ -152,48 +152,48 @@ public class FiltreFragment extends Fragment {
 
                 // obtenim via
                 boolean oralSelected = checkBoxOral.isChecked();
-                if (oralSelected == true)
+                if (oralSelected)
                     via.add("oral");
                 boolean inyectableSelected = checkBoxInyectable.isChecked();
-                if (inyectableSelected == true)
+                if (inyectableSelected)
                     via.add("inyectable");
                 boolean SublingualSelected = checkBoxSublingual.isChecked();
-                if (SublingualSelected == true)
+                if (SublingualSelected)
                     via.add("Sublingual");
                 boolean VaginalSelected = checkBoxVaginal.isChecked();
-                if (VaginalSelected == true)
+                if (VaginalSelected)
                     via.add("Vaginal");
                 boolean OcularSelected = checkBoxOcular.isChecked();
-                if (OcularSelected == true)
+                if (OcularSelected)
                     via.add("Ocular");
 
                 // obtenim format
                 boolean TabletasSelected = checkBoxTabletas.isChecked();
-                if (TabletasSelected == true)
+                if (TabletasSelected)
                     format.add("Tabletas");
                 boolean LiquidosSelected = checkBoxLiquidos.isChecked();
-                if (LiquidosSelected == true)
+                if (LiquidosSelected)
                     format.add("Liquidos");
                 boolean CapsulasSelected = checkBoxCapsulas.isChecked();
-                if (CapsulasSelected == true)
+                if (CapsulasSelected)
                     format.add("Capsulas");
                 boolean TopicosSelected = checkBoxTopicos.isChecked();
-                if (TopicosSelected == true)
+                if (TopicosSelected)
                     format.add("Topicos");
                 boolean SupositoriosSelected = checkBoxSupositorios.isChecked();
-                if (SupositoriosSelected == true)
+                if (SupositoriosSelected)
                     format.add("Supositorios");
                 boolean GotasSelected = checkBoxGotas.isChecked();
-                if (GotasSelected == true)
+                if (GotasSelected)
                     format.add("Gotas");
                 boolean InhaladoresSelected = checkBoxInhaladores.isChecked();
-                if (InhaladoresSelected == true)
+                if (InhaladoresSelected)
                     format.add("Inhaladores");
                 boolean InyeccionesSelected = checkBoxInyecciones.isChecked();
-                if (InyeccionesSelected == true)
+                if (InyeccionesSelected)
                     format.add("Inyecciones");
                 boolean ImplantesSelected = checkBoxImplantes.isChecked();
-                if (ImplantesSelected == true)
+                if (ImplantesSelected)
                     format.add("Implantes");
 
 
