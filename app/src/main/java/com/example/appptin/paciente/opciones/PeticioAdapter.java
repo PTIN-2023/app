@@ -42,10 +42,10 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
     holder.bind(peticio);
 
     //Assignem valors als components del peticio_item.xml
-    holder.txtID.setText((int) peticio.getID());
+    /*holder.txtID.setText((int) peticio.getID());
     holder.txtData.setText(peticio.getDate());
     holder.txtEstat.setText(peticio.getState());
-    holder.txtDetalls.setText(peticio.getExcipientsList());
+    holder.txtDetalls.setText(peticio.getExcipientsList());*/
     }
 
 @Override

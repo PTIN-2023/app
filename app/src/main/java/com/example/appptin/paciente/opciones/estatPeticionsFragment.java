@@ -96,7 +96,7 @@ public class estatPeticionsFragment extends Fragment {
         PeticioAdapter adapter = new PeticioAdapter(list_peticions,getActivity());
         recyclerPeticions.setAdapter(adapter);
 
-        Peticio peticioProva = new Peticio(1, "a@a", "a", "a", "a", "a", new ArrayList<>());
+        Peticio peticioProva = new Peticio(1, "a@a", "a", "a", "a", "a", false, new ArrayList<>());
         list_peticions.add(peticioProva);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -123,11 +123,12 @@ public class estatPeticionsFragment extends Fragment {
                         // Acceder a los campos del objeto JSON
                         //Variables iguals a variables del constructor de Peticio
                         double ID = jsonObject.getDouble("medicine_identifier");
-                        //String email_pacient = jsonObject.getString("email_pacient");
-                        //String aprovat = jsonObject.getString("aprovat");
-                        //String reason = jsonObject.getString("reason");
+                        String medicine_name = jsonObject.getString("medicine_name");
+                        String typeOfAdministration = jsonObject.getString("type_of_administration");
+                        String form = jsonObject.getString("form");
                         String data = jsonObject.getString("date");
                         String state = jsonObject.getString("state");
+                        boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
 
                         JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipient");
                         ArrayList<String> excipients = new ArrayList<String>();
@@ -136,7 +137,7 @@ public class estatPeticionsFragment extends Fragment {
                         }
 
 
-                        list_peticions.add(new Peticio(ID,"a","a","a",data,state,excipients));
+                        list_peticions.add(new Peticio(ID,medicine_name,typeOfAdministration,form,data,state, prescriptionNeeded, excipients));
 
                     }
                     afegirLayoutPeticio(list_peticions);

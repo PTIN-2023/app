@@ -12,7 +12,7 @@ public class Peticio {
     private boolean prescriptionNeeded;
     private ArrayList<String> excipients;
 
-    public Peticio(double ID, String medName, String typeOfAdministration, String form, String date, String state, ArrayList<String> excipients) {
+    public Peticio(double ID, String medName, String typeOfAdministration, String form, String date, String state, boolean prescriptionNeeded, ArrayList<String> excipients) {
         this.ID = ID;
         this.medName = medName;
         this.typeOfAdministration = typeOfAdministration;
@@ -45,6 +45,9 @@ public class Peticio {
 
     public String getState() {
         return state;
+    }
+    public boolean getprescriptionNeeded() {
+        return prescriptionNeeded;
     }
 
     public ArrayList<String> getExcipients() {
