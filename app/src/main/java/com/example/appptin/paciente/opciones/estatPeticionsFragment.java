@@ -22,6 +22,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.Medicament;
 import com.example.appptin.MedicamentAdapter;
@@ -114,9 +115,9 @@ public class estatPeticionsFragment extends Fragment {
 
             //JSONObject jsonObject = new JSONObject();
             jsonObject.put("session_token", session_token);
-            int orders_per_page = 1;
+            Integer orders_per_page = 2;
             jsonObject.put("orders_per_page", orders_per_page);
-            int page = 1;
+            Integer page = 1;
             jsonObject.put("page", page);
             //jsonBody.put(jsonObject);
 
@@ -127,11 +128,16 @@ public class estatPeticionsFragment extends Fragment {
         JSONArray jsonArray = new JSONArray();
         jsonArray.put(jsonObject);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray, new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
+                System.out.println("MENSAJE: " + response);
+                /*try {
 
-                try {
+
+
+                    JSONObject jsonObject = response.getJSONObject();
+
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -158,7 +164,7 @@ public class estatPeticionsFragment extends Fragment {
                     afegirLayoutPeticio(list_peticions);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         }, new Response.ErrorListener() {
             @Override
@@ -168,7 +174,7 @@ public class estatPeticionsFragment extends Fragment {
             }
         });
 
-        queue.add(jsonArrayRequest);
+        queue.add(jsonObjectRequest);
         return view;
     }
 
