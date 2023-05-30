@@ -43,12 +43,31 @@ public class PagamentActivity extends AppCompatActivity {
         Button btnCard = findViewById(R.id.btn_card_payment);
         Button btnContinue = findViewById(R.id.btn_continue);
 
+        JSONArray lista_cesta = MainActivity.getListaMedicamentos();
+
+        JSONArray medicine_identifiers = new JSONArray();
+
+        // Extraer los nationalCode de cada JSONObject en el JSONArray
+        for (int i = 0; i < lista_cesta.length(); i++) {
+            JSONObject medicament = null;
+            try {
+                medicament = lista_cesta.getJSONObject(i);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            String nationalCode = null;
+            try {
+                nationalCode = medicament.getString("nationalCode");
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            medicine_identifiers.put(nationalCode);
+        }
 
         //Fake JSON amb medicaments per sortir del pas
-        JSONArray medicine_identifiers = new JSONArray();
-        medicine_identifiers.put("841013");
+        /*medicine_identifiers.put("841013");
         medicine_identifiers.put("841009");
-        medicine_identifiers.put("753210");
+        medicine_identifiers.put("753210");*/
 
         btnCard.setOnClickListener(new View.OnClickListener() {
             @Override

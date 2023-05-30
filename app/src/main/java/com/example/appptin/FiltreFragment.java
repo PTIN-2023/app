@@ -141,7 +141,7 @@ public class FiltreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Obtenim Nom medicament
-                String medName = editTextMaxPrice.getText().toString();
+                String medName = editTextMedName.getText().toString();
 
                 // Obtenim min i max price
                 String minPrice = editTextMinPrice.getText().toString();

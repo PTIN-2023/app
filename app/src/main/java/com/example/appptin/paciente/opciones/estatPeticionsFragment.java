@@ -1,6 +1,8 @@
 package com.example.appptin.paciente.opciones;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -93,26 +95,39 @@ public class estatPeticionsFragment extends Fragment {
         recyclerPeticions.setLayoutManager(layoutManager);
 
         ArrayList<Peticio> list_peticions = new ArrayList<>();
-        PeticioAdapter adapter = new PeticioAdapter(list_peticions);
+        PeticioAdapter adapter = new PeticioAdapter(list_peticions,getActivity());
         recyclerPeticions.setAdapter(adapter);
 
-        Peticio peticioProva = new Peticio(1, "a@a", "a", "a", "a", "a", new ArrayList<>());
+        Peticio peticioProva = new Peticio(1, "a@a", "a", "a", "a", "a", false, new ArrayList<>());
         list_peticions.add(peticioProva);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_patient_orders"; // Reemplaça amb l'adreça completa de l'API per obtenir els medicaments disponibles
-        JSONArray jsonBody = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+
         try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("session_token", login.getSession_token());
-            jsonBody.put(jsonObject);
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+            String session_token = sharedPreferences.getString("session_token", "Valor nulo");
+            System.out.println(session_token);
+
+            //JSONObject jsonObject = new JSONObject();
+            jsonObject.put("session_token", session_token);
+            int orders_per_page = 1;
+            jsonObject.put("orders_per_page", orders_per_page);
+            int page = 1;
+            jsonObject.put("page", page);
+            //jsonBody.put(jsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
+
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.put(jsonObject);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
@@ -123,20 +138,21 @@ public class estatPeticionsFragment extends Fragment {
                         // Acceder a los campos del objeto JSON
                         //Variables iguals a variables del constructor de Peticio
                         double ID = jsonObject.getDouble("medicine_identifier");
-                        //String email_pacient = jsonObject.getString("email_pacient");
-                        //String aprovat = jsonObject.getString("aprovat");
-                        //String reason = jsonObject.getString("reason");
+                        String medicine_name = jsonObject.getString("medicine_name");
+                        String typeOfAdministration = jsonObject.getString("type_of_administration");
+                        String form = jsonObject.getString("form");
                         String data = jsonObject.getString("date");
                         String state = jsonObject.getString("state");
+                        boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
 
-                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("prospecto");
-                        ArrayList<Double> medsComanda = new ArrayList<Double>();
+                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipient");
+                        ArrayList<String> excipients = new ArrayList<String>();
                         for (int j = 0; j < jsonarray_prospecto.length(); j++) {
-                            medsComanda.add(jsonarray_prospecto.getDouble(j));
+                            excipients.add(jsonarray_prospecto.getString(j));
                         }
 
 
-                        list_peticions.add(new Peticio(ID,"a","a","a",data,state,medsComanda));
+                        list_peticions.add(new Peticio(ID,medicine_name,typeOfAdministration,form,data,state, prescriptionNeeded, excipients));
 
                     }
                     afegirLayoutPeticio(list_peticions);
@@ -158,7 +174,7 @@ public class estatPeticionsFragment extends Fragment {
 
     private void afegirLayoutPeticio(ArrayList<Peticio> peticions) {
         //Adapter del medicament recyclerView
-        PeticioAdapter adapter = new PeticioAdapter(peticions);
+        PeticioAdapter adapter = new PeticioAdapter(peticions,getActivity());
         recyclerPeticions.setAdapter(adapter);
 
         for (Peticio peticio : peticions) {

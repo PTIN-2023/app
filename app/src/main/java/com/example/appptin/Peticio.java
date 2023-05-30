@@ -4,55 +4,60 @@ import java.util.ArrayList;
 
 public class Peticio {
     private double ID;
-    private String email_pacient;
-    private String aprovat;
-    private String reason;
-    private String data;
+    private String medName;
+    private String typeOfAdministration;
+    private String form;
+    private String date;
     private String state;
-    private ArrayList<Double> medsComanda;
+    private boolean prescriptionNeeded;
+    private ArrayList<String> excipients;
 
-    public Peticio(double ID, String email_pacient, String aprovat, String reason, String data, String state, ArrayList<Double> medsComanda) {
+    public Peticio(double ID, String medName, String typeOfAdministration, String form, String date, String state, boolean prescriptionNeeded, ArrayList<String> excipients) {
         this.ID = ID;
-        this.email_pacient = email_pacient;
-        this.aprovat = aprovat;
-        this.reason = reason;
-        this.data = data;
+        this.medName = medName;
+        this.typeOfAdministration = typeOfAdministration;
+        this.form = form;
+        this.date = date;
         this.state = state;
-        this.medsComanda = medsComanda;
+        this.prescriptionNeeded = prescriptionNeeded;
+        this.excipients = excipients;
     }
 
     public double getID() {
         return ID;
     }
 
-    public String getEmail_pacient() {
-        return email_pacient;
+    public String getMedName() {
+        return medName;
     }
 
-    public String getAprovat() {
-        return aprovat;
+    public String getTypeOfAdministration() {
+        return typeOfAdministration;
     }
 
-    public String getReason() {
-        return reason;
+    public String getForm() {
+        return form;
     }
 
-    public String getData() {
-        return data;
+    public String getDate() {
+        return date;
     }
 
     public String getState() {
         return state;
     }
-
-    public ArrayList<Double> getmedsComanda() {
-        return medsComanda;
+    public boolean getprescriptionNeeded() {
+        return prescriptionNeeded;
     }
 
-    public String getmedsComandaList() {
+    public ArrayList<String> getExcipients() {
+        return excipients;
+    }
+
+    public String getExcipientsList() {
         String lista="";
 
-        for (Double element : getmedsComanda()) {
+        for (String element : getExcipients()) {
             lista += "  * "+ element +"\n";
         }
         return lista;
