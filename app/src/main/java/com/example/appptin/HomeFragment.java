@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.PopupWindow;
+import com.example.appptin.EncryptionUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -49,6 +50,10 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private String resultat;
+
+    private String description;
 
     private PopupWindow popupWindow;
 
@@ -154,12 +159,15 @@ public class HomeFragment extends Fragment {
                     System.out.println("El primer caràcter és un 1");
                     // Treu el primer caràcter del contingut
                     String resultant = contents.substring(1);
-                    String url = apiUrl + "/api/check_qr"; // Reemplaza con la dirección de tu API
+                    String url = apiUrl + "/api/check_order"; // Reemplaza con la dirección de tu API
 
                     JSONObject jsonBody = new JSONObject();
                     try {
-                        jsonBody.put("session_token", login.getSession_token());
-                        jsonBody.put("_id", resultant);
+                        int content = Integer.parseInt(resultant);
+                        jsonBody.put("session_token", login.getSession_token() );
+                        jsonBody.put("order_identifier", content);
+                        System.out.println("jsonBody " + jsonBody);
+                        System.out.println("asdfa"+login.getSession_token());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -167,20 +175,41 @@ public class HomeFragment extends Fragment {
                             (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    try {
-                                        //boolean exists = response.getBoolean("exists");
-                                        String result = response.getString("result");
-                                        System.out.println("MENSAJE: " + response);
-                                        // Utiliza los valores extraídos según sea necesario
-                                        if (result.equals("ok")) {
-                                            System.out.println("Tot ha anat bé");
+                                    //boolean exists = response.getBoolean("exists");
+                                    System.out.println("a8a: " + response);
+                                    // if(response.getString("valid")!= null){
+                                    //     resultat = response.getString("valid");
+                                    //     description = "";
+                                    // }
+                                    // else{
 
-                                        } else {
-                                            System.out.println("Alguna cosa ha fallat");
-                                            //Fer Pop-Up o algo per notificar l'usuari
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+
+                                    // resultat = response.getString("result");
+                                    // if(response.getString("description")!=null){
+                                    //     description = response.getString("description");
+                                    // }
+                                    // else{
+                                    //     description ="";
+                                    // }
+
+                                    // //String valid = response.getString("valid");
+                                    // // Utiliza los valores extraídos según sea necesario
+
+                                    // System.out.println("holaaaa" + resultat + " " + description);
+                                    // }
+
+                                    // Treu el primer caràcter del contingut
+                                    //String resultant = contents.substring(1);
+                                    String resu = (resultat + " " + description);
+                                    String[] items = resu.split("\n");
+                                    //MyDialogFragment.newInstance(items).show(getChildFragmentManager(), "myDialog");
+                                    txtResultant.setText((CharSequence) response);
+
+                                    if (result.equals("ok")) {
+                                        System.out.println("Tot ha anat bé");
+                                    } else {
+                                        System.out.println("Alguna cosa ha fallat");
+                                        //Fer Pop-Up o algo per notificar l'usuari
                                     }
                                 }
 
@@ -207,12 +236,6 @@ public class HomeFragment extends Fragment {
                     System.out.println("El primer caràcter no és ni 1 ni 0");
                 }
 
-                // Treu el primer caràcter del contingut
-                String resultant = contents.substring(1);
-
-                String[] items = resultant.split("\n");
-                MyDialogFragment.newInstance(items).show(getChildFragmentManager(), "myDialog");
-                txtResultant.setText(resultant);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
