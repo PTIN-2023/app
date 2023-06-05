@@ -125,12 +125,9 @@ public class estatPeticionsFragment extends Fragment {
             e.printStackTrace();
         }
 
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.put(jsonObject);
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
+        JsonArrayRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener() {
+            public void onResponse(JSONArray response) {
+                System.out.println("###########################################################3");
                 System.out.println("MENSAJE: " + response);
                 /*try {
 
@@ -174,7 +171,7 @@ public class estatPeticionsFragment extends Fragment {
             }
         });
 
-        queue.add(jsonObjectRequest);
+        queue.add(jsonArrayRequest);
         return view;
     }
 
