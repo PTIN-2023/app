@@ -125,89 +125,68 @@ public class estatPeticionsFragment extends Fragment {
             e.printStackTrace();
         }
 
-        JsonArrayRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener() {
-            public void onResponse(JSONArray response) {
-                System.out.println("###########################################################3");
-                System.out.println("MENSAJE: " + response);
-                /*try {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println("MENSAJE: " + response);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject();
+                            jsonObject = response;
+                            System.out.println("result: " + response.getString("result"));
 
 
-
-                    JSONObject jsonObject = response.getJSONObject();
-
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        // Acceder a los campos del objeto JSON
-                        //Variables iguals a variables del constructor de Peticio
-                        double ID = jsonObject.getDouble("medicine_identifier");
-                        String medicine_name = jsonObject.getString("medicine_name");
-                        String typeOfAdministration = jsonObject.getString("type_of_administration");
-                        String form = jsonObject.getString("form");
-                        String data = jsonObject.getString("date");
-                        String state = jsonObject.getString("state");
-                        boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
-
-                        JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipient");
-                        ArrayList<String> excipients = new ArrayList<String>();
-                        for (int j = 0; j < jsonarray_prospecto.length(); j++) {
-                            excipients.add(jsonarray_prospecto.getString(j));
+                            afegirLayoutPeticio(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
-
-                        list_peticions.add(new Peticio(ID,medicine_name,typeOfAdministration,form,data,state, prescriptionNeeded, excipients));
-
                     }
-                    afegirLayoutPeticio(list_peticions);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Manejo de errores de la solicitud
-                error.printStackTrace();
-            }
-        });
+                }, new Response.ErrorListener() {
 
-        queue.add(jsonArrayRequest);
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Manejo de errores de la solicitud
+                        error.printStackTrace();
+                    }
+                });
+
+        queue.add(jsonObjectRequest);
         return view;
     }
 
-    private void afegirLayoutPeticio(ArrayList<Peticio> peticions) {
-        //Adapter del medicament recyclerView
-        PeticioAdapter adapter = new PeticioAdapter(peticions,getActivity());
-        recyclerPeticions.setAdapter(adapter);
+    private void afegirLayoutPeticio(JSONObject peticions) {
+       ////Adapter del medicament recyclerView
+       //PeticioAdapter adapter = new PeticioAdapter(peticions,getActivity());
+       //recyclerPeticions.setAdapter(adapter);
 
-        for (Peticio peticio : peticions) {
-            // Crear el LinearLayout para cada peticio
-            LinearLayout peticioLayout = new LinearLayout(getActivity());
-            peticioLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            peticioLayout.setOrientation(LinearLayout.VERTICAL);
+       //for (Peticio peticio : peticions) {
+       //    // Crear el LinearLayout para cada peticio
+       //    LinearLayout peticioLayout = new LinearLayout(getActivity());
+       //    peticioLayout.setLayoutParams(new LinearLayout.LayoutParams(
+       //            LinearLayout.LayoutParams.MATCH_PARENT,
+       //            LinearLayout.LayoutParams.WRAP_CONTENT));
+       //    peticioLayout.setOrientation(LinearLayout.VERTICAL);
 
-            // Configurar el ID de la peticio
-            TextView nombreTextView = new TextView(getActivity());
-            nombreTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
+       //    // Configurar el ID de la peticio
+       //    TextView nombreTextView = new TextView(getActivity());
+       //    nombreTextView.setLayoutParams(new LinearLayout.LayoutParams(
+       //            LinearLayout.LayoutParams.WRAP_CONTENT,
+       //            LinearLayout.LayoutParams.WRAP_CONTENT
+       //    ));
 
             // Obtindre la referència al TextView del XML desitjat
             // Pots utilitzar la següent línia de codi per obtenir la referència al TextView del XML:
-             TextView textView = (TextView) peticioLayout.findViewById(R.id.ID);
+             //TextView textView = (TextView) peticioLayout.findViewById(R.id.ID);
             // On "nomTextView" és l'identificador del TextView en el XML
-
-            textView.setText("Nou text per a ID");
 
             // Agregar el ImageView y el TextView al LinearLayout del medicamento
             //peticioLayout.addView(imageView);
             //peticioLayout.addView(nombreTextView);
 
             // Agregar el LinearLayout del medicamento al contenedor principal
-            recyclerPeticions.addView(peticioLayout);
+            //recyclerPeticions.addView(peticioLayout);
 
             // Agregar el OnClickListener al LinearLayout del medicamento seleccionado
             /*peticioLayout.setOnClickListener(new View.OnClickListener() {
@@ -216,6 +195,6 @@ public class estatPeticionsFragment extends Fragment {
                     abrirMedicamentoSeleccionado(medicament);
                 }
             });*/
-        }
+
     }
 }
