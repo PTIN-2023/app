@@ -1,43 +1,45 @@
 package com.example.appptin;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Peticio {
-    private double ID;
-    private String medName;
-    private String typeOfAdministration;
-    private String form;
+    private int ID;
+    //private String medName;
+    //private String typeOfAdministration;
+    //private String form;
     private String date;
     private String state;
-    private boolean prescriptionNeeded;
-    private ArrayList<String> excipients;
+    //private boolean prescriptionNeeded;
+    private ArrayList<JSONObject> medicineList;
 
-    public Peticio(double ID, String medName, String typeOfAdministration, String form, String date, String state, boolean prescriptionNeeded, ArrayList<String> excipients) {
+    public Peticio(int ID, String date, String state, ArrayList<JSONObject> medicineList) {
         this.ID = ID;
-        this.medName = medName;
-        this.typeOfAdministration = typeOfAdministration;
-        this.form = form;
+        //this.medName = medName;
+        //this.typeOfAdministration = typeOfAdministration;
+        //this.form = form;
         this.date = date;
         this.state = state;
-        this.prescriptionNeeded = prescriptionNeeded;
-        this.excipients = excipients;
+        //this.prescriptionNeeded = prescriptionNeeded;
+        this.medicineList = medicineList;
     }
 
-    public double getID() {
+    public int getID() {
         return ID;
     }
 
-    public String getMedName() {
+    /*public String getMedName() {
         return medName;
-    }
+    }*/
 
-    public String getTypeOfAdministration() {
+    /*public String getTypeOfAdministration() {
         return typeOfAdministration;
-    }
+    }*/
 
-    public String getForm() {
+    /*public String getForm() {
         return form;
-    }
+    }*/
 
     public String getDate() {
         return date;
@@ -46,21 +48,21 @@ public class Peticio {
     public String getState() {
         return state;
     }
-    public boolean getprescriptionNeeded() {
+    /*public boolean getprescriptionNeeded() {
         return prescriptionNeeded;
+    }*/
+
+    public ArrayList<JSONObject> getMedicines() {
+        return medicineList;
     }
 
-    public ArrayList<String> getExcipients() {
-        return excipients;
-    }
-
-    public String getExcipientsList() {
+    /*public String getExcipientsList() {
         String lista="";
 
-        for (String element : getExcipients()) {
+        for (JSONObject element : getExcipients()) {
             lista += "  * "+ element +"\n";
         }
         return lista;
-    }
+    }*/
 
 }

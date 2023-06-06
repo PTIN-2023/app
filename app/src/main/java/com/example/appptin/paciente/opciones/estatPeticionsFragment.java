@@ -13,22 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.Medicament;
 import com.example.appptin.MedicamentAdapter;
 import com.example.appptin.Peticio;
 import com.example.appptin.R;
-import com.example.appptin.login;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,8 +94,8 @@ public class estatPeticionsFragment extends Fragment {
         PeticioAdapter adapter = new PeticioAdapter(list_peticions,getActivity());
         recyclerPeticions.setAdapter(adapter);
 
-        Peticio peticioProva = new Peticio(1, "a@a", "a", "a", "a", "a", false, new ArrayList<>());
-        list_peticions.add(peticioProva);
+        //Peticio peticioProva = new Peticio(1, "a@a", "a", new ArrayList<>());
+        //list_peticions.add(peticioProva);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
@@ -133,12 +128,42 @@ public class estatPeticionsFragment extends Fragment {
                         System.out.println("MENSAJE: " + response);
 
                         try {
-                            JSONObject jsonObject = new JSONObject();
-                            jsonObject = response;
-                            System.out.println("result: " + response.getString("result"));
+                            //JSONObject jsonObject = new JSONObject();
+                            //jsonObject = response;
+                            //System.out.println("result: " + response.getString("result"));
+
+                            String result = response.getString("result");
+                            if (result.equals("success")) {
+                                JSONArray data = response.getJSONArray("data");
+                                for (int i = 0; i < data.length(); i++) {
+                                    JSONObject order = data.getJSONObject(i);
+                                    int orderIdentifier = order.getInt("order_identifier");
+                                    String date = order.getString("date");
+                                    String state = order.getString("state");
+
+                                    JSONArray medicineList = order.getJSONArray("medicine_list");
+                                    ArrayList<JSONObject> medicines = new ArrayList<>();
+                                    for (int j = 0; j < medicineList.length(); j++) {
+                                        medicines.add(medicineList.getJSONObject(j));
+                                        System.out.println("Medicine: " + medicines.get(j));
+                                        //JSONObject medicine = medicineList.getJSONObject(j);
+                                    }
+
+                                    System.out.println("Order Identifier: " + orderIdentifier);
+                                    System.out.println("Date: " + date);
+                                    System.out.println("State: " + state);
+                                    // Imprimir los detalles de los medicamentos
+                                    /*for (Medicine medicine : medicines) {
+                                        System.out.println("Medicine: " + medicine.getName());
+                                        // Imprimir otros detalles del medicamento
+                                    }*/
+                                    list_peticions.add(new Peticio(orderIdentifier, date, state, medicines));
+                                }
+                                Creacio_elements_RecyclerView(list_peticions);
+                            }
 
 
-                            afegirLayoutPeticio(response);
+                            //afegirLayoutPeticio(response);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -154,6 +179,18 @@ public class estatPeticionsFragment extends Fragment {
 
         queue.add(jsonObjectRequest);
         return view;
+    }
+
+    private void Creacio_elements_RecyclerView(ArrayList<Peticio> list_peticions ){
+        //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerPeticions.setLayoutManager(layoutManager);
+
+        // Creación del adapter con la nueva lista de elementos búscados
+        PeticioAdapter adapter = new PeticioAdapter(list_peticions,getActivity());
+
+        recyclerPeticions.setAdapter(adapter);
+
     }
 
     private void afegirLayoutPeticio(JSONObject peticions) {

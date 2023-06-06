@@ -26,7 +26,9 @@ public class PeticioAdapter extends RecyclerView.Adapter<PeticioAdapter.PeticioV
 public PeticioAdapter(ArrayList<Peticio> peticions, FragmentActivity activity) {
         this.peticions = peticions;
         this.activity = activity;
+        if (activity != null) {
         builder = new AlertDialog.Builder(activity);
+        }
         }
 
 @NonNull
@@ -39,13 +41,13 @@ public PeticioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewT
 @Override
 public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
     Peticio peticio = peticions.get(position);
-    holder.bind(peticio);
+    //holder.bind(peticio);
 
     //Assignem valors als components del peticio_item.xml
-    /*holder.txtID.setText((int) peticio.getID());
+    holder.txtID.setText(String.valueOf(peticio.getID()));
     holder.txtData.setText(peticio.getDate());
     holder.txtEstat.setText(peticio.getState());
-    holder.txtDetalls.setText(peticio.getExcipientsList());*/
+    //holder.txtDetalls.setText(peticio.getExcipientsList());
     }
 
 @Override
@@ -58,7 +60,6 @@ public class PeticioViewHolder extends RecyclerView.ViewHolder {
     private TextView txtID;
     private TextView txtData;
     private TextView txtEstat;
-    private TextView txtDetalls;
 
     public PeticioViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -66,7 +67,7 @@ public class PeticioViewHolder extends RecyclerView.ViewHolder {
         txtID = itemView.findViewById(R.id.ID);
         txtData = itemView.findViewById(R.id.Data_compra);
         txtEstat = itemView.findViewById(R.id.estat);
-        txtDetalls = itemView.findViewById(R.id.detalls);
+        //txtDetalls = itemView.findViewById(R.id.detalls);
         //txtDescripcio = itemView.findViewById(R.id.txtDescripcio);
     }
 
