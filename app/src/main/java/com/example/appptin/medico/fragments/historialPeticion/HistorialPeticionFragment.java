@@ -1,6 +1,7 @@
 package com.example.appptin.medico.fragments.historialPeticion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -17,18 +18,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.Medicament;
 import com.example.appptin.R;
 import com.example.appptin.login;
 import com.example.appptin.medico.conexion.Conexion_json;
 import com.example.appptin.medico.conexion.InformacionBase;
+import com.example.appptin.welcome_page;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -274,46 +278,41 @@ public class HistorialPeticionFragment extends Fragment {
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_doctor_pending_confirmations";
-        JSONArray jsonBody = new JSONArray();
+        JSONObject jsonBody = new JSONObject();
 
         // Datos enviados
         try {
-            JSONObject jsonObject = new JSONObject();
+            jsonBody.put("session_token", login.getSession_token());
+            jsonBody.put("confirmations_per_page", 5);
+            jsonBody.put("page", 1);
 
-            jsonObject.put("session_token", login.getSession_token());
-            jsonObject.put("confirmations_per_page", 5);
-            jsonObject.put("page", 1);
-
-            jsonBody.put(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         // Datos devueltos
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
-                public void onResponse(JSONArray response) {
-                    // Manejar la respuesta exitosa
-                    System.out.println(" ******** Se reciben datos *******");
-                    // Otro código de manejo de la respuesta JSON
-                }
-            },
-                new Response.ErrorListener() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
-                public void onErrorResponse(VolleyError error) {
-                    // Manejo de errores de la solicitud
-                    error.printStackTrace();
+                public void onResponse(JSONObject response) {
+                    System.out.println("MENSAJE: " + response);
+                 }
+             }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Manejo de errores de la solicitud
+                error.printStackTrace();
 
-                    if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
-                        // Error interno del servidor (código de respuesta 500)
-                        Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
-                    } else {
-                        // Otro tipo de error de solicitud
-                        Log.e(TAG, "FALLO EN EL CLIENTE");
-                    }
+                if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                    // Error interno del servidor (código de respuesta 500)
+                    Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
+                } else {
+                    // Otro tipo de error de solicitud
+                    Log.e(TAG, "FALLO EN EL CLIENTE");
                 }
-            });
+            }
+        });
 
-        queue.add(jsonArrayRequest);
+        queue.add(jsonObjectRequest);
 
     }
     private void api_informacion_historial_peticiones(){
@@ -322,46 +321,41 @@ public class HistorialPeticionFragment extends Fragment {
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_doctor_approved_confirmations";
-        JSONArray jsonBody = new JSONArray();
+        JSONObject jsonBody = new JSONObject();
 
         // Datos enviados
         try {
-            JSONObject jsonObject = new JSONObject();
+            jsonBody.put("session_token", login.getSession_token());
+            jsonBody.put("confirmations_per_page", 5);
+            jsonBody.put("page", 1);
 
-            jsonObject.put("session_token", login.getSession_token());
-            jsonObject.put("confirmations_per_page", 5);
-            jsonObject.put("page", 1);
-
-            jsonBody.put(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         // Datos devueltos
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
-            public void onResponse(JSONArray response) {
-                // Manejar la respuesta exitosa
-                System.out.println(" ******** Se reciben datos *******");
-                // Otro código de manejo de la respuesta JSON
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("MENSAJE: " + response);
             }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Manejo de errores de la solicitud
-                        error.printStackTrace();
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Manejo de errores de la solicitud
+                error.printStackTrace();
 
-                        if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
-                            // Error interno del servidor (código de respuesta 500)
-                            Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
-                        } else {
-                            // Otro tipo de error de solicitud
-                            Log.e(TAG, "FALLO EN EL CLIENTE");
-                        }
-                    }
-                });
+                if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                    // Error interno del servidor (código de respuesta 500)
+                    Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
+                } else {
+                    // Otro tipo de error de solicitud
+                    Log.e(TAG, "FALLO EN EL CLIENTE");
+                }
+            }
+        });
 
-        queue.add(jsonArrayRequest);
+        queue.add(jsonObjectRequest);
 
     }
 }
