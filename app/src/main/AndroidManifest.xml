@@ -45,7 +45,7 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
-        <activity android:name=".HomeFragment">
+        <activity android:name=".QrFragment">
 
             <!-- otras configuraciones de la actividad -->
         </activity>

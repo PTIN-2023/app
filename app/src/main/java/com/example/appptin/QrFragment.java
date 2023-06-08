@@ -2,14 +2,11 @@ package com.example.appptin;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.Gravity;
@@ -18,11 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.PopupWindow;
-import com.example.appptin.EncryptionUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,14 +24,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appptin.paciente.Patient;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HomeFragment extends Fragment {
+public class QrFragment extends Fragment {
 
     Button btnScan;
     EditText txtResultant;
@@ -57,7 +50,7 @@ public class HomeFragment extends Fragment {
 
     private PopupWindow popupWindow;
 
-    public HomeFragment() {
+    public QrFragment() {
         // Required empty public constructor
     }
 
@@ -70,8 +63,8 @@ public class HomeFragment extends Fragment {
      * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static QrFragment newInstance(String param1, String param2) {
+        QrFragment fragment = new QrFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -128,7 +121,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Acció a realitzar quan es faci clic al botó
-                IntentIntegrator integrador = IntentIntegrator.forSupportFragment(HomeFragment.this);
+                IntentIntegrator integrador = IntentIntegrator.forSupportFragment(QrFragment.this);
                 integrador.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
                 integrador.setPrompt("Lector QR");
                 integrador.setCameraId(0);
@@ -227,9 +220,11 @@ public class HomeFragment extends Fragment {
                 } else if (contents.charAt(0) == '0') {
                     // El primer caràcter és un "0"
                     // Realitza les accions desitjades
+                    //Afegir medicines de la recepta a la cistella??
                     System.out.println("El primer caràcter és un 0");
                     // Treu el primer caràcter del contingut
-                    String resultant = contents.substring(1);
+                    String recepta = contents.substring(1);
+
                 } else {
                     // El primer caràcter no és ni "1" ni "0"
                     // Realitza les accions desitjades

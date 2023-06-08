@@ -1,17 +1,12 @@
 package com.example.appptin;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -78,7 +73,7 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
                     replaceFragments(new CistellaFragment());
                     break;
                 case R.id.scanQR:
-                    replaceFragments(new HomeFragment());
+                    replaceFragments(new QrFragment());
                     //Ahora el scan QR se muestra donde antes iba la pantalla opciones
                     break;
 
