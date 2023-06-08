@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginRight="5sp"
-        android:layout_marginLeft="5sp"
+        android:layout_marginLeft="5dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -59,7 +59,7 @@
             <Spinner
                 android:id="@+id/sp_historial_peticion_ordenar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:fontFamily="@font/rinkart_italic"
                 android:layout_gravity="right"
                 android:entries="@array/sort_options" />

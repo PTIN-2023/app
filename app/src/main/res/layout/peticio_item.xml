@@ -5,48 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/ID"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="ID"
-        app:layout_constraintEnd_toStartOf="@+id/Data_compra"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/Data_compra"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/data_compra"
-        app:layout_constraintEnd_toStartOf="@+id/estat"
-        app:layout_constraintStart_toEndOf="@+id/ID"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/ID"
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:text="ID"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/estat"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/estat"
-        app:layout_constraintEnd_toStartOf="@+id/detalls"
-        app:layout_constraintStart_toEndOf="@+id/Data_compra"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/Data_compra"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@string/data_compra" />
 
-    <TextView
-        android:id="@+id/detalls"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/detalls"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/estat"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/estat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@string/estat" />
+
+        <ImageButton
+            android:id="@+id/btn_detalls"
+            android:src="@drawable/baseline_info_24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:gravity="center"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

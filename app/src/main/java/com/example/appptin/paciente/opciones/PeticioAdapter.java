@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appptin.Medicament;
 import com.example.appptin.Peticio;
 import com.example.appptin.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -48,6 +52,48 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
     holder.txtData.setText(peticio.getDate());
     holder.txtEstat.setText(peticio.getState());
     //holder.txtDetalls.setText(peticio.getExcipientsList());
+
+    // Crea el diàleg d'alerta en el clic del botó "btn_detalls"
+    holder.BtnDetalls.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mostrarDetallsMedicaments(peticio);
+        }
+    });
+    }
+
+    private void mostrarDetallsMedicaments(Peticio peticio) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Detalles de los medicamentos");
+
+        ArrayList<JSONObject> medicines = peticio.getMedicines();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (JSONObject medicine : medicines) {
+            try {
+                String medName = medicine.getString("med_name");
+                String form = medicine.getString("form");
+                String typeOfAdministration = medicine.getString("type_of_administration");
+                boolean prescriptionNeeded = medicine.getBoolean("prescription_needed");
+                double pvp = medicine.getDouble("pvp");
+
+                stringBuilder.append("Nom del medicament: ").append(medName).append("\n");
+                stringBuilder.append("Forma: ").append(form).append("\n");
+                stringBuilder.append("Administració: ").append(typeOfAdministration).append("\n");
+                if (prescriptionNeeded == true) {
+                    stringBuilder.append("Prescripció requerida: ").append("Sí").append("\n");
+                }
+                else {
+                    stringBuilder.append("Prescripció requerida: ").append("No").append("\n");
+                }
+                stringBuilder.append("Preu: ").append(pvp).append("" + "€").append("\n\n");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        builder.setMessage(stringBuilder.toString());
+        builder.setPositiveButton("Acceptar", null);
+        builder.show();
     }
 
 @Override
@@ -60,6 +106,7 @@ public class PeticioViewHolder extends RecyclerView.ViewHolder {
     private TextView txtID;
     private TextView txtData;
     private TextView txtEstat;
+    private ImageButton BtnDetalls;
 
     public PeticioViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -67,8 +114,7 @@ public class PeticioViewHolder extends RecyclerView.ViewHolder {
         txtID = itemView.findViewById(R.id.ID);
         txtData = itemView.findViewById(R.id.Data_compra);
         txtEstat = itemView.findViewById(R.id.estat);
-        //txtDetalls = itemView.findViewById(R.id.detalls);
-        //txtDescripcio = itemView.findViewById(R.id.txtDescripcio);
+        BtnDetalls = itemView.findViewById(R.id.btn_detalls);
     }
 
     public void bind(Peticio medicament) {
