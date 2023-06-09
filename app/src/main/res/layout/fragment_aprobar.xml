@@ -140,10 +140,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rinkart"
+                    android:background="?attr/colorPrimary"
+                    android:textSize="22dp"
+                    android:text="Opinió:"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/commentTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txt_peticion_comentario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textStyle="bold"
+                        android:hint="Escriu el teu comentari aquí" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
