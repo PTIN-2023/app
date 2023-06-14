@@ -49,6 +49,7 @@ public class QrFragment extends Fragment {
     private String description;
 
     private PopupWindow popupWindow;
+    private int content;
 
     public QrFragment() {
         // Required empty public constructor
@@ -81,16 +82,11 @@ public class QrFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //((AppCompatActivity)getActivity()).getSupportActionBar().show();
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         TextView txtResultant = rootView.findViewById(R.id.txtResultant);
         Button btnScan = rootView.findViewById(R.id.btnScan);
@@ -105,9 +101,6 @@ public class QrFragment extends Fragment {
 
         initPopup();
 
-        //return view;
-
-
         return rootView;
     }
 
@@ -115,22 +108,21 @@ public class QrFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button btnScan = view.findViewById(R.id.btnScan);
-        //EditText txtResultant = view.findViewById(R.id.txtResultant);
         txtResultant = view.findViewById(R.id.txtResultant);
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Acció a realitzar quan es faci clic al botó
-                IntentIntegrator integrador = IntentIntegrator.forSupportFragment(QrFragment.this);
-                integrador.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
-                integrador.setPrompt("Lector QR");
-                integrador.setCameraId(0);
-                integrador.setBeepEnabled(true);
-                integrador.setBarcodeImageEnabled(true);
-                integrador.initiateScan();
+                IntentIntegrator integrator = IntentIntegrator.forSupportFragment(QrFragment.this);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+                integrator.setPrompt("Lector QR");
+                integrator.setCameraId(0);
+                integrator.setBeepEnabled(true);
+                integrator.setBarcodeImageEnabled(true);
+                integrator.initiateScan();
             }
         });
     }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -147,16 +139,12 @@ public class QrFragment extends Fragment {
             } else {
                 String contents = result.getContents();
                 if (contents.charAt(0) == '1') {  //Si es un 1 és un paquet
-                    // El primer caràcter és un "1"
-                    // Realitza les accions desitjades
-                    System.out.println("El primer caràcter és un 1");
-                    // Treu el primer caràcter del contingut
                     String resultant = contents.substring(1);
-                    String url = apiUrl + "/api/check_order"; // Reemplaza con la dirección de tu API
+                    String url = apiUrl + "/api/check_order";
 
                     JSONObject jsonBody = new JSONObject();
                     try {
-                        int content = Integer.parseInt(resultant);
+                        content = Integer.parseInt(resultant);
                         jsonBody.put("session_token", login.getSession_token() );
                         jsonBody.put("order_identifier", content);
                         System.out.println("jsonBody " + jsonBody);
@@ -164,83 +152,50 @@ public class QrFragment extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    //boolean exists = response.getBoolean("exists");
-                                    System.out.println("a8a: " + response);
-                                    // if(response.getString("valid")!= null){
-                                    //     resultat = response.getString("valid");
-                                    //     description = "";
-                                    // }
-                                    // else{
 
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            System.out.println("a8a: " + response);
 
-                                    // resultat = response.getString("result");
-                                    // if(response.getString("description")!=null){
-                                    //     description = response.getString("description");
-                                    // }
-                                    // else{
-                                    //     description ="";
-                                    // }
-
-                                    // //String valid = response.getString("valid");
-                                    // // Utiliza los valores extraídos según sea necesario
-
-                                    // System.out.println("holaaaa" + resultat + " " + description);
-                                    // }
-
-                                    // Treu el primer caràcter del contingut
-                                    //String resultant = contents.substring(1);
-                                    String resu = (resultat + " " + description);
-                                    String[] items = resu.split("\n");
-                                    //MyDialogFragment.newInstance(items).show(getChildFragmentManager(), "myDialog");
-                                    txtResultant.setText((CharSequence) response);
-
-                                    if (result.equals("ok")) {
-                                        System.out.println("Tot ha anat bé");
-                                    } else {
-                                        System.out.println("Alguna cosa ha fallat");
-                                        //Fer Pop-Up o algo per notificar l'usuari
+                            try {
+                                if (response.has("valid")) {
+                                    showPopupDialog("Error", response.getString("valid"));
+                                } else {
+                                    try {
+                                        showPopupDialog("Lectura correcta de la comanda n"+ content, response.getString("result"));
+                                    } catch (JSONException e) {
+                                        throw new RuntimeException(e);
                                     }
                                 }
-
-
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
                             }
-                            ,new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        // Error al realizar la solicitud
-                                        error.printStackTrace();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
                         }
                     });
                     queue.add(jsonObjectRequest);
-
                 } else if (contents.charAt(0) == '0') {
-                    // El primer caràcter és un "0"
-                    // Realitza les accions desitjades
-                    //Afegir medicines de la recepta a la cistella??
-                    System.out.println("El primer caràcter és un 0");
-                    // Treu el primer caràcter del contingut
                     String recepta = contents.substring(1);
-
+                    showPopupDialog("Aquest QR correspon a una recepta", "Encara estem treballant per acabar de implementar-ho");
+                    // Resta de lògica per a la recepta
                 } else {
-                    // El primer caràcter no és ni "1" ni "0"
-                    // Realitza les accions desitjades
-                    System.out.println("El primer caràcter no és ni 1 ni 0");
+                    showPopupDialog("Aquest QR no és correcte", "Prova d'escanejar un QR que et proporcioni Transmed");
                 }
-
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     private void initPopup() {
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.codi_recepta_popup, null);
 
-        // Crear pop-up window
         popupWindow = new PopupWindow(
                 popupView,
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -248,7 +203,6 @@ public class QrFragment extends Fragment {
                 true
         );
 
-        // Configurar elements del pop-up
         EditText editText = popupView.findViewById(R.id.editText);
         Button btnSubmit = popupView.findViewById(R.id.btnSubmit);
 
@@ -257,9 +211,17 @@ public class QrFragment extends Fragment {
             public void onClick(View v) {
                 String text = editText.getText().toString();
                 // Mostrar el text en la pantalla home
+                showPopupDialog("Text introduït", text);
                 popupWindow.dismiss();
             }
         });
     }
-}
 
+    private void showPopupDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", null)
+                .show();
+    }
+}
