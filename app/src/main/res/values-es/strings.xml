@@ -125,6 +125,7 @@
     //fragment_home.xml
     <string name="scanQR">Escanear QR</string>
     <string name="afegir_codi_recepta">Añadir código de receta</string>
+    <string name="afegir_codi">Añadir código</string>
 
     //activity_login_oregistre.xml
     <string name="registre">Registro</string>
@@ -157,6 +158,9 @@
     //codi_recepta_popup.xml
     <string name="intro_codi_recepta">Introduce el código de la receta</string>
     <string name="enviar">Enviar</string>
+
+    //codi popup.xml
+    <string name="intro_codi">Introduce el código</string>
 
     //fragment_cistella.xml
     <string name="finalitzar_compra">Finalizar Compra</string>

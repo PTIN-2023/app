@@ -31,7 +31,7 @@
         android:id="@+id/button_recepta"
         android:layout_width="281dp"
         android:layout_height="69dp"
-        android:text="@string/afegir_codi_recepta"
+        android:text="@string/afegir_codi"
         android:fontFamily="@font/rinkart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

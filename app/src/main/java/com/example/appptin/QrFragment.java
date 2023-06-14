@@ -34,7 +34,6 @@ public class QrFragment extends Fragment {
 
     Button btnScan;
     EditText txtResultant;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -176,6 +175,15 @@ public class QrFragment extends Fragment {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             error.printStackTrace();
+
+                            if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                                // Error interno del servidor (código de respuesta 500)
+                                showPopupDialog("Semba que hi ha problemas amb el servidor :/",
+                                        "els de la api estan menjant pipas");
+                            } else {
+                                showPopupDialog("Tenim petits invonvenients per completar la tasca :,|",
+                                        "estem treballant per arreglar-ho");
+                            }
                         }
                     });
                     queue.add(jsonObjectRequest);
@@ -183,6 +191,9 @@ public class QrFragment extends Fragment {
                     String recepta = contents.substring(1);
                     showPopupDialog("Aquest QR correspon a una recepta", "Encara estem treballant per acabar de implementar-ho");
                     // Resta de lògica per a la recepta
+
+                    // TODO terminar de recibir los medicamentos de la receta y añadirlos a la cistella
+
                 } else {
                     showPopupDialog("Aquest QR no és correcte", "Prova d'escanejar un QR que et proporcioni Transmed");
                 }
@@ -195,6 +206,8 @@ public class QrFragment extends Fragment {
     private void initPopup() {
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.codi_recepta_popup, null);
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         popupWindow = new PopupWindow(
                 popupView,
@@ -212,7 +225,73 @@ public class QrFragment extends Fragment {
                 String text = editText.getText().toString();
                 // Mostrar el text en la pantalla home
                 showPopupDialog("Text introduït", text);
-                popupWindow.dismiss();
+
+                //TODO tiene que diferenciar entre el código de una receta y el de una order y hacer las acciones especificas para cada uno
+
+                Resources r = getResources();
+                String apiUrl = r.getString(R.string.api_base_url);
+
+                if (text.charAt(0) == '0') {
+                    String code = text.substring(1);
+                    System.out.println("Recipe code:" + code);
+                } else if (text.charAt(0) == '1') {
+                    String code = text.substring(1);
+                    System.out.println("Order code:" + code);
+
+                    String url = apiUrl + "/api/check_order";
+
+                    JSONObject jsonBody = new JSONObject();
+
+                    try {
+                        content = Integer.parseInt(code);
+                        System.out.println("Processed order code: " + content);
+                        jsonBody.put("session_token", login.getSession_token() );
+                        jsonBody.put("order_identifier", content);
+                        System.out.println("jsonBody " + jsonBody);
+                        System.out.println("asdfa"+login.getSession_token());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            System.out.println("response from api: " + response);
+
+                            try {
+                                if (response.has("valid")) {
+                                    showPopupDialog("Error", response.getString("valid"));
+                                } else {
+                                    try {
+                                        showPopupDialog("Lectura correcta de la comanda n"+ content, response.getString("result"));
+                                    } catch (JSONException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+
+                            if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                                // Error interno del servidor (código de respuesta 500)
+                                showPopupDialog("Semba que hi ha problemas amb el servidor :/",
+                                        "els de la api estan menjant pipas");
+                            } else {
+                                showPopupDialog("Tenim petits invonvenients per completar la tasca :,|",
+                                        "estem treballant per arreglar-ho");
+                            }
+                        }
+                    });
+                    queue.add(jsonObjectRequest);
+                } else {
+                    System.out.println("Codi erroni");
+                    showPopupDialog("Has introduit un codi erroni", "molt malament");
+                }
             }
         });
     }
