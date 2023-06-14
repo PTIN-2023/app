@@ -135,8 +135,8 @@ public class MedicamentsFragment extends Fragment {
             pvpMin = args.getString("minPrice");
             pvpMax = args.getString("maxPrice");
             prescriptionNeeded = args.getBoolean("prescriptionNeeded");
-            typeOfAdministration = args.getStringArrayList("via");
-            form = args.getStringArrayList("format");
+            typeOfAdministration = args.getStringArrayList("via"); //això ha de ser un json amb els tipus
+            form = args.getStringArrayList("format"); //això ha de ser un json amb els formats
 
             // mostrem resultats
             System.out.println("Nom Medicament: " + medName + "\nMin Price: " + pvpMin + "\nMax Price: " + pvpMax + "\nPrescription Needed: " + prescriptionNeeded);
@@ -163,28 +163,31 @@ public class MedicamentsFragment extends Fragment {
 
 
             jsonObject.put("session_token", session_token);
-            jsonObject.put("filter", false);
-            jsonObject.put("meds_per_page", 1);
-            jsonObject.put("page", 1);
+            //jsonObject.put("filter", false);
+
+            JSONObject filtre = new JSONObject();
+            filtre.put("meds_per_page", 1);
+            filtre.put("page", 1);
             if (medName != null && !medName.isEmpty()) {
-                jsonObject.put("med_name", medName);
+                filtre.put("med_name", medName);
             }
-            if (pvpMin != null) {
-                jsonObject.put("pvp_min", pvpMin);
-            }
-            if (pvpMax != null) {
-                jsonObject.put("pvp_max", pvpMax);
-            }
+            //if (pvpMin != null) {
+            //    filtre.put("pvp_min", pvpMin);
+            //}
+            //if (pvpMax != null) {
+            //    filtre.put("pvp_max", pvpMax);
+            //}
             if (prescriptionNeeded != false) {
-                jsonObject.put("prescription_needed", prescriptionNeeded);
+                filtre.put("prescription_needed", prescriptionNeeded);
             }
             if (form != null && !form.isEmpty()) {
-                jsonObject.put("form", form);
+                filtre.put("form", form);
             }
             if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
-                jsonObject.put("type_of_administration", typeOfAdministration);
+                filtre.put("type_of_administration", typeOfAdministration);
             }
-
+            System.out.println("Això és el filtro" + filtre);
+            jsonObject.put("filter", filtre);
         } catch (JSONException e) {
             e.printStackTrace();
         }
