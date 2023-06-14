@@ -32,10 +32,8 @@ public class FiltreFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    //private ArrayList<String> via;
-    JSONObject via = new JSONObject();
-    //private ArrayList<String> format;
-    JSONObject format = new JSONObject();
+    private String[] via;
+    private ArrayList<String> format;
     private EditText editTextMinPrice;
     private EditText editTextMaxPrice;
     private EditText editTextMedName;
@@ -105,7 +103,7 @@ public class FiltreFragment extends Fragment {
         });
 
         // definim 2 arrays
-        via = new ArrayList<>();
+        ArrayList<String> via = new ArrayList<>();
         format = new ArrayList<>();
 
         // nom medicament
@@ -151,66 +149,54 @@ public class FiltreFragment extends Fragment {
 
                 // obtenim necessitat prescripcio
                 boolean prescriptionNeeded = checkBoxPrescription.isChecked();
+                    //ARREGLAR AIXÒ QUE FOT ASCO
 
-                // obtenim via
+                // obtenim via - type of administration
                 boolean oralSelected = checkBoxOral.isChecked();
                 if (oralSelected)
-                    via.put("oral", oral);
-                    //via.add("oral");
+                    via.add ("Oral");
                 boolean inyectableSelected = checkBoxInyectable.isChecked();
                 if (inyectableSelected)
-                    via.put("inyectable", inyectable);
-                    //via.add("inyectable");
+                    via.add("inyectable");
                 boolean SublingualSelected = checkBoxSublingual.isChecked();
                 if (SublingualSelected)
-                    via.put("Sublingual", Sublingual);
-                    //via.add("Sublingual");
+                    via.add("Sublingual");
                 boolean VaginalSelected = checkBoxVaginal.isChecked();
                 if (VaginalSelected)
-                    via.put("Vaginal", Vaginal);
-                    //via.add("Vaginal");
+                    via.add("Vaginal");
                 boolean OcularSelected = checkBoxOcular.isChecked();
                 if (OcularSelected)
-                    via.put("Ocular", Ocular);
-                    //via.add("Ocular");
-
-                // obtenim format
-                boolean TabletasSelected = checkBoxTabletas.isChecked();
-                if (TabletasSelected)
-                    format.put("Tabletas", Tabletas);
-                    //format.add("Tabletas");
-                boolean LiquidosSelected = checkBoxLiquidos.isChecked();
-                if (LiquidosSelected)
-                    format.put("Liquidos", Liquidos);
-                    //format.add("Liquidos");
-                boolean CapsulasSelected = checkBoxCapsulas.isChecked();
-                if (CapsulasSelected)
-                    format.put("Capsulas", Capsulas);
-                    //format.add("Capsulas");
+                    via.add("Ocular");
                 boolean TopicosSelected = checkBoxTopicos.isChecked();
                 if (TopicosSelected)
-                    format.put("Topicos", Topicos);
-                    //format.add("Topicos");
+                    via.add("Topical");
+
+                // obtenim format - type of administration
+                boolean TabletasSelected = checkBoxTabletas.isChecked();
+                if (TabletasSelected)
+                    format.add("Tablets");
+                boolean LiquidosSelected = checkBoxLiquidos.isChecked();
+                if (LiquidosSelected)
+                    format.add("Liquid");
+                boolean CapsulasSelected = checkBoxCapsulas.isChecked();
+                if (CapsulasSelected)
+                    format.add("Capsules");
+
                 boolean SupositoriosSelected = checkBoxSupositorios.isChecked();
                 if (SupositoriosSelected)
-                    format.put("Supositorios", Supositorios);
-                    //format.add("Supositorios");
+                    format.add("Supositorios");
                 boolean GotasSelected = checkBoxGotas.isChecked();
                 if (GotasSelected)
-                    format.put("Gotas", Gotas);
-                    //format.add("Gotas");
+                    format.add("Gotas");
                 boolean InhaladoresSelected = checkBoxInhaladores.isChecked();
                 if (InhaladoresSelected)
-                    format.put("Inhaladores", Inhaladores);
-                    //format.add("Inhaladores");
+                    format.add("Inhaladores");
                 boolean InyeccionesSelected = checkBoxInyecciones.isChecked();
                 if (InyeccionesSelected)
-                    format.put("Inyecciones", Inyecciones);
-                    //format.add("Inyecciones");
+                    format.add("Inyecciones");
                 boolean ImplantesSelected = checkBoxImplantes.isChecked();
                 if (ImplantesSelected)
-                    format.put("Implantes", Implantes);
-                    //format.add("Implantes");
+                    format.add("Implantes");
 
 
 
@@ -225,8 +211,8 @@ public class FiltreFragment extends Fragment {
                 bundle.putString("minPrice", minPrice);
                 bundle.putString("maxPrice", maxPrice);
                 bundle.putBoolean("prescriptionNeeded", prescriptionNeeded);
-                bundle.putString("via", via.toString());
-                bundle.putString("format", format.toString());
+                bundle.putStringArrayList("via", via);
+                bundle.putStringArrayList("format", format);
 
                 // Create an instance of the fragment and set the arguments
                 MedicamentsFragment fragment = new MedicamentsFragment();
