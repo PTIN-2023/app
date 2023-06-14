@@ -52,6 +52,8 @@ public class HistorialPeticionFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<InformacionBase> arrayList;
     ArrayList<InformacionBase> searchList;
+    ArrayList<InformacionPeticion> total_peticiones;
+    ArrayList<InformacionPeticion> search_peticiones;
     TextView titulo;
     String campo;
 
@@ -69,10 +71,11 @@ public class HistorialPeticionFragment extends Fragment {
         this.posicion = posicion;
 
         arrayList = new ArrayList<>();
+        total_peticiones = new ArrayList<>();
 
         this.cont = context;
 
-        //Leer datos de Json
+        //Leer datos de Json - Quitar cuando se lean los datos correctos desde la api
         conexion();
     }
 
@@ -110,6 +113,7 @@ public class HistorialPeticionFragment extends Fragment {
 
         //Agregar los elementos del RecyclerView
         Creacion_elementos_RecyclerView(arrayList);
+        //Creacion_elementos_RecyclerView(total_peticiones);
 
         //Adapter para el SPINER
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sort_options, android.R.layout.simple_spinner_item);
@@ -141,7 +145,6 @@ public class HistorialPeticionFragment extends Fragment {
         else if ( codi ==3) arrayList  = con.getInformePacientesFromJson(jsonString);
 
     }
-
     private void Creacion_elementos_RecyclerView(ArrayList<InformacionBase> lista_elementos ){
         //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -162,6 +165,7 @@ public class HistorialPeticionFragment extends Fragment {
             spinnerSort.setEnabled(false);
             //Guardar los Objetos de la clase PeticionClass relacionados a la búsqueda
             searchList = new ArrayList<>();
+            //search_peticiones = new ArrayList<>();
             if (query.length() > 0) {
                 //Recorrer todos los Objetos (los elementos de la lista)
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -176,6 +180,7 @@ public class HistorialPeticionFragment extends Fragment {
                 }
 
                 Creacion_elementos_RecyclerView(searchList);
+                //Creacion_elementos_RecyclerView(search_peticiones);
 
             }
             //En caso de no localzarse ningún objeto (elementos) se carga la lista de objetos completos
@@ -270,6 +275,8 @@ public class HistorialPeticionFragment extends Fragment {
         if (codi == 1) api_informacion_peticiones_aprobar();
         // Historial de peticiones
         else if (codi == 2) api_informacion_historial_peticiones();
+        // Historial pacientes
+        else if (codi == 3) System.out.println("Historial pacientes");
     }
 
     private void api_informacion_peticiones_aprobar(){
@@ -338,6 +345,66 @@ public class HistorialPeticionFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println("MENSAJE: " + response);
+
+                try {
+                    String result = response.getString("result");
+
+                    // Caso exitoso
+                    if (result.equals("ok")) {
+                        // Listado de peticiones que el doctor ha de confirmar
+                        JSONArray ordersArray = response.getJSONArray("orders");
+
+                        //Guardar los datos obtenidos
+                        for (int i = 0; i < ordersArray.length(); i++) {
+                            // Obtener el Objeto
+                            JSONObject peticionObject = ordersArray.getJSONObject(i);
+
+                            // Obtener la información del Objeto
+                            String order_identifier = peticionObject.getString("order_identifier");
+                            String date = peticionObject.getString("date");
+                            String patient_fullname = peticionObject.getString("patient_fullname");
+
+                            // Lista de medicamentos que han de ser confirmados
+                            JSONArray medicine_list_Array = peticionObject.getJSONArray("medicine_list");
+                            ArrayList<Medicament> medicine_list = new ArrayList<Medicament>();
+                            for (int j = 0; j < medicine_list_Array.length(); j++) {
+                                // Obtener objeto con los datos del medicamento
+                                JSONObject medicamentObject = medicine_list_Array.getJSONObject(i);
+
+                                String medicine_identifier = medicamentObject.getString("medicine_identifier"); //nationalCode
+                                String medicine_image_url = medicamentObject.getString("medicine_image_url");
+                                String medicine_name = medicamentObject.getString("medicine_name");
+
+                                // Verificar este campo porque en la ventana de listar medicamentos es un ObjectArray
+                                String excipient = medicamentObject.getString("excipient");
+
+                                Double pvp = medicamentObject.getDouble("pvp");
+
+                                // mismo que use_type
+                                String contents = medicamentObject.getString("contents");
+                                boolean prescriptionNeeded = medicamentObject.getBoolean("prescription_needed");
+                                String form = medicamentObject.getString("form");
+                                String typeOfAdministration = medicamentObject.getString("type_of_administration");
+
+                                //revisarlo !!!
+                                //medicine_list.add(new Medicament(medicine_name,medicine_identifier,contents,typeOfAdministration,prescriptionNeeded,pvp,form,excipient));
+                            }
+
+                            total_peticiones.add(new InformacionPeticion(order_identifier,date,patient_fullname,medicine_list));
+                        }
+
+                    }
+
+                    // Caso no exitoso, mensaje por pantalla
+                    else{
+                        System.out.println("No se han leído los datos en la api");
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+
             }
         }, new Response.ErrorListener() {
             @Override
