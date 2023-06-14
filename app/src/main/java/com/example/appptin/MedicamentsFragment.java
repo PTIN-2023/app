@@ -125,8 +125,10 @@ public class MedicamentsFragment extends Fragment {
         String pvpMin = null;
         String pvpMax = null;
         boolean prescriptionNeeded = false;
-        ArrayList typeOfAdministration = null;
-        ArrayList form = null;
+        //JSONObject typeOfAdministration = new JSONObject();
+        //JSONObject form = new JSONObject();
+        //ArrayList typeOfAdministration = null;
+        //ArrayList form = null;
 
 
         Bundle args = getArguments();
@@ -135,8 +137,15 @@ public class MedicamentsFragment extends Fragment {
             pvpMin = args.getString("minPrice");
             pvpMax = args.getString("maxPrice");
             prescriptionNeeded = args.getBoolean("prescriptionNeeded");
-            typeOfAdministration = args.getStringArrayList("via"); //això ha de ser un json amb els tipus
-            form = args.getStringArrayList("format"); //això ha de ser un json amb els formats
+            //typeOfAdministration = args.getStringArrayList("via"); //això ha de ser un json amb els tipus
+            //form = args.getStringArrayList("format"); //això ha de ser un json amb els formats
+
+            String viaString = bundle.getString("via");
+            String formatString = bundle.getString("format");
+
+            JSONObject typeOfAdministration = new JSONObject(viaString);
+            JSONObject form = new JSONObject(formatString);
+
 
             // mostrem resultats
             System.out.println("Nom Medicament: " + medName + "\nMin Price: " + pvpMin + "\nMax Price: " + pvpMax + "\nPrescription Needed: " + prescriptionNeeded);
