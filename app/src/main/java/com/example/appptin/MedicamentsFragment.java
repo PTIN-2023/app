@@ -140,8 +140,8 @@ public class MedicamentsFragment extends Fragment {
             //typeOfAdministration = args.getStringArrayList("via"); //això ha de ser un json amb els tipus
             //form = args.getStringArrayList("format"); //això ha de ser un json amb els formats
 
-            String viaString = bundle.getString("via");
-            String formatString = bundle.getString("format");
+            String viaString = args.getString("via");
+            String formatString = args.getString("format");
 
             JSONObject typeOfAdministration = new JSONObject(viaString);
             JSONObject form = new JSONObject(formatString);
