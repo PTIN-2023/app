@@ -27,10 +27,15 @@ import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import com.example.appptin.MainActivity;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class QrFragment extends Fragment {
+
+    String apiUrl;
 
     Button btnScan;
     EditText txtResultant;
@@ -49,6 +54,8 @@ public class QrFragment extends Fragment {
     private String description;
 
     private PopupWindow popupWindow;
+
+    private String recepta;
 
     public QrFragment() {
         // Required empty public constructor
@@ -82,6 +89,8 @@ public class QrFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        Resources r = getResources();
+        apiUrl = r.getString(R.string.api_base_url);
 
 
     }
@@ -91,10 +100,12 @@ public class QrFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //((AppCompatActivity)getActivity()).getSupportActionBar().show();
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_qr, container, false);
         TextView txtResultant = rootView.findViewById(R.id.txtResultant);
         Button btnScan = rootView.findViewById(R.id.btnScan);
         Button button_recepta = rootView.findViewById(R.id.button_recepta);
+
+        //BOTO RECEPTA
         button_recepta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +115,7 @@ public class QrFragment extends Fragment {
         });
 
         initPopup();
+
 
         //return view;
 
@@ -134,8 +146,7 @@ public class QrFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        Resources r = getResources();
-        String apiUrl = r.getString(R.string.api_base_url);
+
 
         if (result != null) {
             if (result.getContents() == null) {
@@ -255,11 +266,70 @@ public class QrFragment extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = editText.getText().toString();
+                String prescription_identifier = editText.getText().toString();
                 // Mostrar el text en la pantalla home
+                getRecipe(prescription_identifier);
                 popupWindow.dismiss();
+
+
             }
         });
+    }
+
+    private void getRecipe(String prescription_identifier) {
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url = apiUrl + "/api/get_prescription_meds";
+        JSONObject jsonBody = new JSONObject();
+        try {
+            //int content = Integer.parseInt(resultant);
+            jsonBody.put("session_token", login.getSession_token() );
+            jsonBody.put("prescription_identifier", prescription_identifier);
+            System.out.println("jsonBody " + jsonBody);
+            System.out.println("asdfa"+login.getSession_token());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println("Resposta: " + response);
+
+                        if (resultat.equals("ok")) {
+                            System.out.println("Tot ha anat bé");
+                            JSONArray medsArray = null;  // Assuming the array of medications is under key "meds_details"
+                            try {
+                                medsArray = response.getJSONArray("meds_details");
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                            JSONArray lista_cesta = MainActivity.getListaMedicamentos();
+                            for (int i = 0; i < medsArray.length(); i++) {
+                                JSONObject medObject = null;
+                                try {
+                                    medObject = medsArray.getJSONObject(i);
+                                    //JSONObject medId = medObject("_id"); // Assuming the ID is under key "_id"
+                                    MainActivity.setListaMedicamentos(medObject);
+                                } catch (JSONException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        } else {
+                            System.out.println("Alguna cosa ha fallat");
+                            //Fer Pop-Up o algo per notificar l'usuari
+                        }
+                    }
+
+
+                }
+                        ,new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                    }
+                });
+        queue.add(jsonObjectRequest);
     }
 }
 
