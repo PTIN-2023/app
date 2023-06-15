@@ -100,7 +100,6 @@ public class QrFragment extends Fragment {
         // Inflate the layout for this fragment
         //((AppCompatActivity)getActivity()).getSupportActionBar().show();
         View rootView = inflater.inflate(R.layout.fragment_qr, container, false);
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         TextView txtResultant = rootView.findViewById(R.id.txtResultant);
         Button btnScan = rootView.findViewById(R.id.btnScan);
         Button button_recepta = rootView.findViewById(R.id.button_recepta);
@@ -204,10 +203,10 @@ public class QrFragment extends Fragment {
                     });
                     queue.add(jsonObjectRequest);
                 } else if (contents.charAt(0) == '0') {
-                    String recepta = contents.substring(1);
+                    //String recepta = contents.substring(1);
                     //showPopupDialog("Aquest QR correspon a una recepta", "Encara estem treballant per acabar de implementar-ho");
 
-                    String code = recepta.substring(1);
+                    String code = contents.substring(1);
                     System.out.println("Recipe code:" + code);
 
                     String url = apiUrl + "/api/get_prescription_meds";
@@ -234,7 +233,7 @@ public class QrFragment extends Fragment {
                                     showPopupDialog("Error", response.getString("valid"));
                                 } else {
                                     try {
-                                        showPopupDialog("Lectura correcta de la receta n: "+ content, response.getString("result"));
+                                        showPopupDialog("Lectura correcta de la receta n: "+ code, response.getString("result"));
 
                                         JSONArray medsDetails = response.getJSONArray("meds_details");
 
@@ -332,6 +331,11 @@ public class QrFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         System.out.println("Resposta: " + response);
+                        try {
+                            resultat = response.getString("result");
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
 
                         if (resultat.equals("ok")) {
                             System.out.println("Tot ha anat bé");
@@ -341,13 +345,17 @@ public class QrFragment extends Fragment {
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }
-                            JSONArray lista_cesta = MainActivity.getListaMedicamentos();
                             for (int i = 0; i < medsArray.length(); i++) {
                                 JSONObject medObject = null;
+                                JSONObject medicament = new JSONObject();
                                 try {
                                     medObject = medsArray.getJSONObject(i);
+                                    medicament.put("nationalCode", medObject.getString("national_code"));
+                                    medicament.put("medName", medObject.getString("med_name"));
+                                    medicament.put("pvp", medObject.getString("pvp"));
+                                    medicament.put("quantitat", 1);
                                     //JSONObject medId = medObject("_id"); // Assuming the ID is under key "_id"
-                                    MainActivity.setListaMedicamentos(medObject);
+                                    MainActivity.setListaMedicamentos(medicament);
                                 } catch (JSONException e) {
                                     throw new RuntimeException(e);
                                 }
@@ -369,155 +377,12 @@ public class QrFragment extends Fragment {
                 });
         queue.add(jsonObjectRequest);
     }
-}
 
-                showPopupDialog("Text introduït", text);
-
-                //TODO tiene que diferenciar entre el código de una receta y el de una order y hacer las acciones especificas para cada uno
-
-                Resources r = getResources();
-                String apiUrl = r.getString(R.string.api_base_url);
-
-                if (text.charAt(0) == '0') {
-                    String code = text.substring(1);
-                    System.out.println("Recipe code:" + code);
-
-                    String url = apiUrl + "/api/get_prescription_meds";
-
-                    JSONObject jsonBody = new JSONObject();
-
-                    try {
-                        //content = Integer.parseInt(code);
-                        System.out.println("Processed order code: " + code);
-                        jsonBody.put("session_token", login.getSession_token() );
-                        jsonBody.put("prescription_identifier", code);
-                        System.out.println("jsonBody " + jsonBody);
-                        System.out.println("TOKEN: "+login.getSession_token());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    //final JSONArray[] medsDetails = {new JSONArray()};
-
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            System.out.println("response from api: " + response);
-
-                            try {
-                                if (response.has("valid")) {
-                                    showPopupDialog("Error", response.getString("valid"));
-                                } else {
-                                    try {
-                                        showPopupDialog("Lectura correcta de la receta n: "+ content, response.getString("result"));
-
-                                        JSONArray medsDetails = response.getJSONArray("meds_details");
-
-                                        // Per comprovar que recibim els medicaments, a l'hora de provar-ho utilitza un usuari que tingui alguna Recipe
-                                        // i al introduir el codi de la Recipe afegeix un 0 al devant.
-                                        for (int k = 0; k < medsDetails.length(); k++) {
-                                            JSONObject med = medsDetails.getJSONObject(k);
-                                            System.out.println("Nom medicina: " + med.getString("med_name"));
-                                            System.out.println("Codi nacional: " + med.getString("national_code"));
-                                            System.out.println("Tipus d'us: " + med.getString("use_type"));
-                                            System.out.println("Tipus d'administració: " + med.getString("type_of_administration"));
-                                            System.out.println("PvP: " + med.getString("pvp"));
-                                            System.out.println("Forma: " + med.getString("form"));
-                                            System.out.println("Excipients: " + med.getString("excipients"));
-                                        }
-
-                                    } catch (JSONException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }
-                            } catch (JSONException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-
-                            if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
-                                // Error interno del servidor (código de respuesta 500)
-                                showPopupDialog("Semba que hi ha problemas amb el servidor :/",
-                                        "els de la api estan menjant pipas");
-                            } else {
-                                showPopupDialog("Tenim petits invonvenients per completar la tasca :,|",
-                                        "estem treballant per arreglar-ho");
-                            }
-                        }
-                    });
-                    queue.add(jsonObjectRequest);
-
-                } else if (text.charAt(0) == '1') {
-                    String code = text.substring(1);
-                    System.out.println("Order code:" + code);
-
-                    String url = apiUrl + "/api/check_order";
-
-                    JSONObject jsonBody = new JSONObject();
-
-                    try {
-                        content = Integer.parseInt(code);
-                        System.out.println("Processed order code: " + content);
-                        jsonBody.put("session_token", login.getSession_token() );
-                        jsonBody.put("order_identifier", content);
-                        System.out.println("jsonBody " + jsonBody);
-                        System.out.println("asdfa"+login.getSession_token());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            System.out.println("response from api: " + response);
-
-                            try {
-                                if (response.has("valid")) {
-                                    showPopupDialog("Error", response.getString("valid"));
-                                } else {
-                                    try {
-                                        showPopupDialog("Lectura correcta de la comanda n"+ content, response.getString("result"));
-                                    } catch (JSONException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }
-                            } catch (JSONException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-
-                            if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
-                                // Error interno del servidor (código de respuesta 500)
-                                showPopupDialog("Semba que hi ha problemas amb el servidor :/",
-                                        "els de la api estan menjant pipas");
-                            } else {
-                                showPopupDialog("Tenim petits invonvenients per completar la tasca :,|",
-                                        "estem treballant per arreglar-ho");
-                            }
-                        }
-                    });
-                    queue.add(jsonObjectRequest);
-                } else {
-                    System.out.println("Codi erroni");
-                    showPopupDialog("Has introduit un codi erroni", "molt malament");
-                }
-            }
-        });
-    }
-
-    private void showPopupDialog(String title, String message) {
+private void showPopupDialog(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", null)
-                .show();
-    }
+        .setMessage(message)
+        .setPositiveButton("OK", null)
+        .show();
+        }
 }
