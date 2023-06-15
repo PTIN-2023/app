@@ -33,7 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class QrFragment extends Fragment {
+public class                                              QrFragment extends Fragment {
 
     String apiUrl;
 
@@ -303,9 +303,22 @@ public class QrFragment extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String prescription_identifier = editText.getText().toString();
+                String code = editText.getText().toString();
+
+                if (code.charAt(0) == '0') {
+                    // Recipe code
+                    code = code.substring(1);
+                    getRecipe(code);
+
+                } else if (code.charAt(0) == '1') {
+                    // Order code
+                    code = code.substring(1);
+                    confirmOrder(code);
+                } else {
+                    showPopupDialog("Codi incorrecte", "Revisa el codi que has introduit per confirmar que és el correcte.");
+                }
                 // Mostrar el text en la pantalla home
-                getRecipe(prescription_identifier);
+
                 popupWindow.dismiss();
 
 
@@ -339,6 +352,7 @@ public class QrFragment extends Fragment {
 
                         if (resultat.equals("ok")) {
                             System.out.println("Tot ha anat bé");
+
                             JSONArray medsArray = null;  // Assuming the array of medications is under key "meds_details"
                             try {
                                 medsArray = response.getJSONArray("meds_details");
@@ -360,6 +374,7 @@ public class QrFragment extends Fragment {
                                     throw new RuntimeException(e);
                                 }
                             }
+                            showPopupDialog("Els medicaments de la recepta s'han afegit a la cistella.","");
                         } else {
                             System.out.println("Alguna cosa ha fallat");
                             //Fer Pop-Up o algo per notificar l'usuari
@@ -378,11 +393,68 @@ public class QrFragment extends Fragment {
         queue.add(jsonObjectRequest);
     }
 
-private void showPopupDialog(String title, String message) {
+    /**
+     * Funció per enviar a la API que es confirma la recepció d'un paquet amb un codi introduit manualment
+     * @param order_identifier identificador de la order/paquet que ha de confirmar
+     */
+    private void confirmOrder(String order_identifier) {
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+
+        String url = apiUrl + "/api/check_order";
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            content = Integer.parseInt(order_identifier);
+            jsonBody.put("session_token", login.getSession_token() );
+            jsonBody.put("order_identifier", content);
+            //System.out.println("jsonBody " + jsonBody);
+            //System.out.println("asdfa"+login.getSession_token());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("a8a: " + response);
+
+                try {
+                    if (response.has("valid")) {
+                        showPopupDialog("Error", response.getString("valid"));
+                    } else {
+                        try {
+                            // Definitiu:--> showPopupDialog("Lectura correcta del codi del paquet.", "S'ha confirmat l'entrega.");
+                            showPopupDialog("Lectura correcta del codi del paquet: "+ content, response.getString("result")); // Per proves
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+
+                if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                    // Error interno del servidor (código de respuesta 500)
+                    showPopupDialog("Semba que hi ha problemas per confirmar el codi",
+                            "problema en el servidor remot");
+                } else {
+                    showPopupDialog("Algo a fallat a l'aplicació.",
+                            "Estem treballant per arreglar-ho.");
+                }
+            }
+        });
+        queue.add(jsonObjectRequest);
+    }
+    private void showPopupDialog(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(title)
         .setMessage(message)
         .setPositiveButton("OK", null)
         .show();
-        }
+    }
 }
