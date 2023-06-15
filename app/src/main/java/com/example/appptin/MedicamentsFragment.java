@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -105,12 +106,13 @@ public class MedicamentsFragment extends Fragment {
 
     @SuppressLint("MissingInflatedId")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_medicaments, container, false);
         recyclerMedicaments = view.findViewById(R.id.medicaments_recycler);
+
 
         ArrayList<Medicament> list_medicament = new ArrayList<>();
 
@@ -162,7 +164,8 @@ public class MedicamentsFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
         try {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
-            String session_token = sharedPreferences.getString("session_token", "Valor nulo");
+            //String session_token = sharedPreferences.getString("session_token", "Valor nulo");            AIXÒ NO FUNCIONA, FER-HO COM LA LINIA DE BAIX
+            String session_token = login.getSession_token();
             System.out.println(session_token);
 
 
@@ -202,7 +205,7 @@ public class MedicamentsFragment extends Fragment {
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                System.out.println(response);
                 try {
                     String result = response.getString("result");
 
@@ -230,7 +233,7 @@ public class MedicamentsFragment extends Fragment {
                             //String tipusUs = jsonObject.getString("tipus_us");
 
                             list_medicament.add(new Medicament(medName, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
-
+                            System.out.println(list_medicament);
                         }
                         //Agregar los elementos del RecyclerView
                         Creacion_elementos_RecyclerView(list_medicament);
