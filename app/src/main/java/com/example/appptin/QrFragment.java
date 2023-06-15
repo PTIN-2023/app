@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -189,10 +190,76 @@ public class QrFragment extends Fragment {
                     queue.add(jsonObjectRequest);
                 } else if (contents.charAt(0) == '0') {
                     String recepta = contents.substring(1);
-                    showPopupDialog("Aquest QR correspon a una recepta", "Encara estem treballant per acabar de implementar-ho");
-                    // Resta de lògica per a la recepta
+                    //showPopupDialog("Aquest QR correspon a una recepta", "Encara estem treballant per acabar de implementar-ho");
 
-                    // TODO terminar de recibir los medicamentos de la receta y añadirlos a la cistella
+                    String code = recepta.substring(1);
+                    System.out.println("Recipe code:" + code);
+
+                    String url = apiUrl + "/api/get_prescription_meds";
+
+                    JSONObject jsonBody = new JSONObject();
+
+                    try {
+                        //content = Integer.parseInt(code);
+                        System.out.println("Processed order code: " + code);
+                        jsonBody.put("session_token", login.getSession_token() );
+                        jsonBody.put("prescription_identifier", code);
+                        System.out.println("jsonBody " + jsonBody);
+                        System.out.println("TOKEN: "+login.getSession_token());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            System.out.println("response from api: " + response);
+
+                            try {
+                                if (response.has("valid")) {
+                                    showPopupDialog("Error", response.getString("valid"));
+                                } else {
+                                    try {
+                                        showPopupDialog("Lectura correcta de la receta n: "+ content, response.getString("result"));
+
+                                        JSONArray medsDetails = response.getJSONArray("meds_details");
+
+                                        // Per comprovar que recibim els medicaments, a l'hora de provar-ho utilitza un usuari que tingui alguna Recipe
+                                        // i al introduir el codi de la Recipe afegeix un 0 al devant.
+                                        for (int k = 0; k < medsDetails.length(); k++) {
+                                            JSONObject med = medsDetails.getJSONObject(k);
+                                            System.out.println("Nom medicina: " + med.getString("med_name"));
+                                            System.out.println("Codi nacional: " + med.getString("national_code"));
+                                            System.out.println("Tipus d'us: " + med.getString("use_type"));
+                                            System.out.println("Tipus d'administració: " + med.getString("type_of_administration"));
+                                            System.out.println("PvP: " + med.getString("pvp"));
+                                            System.out.println("Forma: " + med.getString("form"));
+                                            System.out.println("Excipients: " + med.getString("excipients"));
+                                        }
+
+                                    } catch (JSONException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+
+                            if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                                // Error interno del servidor (código de respuesta 500)
+                                showPopupDialog("Semba que hi ha problemas amb el servidor :/",
+                                        "els de la api estan menjant pipas");
+                            } else {
+                                showPopupDialog("Tenim petits invonvenients per completar la tasca :,|",
+                                        "estem treballant per arreglar-ho");
+                            }
+                        }
+                    });
+                    queue.add(jsonObjectRequest);
 
                 } else {
                     showPopupDialog("Aquest QR no és correcte", "Prova d'escanejar un QR que et proporcioni Transmed");
@@ -234,6 +301,76 @@ public class QrFragment extends Fragment {
                 if (text.charAt(0) == '0') {
                     String code = text.substring(1);
                     System.out.println("Recipe code:" + code);
+
+                    String url = apiUrl + "/api/get_prescription_meds";
+
+                    JSONObject jsonBody = new JSONObject();
+
+                    try {
+                        //content = Integer.parseInt(code);
+                        System.out.println("Processed order code: " + code);
+                        jsonBody.put("session_token", login.getSession_token() );
+                        jsonBody.put("prescription_identifier", code);
+                        System.out.println("jsonBody " + jsonBody);
+                        System.out.println("TOKEN: "+login.getSession_token());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    //final JSONArray[] medsDetails = {new JSONArray()};
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            System.out.println("response from api: " + response);
+
+                            try {
+                                if (response.has("valid")) {
+                                    showPopupDialog("Error", response.getString("valid"));
+                                } else {
+                                    try {
+                                        showPopupDialog("Lectura correcta de la receta n: "+ content, response.getString("result"));
+
+                                        JSONArray medsDetails = response.getJSONArray("meds_details");
+
+                                        // Per comprovar que recibim els medicaments, a l'hora de provar-ho utilitza un usuari que tingui alguna Recipe
+                                        // i al introduir el codi de la Recipe afegeix un 0 al devant.
+                                        for (int k = 0; k < medsDetails.length(); k++) {
+                                            JSONObject med = medsDetails.getJSONObject(k);
+                                            System.out.println("Nom medicina: " + med.getString("med_name"));
+                                            System.out.println("Codi nacional: " + med.getString("national_code"));
+                                            System.out.println("Tipus d'us: " + med.getString("use_type"));
+                                            System.out.println("Tipus d'administració: " + med.getString("type_of_administration"));
+                                            System.out.println("PvP: " + med.getString("pvp"));
+                                            System.out.println("Forma: " + med.getString("form"));
+                                            System.out.println("Excipients: " + med.getString("excipients"));
+                                        }
+
+                                    } catch (JSONException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+
+                            if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                                // Error interno del servidor (código de respuesta 500)
+                                showPopupDialog("Semba que hi ha problemas amb el servidor :/",
+                                        "els de la api estan menjant pipas");
+                            } else {
+                                showPopupDialog("Tenim petits invonvenients per completar la tasca :,|",
+                                        "estem treballant per arreglar-ho");
+                            }
+                        }
+                    });
+                    queue.add(jsonObjectRequest);
+
                 } else if (text.charAt(0) == '1') {
                     String code = text.substring(1);
                     System.out.println("Order code:" + code);
