@@ -32,7 +32,7 @@ public class FiltreFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ArrayList<String> via;
+    private String[] via;
     private ArrayList<String> format;
     private EditText editTextMinPrice;
     private EditText editTextMaxPrice;
@@ -103,7 +103,7 @@ public class FiltreFragment extends Fragment {
         });
 
         // definim 2 arrays
-        via = new ArrayList<>();
+        ArrayList<String> via = new ArrayList<>();
         format = new ArrayList<>();
 
         // nom medicament
@@ -149,11 +149,12 @@ public class FiltreFragment extends Fragment {
 
                 // obtenim necessitat prescripcio
                 boolean prescriptionNeeded = checkBoxPrescription.isChecked();
+                    //ARREGLAR AIXÒ QUE FOT ASCO
 
-                // obtenim via
+                // obtenim via - type of administration
                 boolean oralSelected = checkBoxOral.isChecked();
                 if (oralSelected)
-                    via.add("oral");
+                    via.add ("Oral");
                 boolean inyectableSelected = checkBoxInyectable.isChecked();
                 if (inyectableSelected)
                     via.add("inyectable");
@@ -166,20 +167,21 @@ public class FiltreFragment extends Fragment {
                 boolean OcularSelected = checkBoxOcular.isChecked();
                 if (OcularSelected)
                     via.add("Ocular");
-
-                // obtenim format
-                boolean TabletasSelected = checkBoxTabletas.isChecked();
-                if (TabletasSelected)
-                    format.add("Tabletas");
-                boolean LiquidosSelected = checkBoxLiquidos.isChecked();
-                if (LiquidosSelected)
-                    format.add("Liquidos");
-                boolean CapsulasSelected = checkBoxCapsulas.isChecked();
-                if (CapsulasSelected)
-                    format.add("Capsulas");
                 boolean TopicosSelected = checkBoxTopicos.isChecked();
                 if (TopicosSelected)
-                    format.add("Topicos");
+                    via.add("Topical");
+
+                // obtenim format - type of administration
+                boolean TabletasSelected = checkBoxTabletas.isChecked();
+                if (TabletasSelected)
+                    format.add("Tablets");
+                boolean LiquidosSelected = checkBoxLiquidos.isChecked();
+                if (LiquidosSelected)
+                    format.add("Liquid");
+                boolean CapsulasSelected = checkBoxCapsulas.isChecked();
+                if (CapsulasSelected)
+                    format.add("Capsules");
+
                 boolean SupositoriosSelected = checkBoxSupositorios.isChecked();
                 if (SupositoriosSelected)
                     format.add("Supositorios");
