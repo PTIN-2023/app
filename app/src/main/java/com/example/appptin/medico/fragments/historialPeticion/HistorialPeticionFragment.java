@@ -290,7 +290,7 @@ public class HistorialPeticionFragment extends Fragment {
         // Datos enviados
         try {
             jsonBody.put("session_token", login.getSession_token());
-            jsonBody.put("confirmations_per_page", 1);
+            jsonBody.put("confirmations_per_page", 4);
             jsonBody.put("page", 1);
 
         } catch (JSONException e) {
@@ -302,7 +302,7 @@ public class HistorialPeticionFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println("MENSAJE: " + response);
-
+                /*
                 try {
                     String result = response.getString("result");
 
@@ -358,8 +358,7 @@ public class HistorialPeticionFragment extends Fragment {
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
-                }
-
+                }*/
             }
         }, new Response.ErrorListener() {
             @Override
