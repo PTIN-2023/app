@@ -52,10 +52,10 @@ public class HistorialPeticionFragment extends Fragment {
     View view;
     SearchView searchView;
     RecyclerView recyclerView;
-    ArrayList<InformacionBase> arrayList;
-    ArrayList<InformacionBase> searchList;
-    ArrayList<InformacionPeticion> total_peticiones;
-    ArrayList<InformacionPeticion> search_peticiones;
+    ArrayList<InformacionPeticion> arrayList;
+    ArrayList<InformacionPeticion> searchList;
+    //ArrayList<InformacionPeticion> total_peticiones;
+    //ArrayList<InformacionPeticion> search_peticiones;
     TextView titulo;
     String campo;
 
@@ -73,12 +73,11 @@ public class HistorialPeticionFragment extends Fragment {
         this.posicion = posicion;
 
         arrayList = new ArrayList<>();
-        total_peticiones = new ArrayList<>();
 
         this.cont = context;
 
         //Leer datos de Json - Quitar cuando se lean los datos correctos desde la api
-        conexion();
+        //conexion();
     }
 
     @Override
@@ -130,7 +129,7 @@ public class HistorialPeticionFragment extends Fragment {
 
     }
 
-    public void conexion(){
+    /*public void conexion(){
         //Envío el contexto
         Conexion_json con = new Conexion_json(this.cont);
 
@@ -147,7 +146,8 @@ public class HistorialPeticionFragment extends Fragment {
         else if ( codi ==3) arrayList  = con.getInformePacientesFromJson(jsonString);
 
     }
-    private void Creacion_elementos_RecyclerView(ArrayList<InformacionBase> lista_elementos ){
+     */
+    private void Creacion_elementos_RecyclerView(ArrayList<InformacionPeticion> lista_elementos ){
         //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -172,9 +172,9 @@ public class HistorialPeticionFragment extends Fragment {
                 //Recorrer todos los Objetos (los elementos de la lista)
                 for (int i = 0; i < arrayList.size(); i++) {
                     // Comprobar si coincide el texto con algún elemento ya sea por DNI, nombre o apellidos
-                    if (arrayList.get(i).getDni().toUpperCase().contains(query.toUpperCase())
-                            || arrayList.get(i).getNombre().toUpperCase().contains(query.toUpperCase())
-                            || arrayList.get(i).getApellidos().toUpperCase().contains(query.toUpperCase())) {
+                    if (arrayList.get(i).getPatient_fullname().toUpperCase().contains(query.toUpperCase())){
+                            //|| arrayList.get(i).getNombre().toUpperCase().contains(query.toUpperCase())
+
 
                         //Afegir element
                         searchList.add(arrayList.get(i));
@@ -200,9 +200,9 @@ public class HistorialPeticionFragment extends Fragment {
             searchList = new ArrayList<>();
             if (newText.length() > 0) {
                 for (int i = 0; i < arrayList.size(); i++) {
-                    if (arrayList.get(i).getDni().toUpperCase().contains(newText.toUpperCase())
-                            || arrayList.get(i).getNombre().toUpperCase().contains(newText.toUpperCase())
-                            || arrayList.get(i).getApellidos().toUpperCase().contains(newText.toUpperCase())) {
+                    if (arrayList.get(i).getPatient_fullname().toUpperCase().contains(newText.toUpperCase())){
+                            //|| arrayList.get(i).getNombre().toUpperCase().contains(newText.toUpperCase())
+                            //|| arrayList.get(i).getApellidos().toUpperCase().contains(newText.toUpperCase())) {
                         //Afegir element
                         searchList.add(arrayList.get(i));
                     }
@@ -236,21 +236,21 @@ public class HistorialPeticionFragment extends Fragment {
     };
 
     // Ordenación por Nombre
-    Comparator<InformacionBase> comparadorNombre = new Comparator<InformacionBase>() {
+    Comparator<InformacionPeticion> comparadorNombre = new Comparator<InformacionPeticion>() {
         @Override
         //Comparar por nombre
-        public int compare(InformacionBase t1, InformacionBase t2) {
+        public int compare(InformacionPeticion t1, InformacionPeticion t2) {
             //Ascendiente
             if(ordenAscendente)
-                return t1.getNombre().compareTo(t2.getNombre());
+                return t1.getPatient_fullname().compareTo(t2.getPatient_fullname());
                 //Descendiente
             else
-                return t2.getNombre().compareTo(t1.getNombre());
+                return t2.getPatient_fullname().compareTo(t1.getPatient_fullname());
         }
 
     };
 
-    private void ordenarArrayList(ArrayList<InformacionBase> lista_elementos) {
+    private void ordenarArrayList(ArrayList<InformacionPeticion> lista_elementos) {
         //Lee las opciones del fichero values/arrays.xml
         String[] opciones = getResources().getStringArray(R.array.sort_options);
 
@@ -367,7 +367,7 @@ public class HistorialPeticionFragment extends Fragment {
                                 //medicine_list.add(new Medicament(medicine_name,medicine_identifier,contents,typeOfAdministration,prescriptionNeeded,pvp,form,excipient));
                             }*/
 
-                            total_peticiones.add(informacion_cliente);
+                            arrayList.add(informacion_cliente);
                         }
 
                     }
