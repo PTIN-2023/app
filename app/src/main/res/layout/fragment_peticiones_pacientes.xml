@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gestor.fragments.PeticionesPacientesFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/iv_peticions_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:src="@drawable/baseline_arrow_back_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/rinkart"
+                android:text="Peticiones Pacientes"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:text="ID" />
+
+            <TextView
+                android:id="@+id/Data_compra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:text="@string/data_compra" />
+
+            <TextView
+                android:id="@+id/estat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:text="@string/estat" />
+
+            <TextView
+                android:id="@+id/detalls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:text="@string/detalls" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/peticions_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </LinearLayout>
+
+</FrameLayout>
