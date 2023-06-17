@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.appptin.R;
+import com.example.appptin.gestor.fragments.PeticionesPacientesFragment;
 import com.example.appptin.gestor.fragments.inventario.InventarioGestorFragment;
 import com.example.appptin.gestor.fragments.inventario.MapaGestor;
 import com.example.appptin.gestor.fragments.pefilgestor.PerfilGestorFragment;
@@ -26,6 +27,7 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
 
     PerfilGestorFragment gestorFragment;
     InventarioGestorFragment inventarioGestorFragment;
+    PeticionesPacientesFragment peticionesPacientesFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         //Crear los fragments para el menú
         inventarioGestorFragment = new InventarioGestorFragment();
         gestorFragment = new PerfilGestorFragment();
+        peticionesPacientesFragment = new PeticionesPacientesFragment();
 
         loadFragment(inventarioGestorFragment);
 
@@ -52,9 +55,11 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
                 case R.id.menu_inventario:
                     loadFragment(inventarioGestorFragment);
                     return true;
-
                 case R.id.menu_perfilGestor:
                     loadFragment(gestorFragment);
+                    return true;
+                case R.id.menu_opciones:
+                    loadFragment(peticionesPacientesFragment);
                     return true;
                 case R.id.menu_mapa:
                     Intent intent = new Intent(GestorActivity.this, MapaGestor.class);
