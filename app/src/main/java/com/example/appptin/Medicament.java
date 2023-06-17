@@ -12,6 +12,8 @@ public class Medicament {
     private String form;
     private ArrayList<String> excipients;
 
+    private int cantidad = 0;
+
     public Medicament(String medName, String nationalCode, String useType, String typeOfAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients) {
         this.medName = medName;
         this.nationalCode = nationalCode;
@@ -21,6 +23,14 @@ public class Medicament {
         this.pvp = pvp;
         this.form = form;
         this.excipients = excipients;
+    }
+
+    public Medicament(String nationalCode,String medName){
+        this.nationalCode = nationalCode;
+        this.medName = medName;
+        // cantidad = 1
+        setCantidad(1);
+
     }
 
     public String getMedName() {
@@ -69,6 +79,10 @@ public class Medicament {
         return lista;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
     public void setMedName(String medName) {
         this.medName = medName;
     }
@@ -99,5 +113,9 @@ public class Medicament {
 
     public void setExcipients(String excipients) {
         this.excipients.add(excipients);
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = getCantidad() + cantidad;
     }
 }

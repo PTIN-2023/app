@@ -33,6 +33,8 @@ import com.example.appptin.login;
 import com.example.appptin.medico.conexion.Conexion_json;
 import com.example.appptin.medico.conexion.InformacionBase;
 import com.example.appptin.welcome_page;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -302,7 +304,6 @@ public class HistorialPeticionFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println("MENSAJE: " + response);
-                /*
                 try {
                     String result = response.getString("result");
 
@@ -319,14 +320,33 @@ public class HistorialPeticionFragment extends Fragment {
                             // Obtener la información del Objeto
                             String order_identifier = peticionObject.getString("order_identifier");
                             String date = peticionObject.getString("date");
-                            String patient_fullname = peticionObject.getString("patient_fullname");
+                            String patient_fullname = peticionObject.getString("patient_full_name");
+
+                            InformacionPeticion informacion_cliente = new InformacionPeticion(order_identifier,date,patient_fullname);
 
                             // Lista de medicamentos que han de ser confirmados
                             JSONArray medicine_list_Array = peticionObject.getJSONArray("medicine_list");
+
+                            // Guardar los valores de los medicamentos del cliente
+                            for (int j = 0; j < medicine_list_Array.length(); j++) {
+                                JSONArray medicineArray = medicine_list_Array.getJSONArray(j);
+                                String nationalCode = medicineArray.getString(0);
+                                String medicine_name = medicineArray.getString(1);
+
+                                //System.out.println("Código: " + nationalCode + ", Nombre: " + medicine_name);
+
+                                Medicament medicament = new Medicament(nationalCode,medicine_name);
+                                // Guardar medicamento
+                                informacion_cliente.setMedicine_list(medicament);
+                            }
+
+                            /*
                             ArrayList<Medicament> medicine_list = new ArrayList<Medicament>();
                             for (int j = 0; j < medicine_list_Array.length(); j++) {
                                 // Obtener objeto con los datos del medicamento
                                 JSONObject medicamentObject = medicine_list_Array.getJSONObject(i);
+
+                                System.out.println("MENSAJE: " + medicamentObject);
 
                                 String medicine_identifier = medicamentObject.getString("medicine_identifier"); //nationalCode
                                 String medicine_image_url = medicamentObject.getString("medicine_image_url");
@@ -345,20 +365,20 @@ public class HistorialPeticionFragment extends Fragment {
 
                                 //revisarlo !!!
                                 //medicine_list.add(new Medicament(medicine_name,medicine_identifier,contents,typeOfAdministration,prescriptionNeeded,pvp,form,excipient));
-                            }
+                            }*/
 
-                            total_peticiones.add(new InformacionPeticion(order_identifier,date,patient_fullname,medicine_list));
+                            total_peticiones.add(informacion_cliente);
                         }
 
                     }
 
-                    // Caso no exitoso, mensaje por pantalla
+                    // Caso no exitoso, crear algún dialogo
                     else{
                         System.out.println("No se han leído los datos en la api");
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
-                }*/
+                }
             }
         }, new Response.ErrorListener() {
             @Override
