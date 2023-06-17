@@ -180,7 +180,7 @@
                     android:layout_column="1"
                     android:layout_margin="5dp"
                     android:textSize="18dp"
-                    android:hint="@string/info_pacient_cognom" />
+                    android:hint="@string/info_fecha_peticion" />
 
                 <TextView
                     android:id="@+id/txt_informe_dni"

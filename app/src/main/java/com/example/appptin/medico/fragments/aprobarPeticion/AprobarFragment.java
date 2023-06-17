@@ -84,7 +84,7 @@ public class AprobarFragment extends Fragment {
                 textView_nombre.setText(peticion.getPatient_fullname());
                 txt_fecha_peticion.setText(peticion.getDate());
                 textView_pedido.setText(peticion.getOrder_identifier());
-                
+
 
                 Map<String, Medicament> list_medicament = peticion.getMedicine_list();
 
