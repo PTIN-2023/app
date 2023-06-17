@@ -5,14 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,8 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appptin.Medicament;
-import com.example.appptin.MedicamentAdapter;
 import com.example.appptin.Peticio;
 import com.example.appptin.R;
 
@@ -48,6 +47,7 @@ public class estatPeticionsFragment extends Fragment {
     private String mParam2;
 
     private RecyclerView recyclerPeticions;
+    private ImageView iv_regresar_peticio;
 
     public estatPeticionsFragment() {
         // Required empty public constructor
@@ -93,6 +93,9 @@ public class estatPeticionsFragment extends Fragment {
         ArrayList<Peticio> list_peticions = new ArrayList<>();
         PeticioAdapter adapter = new PeticioAdapter(list_peticions,getActivity());
         recyclerPeticions.setAdapter(adapter);
+
+        iv_regresar_peticio = view.findViewById(R.id.iv_peticions_back);
+        iv_regresar_peticio.setOnClickListener(regresar);
 
         //Peticio peticioProva = new Peticio(1, "a@a", "a", new ArrayList<>());
         //list_peticions.add(peticioProva);
@@ -192,6 +195,18 @@ public class estatPeticionsFragment extends Fragment {
         recyclerPeticions.setAdapter(adapter);
 
     }
+
+    private View.OnClickListener regresar = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Retrocede en la pila de fragmentos
+                fragmentManager.popBackStack();
+            }
+
+        }
+    };
 
     private void afegirLayoutPeticio(JSONObject peticions) {
        ////Adapter del medicament recyclerView

@@ -109,7 +109,7 @@ public class PeticioGestorAdapter extends RecyclerView.Adapter<PeticioGestorAdap
         public PeticioViewHolder(@NonNull View itemView) {
             super(itemView);
             //Identificadors dels elements del layout de peticio_item
-            txtID = itemView.findViewById(R.id.ID);
+            //txtID = itemView.findViewById(R.id.ID);
             txtData = itemView.findViewById(R.id.Data_compra);
             txtEstat = itemView.findViewById(R.id.estat);
             BtnDetalls = itemView.findViewById(R.id.btn_detalls);
