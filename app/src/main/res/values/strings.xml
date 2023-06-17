@@ -221,28 +221,28 @@
     <string name="detalls">Detalls</string>
 
     //fragment_filtre.xml
-        <string name="med_name">Nom medicament</string>
-        <string name="insert_med_name">Inserir nom medicament</string>
-        <string name="price">Preu</string>
-        <string name="min_price">Min Price</string>
-        <string name="max_price">Max Price</string>
-        <string name="prescription_needed">Necessitat prescripció</string>
-        <string name="viaa">Via</string>
-        <string name="orall">Oral</string>
-        <string name="injectable">Injectable</string>
-        <string name="sublingual">Sublingual</string>
-        <string name="rectal">Rectal</string>
-        <string name="vaginal">Vaginal</string>
-        <string name="ocular">Ocular</string>
-        <string name="formatt">Format</string>
-        <string name="tablets">Tabletes</string>
-        <string name="liquids">Líquids</string>
-        <string name="capsules">Càpsules</string>
-        <string name="topicals">Tòpics</string>
-        <string name="suppositories">Supositoris</string>
-        <string name="drops">Gotes</string>
-        <string name="inhalers">Inhaladors</string>
-        <string name="injections">Injeccions</string>
-        <string name="implants">Implants</string>
+    <string name="med_name">Nom medicament</string>
+    <string name="insert_med_name">Inserir nom medicament</string>
+    <string name="price">Preu</string>
+    <string name="min_price">Min Price</string>
+    <string name="max_price">Max Price</string>
+    <string name="prescription_needed">Necessitat prescripció</string>
+    <string name="viaa">Via</string>
+    <string name="orall">Oral</string>
+    <string name="injectable">Injectable</string>
+    <string name="sublingual">Sublingual</string>
+    <string name="rectal">Rectal</string>
+    <string name="vaginal">Vaginal</string>
+    <string name="ocular">Ocular</string>
+    <string name="formatt">Format</string>
+    <string name="tablets">Tabletes</string>
+    <string name="liquids">Líquids</string>
+    <string name="capsules">Càpsules</string>
+    <string name="topicals">Tòpics</string>
+    <string name="suppositories">Supositoris</string>
+    <string name="drops">Gotes</string>
+    <string name="inhalers">Inhaladors</string>
+    <string name="injections">Injeccions</string>
+    <string name="implants">Implants</string>
 
 </resources>

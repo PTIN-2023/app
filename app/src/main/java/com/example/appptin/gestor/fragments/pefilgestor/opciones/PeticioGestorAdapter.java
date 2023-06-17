@@ -1,4 +1,4 @@
-package com.example.appptin.paciente.opciones;
+package com.example.appptin.gestor.fragments.pefilgestor.opciones;
 
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -19,46 +19,45 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class PeticioAdapter extends RecyclerView.Adapter<PeticioAdapter.PeticioViewHolder> {
-
+public class PeticioGestorAdapter extends RecyclerView.Adapter<PeticioGestorAdapter.PeticioViewHolder> {
 
     private ArrayList<Peticio> peticions;
     private AlertDialog.Builder builder;
     private FragmentActivity activity;
 
-public PeticioAdapter(ArrayList<Peticio> peticions, FragmentActivity activity) {
+    public PeticioGestorAdapter(ArrayList<Peticio> peticions, FragmentActivity activity) {
         this.peticions = peticions;
         this.activity = activity;
         if (activity != null) {
-        builder = new AlertDialog.Builder(activity);
+            builder = new AlertDialog.Builder(activity);
         }
-        }
+    }
 
-@NonNull
-@Override
-public PeticioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    @NonNull
+    @Override
+    public PeticioGestorAdapter.PeticioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.peticio_item, parent, false);
         return new PeticioViewHolder(view);
-        }
+    }
 
-@Override
-public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
-    Peticio peticio = peticions.get(position);
-    //holder.bind(peticio);
+    @Override
+    public void onBindViewHolder(@NonNull PeticioGestorAdapter.PeticioViewHolder holder, int position) {
+        Peticio peticio = peticions.get(position);
+        holder.bind(peticio);
 
-    //Assignem valors als components del peticio_item.xml
-    holder.txtID.setText(String.valueOf(peticio.getID()));
-    holder.txtData.setText(peticio.getDate());
-    holder.txtEstat.setText(peticio.getState());
-    //holder.txtDetalls.setText(peticio.getExcipientsList());
+        //Assignem valors als components del peticio_item.xml
+        holder.txtID.setText(String.valueOf(peticio.getID()));
+        holder.txtData.setText(peticio.getDate());
+        holder.txtEstat.setText(peticio.getState());
+        //holder.txtDetalls.setText(peticio.getExcipientsList());
 
-    // Crea el diàleg d'alerta en el clic del botó "btn_detalls"
-    holder.BtnDetalls.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            mostrarDetallsMedicaments(peticio);
-        }
-    });
+        // Crea el diàleg d'alerta en el clic del botó "btn_detalls"
+        holder.BtnDetalls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarDetallsMedicaments(peticio);
+            }
+        });
     }
 
     private void mostrarDetallsMedicaments(Peticio peticio) {
@@ -95,30 +94,31 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
         builder.show();
     }
 
-@Override
-public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return peticions.size();
+    }
+
+    public class PeticioViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView txtID;
+        private TextView txtData;
+        private TextView txtEstat;
+        private ImageButton BtnDetalls;
+
+        public PeticioViewHolder(@NonNull View itemView) {
+            super(itemView);
+            //Identificadors dels elements del layout de peticio_item
+            txtID = itemView.findViewById(R.id.ID);
+            txtData = itemView.findViewById(R.id.Data_compra);
+            txtEstat = itemView.findViewById(R.id.estat);
+            BtnDetalls = itemView.findViewById(R.id.btn_detalls);
         }
 
-public class PeticioViewHolder extends RecyclerView.ViewHolder {
-
-    private TextView txtID;
-    private TextView txtData;
-    private TextView txtEstat;
-    private ImageButton BtnDetalls;
-
-    public PeticioViewHolder(@NonNull View itemView) {
-        super(itemView);
-        //Identificadors dels elements del layout de peticio_item
-        txtID = itemView.findViewById(R.id.ID);
-        txtData = itemView.findViewById(R.id.Data_compra);
-        txtEstat = itemView.findViewById(R.id.estat);
-        BtnDetalls = itemView.findViewById(R.id.btn_detalls);
-    }
-
-    public void bind(Peticio medicament) {
-        //txtNom.setText(medicament.getNom());
-        //txtDescripcio.setText(medicament.getDescripcio());
+        public void bind(Peticio medicament) {
+            //txtNom.setText(medicament.getNom());
+            //txtDescripcio.setText(medicament.getDescripcio());
+        }
     }
 }
-}
+
