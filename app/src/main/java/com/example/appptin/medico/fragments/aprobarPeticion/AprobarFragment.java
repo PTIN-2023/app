@@ -1,6 +1,8 @@
 package com.example.appptin.medico.fragments.aprobarPeticion;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -29,6 +31,7 @@ import com.example.appptin.Medicament;
 import com.example.appptin.R;
 import com.example.appptin.login;
 import com.example.appptin.medico.fragments.historialPeticion.InformacionPeticion;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +45,8 @@ public class AprobarFragment extends Fragment {
     private static final String TAG = "AprobarFragment";
     RecyclerView recyclerView;
     ArrayList<String> medicamentos = new ArrayList<String>();
-    TextView textView_nombre, txt_fecha_peticion, textView_pedido;
+    private TextView textView_nombre, txt_fecha_peticion, textView_pedido;
+    private TextInputEditText txt_peticion_comentario;
     Button btn_aceptar, btn_rechazar;
     int posicion;
     FragmentManager activity;
@@ -104,6 +108,7 @@ public class AprobarFragment extends Fragment {
         textView_nombre = view.findViewById(R.id.txt_peticion_nombre);
         txt_fecha_peticion = view.findViewById(R.id.txt_fecha_peticion_aprobar);
         textView_pedido = view.findViewById(R.id.txt_peticion_pedido);
+        txt_peticion_comentario = view.findViewById(R.id.txt_peticion_comentario);
 
         btn_aceptar = view.findViewById(R.id.btn_aceptar_peticion);
         btn_rechazar = view.findViewById(R.id.btn_rechazar_peticion);
@@ -135,13 +140,18 @@ public class AprobarFragment extends Fragment {
         btn_rechazar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Petició Rebutjada", Toast.LENGTH_SHORT).show();
+                if(txt_peticion_comentario.getText().toString().isEmpty()){
+                    advertencia_comentario_rechazo();
+                }
+                else{
+                    Toast.makeText(getActivity(), "Petició Rebutjada", Toast.LENGTH_SHORT).show();
+                    // Regresar a la ventana anterior
+                    regresar_ventana();
 
-                // Regresar a la ventana anterior
-                regresar_ventana();
+                    // Enviar denegación de orden a la API
+                    api_confimacion_denegacion_orden(false);
+                }
 
-                // Enviar denegación de orden a la API
-                api_confimacion_denegacion_orden(false);
             }
         });
 
@@ -154,6 +164,23 @@ public class AprobarFragment extends Fragment {
             // Retrocede en la pila de fragmentos
             fragmentManager.popBackStack();
         }
+    }
+
+    private void advertencia_comentario_rechazo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Has d'indicar el motiu de rebuig")
+                .setTitle("Advertiment")
+                .setPositiveButton("Acceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Acción al hacer clic en el botón "Aceptar"
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
     }
 
     // API
