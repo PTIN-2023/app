@@ -1,33 +1,30 @@
 package com.example.appptin.gestor;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.example.appptin.R;
-import com.example.appptin.gestor.fragments.PeticionesPacientesFragment;
 import com.example.appptin.gestor.fragments.inventario.InventarioGestorFragment;
 import com.example.appptin.gestor.fragments.inventario.MapaGestor;
 import com.example.appptin.gestor.fragments.pefilgestor.PerfilGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
+import com.example.appptin.gestor.fragments.pefilgestor.opciones.EstatPeticionsGestorFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.Locale;
 
 public class GestorActivity extends AppCompatActivity  implements ConfigGestorFragment.LanguageChangeListener {
 
     PerfilGestorFragment gestorFragment;
     InventarioGestorFragment inventarioGestorFragment;
-    PeticionesPacientesFragment peticionesPacientesFragment;
+
+    EstatPeticionsGestorFragment estatPeticionsGestorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +37,7 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         //Crear los fragments para el menú
         inventarioGestorFragment = new InventarioGestorFragment();
         gestorFragment = new PerfilGestorFragment();
-        peticionesPacientesFragment = new PeticionesPacientesFragment();
+        estatPeticionsGestorFragment = new EstatPeticionsGestorFragment();
 
         loadFragment(inventarioGestorFragment);
 
@@ -59,7 +56,7 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
                     loadFragment(gestorFragment);
                     return true;
                 case R.id.menu_opciones:
-                    loadFragment(peticionesPacientesFragment);
+                    loadFragment(estatPeticionsGestorFragment);
                     return true;
                 case R.id.menu_mapa:
                     Intent intent = new Intent(GestorActivity.this, MapaGestor.class);

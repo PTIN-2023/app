@@ -48,6 +48,7 @@ public class estatPeticionsFragment extends Fragment {
 
     private RecyclerView recyclerPeticions;
     private ImageView iv_regresar_peticio;
+    private String et_email;
 
     public estatPeticionsFragment() {
         // Required empty public constructor
@@ -109,6 +110,7 @@ public class estatPeticionsFragment extends Fragment {
         try {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
             String session_token = sharedPreferences.getString("session_token", "Valor nulo");
+            et_email= sharedPreferences.getString("user_email", "Valor nulo");;
             System.out.println(session_token);
 
             //JSONObject jsonObject = new JSONObject();
@@ -160,7 +162,7 @@ public class estatPeticionsFragment extends Fragment {
                                         System.out.println("Medicine: " + medicine.getName());
                                         // Imprimir otros detalles del medicamento
                                     }*/
-                                    list_peticions.add(new Peticio(orderIdentifier, date, state, medicines));
+                                    list_peticions.add(new Peticio(et_email, orderIdentifier, date, state, medicines));
                                 }
                                 Creacio_elements_RecyclerView(list_peticions);
                             }
