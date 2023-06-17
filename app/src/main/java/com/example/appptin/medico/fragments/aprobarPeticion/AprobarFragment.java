@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.Medicament;
 import com.example.appptin.R;
 import com.example.appptin.login;
 import com.example.appptin.medico.conexion.Conexion_json;
@@ -39,6 +40,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class AprobarFragment extends Fragment {
@@ -82,13 +84,18 @@ public class AprobarFragment extends Fragment {
                 textView_nombre.setText(peticion.getPatient_fullname());
                 txt_fecha_peticion.setText(peticion.getDate());
                 textView_pedido.setText(peticion.getOrder_identifier());
-
-                /*
-                for (int i = 0; i < peticion.getMedicamentosSize(); i++) {
-                    medicamentos.add(peticion.getMedicamentos().get(i));
-                }
                 
-                 */
+
+                Map<String, Medicament> list_medicament = peticion.getMedicine_list();
+
+                for (Map.Entry<String, Medicament> entry : list_medicament.entrySet()) {
+                    String key = entry.getKey();
+                    Medicament value = entry.getValue();
+                    System.out.println("Clave: " + key + ", Valor: " + value);
+
+                    medicamentos.add(entry.getValue().getMedName());
+                }
+
 
             }
         });
