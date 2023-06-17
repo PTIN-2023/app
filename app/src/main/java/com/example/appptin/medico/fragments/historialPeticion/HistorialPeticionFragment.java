@@ -273,9 +273,9 @@ public class HistorialPeticionFragment extends Fragment {
 
         // Información de las peticiones por confirmar
         if (codi == 1) api_informacion_peticiones_aprobar();
-        // Historial de peticiones
+            // Historial de peticiones
         else if (codi == 2) api_informacion_historial_peticiones();
-        // Historial pacientes
+            // Historial pacientes
         else if (codi == 3) System.out.println("Historial pacientes");
     }
 
@@ -290,50 +290,7 @@ public class HistorialPeticionFragment extends Fragment {
         // Datos enviados
         try {
             jsonBody.put("session_token", login.getSession_token());
-            jsonBody.put("confirmations_per_page", 5);
-            jsonBody.put("page", 1);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        // Datos devueltos
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    System.out.println("MENSAJE: " + response);
-                 }
-             }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Manejo de errores de la solicitud
-                error.printStackTrace();
-
-                if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
-                    // Error interno del servidor (código de respuesta 500)
-                    Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
-                } else {
-                    // Otro tipo de error de solicitud
-                    Log.e(TAG, "FALLO EN EL CLIENTE");
-                }
-            }
-        });
-
-        queue.add(jsonObjectRequest);
-
-    }
-    private void api_informacion_historial_peticiones(){
-
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        Resources r = getResources();
-        String apiUrl = r.getString(R.string.api_base_url);
-        String url = apiUrl + "/api/list_doctor_approved_confirmations";
-        JSONObject jsonBody = new JSONObject();
-
-        // Datos enviados
-        try {
-            jsonBody.put("session_token", login.getSession_token());
-            jsonBody.put("confirmations_per_page", 5);
+            jsonBody.put("confirmations_per_page", 4);
             jsonBody.put("page", 1);
 
         } catch (JSONException e) {
@@ -345,7 +302,7 @@ public class HistorialPeticionFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println("MENSAJE: " + response);
-
+                /*
                 try {
                     String result = response.getString("result");
 
@@ -401,10 +358,50 @@ public class HistorialPeticionFragment extends Fragment {
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
+                }*/
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Manejo de errores de la solicitud
+                error.printStackTrace();
+
+                if (error.networkResponse != null && error.networkResponse.statusCode == 500) {
+                    // Error interno del servidor (código de respuesta 500)
+                    Log.e(TAG, "FALLO EN EL SERVIDOR : "+ url );
+                } else {
+                    // Otro tipo de error de solicitud
+                    Log.e(TAG, "FALLO EN EL CLIENTE");
                 }
+            }
+        });
 
+        queue.add(jsonObjectRequest);
 
+    }
+    private void api_informacion_historial_peticiones(){
 
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/list_doctor_approved_confirmations";
+        JSONObject jsonBody = new JSONObject();
+
+        // Datos enviados
+        try {
+            jsonBody.put("session_token", login.getSession_token());
+            jsonBody.put("confirmations_per_page", 5);
+            jsonBody.put("page", 1);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Datos devueltos
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("MENSAJE: " + response);
             }
         }, new Response.ErrorListener() {
             @Override

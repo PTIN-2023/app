@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,6 +51,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -104,12 +106,13 @@ public class MedicamentsFragment extends Fragment {
 
     @SuppressLint("MissingInflatedId")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_medicaments, container, false);
         recyclerMedicaments = view.findViewById(R.id.medicaments_recycler);
+
 
         ArrayList<Medicament> list_medicament = new ArrayList<>();
 
@@ -125,10 +128,8 @@ public class MedicamentsFragment extends Fragment {
         String pvpMin = null;
         String pvpMax = null;
         boolean prescriptionNeeded = false;
-        //JSONObject typeOfAdministration = new JSONObject();
-        //JSONObject form = new JSONObject();
-        //ArrayList typeOfAdministration = null;
-        //ArrayList form = null;
+        ArrayList typeOfAdministration = null;
+        ArrayList form = null;
 
 
         Bundle args = getArguments();
@@ -137,15 +138,11 @@ public class MedicamentsFragment extends Fragment {
             pvpMin = args.getString("minPrice");
             pvpMax = args.getString("maxPrice");
             prescriptionNeeded = args.getBoolean("prescriptionNeeded");
-            //typeOfAdministration = args.getStringArrayList("via"); //això ha de ser un json amb els tipus
-            //form = args.getStringArrayList("format"); //això ha de ser un json amb els formats
+            typeOfAdministration = args.getStringArrayList("via"); //això ha de ser un json amb els tipus
 
-            String viaString = args.getString("via");
-            String formatString = args.getString("format");
 
-            JSONObject typeOfAdministration = new JSONObject(viaString);
-            JSONObject form = new JSONObject(formatString);
-
+            System.out.println("tipus"+ new JSONArray(typeOfAdministration));
+            form = args.getStringArrayList("format"); //això ha de ser un json amb els formats
 
             // mostrem resultats
             System.out.println("Nom Medicament: " + medName + "\nMin Price: " + pvpMin + "\nMax Price: " + pvpMax + "\nPrescription Needed: " + prescriptionNeeded);
@@ -167,7 +164,8 @@ public class MedicamentsFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
         try {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
-            String session_token = sharedPreferences.getString("session_token", "Valor nulo");
+            //String session_token = sharedPreferences.getString("session_token", "Valor nulo");            AIXÒ NO FUNCIONA, FER-HO COM LA LINIA DE BAIX
+            String session_token = login.getSession_token();
             System.out.println(session_token);
 
 
@@ -175,15 +173,16 @@ public class MedicamentsFragment extends Fragment {
             //jsonObject.put("filter", false);
 
             JSONObject filtre = new JSONObject();
-            filtre.put("meds_per_page", 1);
+            filtre.put("meds_per_page", 6);
             filtre.put("page", 1);
+
             if (medName != null && !medName.isEmpty()) {
                 filtre.put("med_name", medName);
             }
-            //if (pvpMin != null) {
+            //if (pvpMin != "") {
             //    filtre.put("pvp_min", pvpMin);
             //}
-            //if (pvpMax != null) {
+            //if (pvpMax != "") {               AIXÒ ESTA MALAMENT, NO PODEM ENVIAR EL PVPMAX I PVPMIN SI NO HI HA!!!!!!!!!!
             //    filtre.put("pvp_max", pvpMax);
             //}
             if (prescriptionNeeded != false) {
@@ -193,7 +192,8 @@ public class MedicamentsFragment extends Fragment {
                 filtre.put("form", form);
             }
             if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
-                filtre.put("type_of_administration", typeOfAdministration);
+                //typeOfAdministration = ["Topical", "Oral"];
+                filtre.put("type_of_administration", new JSONArray(typeOfAdministration));
             }
             System.out.println("Això és el filtro" + filtre);
             jsonObject.put("filter", filtre);
@@ -205,7 +205,7 @@ public class MedicamentsFragment extends Fragment {
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                System.out.println(response);
                 try {
                     String result = response.getString("result");
 
@@ -233,7 +233,7 @@ public class MedicamentsFragment extends Fragment {
                             //String tipusUs = jsonObject.getString("tipus_us");
 
                             list_medicament.add(new Medicament(medName, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
-
+                            System.out.println(list_medicament);
                         }
                         //Agregar los elementos del RecyclerView
                         Creacion_elementos_RecyclerView(list_medicament);
