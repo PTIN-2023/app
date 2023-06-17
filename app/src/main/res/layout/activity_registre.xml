@@ -69,7 +69,7 @@
             android:backgroundTint="#DDA400"
             android:ems="10"
             android:fontFamily="@font/rinkart"
-            android:hint="@string/given_name"
+            android:hint="@string/user_full_name"
             android:inputType="textPersonName"
             android:textColorHint="@color/white"
             app:endIconMode="clear_text"

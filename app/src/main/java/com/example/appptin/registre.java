@@ -2,6 +2,8 @@ package com.example.appptin;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -234,16 +236,14 @@ public class registre extends AppCompatActivity {
                             String password = response.isNull("password") ? null : response.getString("password");
                             String result = response.getString("result");
                             String role = response.getString("user_role");
-                            String token = response.getString("user_token");
+                            String session_token = response.getString("user_token");
 
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {
-                                System.out.println("L'usuari existeix");
+                                System.out.println("L'usuari " + role + " " + given_name + " existeix.");
                                 if (role.equals("patient")){
-                                    SharedPreferences sharedPreferences = getSharedPreferences("UserPref", Context.MODE_PRIVATE);
-                                    String session_token = sharedPreferences.getString("session_token", "No value");
                                     getUserInfo(session_token);
-                                    navigateToMainActivity();
+                                    navigateToMainActivity(session_token);
 
                                 }
                                 else if (role.equals("doctor")){
@@ -273,9 +273,9 @@ public class registre extends AppCompatActivity {
         return exists;
     }
 
-    private void navigateToMainActivity() {
+    private void navigateToMainActivity(String session_token) {
         Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra("patient", patient);
+        intent.putExtra("session_token", session_token);
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }
@@ -360,7 +360,7 @@ public class registre extends AppCompatActivity {
                                 "Villalgordo",
                                 "Calle para siempre 6",
                                 null);
-                        navigateToMainActivity();
+                        navigateToMainActivity("45hgghhbhkkK9*^¨cDDG");
                     }
                 });
         queue.add(jsonObjectRequest);

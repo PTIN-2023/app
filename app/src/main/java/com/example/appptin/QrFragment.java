@@ -3,6 +3,7 @@ package com.example.appptin;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -332,10 +333,13 @@ public class                                              QrFragment extends Fra
         JSONObject jsonBody = new JSONObject();
         try {
             //int content = Integer.parseInt(resultant);
-            jsonBody.put("session_token", login.getSession_token() );
+            //Si no va SharedPreferences descomentar
+            //jsonBody.put("session_token", login.getSession_token() );
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+            jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
             jsonBody.put("prescription_identifier", prescription_identifier);
             System.out.println("jsonBody " + jsonBody);
-            System.out.println("asdfa"+login.getSession_token());
+            System.out.println("Token: "+login.getSession_token());
         } catch (JSONException e) {
             e.printStackTrace();
         }

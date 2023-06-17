@@ -8,6 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class login_o_registre extends AppCompatActivity {
 
+    @Override
+    public void onBackPressed() {
+        // Evitar que se pueda pulsar el botón de retroceso (back)
+        // Elimina el siguiente código si deseas habilitar el comportamiento normal del botón de retroceso.
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

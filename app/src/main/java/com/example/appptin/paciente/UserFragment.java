@@ -177,9 +177,10 @@ public class UserFragment extends Fragment {
         String url = apiUrl + "/api/logout"; // Reemplaza con la dirección de tu API
         System.out.println(url);
         JSONObject jsonBody = new JSONObject();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
         try {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
-            jsonBody.put("user_token", sharedPreferences.getString("session_token", "No value"));
+            System.out.println("Token logout: " + sharedPreferences.getString("session_token", "No value"));
+            jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -196,6 +197,11 @@ public class UserFragment extends Fragment {
                             if (result.equals("ok")) {
                                 System.out.println("S'ha tancat la sessió");
                                 Toast.makeText(getActivity(),"Sessió tancada",Toast.LENGTH_SHORT).show();
+                                //Borrar SharedPreferences
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.clear();
+                                editor.apply(); // O también puedes usar editor.commit();
+
                                 Intent intent = new Intent(getActivity(), welcome_page.class);
                                 startActivity(intent);
 

@@ -164,8 +164,8 @@ public class MedicamentsFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
         try {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
-            //String session_token = sharedPreferences.getString("session_token", "Valor nulo");            AIXÒ NO FUNCIONA, FER-HO COM LA LINIA DE BAIX
-            String session_token = login.getSession_token();
+            String session_token = sharedPreferences.getString("session_token", "Valor nulo");  //SI AIXÒ NO FUNCIONA, FER-HO COM LA LINIA DE BAIX
+            //String session_token = login.getSession_token();
             System.out.println(session_token);
 
 
