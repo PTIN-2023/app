@@ -74,10 +74,12 @@ public class EstatPeticionsGestorFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerPeticions.setLayoutManager(layoutManager);
 
+
         ArrayList<Peticio> list_peticions = new ArrayList<>();
         PeticioGestorAdapter adapter = new PeticioGestorAdapter(list_peticions, getActivity());
         recyclerPeticions.setAdapter(adapter);
 
         return view;
     }
+
 }

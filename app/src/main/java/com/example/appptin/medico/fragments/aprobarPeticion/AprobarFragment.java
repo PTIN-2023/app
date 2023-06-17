@@ -26,10 +26,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.Medicament;
 import com.example.appptin.R;
 import com.example.appptin.login;
 import com.example.appptin.medico.conexion.Conexion_json;
 import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
+import com.example.appptin.medico.fragments.historialPeticion.InformacionPeticion;
 import com.example.appptin.medico.fragments.historialPeticion.PeticionClass;
 
 import org.json.JSONArray;
@@ -38,17 +40,18 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class AprobarFragment extends Fragment {
     private static final String TAG = "AprobarFragment";
     RecyclerView recyclerView;
     ArrayList<String> medicamentos = new ArrayList<String>();
-    TextView textView_nombre, textView_apellido, textView_dni, textView_pedido;
+    TextView textView_nombre, txt_fecha_peticion, textView_pedido;
     Button btn_aceptar, btn_rechazar;
     int posicion;
     FragmentManager activity;
-    PeticionClass peticion;
+    InformacionPeticion peticion;
     Context context;
 
     public AprobarFragment(FragmentManager activity, Context context) {
@@ -74,18 +77,25 @@ public class AprobarFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
 
-                peticion = (PeticionClass) result.getSerializable("MiObjeto");
+                peticion = (InformacionPeticion) result.getSerializable("MiObjeto");
 
                 // Log.d("JSON", peticion.toString());
 
-                textView_nombre.setText(peticion.getNombre());
-                textView_apellido.setText(peticion.getApellidos());
-                textView_dni.setText(peticion.getDni());
-                textView_pedido.setText(peticion.getNumeroPedido());
+                textView_nombre.setText(peticion.getPatient_fullname());
+                txt_fecha_peticion.setText(peticion.getDate());
+                textView_pedido.setText(peticion.getOrder_identifier());
 
-                for (int i = 0; i < peticion.getMedicamentosSize(); i++) {
-                    medicamentos.add(peticion.getMedicamentos().get(i));
+
+                Map<String, Medicament> list_medicament = peticion.getMedicine_list();
+
+                for (Map.Entry<String, Medicament> entry : list_medicament.entrySet()) {
+                    String key = entry.getKey();
+                    Medicament value = entry.getValue();
+                    System.out.println("Clave: " + key + ", Valor: " + value);
+
+                    medicamentos.add(entry.getValue().getMedName());
                 }
+
 
             }
         });
@@ -97,8 +107,7 @@ public class AprobarFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView_aprobar);
 
         textView_nombre = view.findViewById(R.id.txt_peticion_nombre);
-        textView_apellido = view.findViewById(R.id.txt_peticion_apellido);
-        textView_dni = view.findViewById(R.id.txt_peticion_dni);
+        txt_fecha_peticion = view.findViewById(R.id.txt_fecha_peticion_aprobar);
         textView_pedido = view.findViewById(R.id.txt_peticion_pedido);
 
         btn_aceptar = view.findViewById(R.id.btn_aceptar_peticion);

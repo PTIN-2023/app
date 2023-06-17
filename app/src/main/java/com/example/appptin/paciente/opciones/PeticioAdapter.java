@@ -59,6 +59,7 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
     holder.txtEstat.setText(peticio.getState());
     //holder.txtDetalls.setText(peticio.getExcipientsList());
 
+
     if (peticio.getState().equals("awaiting_confirmation")) {
         estat = "Esperant confirmació";
         spannableString = SpannableString.valueOf(estat);
@@ -124,6 +125,13 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
 
         ArrayList<JSONObject> medicines = peticio.getMedicines();
         StringBuilder stringBuilder = new StringBuilder();
+
+        //String reason = peticio.getReason();
+        String mail = peticio.getEmail();
+
+        // Agregar motivo y correo electrónico del paciente al StringBuilder
+        //stringBuilder.append("Motiu: ").append(reason).append("\n");
+        stringBuilder.append("Correu electrònic: ").append(mail).append("\n\n");
         for (JSONObject medicine : medicines) {
             try {
                 String medName = medicine.getString("med_name");

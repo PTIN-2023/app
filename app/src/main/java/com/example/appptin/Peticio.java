@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Peticio {
     private int ID;
-    //private String medName;
+    private String email;
     //private String typeOfAdministration;
     //private String form;
     private String date;
@@ -14,9 +14,9 @@ public class Peticio {
     //private boolean prescriptionNeeded;
     private ArrayList<JSONObject> medicineList;
 
-    public Peticio(int ID, String date, String state, ArrayList<JSONObject> medicineList) {
+    public Peticio(String email, int ID, String date, String state, ArrayList<JSONObject> medicineList) {
         this.ID = ID;
-        //this.medName = medName;
+        this.email = email;
         //this.typeOfAdministration = typeOfAdministration;
         //this.form = form;
         this.date = date;
@@ -29,9 +29,9 @@ public class Peticio {
         return ID;
     }
 
-    /*public String getMedName() {
-        return medName;
-    }*/
+    public String getEmail() {
+        return email;
+    }
 
     /*public String getTypeOfAdministration() {
         return typeOfAdministration;
