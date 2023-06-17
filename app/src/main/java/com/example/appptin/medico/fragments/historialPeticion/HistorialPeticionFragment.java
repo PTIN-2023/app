@@ -1,7 +1,6 @@
 package com.example.appptin.medico.fragments.historialPeticion;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -18,23 +17,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.Medicament;
 import com.example.appptin.R;
 import com.example.appptin.login;
-import com.example.appptin.medico.conexion.Conexion_json;
-import com.example.appptin.medico.conexion.InformacionBase;
-import com.example.appptin.welcome_page;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,12 +64,8 @@ public class HistorialPeticionFragment extends Fragment {
         this.codi = codigo;
         this.posicion = posicion;
 
-        arrayList = new ArrayList<>();
-
         this.cont = context;
 
-        //Leer datos de Json - Quitar cuando se lean los datos correctos desde la api
-        //conexion();
     }
 
     @Override
@@ -94,6 +82,9 @@ public class HistorialPeticionFragment extends Fragment {
         //Por defecto ordenar por nombre Ascendiente
         opcionSeleccionada = getResources().getStringArray(R.array.sort_options)[0];
 
+        recyclerView = view.findViewById(R.id.recyclerView);
+        arrayList = new ArrayList<>();
+
         //Llamadas a la api
         api_llamada();
 
@@ -102,10 +93,9 @@ public class HistorialPeticionFragment extends Fragment {
 
         return view;
     }
-
     public void Lista(View view) {
         //Asociación de los obejtos creados en el XML (diseño)
-        recyclerView = view.findViewById(R.id.recyclerView);
+        //recyclerView = view.findViewById(R.id.recyclerView);
         searchView = view.findViewById(R.id.searchView);
         titulo = view.findViewById(R.id.textView_historial);
         spinnerSort = view.findViewById(R.id.sp_historial_peticion_ordenar);
@@ -113,8 +103,7 @@ public class HistorialPeticionFragment extends Fragment {
         titulo.setText(campo);
 
         //Agregar los elementos del RecyclerView
-        Creacion_elementos_RecyclerView(arrayList);
-        //Creacion_elementos_RecyclerView(total_peticiones);
+        //Creacion_elementos_RecyclerView(arrayList);
 
         //Adapter para el SPINER
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sort_options, android.R.layout.simple_spinner_item);
@@ -128,25 +117,6 @@ public class HistorialPeticionFragment extends Fragment {
         searchView.setOnQueryTextListener(buscador);
 
     }
-
-    /*public void conexion(){
-        //Envío el contexto
-        Conexion_json con = new Conexion_json(this.cont);
-
-        String Filename="";
-        if(codi == 1 || codi == 2) Filename = "peticions_per_aprovar.json";
-        else if (codi == 3) Filename = "informe_paciente.json";
-
-        //Creo la conexión
-        String jsonString = con.readJsonFromFile(Filename);
-
-        //Obtener lista de elementos
-        //ArrayList<PeticionClass> peticionList = con.getPedidosFromJson(jsonString);
-        if(codi == 1 || codi == 2)  arrayList  = con.getPedidosFromJson(jsonString);
-        else if ( codi ==3) arrayList  = con.getInformePacientesFromJson(jsonString);
-
-    }
-     */
     private void Creacion_elementos_RecyclerView(ArrayList<InformacionPeticion> lista_elementos ){
         //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -272,7 +242,6 @@ public class HistorialPeticionFragment extends Fragment {
 
     // API
     private void api_llamada(){
-
         // Información de las peticiones por confirmar
         if (codi == 1) api_informacion_peticiones_aprobar();
             // Historial de peticiones
@@ -288,6 +257,7 @@ public class HistorialPeticionFragment extends Fragment {
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_doctor_pending_confirmations";
         JSONObject jsonBody = new JSONObject();
+
 
         // Datos enviados
         try {
@@ -370,6 +340,8 @@ public class HistorialPeticionFragment extends Fragment {
                             arrayList.add(informacion_cliente);
                         }
 
+                        Creacion_elementos_RecyclerView(arrayList);
+
                     }
 
                     // Caso no exitoso, crear algún dialogo
@@ -397,7 +369,6 @@ public class HistorialPeticionFragment extends Fragment {
         });
 
         queue.add(jsonObjectRequest);
-
     }
     private void api_informacion_historial_peticiones(){
 
@@ -406,6 +377,7 @@ public class HistorialPeticionFragment extends Fragment {
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_doctor_approved_confirmations";
         JSONObject jsonBody = new JSONObject();
+
 
         // Datos enviados
         try {
@@ -440,6 +412,5 @@ public class HistorialPeticionFragment extends Fragment {
         });
 
         queue.add(jsonObjectRequest);
-
     }
 }

@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,16 +28,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.appptin.Medicament;
 import com.example.appptin.R;
 import com.example.appptin.login;
-import com.example.appptin.medico.conexion.Conexion_json;
-import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
 import com.example.appptin.medico.fragments.historialPeticion.InformacionPeticion;
-import com.example.appptin.medico.fragments.historialPeticion.PeticionClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
