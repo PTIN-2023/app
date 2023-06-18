@@ -1,4 +1,10 @@
 package com.example.appptin.medico;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
 import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
 import com.example.appptin.medico.fragments.perfilmedico.PerfilMedicoFragment;
@@ -11,9 +17,16 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -33,6 +46,13 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
 
         BottomNavigationView navigation = findViewById(R.id.bottom_navegation_medico);
         navigation.setOnNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
+
+        Intent intent = getIntent();
+        String session_token = intent.getStringExtra("session_token");
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("session_token", session_token);
+        getUserInfo(session_token);
 
         setDayNight();
 
@@ -102,6 +122,72 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
     public void onLanguageChanged() {
         finish();
         startActivity(getIntent());
+    }
+
+    private void getUserInfo(String session_token) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/user_info";
+        System.out.println(url);
+        System.out.println(session_token);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("token", session_token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            //boolean exists = response.getBoolean("exists");
+                            System.out.println("MENSAJE: " + response);
+                            String result = response.getString("result");
+
+                            // Utiliza los valores extraídos según sea necesario
+                            if (result.equals("ok")) {
+                                System.out.println("L'usuari existeix");
+                                // Obtiene las SharedPreferences
+                                SharedPreferences sharedPreferences = getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+
+                                // Edita las SharedPreferences
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+                                editor.putString("session_token", session_token);
+                                editor.putString("user_full_name", response.getString("user_full_name"));
+                                editor.putString("user_given_name", response.getString("user_given_name"));
+                                editor.putString("user_email", response.getString("user_email"));
+                                editor.putString("user_phone", response.getString("user_phone"));
+                                editor.putString("user_city", response.getString("user_city"));
+                                editor.putString("user_address", response.getString("user_address"));
+                                editor.putString("user_picture", response.getString("user_picture"));
+
+                                // Aplica los cambios
+                                System.out.println("EL TOKEN ES --> " + session_token);
+                                editor.apply();
+
+                            }
+                            else {
+                                System.out.println("Error");
+                            }
+                        }
+                        catch (JSONException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                        Log.w("Error login", "ATENCION: Ha habido un error.");
+                    }
+                });
+        queue.add(jsonObjectRequest);
     }
 
 }
