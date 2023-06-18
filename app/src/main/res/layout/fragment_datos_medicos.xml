@@ -17,7 +17,7 @@
             android:layout_marginBottom="10dp">
 
             <ImageView
-                android:id="@+id/iv_dato_medico_back"
+                android:id="@+id/iv_dato_paciente_back"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/baseline_arrow_back_24"
@@ -53,17 +53,41 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
+                        android:text="@string/titulo_usuario"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_user_given_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:hint="@string/titulo_usuario"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart_italic"
                         android:text="@string/id_nom"
-                        android:textStyle="bold"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/et_dato_medico_nombre"
+                        android:id="@+id/et_user_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/id_nom_metge"
                         android:fontFamily="@font/rinkart_italic"
-                        android:textSize="20sp"/>
+                        android:hint="@string/id_nom"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -78,47 +102,37 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="@string/id_cognoms"
+                        android:text="@string/correo_elec"
                         android:textSize="20sp"/>
 
                     <EditText
-                        android:id="@+id/et_dato_medico_apellidos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/id_cognom_metge"
-                        android:fontFamily="@font/rinkart_italic"
-                        android:textSize="20sp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20sp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rinkart_italic"
-                        android:textStyle="bold"
-                        android:text="@string/id_data_naixement"
-                        android:textSize="20sp"/>
-
-                    <Button
-                        android:id="@+id/btn_dato_medico_fecha"
-                        style="?android:spinnerStyle"
+                        android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
-                        android:textColor="@color/black"
-                        android:hint="dd mm yyyy"
+                        android:hint="@string/correo_elec"
                         android:textSize="20sp" />
 
 
                 </LinearLayout>
 
-                <LinearLayout
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="20sp"-->
+                <!--                    android:orientation="vertical">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:fontFamily="@font/rinkart_italic"-->
+                <!--                        android:textStyle="bold"-->
+                <!--                        android:text="Data naixement"-->
+                <!--                        android:textSize="20sp"/>-->
+
+                <!--                </LinearLayout>&lt;!&ndash;-->
+
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
@@ -129,41 +143,91 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:text="@string/id_genere"
-                        android:textSize="20sp"/>
-
-                    <Spinner
-                        android:id="@+id/sp_dato_medico_genero"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rinkart_italic"
-                        android:textSize="20sp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20sp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rinkart_italic"
-                        android:textStyle="bold"
-                        android:text="@string/id_pais"
+                        android:text="Número d'identificació"
                         android:textSize="20sp"/>
 
                     <EditText
-                        android:id="@+id/et_dato_medico_pais"
+                        android:id="@+id/et_dato_paciente_dni"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/id_hint_pais"
+                        android:hint="DNI o NIF"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
-                </LinearLayout>
+
+                </LinearLayout>&ndash;&gt;-->
+
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="20sp"-->
+                <!--                    android:orientation="vertical">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:fontFamily="@font/rinkart_italic"-->
+                <!--                        android:textStyle="bold"-->
+                <!--                        android:text="Gènere"-->
+                <!--                        android:textSize="20sp"/>-->
+
+                <!--                    <Spinner-->
+                <!--                        android:id="@+id/sp_dato_paciente_genero"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:fontFamily="@font/rinkart_italic"-->
+                <!--                        android:textSize="20sp"/>-->
+
+                <!--                </LinearLayout>-->
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textStyle="bold"
+                        android:text="CIP"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/et_dato_paciente_cip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Número tarjeta sanitària"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>-->
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textStyle="bold"
+                        android:text="País"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/et_dato_paciente_pais"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="País d'origen"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -180,24 +244,48 @@
                         android:textSize="20sp"/>
 
                     <EditText
-                        android:id="@+id/et_dato_medico_ciudad"
+                        android:id="@+id/et_user_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/id_hint_ciutat"
+                        android:hint="@string/id_ciutat"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textStyle="bold"
+                        android:text="@string/address"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/et_user_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/address"
                         android:fontFamily="@font/rinkart_italic"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_dato_medico_guardar"
+                    android:id="@+id/btn_dato_paciente_guardar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30sp"
                     android:fontFamily="@font/rinkart_italic"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="@string/id_guardar_canvis"/>
+                    android:text="@string/save_changes"/>
 
             </LinearLayout>
 

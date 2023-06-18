@@ -2,6 +2,8 @@ package com.example.appptin.medico.fragments.perfilmedico.opciones;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,7 +31,7 @@ import java.util.Calendar;
 
 public class DatoMedicoFragment extends Fragment {
     private ImageView iv_regresar;
-    private EditText et_nombre, et_apellidos,et_pais, et_provincia;
+    private EditText et_user_given_name, et_user_full_name, et_city, et_address , et_email;
     private Button btn_guardar, btn_fecha;
 
     private String nombre;
@@ -57,18 +59,27 @@ public class DatoMedicoFragment extends Fragment {
 
         initDatePicker();
 
-        iv_regresar = view.findViewById(R.id.iv_dato_medico_back);
-        et_nombre = view.findViewById(R.id.et_dato_medico_nombre);
-        et_apellidos = view.findViewById(R.id.et_dato_medico_apellidos);
-        btn_guardar = view.findViewById(R.id.btn_dato_medico_guardar);
-        btn_fecha = view.findViewById(R.id.btn_dato_medico_fecha);
+        //Campos pantalla
+        iv_regresar = view.findViewById(R.id.iv_dato_paciente_back);
+        et_user_given_name = view.findViewById(R.id.et_user_given_name);
+        et_user_full_name = view.findViewById(R.id.et_user_name);
+        et_email = view.findViewById(R.id.et_email);
+        et_city = view.findViewById(R.id.et_user_city);
+        et_address = view.findViewById(R.id.et_user_address);;
+        btn_guardar = view.findViewById(R.id.btn_dato_paciente_guardar);
 
-        sp_genero = view.findViewById(R.id.sp_dato_medico_genero);
-        et_pais = view.findViewById(R.id.et_dato_medico_pais);
-        et_provincia = view.findViewById(R.id.et_dato_medico_ciudad);
+        Context context = this.getContext();
+        // Obtiene las SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
 
+        // Obtiene los valores de las SharedPreferences
+        et_user_given_name.setText(sharedPreferences.getString("user_given_name", "Valor vacio"));
+        et_user_full_name.setText(sharedPreferences.getString("user_full_name", "Valor vacio"));
+        et_email.setText(sharedPreferences.getString("user_email", "Valor vacio"));
+        et_city.setText(sharedPreferences.getString("user_city", "Valor vacio"));
+        et_address.setText(sharedPreferences.getString("user_address", "Valor vacio"));
         //Asignar valores
-        SetGenero();
+
 
         //btn_fecha.setText(getTodaysDate());
 
@@ -78,12 +89,6 @@ public class DatoMedicoFragment extends Fragment {
         // LISTENERS
         iv_regresar.setOnClickListener(regresar);
         btn_guardar.setOnClickListener(guardar);
-        setNombreListener();
-        setApellidosListener();
-        btn_fecha.setOnClickListener(canviar_fecha);
-        setGeneroListener();
-        setPaisListener();
-        setProvinciaListener();
 
 
         return view;
@@ -110,40 +115,6 @@ public class DatoMedicoFragment extends Fragment {
         }
     };
 
-    private void setNombreListener() {
-        et_nombre.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                btn_guardar.setEnabled(true);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
-
-    private void setApellidosListener() {
-        et_apellidos.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                btn_guardar.setEnabled(true);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
-
     private View.OnClickListener canviar_fecha = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -166,50 +137,6 @@ public class DatoMedicoFragment extends Fragment {
                 // Acciones a realizar cuando no se selecciona ninguna opción del Spinner
             }
         });
-    }
-
-    private void setPaisListener() {
-        et_pais.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                btn_guardar.setEnabled(true);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
-
-    private void setProvinciaListener() {
-        et_provincia.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                btn_guardar.setEnabled(true);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
-
-
-    // Metodo para información del combo del género
-    public void SetGenero() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, new String[]{" ", "Masculí", "Femení"});
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_genero.setAdapter(adapter);
-        //Evita que se active el evento OnItemSelectedListener del spinner cuando se establece el índice de selección.
-        sp_genero.setSelection(0, false);
     }
 
     // Métodos para el combo de fecha

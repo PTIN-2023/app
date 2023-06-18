@@ -203,6 +203,7 @@ public class login extends AppCompatActivity {
 
                                 }
                                 else if (role.equals("doctor")){
+                                    System.out.println("Login token: " + session_token);
                                     navigateToMetgeActivity(session_token);
                                 }
                                 else if (role.equals("manager")){

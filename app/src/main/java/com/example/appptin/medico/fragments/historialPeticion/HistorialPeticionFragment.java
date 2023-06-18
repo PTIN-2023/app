@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.medico.MedicoActivity;
 import com.example.appptin.Medicament;
 import com.example.appptin.R;
 import com.example.appptin.login;
@@ -59,6 +60,7 @@ public class HistorialPeticionFragment extends Fragment {
     int codi;
     int posicion;
     Context cont;
+
     Spinner spinnerSort;
     boolean ordenAscendente;
     private String opcionSeleccionada = "";
@@ -296,7 +298,8 @@ public class HistorialPeticionFragment extends Fragment {
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_doctor_pending_confirmations";
         JSONObject jsonBody = new JSONObject();
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+
+        SharedPreferences sharedPreferences = this.cont.getSharedPreferences("UserPref", Context.MODE_PRIVATE);
 
         // Datos enviados
         try {
@@ -304,6 +307,7 @@ public class HistorialPeticionFragment extends Fragment {
             jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
             jsonBody.put("confirmations_per_page", 4);
             jsonBody.put("page", 1);
+            System.out.println("Mensaje a enviar: " + jsonBody);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -134,6 +134,7 @@ public class PerfilMedicoFragment extends Fragment {
         String url = apiUrl + "/api/logout"; // Reemplaza con la dirección de tu API
         System.out.println(url);
         JSONObject jsonBody = new JSONObject();
+        System.out.println("Activity: " + getActivity());
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
         try {
             System.out.println("Token logout: " + sharedPreferences.getString("session_token", "No value"));

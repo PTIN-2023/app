@@ -49,9 +49,10 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
 
         Intent intent = getIntent();
         String session_token = intent.getStringExtra("session_token");
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.getSharedPreferences("UserPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("session_token", session_token);
+        editor.apply();
         getUserInfo(session_token);
 
         setDayNight();
@@ -130,7 +131,7 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/user_info";
         System.out.println(url);
-        System.out.println(session_token);
+        System.out.println("GetUserInfo ST: " + session_token);
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("token", session_token);
@@ -156,8 +157,6 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
                                 // Edita las SharedPreferences
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
-
-                                editor.putString("session_token", session_token);
                                 editor.putString("user_full_name", response.getString("user_full_name"));
                                 editor.putString("user_given_name", response.getString("user_given_name"));
                                 editor.putString("user_email", response.getString("user_email"));
