@@ -34,9 +34,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 public class HistorialPeticionFragment extends Fragment {
     private static final String TAG = "HistorialPeticionFragment";
@@ -143,8 +146,8 @@ public class HistorialPeticionFragment extends Fragment {
                 //Recorrer todos los Objetos (los elementos de la lista)
                 for (int i = 0; i < arrayList.size(); i++) {
                     // Comprobar si coincide el texto con algún elemento ya sea por DNI, nombre o apellidos
-                    if (arrayList.get(i).getPatient_fullname().toUpperCase().contains(query.toUpperCase())){
-                            //|| arrayList.get(i).getNombre().toUpperCase().contains(query.toUpperCase())
+                    if (arrayList.get(i).getPatient_fullname().toUpperCase().contains(query.toUpperCase())
+                            || arrayList.get(i).getDate().toUpperCase().contains(query.toUpperCase())){
 
 
                         //Afegir element
@@ -171,9 +174,9 @@ public class HistorialPeticionFragment extends Fragment {
             searchList = new ArrayList<>();
             if (newText.length() > 0) {
                 for (int i = 0; i < arrayList.size(); i++) {
-                    if (arrayList.get(i).getPatient_fullname().toUpperCase().contains(newText.toUpperCase())){
-                            //|| arrayList.get(i).getNombre().toUpperCase().contains(newText.toUpperCase())
-                            //|| arrayList.get(i).getApellidos().toUpperCase().contains(newText.toUpperCase())) {
+                    if (arrayList.get(i).getPatient_fullname().toUpperCase().contains(newText.toUpperCase())
+                            || arrayList.get(i).getDate().toUpperCase().contains(newText.toUpperCase())){
+
                         //Afegir element
                         searchList.add(arrayList.get(i));
                     }
@@ -214,12 +217,36 @@ public class HistorialPeticionFragment extends Fragment {
             //Ascendiente
             if(ordenAscendente)
                 return t1.getPatient_fullname().compareTo(t2.getPatient_fullname());
-                //Descendiente
+            //Descendiente
             else
                 return t2.getPatient_fullname().compareTo(t1.getPatient_fullname());
         }
 
     };
+
+    // Comparador para las fechas
+    Comparator<InformacionPeticion> comparadorFecha = new Comparator<InformacionPeticion>() {
+        @Override
+        public int compare(InformacionPeticion t1, InformacionPeticion t2) {
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha1 = dateFormat.parse(t1.getDate());
+                Date fecha2 = dateFormat.parse(t2.getDate());
+
+                // Ascendente
+                if (ordenAscendente) {
+                    return fecha1.compareTo(fecha2);
+                } else {
+                    // Descendente
+                    return fecha2.compareTo(fecha1);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    };
+
 
     private void ordenarArrayList(ArrayList<InformacionPeticion> lista_elementos) {
         //Lee las opciones del fichero values/arrays.xml
@@ -238,7 +265,18 @@ public class HistorialPeticionFragment extends Fragment {
             ordenAscendente = false;
             Collections.sort(arrayList, comparadorNombre);
             Creacion_elementos_RecyclerView(lista_elementos);
+        } else if (opcionSeleccionada.equals(opciones[2])) {
+            // Ordenar por fecha ascendente
+            ordenAscendente = true;
+            Collections.sort(arrayList, comparadorFecha);
+            Creacion_elementos_RecyclerView(lista_elementos);
+        } else if (opcionSeleccionada.equals(opciones[3])) {
+            // Ordenar por fecha descendente
+            ordenAscendente = false;
+            Collections.sort(arrayList, comparadorFecha);
+            Creacion_elementos_RecyclerView(lista_elementos);
         }
+
     }
 
     // API
