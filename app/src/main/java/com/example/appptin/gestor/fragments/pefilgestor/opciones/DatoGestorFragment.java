@@ -2,6 +2,8 @@ package com.example.appptin.gestor.fragments.pefilgestor.opciones;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -41,6 +43,8 @@ public class DatoGestorFragment extends Fragment {
 
     private DatePickerDialog datePickerDialog;
 
+    private EditText et_user_given_name, et_user_full_name, et_city, et_address , et_email;
+
     public DatoGestorFragment() {
         // Required empty public constructor
     }
@@ -62,18 +66,28 @@ public class DatoGestorFragment extends Fragment {
 
         initDatePicker();
 
-        iv_regresar = view.findViewById(R.id.iv_dato_gestor_back);
-        et_nombre = view.findViewById(R.id.et_dato_gestor_nombre);
-        et_apellidos = view.findViewById(R.id.et_dato_gestor_apellidos);
-        btn_guardar = view.findViewById(R.id.btn_dato_gestor_guardar);
-        btn_fecha = view.findViewById(R.id.btn_dato_gestor_fecha);
+        //Campos pantalla
+        iv_regresar = view.findViewById(R.id.iv_dato_paciente_back);
+        et_user_given_name = view.findViewById(R.id.et_user_given_name);
+        et_user_full_name = view.findViewById(R.id.et_user_name);
+        et_email = view.findViewById(R.id.et_email);
+        et_city = view.findViewById(R.id.et_user_city);
+        et_address = view.findViewById(R.id.et_user_address);;
+        btn_guardar = view.findViewById(R.id.btn_dato_paciente_guardar);
 
-        sp_genero = view.findViewById(R.id.sp_dato_gestor_genero);
-        et_pais = view.findViewById(R.id.et_dato_gestor_pais);
-        et_provincia = view.findViewById(R.id.et_dato_gestor_ciudad);
+        Context context = this.getContext();
+        // Obtiene las SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+
+        // Obtiene los valores de las SharedPreferences
+        et_user_given_name.setText(sharedPreferences.getString("user_given_name", "Valor vacio"));
+        et_user_full_name.setText(sharedPreferences.getString("user_full_name", "Valor vacio"));
+        et_email.setText(sharedPreferences.getString("user_email", "Valor vacio"));
+        et_city.setText(sharedPreferences.getString("user_city", "Valor vacio"));
+        et_address.setText(sharedPreferences.getString("user_address", "Valor vacio"));
 
         //Asignar valores
-        SetGenero();
+        //SetGenero();
 
         //btn_fecha.setText(getTodaysDate());
 
@@ -84,11 +98,10 @@ public class DatoGestorFragment extends Fragment {
         iv_regresar.setOnClickListener(regresar);
         btn_guardar.setOnClickListener(guardar);
         setNombreListener();
-        setApellidosListener();
-        btn_fecha.setOnClickListener(canviar_fecha);
-        setGeneroListener();
-        setPaisListener();
-        setProvinciaListener();
+        //btn_fecha.setOnClickListener(canviar_fecha);
+        //setGeneroListener();
+        //setPaisListener();
+        //setProvinciaListener();
 
 
         return view;
@@ -119,24 +132,7 @@ public class DatoGestorFragment extends Fragment {
     };
 
     private void setNombreListener() {
-        et_nombre.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                btn_guardar.setEnabled(true);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
-
-    private void setApellidosListener() {
-        et_apellidos.addTextChangedListener(new TextWatcher() {
+        et_user_given_name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -215,7 +211,6 @@ public class DatoGestorFragment extends Fragment {
     public void SetGenero() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, new String[]{" ", "Masculí", "Femení"});
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_genero.setAdapter(adapter);
         //Evita que se active el evento OnItemSelectedListener del spinner cuando se establece el índice de selección.
         sp_genero.setSelection(0, false);
     }

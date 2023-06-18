@@ -247,10 +247,10 @@ public class registre extends AppCompatActivity {
 
                                 }
                                 else if (role.equals("doctor")){
-                                    navigateToMetgeActivity();
+                                    navigateToMetgeActivity(session_token);
                                 }
                                 else if (role.equals("manager")){
-                                    navigateToGestorActivity();
+                                    navigateToGestorActivity(session_token);
                                 }
 
                             } else {
@@ -280,14 +280,16 @@ public class registre extends AppCompatActivity {
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }
 
-    private void navigateToMetgeActivity() {
+    private void navigateToMetgeActivity(String session_token) {
         Intent intent = new Intent(this, MedicoActivity.class);
+        intent.putExtra("session_token", session_token);
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }
 
-    private void navigateToGestorActivity() {
+    private void navigateToGestorActivity(String session_token) {
         Intent intent = new Intent(this, GestorActivity.class);
+        intent.putExtra("session_token", session_token);
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }
