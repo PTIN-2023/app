@@ -110,7 +110,7 @@ public class estatPeticionsFragment extends Fragment {
         try {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
             String session_token = sharedPreferences.getString("session_token", "Valor nulo");
-            et_email= sharedPreferences.getString("user_email", "Valor nulo");;
+            //et_email= sharedPreferences.getString("user_email", "Valor nulo");;
             System.out.println(session_token);
 
             //JSONObject jsonObject = new JSONObject();

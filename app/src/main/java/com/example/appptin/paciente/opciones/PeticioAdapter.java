@@ -129,8 +129,6 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
         //String reason = peticio.getReason();
         String mail = peticio.getEmail();
 
-        // Agregar motivo y correo electrónico del paciente al StringBuilder
-        //stringBuilder.append("Motiu: ").append(reason).append("\n");
         stringBuilder.append("Correu electrònic: ").append(mail).append("\n\n");
         for (JSONObject medicine : medicines) {
             try {

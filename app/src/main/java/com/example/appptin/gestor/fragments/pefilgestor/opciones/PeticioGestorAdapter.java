@@ -123,6 +123,9 @@ public class PeticioGestorAdapter extends RecyclerView.Adapter<PeticioGestorAdap
 
         ArrayList<JSONObject> medicines = peticio.getMedicines();
         StringBuilder stringBuilder = new StringBuilder();
+
+        String mail = peticio.getEmail();
+        stringBuilder.append("Correu electrònic: ").append(mail).append("\n\n");
         for (JSONObject medicine : medicines) {
             try {
                 String medName = medicine.getString("med_name");
@@ -166,10 +169,10 @@ public class PeticioGestorAdapter extends RecyclerView.Adapter<PeticioGestorAdap
         public PeticioViewHolder(@NonNull View itemView) {
             super(itemView);
             //Identificadors dels elements del layout de peticio_item
-            //txtID = itemView.findViewById(R.id.ID);
-            txtData = itemView.findViewById(R.id.Data_compra);
-            txtEstat = itemView.findViewById(R.id.estat);
-            BtnDetalls = itemView.findViewById(R.id.btn_detalls);
+            txtID = itemView.findViewById(R.id.ID_g);
+            txtData = itemView.findViewById(R.id.Data_compra_g);
+            txtEstat = itemView.findViewById(R.id.estat_g);
+            BtnDetalls = itemView.findViewById(R.id.btn_detalls_g);
         }
 
         public void bind(Peticio medicament) {
