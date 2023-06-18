@@ -44,7 +44,7 @@ import java.util.Map;
 public class AprobarFragment extends Fragment {
     private static final String TAG = "AprobarFragment";
     RecyclerView recyclerView;
-    ArrayList<String> medicamentos = new ArrayList<String>();
+    ArrayList<Medicament> medicamentos = new ArrayList<Medicament>();
     private TextView textView_nombre, txt_fecha_peticion, textView_pedido;
     private TextInputEditText txt_peticion_comentario;
     Button btn_aceptar, btn_rechazar;
@@ -91,8 +91,14 @@ public class AprobarFragment extends Fragment {
                     String key = entry.getKey();
                     Medicament value = entry.getValue();
                     System.out.println("Clave: " + key + ", Valor: " + value);
+                    //Creo un medicamento con su nombre y cantidad
+                    String cantidadString = String.valueOf(entry.getValue().getCantidad());
+                    int cantidad = Integer.parseInt(cantidadString);
 
-                    medicamentos.add(entry.getValue().getMedName());
+                    Medicament medicament = new Medicament(entry.getValue().getMedName(), cantidad);
+
+
+                    medicamentos.add(medicament);
                 }
 
 

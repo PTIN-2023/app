@@ -68,4 +68,14 @@ public class InformacionPeticion implements Serializable {
     public Medicament getMedicine_list(String clave) {
         return medicine_list.get(clave);
     }
+
+    @Override
+    public String toString() {
+        return "InformacionPeticion{" +
+                "order_identifier='" + order_identifier + '\'' +
+                ", date='" + date + '\'' +
+                ", patient_fullname='" + patient_fullname + '\'' +
+                ", medicine_list=" + medicine_list +
+                '}';
+    }
 }

@@ -32,6 +32,10 @@ public class Medicament {
         setCantidad(1);
 
     }
+    public Medicament(String medName,int cantidad){
+        this.medName = medName;
+        this.cantidad = cantidad;
+    }
 
     public String getMedName() {
         return medName;
@@ -117,5 +121,20 @@ public class Medicament {
 
     public void setCantidad(int cantidad) {
         this.cantidad = getCantidad() + cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Medicament{" +
+                "medName='" + medName + '\'' +
+                ", nationalCode='" + nationalCode + '\'' +
+                ", useType='" + useType + '\'' +
+                ", typeOfAdministration='" + typeOfAdministration + '\'' +
+                ", prescriptionNeeded=" + prescriptionNeeded +
+                ", pvp=" + pvp +
+                ", form='" + form + '\'' +
+                ", excipients=" + excipients +
+                ", cantidad=" + cantidad +
+                '}';
     }
 }

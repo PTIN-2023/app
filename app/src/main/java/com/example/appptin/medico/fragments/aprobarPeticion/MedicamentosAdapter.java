@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appptin.Medicament;
 import com.example.appptin.R;
 
 import java.util.ArrayList;
@@ -16,10 +17,10 @@ import java.util.ArrayList;
 public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapter.MyHolderMedicamentos> implements View.OnClickListener {
 
     Context context;
-    ArrayList<String> medicamentosLista;
+    ArrayList<Medicament> medicamentosLista;
     LayoutInflater layoutInflater;
 
-    public MedicamentosAdapter(Context context, ArrayList<String> arrayList) {
+    public MedicamentosAdapter(Context context, ArrayList<Medicament> arrayList) {
         this.context = context;
         this.medicamentosLista = arrayList;
         this.layoutInflater = layoutInflater.from(context);
@@ -40,7 +41,10 @@ public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyHolderMedicamentos holder, int position) {
-        holder.text_medicamento.setText(medicamentosLista.get(position));
+        Medicament a = medicamentosLista.get(position);
+        holder.text_medicamento.setText(medicamentosLista.get(position).getMedName());
+        holder.text_cantidad_medicamento.setText(String.valueOf(medicamentosLista.get(position).getCantidad()));
+
     }
 
     @Override
@@ -49,10 +53,11 @@ public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapte
     }
 
     public class MyHolderMedicamentos extends RecyclerView.ViewHolder {
-        TextView text_medicamento;
+        TextView text_medicamento, text_cantidad_medicamento;
         public MyHolderMedicamentos(@NonNull View itemView) {
             super(itemView);
-            text_medicamento =itemView.findViewById(R.id.txt_medicamento);
+            text_medicamento = itemView.findViewById(R.id.txt_medicamento);
+            text_cantidad_medicamento = itemView.findViewById(R.id.txt_cantidad);
         }
     }
 }
