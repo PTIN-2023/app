@@ -155,6 +155,9 @@ public class                                              QrFragment extends Fra
                 String contents = result.getContents();
                 if (contents.charAt(0) == '1') {  //Si es un 1 és un paquet
                     String resultant = contents.substring(1);
+
+                    confirmOrder(resultant);
+                    /*
                     String url = apiUrl + "/api/check_order";
 
                     JSONObject jsonBody = new JSONObject();
@@ -202,12 +205,14 @@ public class                                              QrFragment extends Fra
                             }
                         }
                     });
-                    queue.add(jsonObjectRequest);
+                    queue.add(jsonObjectRequest);*/
                 } else if (contents.charAt(0) == '0') {
                     //String recepta = contents.substring(1);
                     //showPopupDialog("Aquest QR correspon a una recepta", "Encara estem treballant per acabar de implementar-ho");
 
                     String code = contents.substring(1);
+                    getRecipe(code);
+                    /*
                     System.out.println("Recipe code:" + code);
 
                     String url = apiUrl + "/api/get_prescription_meds";
@@ -276,7 +281,7 @@ public class                                              QrFragment extends Fra
                     });
                     queue.add(jsonObjectRequest);
 
-                } else {
+                */}  else {
                     showPopupDialog("Aquest QR no és correcte", "Prova d'escanejar un QR que et proporcioni Transmed");
                 }
             }
@@ -409,7 +414,9 @@ public class                                              QrFragment extends Fra
         JSONObject jsonBody = new JSONObject();
         try {
             content = Integer.parseInt(order_identifier);
-            jsonBody.put("session_token", login.getSession_token() );
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+            jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
+            //jsonBody.put("session_token", login.getSession_token() );
             jsonBody.put("order_identifier", content);
             //System.out.println("jsonBody " + jsonBody);
             //System.out.println("asdfa"+login.getSession_token());
