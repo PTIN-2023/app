@@ -3,6 +3,7 @@ package com.example.appptin.medico.fragments.aprobarPeticion;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -26,6 +27,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.Medicament;
 import com.example.appptin.R;
@@ -195,28 +197,32 @@ public class AprobarFragment extends Fragment {
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/doctor_confirm_order";
-        JSONArray jsonBody = new JSONArray();
+        JSONObject jsonBody = new JSONObject();
+
+        System.out.println("Activity: " + getActivity());
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+        System.out.println("Token: " + sharedPreferences.getString("session_token", "No value"));
 
         // Datos enviados
         try {
-            JSONObject jsonObject = new JSONObject();
+            jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
+            jsonBody.put("order_identifier", Integer.parseInt(peticion.getOrder_identifier()));
+            jsonBody.put("approved", approved);
+            jsonBody.put("reason", txt_peticion_comentario.getText().toString());
 
-            jsonObject.put("session_token", login.getSession_token());
-            //jsonObject.put("order_identifier", ??????);
-            jsonObject.put("approved", approved);
-            //jsonObject.put("reason", "????????????");
-
-            jsonBody.put(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        System.out.println("json: " + jsonBody);
+
         // Datos devueltos
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONArray>() {
-            public void onResponse(JSONArray response) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject response) {
                 // Manejar la respuesta exitosa
                 System.out.println(" ******** Se reciben datos *******");
                 // Otro código de manejo de la respuesta JSON
+                System.out.println("response: " + response);
             }
         },
                 new Response.ErrorListener() {
@@ -235,6 +241,6 @@ public class AprobarFragment extends Fragment {
                     }
                 });
 
-        queue.add(jsonArrayRequest);
+        queue.add(jsonObjectRequest);
     }
 }
