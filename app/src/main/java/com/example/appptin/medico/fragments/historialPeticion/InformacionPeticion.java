@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InformacionPeticion implements Serializable {
-    private String order_identifier, date,patient_fullname;
+    private String order_identifier, date,patient_fullname, approved;
 
     private Map<String, Medicament> medicine_list;
 
@@ -56,6 +56,8 @@ public class InformacionPeticion implements Serializable {
     public String getDate() {
         return date;
     }
+
+    public String getApproved(){return approved;}
 
     public String getPatient_fullname() {
         return patient_fullname;

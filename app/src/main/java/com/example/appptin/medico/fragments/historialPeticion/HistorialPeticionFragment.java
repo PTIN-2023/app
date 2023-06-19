@@ -354,33 +354,6 @@ public class HistorialPeticionFragment extends Fragment {
                                 informacion_cliente.setMedicine_list(medicament);
                             }
 
-                            /*
-                            ArrayList<Medicament> medicine_list = new ArrayList<Medicament>();
-                            for (int j = 0; j < medicine_list_Array.length(); j++) {
-                                // Obtener objeto con los datos del medicamento
-                                JSONObject medicamentObject = medicine_list_Array.getJSONObject(i);
-
-                                System.out.println("MENSAJE: " + medicamentObject);
-
-                                String medicine_identifier = medicamentObject.getString("medicine_identifier"); //nationalCode
-                                String medicine_image_url = medicamentObject.getString("medicine_image_url");
-                                String medicine_name = medicamentObject.getString("medicine_name");
-
-                                // Verificar este campo porque en la ventana de listar medicamentos es un ObjectArray
-                                String excipient = medicamentObject.getString("excipient");
-
-                                Double pvp = medicamentObject.getDouble("pvp");
-
-                                // mismo que use_type
-                                String contents = medicamentObject.getString("contents");
-                                boolean prescriptionNeeded = medicamentObject.getBoolean("prescription_needed");
-                                String form = medicamentObject.getString("form");
-                                String typeOfAdministration = medicamentObject.getString("type_of_administration");
-
-                                //revisarlo !!!
-                                //medicine_list.add(new Medicament(medicine_name,medicine_identifier,contents,typeOfAdministration,prescriptionNeeded,pvp,form,excipient));
-                            }*/
-
                             arrayList.add(informacion_cliente);
                         }
 
@@ -438,6 +411,57 @@ public class HistorialPeticionFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println("MENSAJE: " + response);
+                try {
+                    String result = response.getString("result");
+                    ArrayList<InformacionPeticion> arrayList = new ArrayList<>();
+                    // Caso exitoso
+                    if (result.equals("ok")) {
+                        // Listado de peticiones que el doctor ha de confirmar
+                        JSONArray ordersArray = response.getJSONArray("orders");
+
+                        //Guardar los datos obtenidos
+                        for (int i = 0; i < ordersArray.length(); i++) {
+                            // Obtener el Objeto
+                            JSONObject peticionObject = ordersArray.getJSONObject(i);
+
+                            // Obtener la información del Objeto
+                            String order_identifier = peticionObject.getString("order_identifier");
+                            String date = peticionObject.getString("date");
+                            String patient_fullname = peticionObject.getString("patient_full_name");
+                            //String approved = peticionObject.getString("approved");
+
+                            InformacionPeticion informacion_cliente = new InformacionPeticion(order_identifier,date,patient_fullname);
+
+                            // Lista de medicamentos que han de ser confirmados
+                            JSONArray medicine_list_Array = peticionObject.getJSONArray("medicine_list");
+
+                            // Guardar los valores de los medicamentos del cliente
+                            for (int j = 0; j < medicine_list_Array.length(); j++) {
+                                JSONArray medicineArray = medicine_list_Array.getJSONArray(j);
+                                String nationalCode = medicineArray.getString(0);
+                                String medicine_name = medicineArray.getString(1);
+
+                                //System.out.println("Código: " + nationalCode + ", Nombre: " + medicine_name);
+
+                                Medicament medicament = new Medicament(nationalCode,medicine_name);
+                                // Guardar medicamento
+                                informacion_cliente.setMedicine_list(medicament);
+                            }
+
+                            arrayList.add(informacion_cliente);
+                        }
+
+                        Creacion_elementos_RecyclerView(arrayList);
+
+                    }
+
+                    // Caso no exitoso, crear algún dialogo
+                    else{
+                        System.out.println("No se han leído los datos en la api");
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
