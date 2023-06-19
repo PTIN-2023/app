@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -48,6 +49,8 @@ public class CistellaFragment extends Fragment {
 
     private LinearLayout linearLayoutCistella;
     private List<HashMap<String, Object>> cistella = new ArrayList<>();
+
+    private List<HashMap<String, Object>> cistellaOriginal = new ArrayList<>();
 
     private PopupWindow popupWindow;
 
@@ -91,8 +94,23 @@ public class CistellaFragment extends Fragment {
         //((AppCompatActivity)getActivity()).getSupportActionBar().show();
         View view = inflater.inflate(R.layout.fragment_cistella, container, false);
         linearLayoutCistella = view.findViewById(R.id.linearLayout_cistella);
-
         Button finalitzar_compra = view.findViewById(R.id.btn_finalitzar_compra);
+
+
+        SearchView searchView = (SearchView) view.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                List<HashMap<String, Object>> filteredCistella = filter(cistellaOriginal, newText);
+                actualitzarCistellaConFiltro(filteredCistella);
+                return false;
+            }
+        });
 
         // Afegir un productes
         try {
@@ -108,6 +126,7 @@ public class CistellaFragment extends Fragment {
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
             }
         });
+
 
         initPopup();
 
@@ -146,6 +165,7 @@ public class CistellaFragment extends Fragment {
 
             // Añadirlos a la lista
             cistella.add(producte);
+            cistellaOriginal = new ArrayList<>(cistella);
 
         }
 
@@ -225,6 +245,35 @@ public class CistellaFragment extends Fragment {
 
 
     }
+
+    private List<HashMap<String, Object>> filter(List<HashMap<String, Object>> cistellaOriginal, String query) {
+        List<HashMap<String, Object>> filteredCistella = new ArrayList<>();
+        for (HashMap<String, Object> producte : cistellaOriginal) {
+            String nomProducte = (String) producte.get("nom");
+            if (nomProducte.toLowerCase().contains(query.toLowerCase())) {
+                filteredCistella.add(producte);
+            }
+        }
+        return filteredCistella;
+    }
+
+    private void actualitzarCistellaConFiltro(List<HashMap<String, Object>> filteredCistella) {
+        linearLayoutCistella.removeAllViews();
+        for (HashMap<String, Object> producte : filteredCistella) {
+            View producteView = getLayoutInflater().inflate(R.layout.productes_cistella, null);
+            TextView nomProducte = producteView.findViewById(R.id.nom_producte);
+            TextView preuProducte = producteView.findViewById(R.id.preu_producte);
+            TextView quantitatProducte = producteView.findViewById(R.id.quantity_textview);
+
+            nomProducte.setText((String) producte.get("nom"));
+            preuProducte.setText(Float.toString((float) producte.get("preu")) + " €");
+            quantitatProducte.setText(Integer.toString((int) producte.get("quantitat")));
+
+            linearLayoutCistella.addView(producteView);
+        }
+    }
+
+
     private void actualitzarPreu(View ViewPreu) {
         float preuTotal = 0;
 
