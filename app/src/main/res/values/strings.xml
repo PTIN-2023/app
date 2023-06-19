@@ -71,7 +71,7 @@
     <string name="n_id_info_pacient">Nº de identificació:</string>
     <string name="n_comanda_info_pacient">Nº Comanda:</string>
     <string name="info_pacient_nom">Nom del Pacient</string>
-    <string name="info_fecha_peticion">Dada de petició:</string>
+    <string name="info_fecha_peticion">Data de petició:</string>
     <string name="n_ref_comanda">Nº de referència comanda</string>
     <string name="llista_medicaments">Llista de medicaments:</string>
     <string name="info_pacient_aceptar">Acceptar</string>
@@ -82,6 +82,7 @@
     <string name="id_cognom_metge">Cognoms del metge</string>
 
     //fragment_detalles_peticion.xml
+    <string name="aprobar">Aprovada:</string>
 
     //fragment_historial_paciente.xml
     <string name="info_medico">Informe mèdic</string>

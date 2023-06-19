@@ -53,7 +53,7 @@
                 android:layout_margin="5dp"
                 android:fontFamily="@font/rinkart"
                 android:textSize="18dp"
-                android:text="@string/cognoms_info_pacient" />
+                android:text="@string/aprobar" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -65,7 +65,7 @@
                 android:layout_margin="5dp"
                 android:fontFamily="@font/rinkart"
                 android:textSize="18dp"
-                android:text="@string/n_id_info_pacient" />
+                android:text="@string/info_fecha_peticion" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -99,7 +99,7 @@
                 android:layout_column="1"
                 android:layout_margin="5dp"
                 android:textSize="18dp"
-                android:hint="@string/info_fecha_peticion" />
+                android:hint="Yes" />
 
             <TextView
                 android:id="@+id/txt_dni_historial"
@@ -134,11 +134,12 @@
             android:textStyle="bold"
             android:text="@string/llista_medicaments" />
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ListView_Peticion"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp" />
 
     </LinearLayout>
 
