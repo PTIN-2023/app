@@ -102,76 +102,6 @@
 
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <ImageView
-                            android:id="@+id/iv_direcciones"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/baseline_medical_information_24"
-                            android:padding="5dp"/>
-
-                        <TextView
-                            android:layout_marginStart="20dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Credencials Mèdiques"
-                            android:textSize="17sp"
-                            android:fontFamily="@font/rinkart_italic"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:layout_toEndOf="@+id/iv_direcciones"
-                            />
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/right_arrow_icon"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <ImageView
-                            android:id="@+id/iv_metodo_pago"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/baseline_article_24"
-                            android:padding="5dp"/>
-
-                        <TextView
-                            android:layout_marginStart="20dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Informació de Contacte"
-                            android:textSize="17sp"
-                            android:fontFamily="@font/rinkart_italic"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:layout_toEndOf="@+id/iv_metodo_pago"
-                            />
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/right_arrow_icon"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true" />
-
-
-                    </RelativeLayout>
-
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -183,40 +113,6 @@
                     android:layout_marginTop="20dp"
                     android:orientation="vertical"
                     android:padding="15dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/iv_notificacion"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/baseline_notifications_none_24"
-                            android:padding="5dp"/>
-
-                        <TextView
-                            android:layout_marginStart="20dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="@string/notificacions"
-                            android:textSize="17sp"
-                            android:fontFamily="@font/rinkart_italic"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:layout_toEndOf="@+id/iv_notificacion"
-                            />
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/right_arrow_icon"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true" />
-
-
-                    </RelativeLayout>
-
 
                     <RelativeLayout
                         android:id="@+id/rl_perfil_medico_config"
