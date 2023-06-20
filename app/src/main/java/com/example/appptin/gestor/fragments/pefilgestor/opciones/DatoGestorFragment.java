@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,8 +25,17 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
 import com.example.appptin.gestor.fragments.pefilgestor.PerfilGestorFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 
@@ -91,12 +101,17 @@ public class DatoGestorFragment extends Fragment {
 
         //btn_fecha.setText(getTodaysDate());
 
-        //Por defecto botón desactivado
-        btn_guardar.setEnabled(false);
+        //Por defecto botón activado
+        btn_guardar.setEnabled(true);
+        btn_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveInfo(v);
+            }
+        });
 
         // LISTENERS
         iv_regresar.setOnClickListener(regresar);
-        btn_guardar.setOnClickListener(guardar);
         setNombreListener();
         //btn_fecha.setOnClickListener(canviar_fecha);
         //setGeneroListener();
@@ -282,5 +297,66 @@ public class DatoGestorFragment extends Fragment {
         //default should never happen
         return "Gener";
 
+    }
+
+    public void saveInfo(View view) {
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("token", sharedPreferences.getString("session_token", "No value"));
+            jsonBody.put("user_full_name", et_user_given_name.getText());
+            jsonBody.put("user_given_name", et_user_full_name.getText());
+            jsonBody.put("user_email", et_email.getText());
+            jsonBody.put("user_phone", "609078022");
+            jsonBody.put("user_city", et_city.getText());
+            jsonBody.put("user_address", et_address.getText());
+            //jsonBody.put("user_password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = r.getString(R.string.api_base_url) + "/api/set_user_info"; // Reemplaza con la dirección de tu API
+        System.out.println(url);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String result = response.getString("result");
+                            System.out.println(result);
+                            if (result.equals("ok")) {
+
+                                Toast.makeText(getActivity(), "Les dades s'han modificat correctament.", Toast.LENGTH_LONG).show();
+                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString("user_full_name", et_user_full_name.getText().toString());
+                                editor.putString("user_given_name", et_user_given_name.getText().toString());
+                                editor.putString("user_city", et_city.getText().toString());
+                                editor.putString("user_address", et_address.getText().toString());
+
+
+                                editor.apply();
+                            } else {
+                                Toast.makeText(getActivity(), "Hi ha hagut un error en la solicitut.", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                    }
+                });
+
+        // Añade la solicitud a la cola de solicitudes
+        queue.add(jsonObjectRequest);
     }
 }

@@ -418,10 +418,19 @@ public class DatosPacienteFragment extends Fragment {
                             System.out.println(result);
                             if (result.equals("ok")) {
 
+                                Toast.makeText(getActivity(), "Les dades s'han modificat correctament.", Toast.LENGTH_LONG).show();
+                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
 
+                                editor.putString("user_full_name", et_user_full_name.getText().toString());
+                                editor.putString("user_given_name", et_user_given_name.getText().toString());
+                                editor.putString("user_city", et_city.getText().toString());
+                                editor.putString("user_address", et_address.getText().toString());
+
+
+                                editor.apply();
                             } else {
-                                // Error en el registro
-                                // Muestra un mensaje de error al usuario
+                                Toast.makeText(getActivity(), "Hi ha hagut un error en la solicitut.", Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
