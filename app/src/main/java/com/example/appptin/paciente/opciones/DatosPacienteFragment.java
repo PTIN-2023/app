@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,10 +25,19 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appptin.MainActivity;
 import com.example.appptin.R;
 import com.example.appptin.paciente.Patient;
 import com.example.appptin.paciente.UserFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 
@@ -81,6 +91,7 @@ public class DatosPacienteFragment extends Fragment {
         //et_dni = view.findViewById(R.id.et_dato_paciente_dni);
         //et_cip = view.findViewById(R.id.et_dato_paciente_cip);
         btn_guardar = view.findViewById(R.id.btn_dato_paciente_guardar);
+
         //btn_fecha = view.findViewById(R.id.btn_dato_paciente_fecha);
 
         //sp_genero = view.findViewById(R.id.sp_dato_paciente_genero);
@@ -107,18 +118,23 @@ public class DatosPacienteFragment extends Fragment {
         et_city.setText(sharedPreferences.getString("user_city", "Valor vacio"));
         et_address.setText(sharedPreferences.getString("user_address", "Valor vacio"));
 
-
         //Asignar valores
         //SetGenero();
 
-        //Por defecto botón desactivado
-        btn_guardar.setEnabled(false);
+        //Por defecto botón activado
+        btn_guardar.setEnabled(true);
+        btn_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveInfo(v);
+            }
+        });
 
         // LISTENERS
-        iv_regresar.setOnClickListener(regresar);
-        btn_guardar.setOnClickListener(guardar);
-        setGivenNameListener();
-        setUserNameListener();
+        //iv_regresar.setOnClickListener(regresar);
+        //btn_guardar.setOnClickListener(guardar);
+        //setGivenNameListener();
+        //setUserNameListener();
         //btn_fecha.setOnClickListener(canviar_fecha);
         /*setGeneroListener();
         setGeneroListener();
@@ -146,8 +162,53 @@ public class DatosPacienteFragment extends Fragment {
     private View.OnClickListener guardar = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(),"Canvis desats",Toast.LENGTH_SHORT).show();
+            RequestQueue queue = Volley.newRequestQueue(getContext());
+            Resources r = getResources();
+            String apiUrl = r.getString(R.string.api_base_url);
 
+            JSONObject jsonBody = new JSONObject();
+            try {
+                jsonBody.put("user_full_name", et_user_given_name.getText());
+                jsonBody.put("user_given_name", et_user_full_name.getText());
+                jsonBody.put("user_email", et_email.getText());
+                //sonBody.put("user_phone", et_);
+                jsonBody.put("user_city", et_city.getText());
+                jsonBody.put("user_address", et_address.getText());
+                //jsonBody.put("user_password", password);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String url = r.getString(R.string.api_base_url) + "/api/set_user_info"; // Reemplaza con la dirección de tu API
+            System.out.println(url);
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                String result = response.getString("result");
+                                System.out.println(result);
+                                if (result.equals("ok")) {
+
+
+                                } else {
+                                    // Error en el registro
+                                    // Muestra un mensaje de error al usuario
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Error al realizar la solicitud
+                            error.printStackTrace();
+                        }
+                    });
+
+            // Añade la solicitud a la cola de solicitudes
+            queue.add(jsonObjectRequest);
         }
     };
 
@@ -324,5 +385,57 @@ public class DatosPacienteFragment extends Fragment {
         //default should never happen
         return "Gener";
 
+    }
+
+    public void saveInfo(View view) {
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("token", sharedPreferences.getString("session_token", "No value"));
+            jsonBody.put("user_full_name", et_user_given_name.getText());
+            jsonBody.put("user_given_name", et_user_full_name.getText());
+            jsonBody.put("user_email", et_email.getText());
+            jsonBody.put("user_phone", "609078022");
+            jsonBody.put("user_city", et_city.getText());
+            jsonBody.put("user_address", et_address.getText());
+            //jsonBody.put("user_password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = r.getString(R.string.api_base_url) + "/api/set_user_info"; // Reemplaza con la dirección de tu API
+        System.out.println(url);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String result = response.getString("result");
+                            System.out.println(result);
+                            if (result.equals("ok")) {
+
+
+                            } else {
+                                // Error en el registro
+                                // Muestra un mensaje de error al usuario
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                    }
+                });
+
+        // Añade la solicitud a la cola de solicitudes
+        queue.add(jsonObjectRequest);
     }
 }

@@ -68,8 +68,8 @@ public class registre extends AppCompatActivity {
         input_phone = findViewById(R.id.phone);
         input_password = findViewById(R.id.password);
         input_re_password = findViewById(R.id.re_password);
-        input_city = findViewById(R.id.password);
-        input_address = findViewById(R.id.password);
+        input_city = findViewById(R.id.city);
+        input_address = findViewById(R.id.Address);
 
         String given_name = input_given_name.getText().toString();
         String full_name = input_full_name.getText().toString();

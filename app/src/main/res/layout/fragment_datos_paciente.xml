@@ -283,9 +283,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30sp"
                     android:fontFamily="@font/rinkart_italic"
+                    android:onClick="saveInfo"
+                    android:text="@string/save_changes"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:text="@string/save_changes"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
