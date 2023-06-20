@@ -33,25 +33,21 @@ public class FiltreFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String[] via;
-    private ArrayList<String> format;
+
     private EditText editTextMinPrice;
     private EditText editTextMaxPrice;
     private EditText editTextMedName;
     private CheckBox checkBoxPrescription;
     private CheckBox checkBoxOral;
-    private CheckBox checkBoxInyectable;
-    private CheckBox checkBoxSublingual;
-    private CheckBox checkBoxVaginal;
-    private CheckBox checkBoxOcular;
+
     private CheckBox checkBoxTabletas;
     private CheckBox checkBoxLiquidos;
     private CheckBox checkBoxCapsulas;
     private CheckBox checkBoxTopicos;
-    private CheckBox checkBoxSupositorios;
-    private CheckBox checkBoxGotas;
-    private CheckBox checkBoxInhaladores;
-    private CheckBox checkBoxInyecciones;
-    private CheckBox checkBoxImplantes;
+
+    private CheckBox checkBoxGel;
+    private CheckBox checkBoxPols;
+    private CheckBox checkBoxCrema;
 
 
     public FiltreFragment() {
@@ -104,7 +100,7 @@ public class FiltreFragment extends Fragment {
 
         // definim 2 arrays
         ArrayList<String> via = new ArrayList<>();
-        format = new ArrayList<>();
+        ArrayList<String> format = new ArrayList<>();
 
         // nom medicament
         editTextMedName = view.findViewById(R.id.nom_Med);
@@ -118,21 +114,17 @@ public class FiltreFragment extends Fragment {
 
         // medicaments via
         checkBoxOral = view.findViewById(R.id.checkBoxOral);
-        checkBoxInyectable = view.findViewById(R.id.checkBoxInyectable);
-        checkBoxSublingual = view.findViewById(R.id.checkBoxSublingual);
-        checkBoxVaginal = view.findViewById(R.id.checkBoxVaginal);
-        checkBoxOcular = view.findViewById(R.id.checkBoxOcular);
+        checkBoxTopicos = view.findViewById(R.id.checkBoxTopicos);
+
 
         // medicaments format
         checkBoxTabletas = view.findViewById(R.id.checkBoxTabletas);
         checkBoxLiquidos = view.findViewById(R.id.checkBoxLiquidos);
         checkBoxCapsulas = view.findViewById(R.id.checkBoxCapsulas);
-        checkBoxTopicos = view.findViewById(R.id.checkBoxTopicos);
-        checkBoxSupositorios = view.findViewById(R.id.checkBoxSupositorios);
-        checkBoxGotas = view.findViewById(R.id.checkBoxGotas);
-        checkBoxInhaladores = view.findViewById(R.id.checkBoxInhaladores);
-        checkBoxInyecciones = view.findViewById(R.id.checkBoxInyecciones);
-        checkBoxImplantes = view.findViewById(R.id.checkBoxImplantes);
+        checkBoxGel = view.findViewById(R.id.checkBoxGel);
+        checkBoxCrema = view.findViewById(R.id.checkBoxCrema);
+        checkBoxPols = view.findViewById(R.id.checkBoxPols);
+
 
         // Initialize references to other checkboxes
 
@@ -149,24 +141,12 @@ public class FiltreFragment extends Fragment {
 
                 // obtenim necessitat prescripcio
                 boolean prescriptionNeeded = checkBoxPrescription.isChecked();
-                    //ARREGLAR AIXÒ QUE FOT ASCO
 
                 // obtenim via - type of administration
                 boolean oralSelected = checkBoxOral.isChecked();
                 if (oralSelected)
                     via.add ("Oral");
-                boolean inyectableSelected = checkBoxInyectable.isChecked();
-                if (inyectableSelected)
-                    via.add("inyectable");
-                boolean SublingualSelected = checkBoxSublingual.isChecked();
-                if (SublingualSelected)
-                    via.add("Sublingual");
-                boolean VaginalSelected = checkBoxVaginal.isChecked();
-                if (VaginalSelected)
-                    via.add("Vaginal");
-                boolean OcularSelected = checkBoxOcular.isChecked();
-                if (OcularSelected)
-                    via.add("Ocular");
+
                 boolean TopicosSelected = checkBoxTopicos.isChecked();
                 if (TopicosSelected)
                     via.add("Topical");
@@ -175,34 +155,21 @@ public class FiltreFragment extends Fragment {
                 boolean TabletasSelected = checkBoxTabletas.isChecked();
                 if (TabletasSelected)
                     format.add("Tablets");
-                boolean LiquidosSelected = checkBoxLiquidos.isChecked();
-                if (LiquidosSelected)
+                boolean LiquidSelected = checkBoxLiquidos.isChecked();
+                if (LiquidSelected)
                     format.add("Liquid");
                 boolean CapsulasSelected = checkBoxCapsulas.isChecked();
                 if (CapsulasSelected)
                     format.add("Capsules");
-
-                boolean SupositoriosSelected = checkBoxSupositorios.isChecked();
-                if (SupositoriosSelected)
-                    format.add("Supositorios");
-                boolean GotasSelected = checkBoxGotas.isChecked();
-                if (GotasSelected)
-                    format.add("Gotas");
-                boolean InhaladoresSelected = checkBoxInhaladores.isChecked();
-                if (InhaladoresSelected)
-                    format.add("Inhaladores");
-                boolean InyeccionesSelected = checkBoxInyecciones.isChecked();
-                if (InyeccionesSelected)
-                    format.add("Inyecciones");
-                boolean ImplantesSelected = checkBoxImplantes.isChecked();
-                if (ImplantesSelected)
-                    format.add("Implantes");
-
-
-
-                // TODO: Do something with the selected values (e.g., save to preferences, send to server)
-
-                // For demonstration purposes, display the selected values
+                boolean GelSelected = checkBoxGel.isChecked();
+                if (GelSelected)
+                    format.add("Gel");
+                boolean CremaSelected = checkBoxCrema.isChecked();
+                if (CremaSelected)
+                    format.add("Cream");
+                boolean PolsSelected = checkBoxPols.isChecked();
+                if (PolsSelected)
+                    format.add("Powder");
 
 
                 // Create a bundle and set the selected values as arguments

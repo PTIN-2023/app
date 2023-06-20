@@ -247,5 +247,9 @@
     <string name="inhalers">Inhaladores</string>
     <string name="injections">Inyecciones</string>
     <string name="implants">Implantes</string>
+    <string name="gel">Gel</string>
+    <string name="Pols">Pols</string>
+    <string name="Liquid">Liquid</string>
+
 
 </resources>

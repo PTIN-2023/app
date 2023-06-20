@@ -173,17 +173,17 @@ public class MedicamentsFragment extends Fragment {
             if (medName != null && !medName.isEmpty()) {
                 filtre.put("med_name", medName);
             }
-            //if (pvpMin != "") {
-            //    filtre.put("pvp_min", pvpMin);
-            //}
-            //if (pvpMax != "") {               AIXÒ ESTA MALAMENT, NO PODEM ENVIAR EL PVPMAX I PVPMIN SI NO HI HA!!!!!!!!!!
-            //    filtre.put("pvp_max", pvpMax);
-            //}
+            if (pvpMin != null && !pvpMin.isEmpty()) {
+                filtre.put("pvp_min", pvpMin);
+            }
+            if (pvpMax != null && !pvpMax.isEmpty()) {
+                filtre.put("pvp_max", pvpMax);
+            }
             if (prescriptionNeeded != false) {
                 filtre.put("prescription_needed", prescriptionNeeded);
             }
             if (form != null && !form.isEmpty()) {
-                filtre.put("form", form);
+                filtre.put("form", new JSONArray(form));
             }
             if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
                 //typeOfAdministration = ["Topical", "Oral"];
