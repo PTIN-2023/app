@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,24 +58,45 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
         // Asignar el valor de los componentes
         holder.txtNom.setText(medicament.getMedName());
         holder.txtPvp.setText(String.valueOf(medicament.getPvp()) + "€");
-        // Lògica per assignar la imatge basada en el nom del medicament
+        // Lògica per assignar la URL imatge basada en el nom del medicament
         if (medicament.getMedName().equals("Paracetamol")) {
-            holder.imgMedicament.setImageResource(R.drawable.paracetamol);
+            Glide.with(holder.imgMedicament.getContext())
+                    .load("https://i.imgur.com/agV04p0.jpg")
+                    .into(holder.imgMedicament);
         } else if (medicament.getMedName().equals("Ibuprofeno")) {
-            holder.imgMedicament.setImageResource(R.drawable.ibuprofe);
+            Glide.with(holder.imgMedicament.getContext())
+                    .load("https://i.imgur.com/PLjr0gu.jpg")
+                    .into(holder.imgMedicament);
         } else if (medicament.getMedName().equals("Amoxicilina")) {
-            holder.imgMedicament.setImageResource(R.drawable.amoxicilina);
+            Glide.with(holder.imgMedicament.getContext())
+                    .load("https://i.imgur.com/FCCDsUO.jpg")
+                    .into(holder.imgMedicament);
         } else if (medicament.getMedName().equals("Lorazepam")) {
-            holder.imgMedicament.setImageResource(R.drawable.lorazepam);
+            Glide.with(holder.imgMedicament.getContext())
+                    .load("https://i.imgur.com/xZqxJoA.jpg")
+                    .into(holder.imgMedicament);
         } else if (medicament.getMedName().equals("Diclofenac")) {
-            holder.imgMedicament.setImageResource(R.drawable.diclofenaco);
+            Glide.with(holder.imgMedicament.getContext())
+                    .load("https://i.imgur.com/JD9FYgu.jpg")
+                    .into(holder.imgMedicament);
         } else if (medicament.getMedName().equals("Hydrocortisone")) {
-            holder.imgMedicament.setImageResource(R.drawable.hydrocortisona);
+            Glide.with(holder.imgMedicament.getContext())
+                    .load("https://i.imgur.com/1XXgQIM.jpg")
+                    .into(holder.imgMedicament);
         } else if (medicament.getMedName().equals("Talcum Powder")) {
-            holder.imgMedicament.setImageResource(R.drawable.talcum_powder);
+            Glide.with(holder.imgMedicament.getContext())
+                    .load("https://i.imgur.com/2rM8RLT.jpg")
+                    .into(holder.imgMedicament);
         } else if (medicament.getMedName().equals("Jarabe per a la Toss")) {
-            holder.imgMedicament.setImageResource(R.drawable.flutox);
+            Glide.with(holder.imgMedicament.getContext())
+                    .load("https://i.imgur.com/9RgXjB8.jpg")
+                    .into(holder.imgMedicament);
         }
+
+        //Aquí asignariamos las imagenes con la URL que devuelve la API,
+        /*Glide.with(holder.imgMedicament.getContext())
+                .load(medicaments.get(position).getURLimage())
+                .into(holder.imgMedicament);*/
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

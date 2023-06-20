@@ -117,12 +117,6 @@ public class MedicamentsFragment extends Fragment {
         ArrayList<Medicament> list_medicament = new ArrayList<>();
 
 
-        //Medicament de prova
-        //Medicament medicamentDeProva1 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
-        //Medicament medicamentDeProva2 = new Medicament("Medicament de prova", "123456789", "Ús de prova", "Administració de prova", false, 9.99, "Forma de prova", new ArrayList<>());
-        //list_medicament.add(medicamentDeProva1);
-        //list_medicament.add(medicamentDeProva2);
-
         // Agafar filtres
         String medName = null;
         String pvpMin = null;
@@ -173,7 +167,7 @@ public class MedicamentsFragment extends Fragment {
             //jsonObject.put("filter", false);
 
             JSONObject filtre = new JSONObject();
-            filtre.put("meds_per_page", 6);
+            filtre.put("meds_per_page", 8);
             filtre.put("page", 1);
 
             if (medName != null && !medName.isEmpty()) {
@@ -221,6 +215,7 @@ public class MedicamentsFragment extends Fragment {
                             String form = jsonObject.getString("form");
                             String medName = jsonObject.getString("medicine_name");
                             String useType = jsonObject.getString("use_type");
+                            String URLimage = jsonObject.getString("medicine_image_url");
                             double pvp = jsonObject.getDouble("pvp");
 
                             JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipients");
@@ -232,7 +227,7 @@ public class MedicamentsFragment extends Fragment {
                             boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
                             //String tipusUs = jsonObject.getString("tipus_us");
 
-                            list_medicament.add(new Medicament(medName, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
+                            list_medicament.add(new Medicament(medName, nationalCode, URLimage, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
                             System.out.println(list_medicament);
                         }
                         //Agregar los elementos del RecyclerView

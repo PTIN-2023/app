@@ -7,6 +7,7 @@ public class Medicament {
     private String nationalCode;
     private String useType;
     private String typeOfAdministration;
+    private String URLimage;
     private boolean prescriptionNeeded;
     private double pvp;
     private String form;
@@ -17,6 +18,18 @@ public class Medicament {
     public Medicament(String medName, String nationalCode, String useType, String typeOfAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients) {
         this.medName = medName;
         this.nationalCode = nationalCode;
+        this.useType = useType;
+        this.typeOfAdministration = typeOfAdministration;
+        this.prescriptionNeeded = prescriptionNeeded;
+        this.pvp = pvp;
+        this.form = form;
+        this.excipients = excipients;
+    }
+
+    public Medicament(String medName, String nationalCode, String URLimage, String useType, String typeOfAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients) {
+        this.medName = medName;
+        this.nationalCode = nationalCode;
+        this.URLimage = URLimage;
         this.useType = useType;
         this.typeOfAdministration = typeOfAdministration;
         this.prescriptionNeeded = prescriptionNeeded;
@@ -37,9 +50,9 @@ public class Medicament {
         this.cantidad = cantidad;
     }
 
-    public String getMedName() {
-        return medName;
-    }
+    public String getMedName() {return medName;}
+
+    public String getURLimage(){return URLimage;}
 
     public String getNationalCode() {
         return nationalCode;
@@ -94,6 +107,8 @@ public class Medicament {
     public void setNationalCode(String nationalCode) {
         this.nationalCode = nationalCode;
     }
+
+    public void setURLimage(String URLimage){this.URLimage = URLimage;}
 
     public void setUseType(String useType) {
         this.useType = useType;
