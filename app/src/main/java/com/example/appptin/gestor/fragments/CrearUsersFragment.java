@@ -124,7 +124,7 @@ public class CrearUsersFragment extends Fragment {
                     return;
                 }
                 // Comprobar si el campo de user_role es "patient", "manager" o "doctor"
-                if (!userRole.equals("patient") && !userRole.equals("manager") && !userRole.equals("doctor")) {
+                if (!role.equals("patient") && !role.equals("manager") && !role.equals("doctor")) {
                     Toast.makeText(getActivity(), "El rol del usuario no es válido. Debe ser 'patient', 'manager' o 'doctor'.", Toast.LENGTH_SHORT).show();
                     return;
                 }
