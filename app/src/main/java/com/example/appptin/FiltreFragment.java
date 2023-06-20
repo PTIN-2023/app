@@ -103,7 +103,7 @@ public class FiltreFragment extends Fragment {
         ArrayList<String> format = new ArrayList<>();
 
         // nom medicament
-        editTextMedName = view.findViewById(R.id.nom_Med);
+        //editTextMedName = view.findViewById(R.id.nom_Med);
 
         // max i min preu
         editTextMinPrice = view.findViewById(R.id.editTextMinPrice);

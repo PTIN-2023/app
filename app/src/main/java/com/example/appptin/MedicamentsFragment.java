@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -68,6 +69,8 @@ public class MedicamentsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String medName = null;
+    private EditText searchValue;
 
     private RecyclerView recyclerMedicaments;
     private AlertDialog.Builder builder;
@@ -94,6 +97,8 @@ public class MedicamentsFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -257,6 +262,38 @@ public class MedicamentsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 replaceFragments(new FiltreFragment());
+            }
+        });
+
+        Button searchButton = view.findViewById(R.id.searchButton);
+        searchValue = view.findViewById(R.id.searchView);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String medName = searchValue.getText().toString();
+                String minPrice = "";
+                String maxPrice = "";
+                boolean prescriptionNeeded = false;
+                ArrayList<String> via = new ArrayList<>();
+                ArrayList<String> format = new ArrayList<>();
+
+                Bundle args = new Bundle();
+                args.putString("medName", medName);
+                args.putString("minPrice", minPrice);
+                args.putString("maxPrice", maxPrice);
+                args.putBoolean("prescriptionNeeded", prescriptionNeeded);
+                args.putStringArrayList("via", via);
+                args.putStringArrayList("format", format);
+
+                // Create a new instance of the fragment and set the arguments
+                MedicamentsFragment fragment = new MedicamentsFragment();
+                fragment.setArguments(args);
+
+                // Replace the current fragment with the new one
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, fragment);
+                fragmentTransaction.commit();
             }
         });
 

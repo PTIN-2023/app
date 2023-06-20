@@ -6,8 +6,15 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -37,6 +44,9 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
     Patient patient;
     ArrayAdapter<String> arrayAdapter;
     ActivityMainBinding binding;
+    private SearchView searchView;
+
+    private EditText searchValue;
 
     // Variable utilizada para alacenar la lista de medicamentos añadidos para mostrar en la cesta
     private static JSONArray lista_cesta;
@@ -100,6 +110,28 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
             return true;
         });
 
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState){
+
+        View view = inflater.inflate(R.layout.fragment_medicaments, container, false);
+        Button searchButton = findViewById(R.id.searchButton);
+        searchValue = view.findViewById(R.id.searchView);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String medName = searchValue.getText().toString();
+                System.out.println(medName);
+            }
+        });
+
+        return view;
+    }
+
+    private void processSearchText(String searchText) {
+        String savedSearchValue = searchText;
+        System.out.println(savedSearchValue);
     }
 
     private void replaceFragments(Fragment fragment){
