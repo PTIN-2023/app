@@ -85,34 +85,11 @@
             android:text="@string/orall" />
 
         <CheckBox
-            android:id="@+id/checkBoxInyectable"
+            android:id="@+id/checkBoxTopicos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/injectable" />
+            android:text="@string/topicals" />
 
-        <CheckBox
-            android:id="@+id/checkBoxSublingual"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sublingual" />
-
-        <CheckBox
-            android:id="@+id/checkBoxRectal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/rectal" />
-
-        <CheckBox
-            android:id="@+id/checkBoxVaginal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vaginal" />
-
-        <CheckBox
-            android:id="@+id/checkBoxOcular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ocular" />
 
         <!-- Pill format checkboxes -->
         <TextView
@@ -130,52 +107,34 @@
             android:text="@string/tablets" />
 
         <CheckBox
-            android:id="@+id/checkBoxLiquidos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/liquids" />
-
-        <CheckBox
             android:id="@+id/checkBoxCapsulas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/capsules" />
 
         <CheckBox
-            android:id="@+id/checkBoxTopicos"
+            android:id="@+id/checkBoxLiquidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/topicals" />
+            android:text="@string/liquids" />
 
         <CheckBox
-            android:id="@+id/checkBoxSupositorios"
+            android:id="@+id/checkBoxGel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/suppositories" />
+            android:text="@string/gel" />
 
         <CheckBox
-            android:id="@+id/checkBoxGotas"
+            android:id="@+id/checkBoxCrema"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/drops" />
+            android:text="@string/crema" />
 
         <CheckBox
-            android:id="@+id/checkBoxInhaladores"
+            android:id="@+id/checkBoxPols"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/inhalers" />
-
-        <CheckBox
-            android:id="@+id/checkBoxInyecciones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/injections" />
-
-        <CheckBox
-            android:id="@+id/checkBoxImplantes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/implants" />
+            android:text="@string/Pols" />
 
         <!-- Apply button -->
         <Button
