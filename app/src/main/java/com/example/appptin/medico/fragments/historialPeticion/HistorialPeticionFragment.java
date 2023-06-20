@@ -64,7 +64,9 @@ public class HistorialPeticionFragment extends Fragment {
     Spinner spinnerSort;
     boolean ordenAscendente;
     private String opcionSeleccionada = "";
-
+    public HistorialPeticionFragment() {
+        // Required empty public constructor
+    }
     public HistorialPeticionFragment(String texto, int codigo,int posicion, Context context) throws IOException {
         this.campo = texto;
         this.codi = codigo;

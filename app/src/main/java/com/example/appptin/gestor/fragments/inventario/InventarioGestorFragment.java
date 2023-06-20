@@ -46,6 +46,10 @@ public class InventarioGestorFragment extends Fragment {
     private String opcionSeleccionada = "";
     boolean ordenAscendente;
 
+    public InventarioGestorFragment() {
+        // Constructor vacío requerido para los fragmentos.
+    }
+
     public InventarioGestorFragment(String session_token, Activity gestorActivity) {
         System.out.println("session token inventario: " + session_token);
         System.out.println("activit inventario: " + gestorActivity);
@@ -54,6 +58,8 @@ public class InventarioGestorFragment extends Fragment {
         String apiUrl = "http://147.83.159.195:24105";
         String url = apiUrl + "/api/list_available_medicines";
         JSONObject jsonObject = new JSONObject();
+
+
 
         try {
             jsonObject.put("session_token", session_token);

@@ -434,7 +434,7 @@ public class                                              QrFragment extends Fra
                     } else {
                         try {
                             // Definitiu:--> showPopupDialog("Lectura correcta del codi del paquet.", "S'ha confirmat l'entrega.");
-                            showPopupDialog("Lectura correcta del codi del paquet: "+ content, response.getString("result")); // Per proves
+                            showPopupDialog("Lectura correcta del codi del paquet: "+ order_identifier, response.getString("result")); // Per proves
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
