@@ -413,11 +413,10 @@ public class                                              QrFragment extends Fra
 
         JSONObject jsonBody = new JSONObject();
         try {
-            content = Integer.parseInt(order_identifier);
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
             jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
             //jsonBody.put("session_token", login.getSession_token() );
-            jsonBody.put("order_identifier", content);
+            jsonBody.put("order_identifier", order_identifier);
             //System.out.println("jsonBody " + jsonBody);
             //System.out.println("asdfa"+login.getSession_token());
         } catch (JSONException e) {

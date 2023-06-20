@@ -139,9 +139,9 @@ public class estatPeticionsFragment extends Fragment {
 
                             String result = response.getString("result");
                             if (result.equals("success")) {
-                                JSONArray data = response.getJSONArray("data");
-                                for (int i = 0; i < data.length(); i++) {
-                                    JSONObject order = data.getJSONObject(i);
+                                JSONArray orders = response.getJSONArray("orders");
+                                for (int i = 0; i < orders.length(); i++) {
+                                    JSONObject order = orders.getJSONObject(i);
                                     int orderIdentifier = order.getInt("order_identifier");
                                     String date = order.getString("date");
                                     String state = order.getString("state");
