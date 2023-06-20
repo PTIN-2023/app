@@ -1,5 +1,7 @@
 package com.example.appptin.gestor.fragments.inventario;
 
+import android.app.Activity;
+import android.app.DownloadManager;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -15,7 +17,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.appptin.Medicament;
 import com.example.appptin.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,13 +46,90 @@ public class InventarioGestorFragment extends Fragment {
     private String opcionSeleccionada = "";
     boolean ordenAscendente;
 
-    public InventarioGestorFragment() {
-        //Prueba
+    public InventarioGestorFragment(String session_token, Activity gestorActivity) {
+        System.out.println("session token inventario: " + session_token);
+        System.out.println("activit inventario: " + gestorActivity);
+
+        RequestQueue queue = Volley.newRequestQueue(gestorActivity);
+        String apiUrl = "http://147.83.159.195:24105";
+        String url = apiUrl + "/api/list_available_medicines";
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("session_token", session_token);
+
+//            JSONObject filtre = new JSONObject();
+//            filtre.put("meds_per_page", 6);
+//            filtre.put("page", 1);
+//
+//            jsonObject.put("filter", filtre);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         arrayList = new ArrayList<>();
-        arrayList.add(new MedicamentosClass("Medicament 1","red"));
-        arrayList.add(new MedicamentosClass("Medicament 2","green"));
-        arrayList.add(new MedicamentosClass("Medicament 3","green"));
-        arrayList.add(new MedicamentosClass("Medicament 4","red"));
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println(response);
+                try {
+                    String result = response.getString("result");
+                    System.out.println("resultat: " + result);
+                    if (result.equals("ok")) {
+                        JSONArray arraymed = response.getJSONArray("medicines");
+                        System.out.println(arraymed);
+                        for (int i = 0; i < arraymed.length(); i++) {
+                            JSONObject jsonObject = arraymed.getJSONObject(i);
+
+                            // Acceder a los campos del objeto JSON
+                            String typeOfAdministration = jsonObject.getString("type_of_administration");
+                            String nationalCode = jsonObject.getString("national_code");
+                            String form = jsonObject.getString("form");
+                            String medName = jsonObject.getString("medicine_name");
+                            String useType = jsonObject.getString("use_type");
+                            double pvp = jsonObject.getDouble("pvp");
+
+                            JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipients");
+                            ArrayList<String> excipients = new ArrayList<String>();
+                            for (int j = 0; j < jsonarray_prospecto.length(); j++) {
+                                excipients.add(jsonarray_prospecto.getString(j));
+                            }
+
+                            boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
+                            //String tipusUs = jsonObject.getString("tipus_us");
+
+                            arrayList.add
+                                    (new MedicamentosClass(medName, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
+                            System.out.println(arrayList);
+                        }
+                        //Agregar los elementos del RecyclerView
+                        Creacion_elementos_RecyclerView(arrayList);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Manejo de errores de la solicitud
+                error.printStackTrace();
+            }
+        });
+
+        queue.add(jsonArrayRequest);
+
+        //Prueba
+//        arrayList = new ArrayList<>();
+//        arrayList.add(new MedicamentosClass("Medicament 1","red"));
+//        arrayList.add(new MedicamentosClass("Medicament 2","green"));
+//        arrayList.add(new MedicamentosClass("Medicament 3","green"));
+//        arrayList.add(new MedicamentosClass("Medicament 4","red"));
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -183,13 +273,13 @@ public class InventarioGestorFragment extends Fragment {
         if (opcionSeleccionada.equals(opciones[0])) {
             // Ordenar por nombre ascendente
             ordenAscendente = true;
-            Collections.sort(arrayList, comparadorNombre);
+            if (arrayList != null) Collections.sort(arrayList, comparadorNombre);
             Creacion_elementos_RecyclerView(lista_elementos);
 
         } else if (opcionSeleccionada.equals(opciones[1])) {
             // Ordenar por nombre descendiente
             ordenAscendente = false;
-            Collections.sort(arrayList, comparadorNombre);
+            if (arrayList != null) Collections.sort(arrayList, comparadorNombre);
             Creacion_elementos_RecyclerView(lista_elementos);
         }
     }

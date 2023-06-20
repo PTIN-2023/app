@@ -49,8 +49,8 @@ public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapte
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         holder.txt_medicamento.setText(arrayList.get(position).getNombre_medicamento());
 
-        if(arrayList.get(position).getColor() == "red") holder.txt_medicamento.setTextColor(Color.RED);
-        else if (arrayList.get(position).getColor() == "green") holder.txt_medicamento.setTextColor(Color.GREEN);
+//        if(arrayList.get(position).getColor() == "red") holder.txt_medicamento.setTextColor(Color.RED);
+//        else if (arrayList.get(position).getColor() == "green") holder.txt_medicamento.setTextColor(Color.GREEN);
 
         holder.contenedorElem.setOnClickListener(evento_contenedor);
 
@@ -73,7 +73,11 @@ public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapte
     // Devuelve la cantidad de elementos del ReclyclerView
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        if (arrayList == null) {
+            return 0;
+        } else {
+            return arrayList.size();
+        }
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
