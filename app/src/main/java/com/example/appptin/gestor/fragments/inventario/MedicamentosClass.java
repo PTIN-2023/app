@@ -9,7 +9,7 @@ public class MedicamentosClass implements Serializable  {
     private String useType;
     private String typeOfAdministration;
     private boolean prescriptionNeeded;
-    private double pvp;
+    private Double pvp;
     private String form;
     private ArrayList<String> excipients;
 
@@ -18,7 +18,7 @@ public class MedicamentosClass implements Serializable  {
 
     public MedicamentosClass(String medName, String nationalCode, String useType,
                              String typeOfAdministration, boolean prescriptionNeeded,
-                             double pvp, String form, ArrayList<String> excipients) {
+                             Double pvp, String form, ArrayList<String> excipients) {
         this.medName = medName;
         this.nationalCode = nationalCode;
         this.useType = useType;
@@ -30,6 +30,31 @@ public class MedicamentosClass implements Serializable  {
     }
     public String getNombre_medicamento() {
         return medName;
+    }
+
+    public String getCodiNacional_medicamento() {
+        return nationalCode;
+    }
+
+    public String getUseType_medicamento() {
+        return useType;
+    }
+
+    public String getAdministration_medicamento() {
+        return typeOfAdministration;
+    }
+
+    public String getPrescription_medicamento() {
+        if (prescriptionNeeded) return "Si";
+        else return "No";
+    }
+
+    public String getPvP_medicamento() {
+        return Double.toString(pvp) + " €";
+    }
+
+    public String getForm_medicamento() {
+        return form;
     }
     public void setNombre_medicamento(String nombre_medicamento) {
         this.medName = nombre_medicamento;

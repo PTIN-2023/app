@@ -51,15 +51,20 @@ public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapte
 
 //        if(arrayList.get(position).getColor() == "red") holder.txt_medicamento.setTextColor(Color.RED);
 //        else if (arrayList.get(position).getColor() == "green") holder.txt_medicamento.setTextColor(Color.GREEN);
-
+        holder.contenedorElem.setTag(position);
         holder.contenedorElem.setOnClickListener(evento_contenedor);
+
 
     }
 
     private View.OnClickListener evento_contenedor = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            InventarioMedicamentoFragment inv_med_frag = new InventarioMedicamentoFragment();
+
+            System.out.println("id del view: " + view.findViewById(R.id.txt_medicamento_inventario));
+            int position = (int) view.getTag();
+            System.out.println("position: " + position + " || " + arrayList.get(position).getNombre_medicamento());
+            InventarioMedicamentoFragment inv_med_frag = new InventarioMedicamentoFragment(arrayList.get(position));
             FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 

@@ -80,12 +80,12 @@
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
                         android:layout_marginRight="10dp"
-                        android:text="@string/texto_quantitat_magatzem"
+                        android:text="Codi Nacional: "
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
                     <TextView
-                        android:id="@+id/txt_inv_medic_cant_almacen"
+                        android:id="@+id/txt_codi_nacional"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
@@ -107,18 +107,18 @@
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
                         android:layout_marginRight="10dp"
-                        android:text="@string/texto_quantitat_venuda"
+                        android:text="Tipus: "
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
                     <TextView
-                        android:id="@+id/txt_inv_medic_cant_vendida"
+                        android:id="@+id/txt_tipus_medicament"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="@string/hint_valor_numeric"
+                        android:hint="tipus med"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -127,21 +127,99 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15sp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
-                        android:text="@string/texto_ciutat_comprat"
+                        android:text="Administració: "
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
                     <TextView
-                        android:id="@+id/txt_inv_medic_ciudad"
+                        android:id="@+id/txt_inv_administracio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
+                        android:ellipsize="none"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:hint="@string/hint_nom_ciutat"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart"
+                        android:layout_marginBottom="5sp"
+                        android:text="Forma: "
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/txt_inv_form"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:ellipsize="none"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:hint="@string/hint_nom_ciutat"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart"
+                        android:layout_marginBottom="5sp"
+                        android:text="Preu de venta: "
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/txt_inv_pvp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:ellipsize="none"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:hint="@string/hint_nom_ciutat"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart"
+                        android:layout_marginBottom="5sp"
+                        android:text="Recepta: "
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/txt_inv_recipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
                         android:hint="@string/hint_nom_ciutat"
