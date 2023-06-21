@@ -128,7 +128,7 @@ public class EstatPeticionsGestorFragment extends Fragment {
 
                             String result = response.getString("result");
                             if (result.equals("ok")) {
-                                JSONArray data = response.getJSONArray("data");
+                                JSONArray data = response.getJSONArray("orders");
                                 for (int i = 0; i < data.length(); i++) {
                                     JSONObject order = data.getJSONObject(i);
                                     int orderIdentifier = order.getInt("order_identifier");
