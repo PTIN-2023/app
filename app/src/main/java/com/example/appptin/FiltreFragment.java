@@ -133,7 +133,7 @@ public class FiltreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Obtenim Nom medicament
-                String medName = editTextMedName.getText().toString();
+                //String medName = editTextMedName.getText().toString();
 
                 // Obtenim min i max price
                 String minPrice = editTextMinPrice.getText().toString();
@@ -174,7 +174,7 @@ public class FiltreFragment extends Fragment {
 
                 // Create a bundle and set the selected values as arguments
                 Bundle bundle = new Bundle();
-                bundle.putString("medName", medName);
+                //bundle.putString("medName", medName);
                 bundle.putString("minPrice", minPrice);
                 bundle.putString("maxPrice", maxPrice);
                 bundle.putBoolean("prescriptionNeeded", prescriptionNeeded);

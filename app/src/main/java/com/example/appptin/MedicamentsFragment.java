@@ -133,7 +133,9 @@ public class MedicamentsFragment extends Fragment {
 
         Bundle args = getArguments();
         if (args != null) {
-            medName = args.getString("medName");
+            if(args.containsKey("medName")) {
+                medName = args.getString("medName");
+            }
             pvpMin = args.getString("minPrice");
             pvpMax = args.getString("maxPrice");
             prescriptionNeeded = args.getBoolean("prescriptionNeeded");
