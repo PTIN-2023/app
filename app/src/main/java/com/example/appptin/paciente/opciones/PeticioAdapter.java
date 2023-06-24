@@ -1,20 +1,35 @@
 package com.example.appptin.paciente.opciones;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appptin.Peticio;
 import com.example.appptin.R;
 
@@ -126,10 +141,6 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
         ArrayList<JSONObject> medicines = peticio.getMedicines();
         StringBuilder stringBuilder = new StringBuilder();
 
-        //String reason = peticio.getReason();
-        String mail = peticio.getEmail();
-
-        stringBuilder.append("Correu electrònic: ").append(mail).append("\n\n");
         for (JSONObject medicine : medicines) {
             try {
                 String medName = medicine.getString("med_name");
@@ -143,8 +154,7 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
                 stringBuilder.append("Administració: ").append(typeOfAdministration).append("\n");
                 if (prescriptionNeeded == true) {
                     stringBuilder.append("Prescripció requerida: ").append("Sí").append("\n");
-                }
-                else {
+                } else {
                     stringBuilder.append("Prescripció requerida: ").append("No").append("\n");
                 }
                 stringBuilder.append("Preu: ").append(pvp).append("" + "€").append("\n\n");
@@ -154,11 +164,116 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
         }
 
         builder.setMessage(stringBuilder.toString());
-        builder.setPositiveButton("Acceptar", null);
-        builder.show();
+
+        String state = peticio.getState();
+        if (state.equals("awaiting_confirmation") || state.equals("ordered")) {
+            builder.setNegativeButton("Cancel·lar petició", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    AlertDialog.Builder cancelDialog = new AlertDialog.Builder(activity);
+                    cancelDialog.setTitle("Confirmar cancel·lació");
+
+                    // Crear una SpannableString per assignar la mida del text
+                    SpannableString spannableString = new SpannableString("Segur que vol cancel·lar la comanda?");
+                    //Això augmenta mida lletra del pop-up
+                    spannableString.setSpan(new RelativeSizeSpan(1.2f), 0, spannableString.length(), 0);
+
+                    cancelDialog.setMessage(spannableString);
+                    cancelDialog.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Lògica per a cancel·lar la comanda
+                            RequestQueue queue = Volley.newRequestQueue(activity);
+                            Resources r = activity.getResources();
+                            cancelarComanda(peticio);
+                            //String nou_state = "canceled";
+                            //peticio.setState(nou_state);
+                        }
+                    });
+                    cancelDialog.setNegativeButton("No", null);
+                    AlertDialog cancelAlertDialog = cancelDialog.create();
+                    cancelAlertDialog.show();
+
+                    // Posicionar el botó de cancel·lar a la part d'abaix, en el mig
+                    Button cancelButton = cancelAlertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) cancelButton.getLayoutParams();
+                    layoutParams.gravity = Gravity.CENTER;
+                    layoutParams.weight = 1;
+                    cancelButton.setLayoutParams(layoutParams);
+                }
+            });
+        }
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        // Afegir el botó de tancar (x) a la part superior dreta del diàleg
+            int closeButtonId = Resources.getSystem().getIdentifier("close", "id", "android");
+            View closeButton = alertDialog.findViewById(closeButtonId);
+            if (closeButton != null) {
+                closeButton.setVisibility(View.GONE);
+            }
+
+            int alertTitleId = Resources.getSystem().getIdentifier("alertTitle", "id", "android");
+            TextView alertTitle = alertDialog.findViewById(alertTitleId);
+            if (alertTitle != null) {
+                alertTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_close, 0);
+                alertTitle.setCompoundDrawablePadding(20);
+                alertTitle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+            }
+
     }
 
-@Override
+
+    private void cancelarComanda(Peticio peticio) {
+        RequestQueue queue = Volley.newRequestQueue(activity);
+        Resources r = activity.getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/cancel_patient_order";
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+            String session_token = sharedPreferences.getString("session_token", "Valor nulo");
+            //et_email= sharedPreferences.getString("user_email", "Valor nulo");;
+            System.out.println(session_token);
+
+            jsonObject.put("session_token", session_token);
+            String id = String.valueOf(peticio.getID());
+            jsonObject.put("order_identifier", id);
+            System.out.println(jsonObject);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println("MENSAJE: " + response);
+                        notifyDataSetChanged();
+                    }
+                },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // Aquí pots tractar els errors de la crida a l'API
+                                // per exemple, mostrar un missatge d'error
+                                Toast.makeText(activity, "Error en cancel·lar la comanda", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
+        // Afegir la petició a la cua de peticions
+        queue.add(jsonObjectRequest);
+    }
+
+    @Override
 public int getItemCount() {
         return peticions.size();
         }
@@ -183,5 +298,7 @@ public class PeticioViewHolder extends RecyclerView.ViewHolder {
         //txtNom.setText(medicament.getNom());
         //txtDescripcio.setText(medicament.getDescripcio());
     }
+
+
 }
 }

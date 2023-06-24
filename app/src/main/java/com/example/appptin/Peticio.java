@@ -56,13 +56,8 @@ public class Peticio {
         return medicineList;
     }
 
-    /*public String getExcipientsList() {
-        String lista="";
-
-        for (JSONObject element : getExcipients()) {
-            lista += "  * "+ element +"\n";
-        }
-        return lista;
-    }*/
+    public void setState(String state) {
+        this.state = state;
+    }
 
 }
