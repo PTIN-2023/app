@@ -1,0 +1,141 @@
+[{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e79"
+  },
+  "nombre": "Juan",
+  "apellido": "García Pérez",
+  "dni": "12345678A",
+  "numero_pedido": "12345678",
+  "lista_medicamentos": [
+    "Aspirina",
+    "Ibuprofeno",
+    "Paracetamol"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e7a"
+  },
+  "nombre": "María",
+  "apellido": "González Sánchez",
+  "dni": "87654321B",
+  "numero_pedido": "87654321",
+  "lista_medicamentos": [
+    "Amoxicilina",
+    "Omeprazol",
+    "Ventolin",
+    "Paracetamol"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e7b"
+  },
+  "nombre": "Pedro",
+  "apellido": "Martínez López",
+  "dni": "56789012C",
+  "numero_pedido": "56789012",
+  "lista_medicamentos": [
+    "Paracetamol",
+    "Ibuprofeno"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e7c"
+  },
+  "nombre": "Ana",
+  "apellido": "Sánchez López",
+  "dni": "34567890D",
+  "numero_pedido": "34567890",
+  "lista_medicamentos": [
+    "Amoxicilina"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e7d"
+  },
+  "nombre": "Carlos",
+  "apellido": "Gómez García",
+  "dni": "09876543E",
+  "numero_pedido": "09876543",
+  "lista_medicamentos": [
+    "Ibuprofeno",
+    "Paracetamol"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e7e"
+  },
+  "nombre": "Laura",
+  "apellido": "Jiménez Ruiz",
+  "dni": "65432109F",
+  "numero_pedido": "65432109",
+  "lista_medicamentos": [
+    "Ventolin"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e7f"
+  },
+  "nombre": "Sergio",
+  "apellido": "Fernández González",
+  "dni": "12345678B",
+  "numero_pedido": "12345679",
+  "lista_medicamentos": [
+    "Paracetamol",
+    "Ibuprofeno",
+    "Omeprazol"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e80"
+  },
+  "nombre": "Isabel",
+  "apellido": "Martín Pérez",
+  "dni": "23456789C",
+  "numero_pedido": "23456789",
+  "lista_medicamentos": [
+    "Aspirina",
+    "Ibuprofeno",
+    "Paracetamol",
+    "Ventolin"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e81"
+  },
+  "nombre": "Jorge",
+  "apellido": "García García",
+  "dni": "87654321A",
+  "numero_pedido": "87654322",
+  "lista_medicamentos": [
+    "Amoxicilina",
+    "Ibuprofeno",
+    "Ventolin"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e82"
+  },
+  "nombre": "María José",
+  "apellido": "Hernández Pérez",
+  "dni": "45678901B",
+  "numero_pedido": "45678901",
+  "lista_medicamentos": [
+    "Paracetamol",
+    "Omeprazol"
+  ]
+},{
+  "_id": {
+    "$oid": "644adb27e4af5ab236f38e83"
+  },
+  "nombre": "Manuel",
+  "apellido": "González López",
+  "dni": "78901234C",
+  "numero_pedido": "78901234",
+  "lista_medicamentos": [
+    "Aspirina",
+    "Ibuprofeno",
+    "Paracetamol",
+    "Ventolin",
+    "Omeprazol"
+  ]
+}]

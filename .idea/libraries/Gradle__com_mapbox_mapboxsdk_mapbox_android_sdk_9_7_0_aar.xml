@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mapbox.mapboxsdk:mapbox-android-sdk:9.7.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b712adc6ad00d6bf1c002a347c7c848d/transformed/mapbox-android-sdk-9.7.0/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b712adc6ad00d6bf1c002a347c7c848d/transformed/mapbox-android-sdk-9.7.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b712adc6ad00d6bf1c002a347c7c848d/transformed/mapbox-android-sdk-9.7.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b712adc6ad00d6bf1c002a347c7c848d/transformed/mapbox-android-sdk-9.7.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-android-sdk/9.7.0/e10f93153f8a9e9cd3ed8124cd25ad9d6e3503b8/mapbox-android-sdk-9.7.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-android-sdk/9.7.0/752450c6534c96aebabe4e7e0ccf5dcd6b77d5d3/mapbox-android-sdk-9.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

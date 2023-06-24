@@ -1,0 +1,182 @@
+[
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_cliente_direccion.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_cliente_direccion.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_config_gestor.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_config_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_dato_gestor.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_dato_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_filtre.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_filtre.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_config_medico.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_config_medico.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_inventario_medicamento.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_inventario_medicamento.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_welcome_page.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_welcome_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\codi_recepta_popup.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\codi_recepta_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_my_dialog.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_my_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_qr.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_qr.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_opcions.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_opcions.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_welcome_popup.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_welcome_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_historial_peticion.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_historial_peticion.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_gestor.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_registre.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_registre.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_datos_medicos.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_datos_medicos.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_cistella.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_cistella.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\productes_cistella.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\productes_cistella.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\item_my_dialog.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\item_my_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\contenedor_medicamento.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\contenedor_medicamento.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_medico.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_medico.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\contenedor_cliente.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\contenedor_cliente.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_perfil_medico.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_perfil_medico.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\medicamentos_inventario.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\medicamentos_inventario.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_aprobar.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_aprobar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_historial_paciente.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_historial_paciente.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_crear_users.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_crear_users.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_estat_peticions_gestor.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_estat_peticions_gestor.xml"
+    },
+    {
+        "merged": "com.example.appptin.app-mergeDebugResources-37:/layout/maps_gestor.xml",
+        "source": "com.example.appptin.app-main-40:/layout/maps_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\peticio_item.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\peticio_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_datos_paciente.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_datos_paciente.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_inventario_gestor.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_inventario_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_perfil_gestor.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_perfil_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_detalles_peticion.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_detalles_peticion.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_estat_paquets.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_estat_paquets.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_medicaments.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_medicaments.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\peticio_item_gestor.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\peticio_item_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_login_oregistre.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_login_oregistre.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\medicament_item.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\medicament_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_config_paciente.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_config_paciente.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_user.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\fragment_popup_finalitzar_compra.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_popup_finalitzar_compra.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-mergeDebugResources-37:\\layout\\activity_pagament.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_pagament.xml"
+    }
+]

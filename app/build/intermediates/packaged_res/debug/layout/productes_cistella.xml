@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="389dp"
+        android:layout_height="93dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/nom_producte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/producte"
+            android:fontFamily="@font/rinkart"
+            android:textSize="18dp" />
+
+        <Space
+            android:layout_width="18dp"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/decrement_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:backgroundTint="?colorTertiary"
+            android:src="@drawable/baseline_remove_24" />
+
+        <TextView
+            android:id="@+id/quantity_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="1"
+            android:fontFamily="@font/rinkart"
+            android:textSize="24dp" />
+
+        <ImageButton
+            android:id="@+id/increment_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:backgroundTint="?colorPrimary"
+            android:src="@drawable/baseline_add_24" />
+
+        <Space
+            android:layout_width="18dp"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/btn_eliminar"
+            android:layout_width="66dp"
+            android:layout_height="54dp"
+            android:layout_weight="0.2"
+            android:backgroundTint="?colorSecondary"
+            android:src="@drawable/baseline_delete_24" />
+
+        <Space
+            android:layout_width="18dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/preu_producte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="6dp"
+            android:textColor="?colorOnSecondary"
+            android:fontFamily="@font/rinkart"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

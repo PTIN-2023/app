@@ -1,0 +1,514 @@
+[
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\font_rinkart.ttf.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\font\\rinkart.ttf"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_camara.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\camara.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_welcome_page.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_welcome_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_house_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_house_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_datos_medicos.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_datos_medicos.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_foto_perfil_usuario.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\foto_perfil_usuario.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_dehaze_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_dehaze_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_datos_paciente.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_datos_paciente.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_filtre.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_filtre.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_button_tmp.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\button_tmp.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_boton.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\boton.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_amoxicilina.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\amoxicilina.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_welcome_popup.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_welcome_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_qr_code_scanner_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_qr_code_scanner_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_arrow_back_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_arrow_back_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_qr.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_qr.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_home_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_home_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_top_background.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\top_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_estat_paquets.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_estat_paquets.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_pagament.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_pagament.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_cliente_direccion.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_cliente_direccion.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_article_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_article_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_lorazepam.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\lorazepam.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_historial_peticion.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_historial_peticion.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_avatar_medico.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\avatar_medico.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_scan_icon.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\scan_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-anydpi-v33_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-anydpi-v33\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_settings_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_settings_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_opcions.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_opcions.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_ic_close.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\ic_close.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_people_black_24dp.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_people_black_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_currency_bitcoin_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_currency_bitcoin_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_icons8_google_30.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\icons8_google_30.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_airplanemode_active_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_airplanemode_active_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_local_hospital_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_local_hospital_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_photo_camera_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_photo_camera_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_paracetamol.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\paracetamol.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_estat_peticions_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_estat_peticions_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_peticio_item.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\peticio_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_icons8_user_30.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\icons8_user_30.png"
+    },
+    {
+        "merged": "com.example.appptin.app-merged_res-38:/layout_maps_gestor.xml.flat",
+        "source": "com.example.appptin.app-main-40:/layout/maps_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_medical_information_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_medical_information_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_crear_users.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_crear_users.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_ic_home_black_24dp.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\ic_home_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_inventory_24dp_removebg_preview.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\inventory_24dp_removebg_preview.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\font_rinkart_italic.ttf.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\font\\rinkart_italic.ttf"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_right_arrow_icon.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\right_arrow_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_hydrocortisona.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\hydrocortisona.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_perfil_medico.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_perfil_medico.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_inventario_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_inventario_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_success.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\success.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_google_icons_09_512.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\google_icons_09_512.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_account_circle_black_24dp.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_account_circle_black_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_my_dialog.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_my_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_remove_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_remove_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_flutox.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\flutox.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_config_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_config_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_menu_book_black_24dp.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_menu_book_black_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_avatar_gestor.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\avatar_gestor.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_imagen_medico.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\imagen_medico.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_account_circle_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_account_circle_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_credit_card_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_credit_card_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_config_paciente.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_config_paciente.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_shopping_bag_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_shopping_bag_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_popup_finalitzar_compra.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_popup_finalitzar_compra.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_peticio_item_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\peticio_item_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_config_medico.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_config_medico.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\menu_bottom_navigation_medico.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\menu\\bottom_navigation_medico.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_info_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_info_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_maps_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\maps_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\anim_welcome_animation.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\anim\\welcome_animation.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_codi_recepta_popup.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\codi_recepta_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_aprobar.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_aprobar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_truck_removebg_preview__1_.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\truck_removebg_preview__1_.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_recurso_1.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\recurso_1.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_notifications_none_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_notifications_none_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_add_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_add_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_paypal.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\paypal.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\menu_bottom_navigation_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\menu\\bottom_navigation_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_pngfind_com_google_icon_png_344426.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\pngfind_com_google_icon_png_344426.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_person_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_person_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_medico.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_medico.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_productes_cistella.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\productes_cistella.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_red_marker.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\red_marker.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_detalles_peticion.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_detalles_peticion.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_contenedor_cliente.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\contenedor_cliente.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_exit_to_app_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_exit_to_app_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_diclofenaco.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\diclofenaco.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_user.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_perfil_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_perfil_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_inventario_medicamento.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_inventario_medicamento.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_round_back_white10_20.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\round_back_white10_20.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_login_oregistre.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_login_oregistre.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_activity_registre.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\activity_registre.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_historial_paciente.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_historial_paciente.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_medicament_item.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\medicament_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_medicaments.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_medicaments.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_baseline_delete_24.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\baseline_delete_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_dato_gestor.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_dato_gestor.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\font_rinkart_sf.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\font\\rinkart_sf.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\menu\\bottom_nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_talcum_powder.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\talcum_powder.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\menu_search_bar.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\menu\\search_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_medicamentos_inventario.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\medicamentos_inventario.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_contenedor_medicamento.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\contenedor_medicamento.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_maps_icon_16.png.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\maps_icon_16.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_item_my_dialog.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\item_my_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\drawable_ibuprofe.jpg.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\drawable\\ibuprofe.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-merged_res-38:\\layout_fragment_cistella.xml.flat",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\7.5\\com.example.appptin.app-main-40:\\layout\\fragment_cistella.xml"
+    }
+]

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_aprobarPeticion"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/titulo_home" />
+
+    <item
+        android:id="@+id/menu_historialPeticion"
+        android:icon="@drawable/baseline_menu_book_black_24dp"
+        android:title="@string/titulo_peticiones" />
+
+    <item
+        android:id="@+id/menu_historialPaciente"
+        android:icon="@drawable/baseline_people_black_24dp"
+        android:title="@string/titulo_pacientes" />
+
+    <item
+        android:id="@+id/menu_perfilMedico"
+        android:icon="@drawable/baseline_account_circle_black_24dp"
+        android:title="@string/titulo_usuario" />
+</menu>

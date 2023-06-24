@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="@string/titulo_home"/>
+
+    <item
+        android:id="@+id/user"
+        android:icon="@drawable/baseline_person_24"
+        android:title="@string/titulo_usuario"/>
+
+    <item
+        android:id="@+id/cistella"
+        android:icon="@drawable/baseline_shopping_bag_24"
+        android:title="@string/cistella"/>
+
+    <item
+        android:id="@+id/scanQR"
+        android:icon="@drawable/scan_icon"
+        android:title="QR"/>
+</menu>
