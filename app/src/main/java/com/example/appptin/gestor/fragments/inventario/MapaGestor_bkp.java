@@ -1,13 +1,14 @@
 package com.example.appptin.gestor.fragments.inventario;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appptin.R;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.Style;
 
-public class MapaGestor extends AppCompatActivity {
+public class MapaGestor_bkp extends AppCompatActivity {
 
     private MapView mapView;
 

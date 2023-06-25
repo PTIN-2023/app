@@ -1,9 +1,10 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize' // si estás utilizando Parcelables
 }
 
 android {
-    namespace 'com.example.appptin'
     compileSdk 33
 
     defaultConfig {
@@ -24,18 +25,19 @@ android {
     }
 
     buildFeatures {
-
         viewBinding true
-
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.22"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -70,5 +72,4 @@ dependencies {
     // Alex Rocamora - 19/06/2023 - dependencia URL imagenes
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
-
 }
