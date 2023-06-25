@@ -15,15 +15,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appptin.medico.conexion.InformacionBase;
-
 import java.util.ArrayList;
 import com.example.appptin.R;
 import com.example.appptin.medico.fragments.aprobarPeticion.AprobarFragment;
 import com.example.appptin.medico.fragments.detallesPeticion.DetallesPeticionFragment;
-import com.example.appptin.medico.fragments.historialPaciente.HistorialPacienteFragment;
-import com.example.appptin.medico.fragments.historialPaciente.InformePaciente;
-import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
 
 public class PeticionAdapter extends RecyclerView.Adapter<PeticionAdapter.MyHolder> {
     Context context;
@@ -93,13 +88,6 @@ public class PeticionAdapter extends RecyclerView.Adapter<PeticionAdapter.MyHold
                     activity.setFragmentResult("key_aprobar_peticion", result);
 
                     cambiofragment = new DetallesPeticionFragment(activity,context);
-                }
-                // Historial Paciente
-                else if (codi == 3){
-                    result.putSerializable("MiObjeto", (InformacionPeticion) arrayList.get(position));
-                    activity.setFragmentResult("key_aprobar_peticion", result);
-
-                    cambiofragment = new HistorialPacienteFragment();
                 }
 
                 FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();

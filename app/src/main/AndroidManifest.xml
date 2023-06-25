@@ -95,7 +95,7 @@
 
             <!-- otras configuraciones de la actividad -->
         </activity>
-        <activity android:name=".medico.fragments.historialPaciente.HistorialPacienteFragment">
+        <activity android:name=".medico.fragments.recetaPaciente.RecetaFragmet">
 
             <!-- otras configuraciones de la actividad -->
         </activity>

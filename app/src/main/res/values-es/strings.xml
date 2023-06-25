@@ -250,6 +250,16 @@
     <string name="gel">Gel</string>
     <string name="Pols">Pols</string>
     <string name="Liquid">Liquid</string>
+    <string name="receta">Nueva receta</string>
+    <string name="info_receta_paciente">Nombre completo paciente:</string>
+    <string name="info_receta_medicamento">Código medicamento:</string>
+    <string name="info_receta_duracio">Duración tratamiento:</string>
+    <string name="info_receta_nota">Notas:</string>
+    <string name="info_receta_guardar">Guardar cambios</string>
+    <string name="info_receta_text_paciente">Paciente</string>
+    <string name="info_receta_text_medicamento">Medicamento</string>
+    <string name="info_receta_text_duracio">Duración</string>
+    <string name="info_receta_text_nota">Escribe aquí...</string>
 
 
 </resources>

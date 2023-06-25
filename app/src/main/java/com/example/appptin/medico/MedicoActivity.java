@@ -6,6 +6,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
+import com.example.appptin.medico.fragments.recetaPaciente.RecetaFragment;
 import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
 import com.example.appptin.medico.fragments.perfilmedico.PerfilMedicoFragment;
 import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
@@ -34,8 +35,8 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
 
     //AprobarFragment aprobarFragment = new AprobarFragment();
     HistorialPeticionFragment aprobarFragment;
-    HistorialPeticionFragment pacienteFragment;
     HistorialPeticionFragment peticionFragment;
+    RecetaFragment historialPacienteFragment;
     PerfilMedicoFragment medicoFragment;
 
 
@@ -68,12 +69,7 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        try {
-            pacienteFragment = new HistorialPeticionFragment("Historial Pacients",3,0,this);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        historialPacienteFragment = new RecetaFragment();
 
         medicoFragment = new PerfilMedicoFragment();
 
@@ -91,7 +87,7 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
                     loadFragment(peticionFragment);
                     return true;
                 case R.id.menu_historialPaciente:
-                    loadFragment(pacienteFragment);
+                    loadFragment(historialPacienteFragment);
                     return true;
                 case R.id.menu_perfilMedico:
                     loadFragment(medicoFragment);

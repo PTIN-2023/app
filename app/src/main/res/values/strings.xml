@@ -84,22 +84,18 @@
     //fragment_detalles_peticion.xml
     <string name="aprobar">Aprovada:</string>
 
-    //fragment_historial_paciente.xml
-    <string name="info_medico">Informe mèdic</string>
-    <string name="medico">Metge: </string>
-    <string name="nom_medico">Nom del Metge</string>
-    <string name="data_naixement">Data de naixement:</string>
-    <string name="info_medico_genero">Gènere:</string>
-    <string name="info_medico_pais">País:</string>
-    <string name="info_medico_provincia">Província:</string>
-    <string name="info_medico_mas_fem">Masculí o femení</string>
-    <string name="info_medico_n_t_sanitaria">Nº targeta sanitària</string>
-    <string name="info_medico_antecedents_personals">Antecedents personals</string>
-    <string name="info_medico_descripcio_antecedents">Descripció dels antecedents personals del pacient</string>
-    <string name="info_medico_problemes_salut">Problemes de salut actuals</string>
-    <string name="info_medico_tractaments_medics">Tractaments mèdics i farmacològics</string>
-    <string name="info_medico_descripcio_problemes">Descripció dels problemes de salut actuals del pacient.</string>
-    <string name="info_medico_descripcio_tractament">Descripció del tractament mèdic i framacològics.</string>
+    //fragment_recepta.xml
+    <string name="receta">Nova recepta</string>
+    <string name="info_receta_paciente">Nom complet pacient:</string>
+    <string name="info_receta_medicamento">Codi medicament:</string>
+    <string name="info_receta_duracio">Duració tractament:</string>
+    <string name="info_receta_nota">Notes:</string>
+    <string name="info_receta_guardar">Desar canvis</string>
+    <string name="info_receta_text_paciente">Pacient</string>
+    <string name="info_receta_text_medicamento">Medicament</string>
+    <string name="info_receta_text_duracio">Duració</string>
+    <string name="info_receta_text_nota">Escriu aquí...</string>
+
 
     //fragment_historial_peticion.xml
     <string name="historial_peticions">Historial de Peticions</string>
@@ -121,6 +117,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     //PACIENTE
+
 
     //bottom_nav_menu.xml
     <string name="cistella">Cistella</string>

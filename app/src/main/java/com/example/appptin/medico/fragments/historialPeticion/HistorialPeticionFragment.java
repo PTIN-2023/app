@@ -294,8 +294,6 @@ public class HistorialPeticionFragment extends Fragment {
         if (codi == 1) api_informacion_peticiones_aprobar();
             // Historial de peticiones
         else if (codi == 2) api_informacion_historial_peticiones();
-            // Historial pacientes
-        else if (codi == 3) System.out.println("Historial pacientes");
     }
 
     private void api_informacion_peticiones_aprobar(){
