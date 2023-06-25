@@ -1,6 +1,8 @@
 package com.example.appptin.medico.fragments.historialPeticion;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,11 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -328,36 +332,41 @@ public class HistorialPeticionFragment extends Fragment {
                     if (result.equals("ok")) {
                         // Listado de peticiones que el doctor ha de confirmar
                         JSONArray ordersArray = response.getJSONArray("orders");
+                        if(ordersArray.length()>0) {
+                            //Guardar los datos obtenidos
+                            for (int i = 0; i < ordersArray.length(); i++) {
+                                // Obtener el Objeto
+                                JSONObject peticionObject = ordersArray.getJSONObject(i);
 
-                        //Guardar los datos obtenidos
-                        for (int i = 0; i < ordersArray.length(); i++) {
-                            // Obtener el Objeto
-                            JSONObject peticionObject = ordersArray.getJSONObject(i);
+                                // Obtener la información del Objeto
+                                String order_identifier = peticionObject.getString("order_identifier");
+                                String date = peticionObject.getString("date");
+                                String patient_fullname = peticionObject.getString("patient_full_name");
 
-                            // Obtener la información del Objeto
-                            String order_identifier = peticionObject.getString("order_identifier");
-                            String date = peticionObject.getString("date");
-                            String patient_fullname = peticionObject.getString("patient_full_name");
+                                InformacionPeticion informacion_cliente = new InformacionPeticion(order_identifier, date, patient_fullname);
 
-                            InformacionPeticion informacion_cliente = new InformacionPeticion(order_identifier,date,patient_fullname);
+                                // Lista de medicamentos que han de ser confirmados
+                                JSONArray medicine_list_Array = peticionObject.getJSONArray("medicine_list");
 
-                            // Lista de medicamentos que han de ser confirmados
-                            JSONArray medicine_list_Array = peticionObject.getJSONArray("medicine_list");
+                                // Guardar los valores de los medicamentos del cliente
+                                for (int j = 0; j < medicine_list_Array.length(); j++) {
+                                    JSONArray medicineArray = medicine_list_Array.getJSONArray(j);
+                                    String nationalCode = medicineArray.getString(0);
+                                    String medicine_name = medicineArray.getString(1);
 
-                            // Guardar los valores de los medicamentos del cliente
-                            for (int j = 0; j < medicine_list_Array.length(); j++) {
-                                JSONArray medicineArray = medicine_list_Array.getJSONArray(j);
-                                String nationalCode = medicineArray.getString(0);
-                                String medicine_name = medicineArray.getString(1);
+                                    //System.out.println("Código: " + nationalCode + ", Nombre: " + medicine_name);
 
-                                //System.out.println("Código: " + nationalCode + ", Nombre: " + medicine_name);
+                                    Medicament medicament = new Medicament(nationalCode, medicine_name);
+                                    // Guardar medicamento
+                                    informacion_cliente.setMedicine_list(medicament);
+                                }
 
-                                Medicament medicament = new Medicament(nationalCode,medicine_name);
-                                // Guardar medicamento
-                                informacion_cliente.setMedicine_list(medicament);
+                                arrayList.add(informacion_cliente);
                             }
-
-                            arrayList.add(informacion_cliente);
+                        }
+                        else {
+                            // Mensaje por pantalla
+                            aviso("No tens peticions assignades");
                         }
 
                         Creacion_elementos_RecyclerView(arrayList);
@@ -421,37 +430,42 @@ public class HistorialPeticionFragment extends Fragment {
                     if (result.equals("ok")) {
                         // Listado de peticiones que el doctor ha de confirmar
                         JSONArray ordersArray = response.getJSONArray("orders");
+                        if(ordersArray.length()>0) {
+                            //Guardar los datos obtenidos
+                            for (int i = 0; i < ordersArray.length(); i++) {
+                                // Obtener el Objeto
+                                JSONObject peticionObject = ordersArray.getJSONObject(i);
 
-                        //Guardar los datos obtenidos
-                        for (int i = 0; i < ordersArray.length(); i++) {
-                            // Obtener el Objeto
-                            JSONObject peticionObject = ordersArray.getJSONObject(i);
+                                // Obtener la información del Objeto
+                                String order_identifier = peticionObject.getString("order_identifier");
+                                String date = peticionObject.getString("date");
+                                String patient_fullname = peticionObject.getString("patient_full_name");
+                                //String approved = peticionObject.getString("approved");
 
-                            // Obtener la información del Objeto
-                            String order_identifier = peticionObject.getString("order_identifier");
-                            String date = peticionObject.getString("date");
-                            String patient_fullname = peticionObject.getString("patient_full_name");
-                            //String approved = peticionObject.getString("approved");
+                                InformacionPeticion informacion_cliente = new InformacionPeticion(order_identifier,date,patient_fullname);
 
-                            InformacionPeticion informacion_cliente = new InformacionPeticion(order_identifier,date,patient_fullname);
+                                // Lista de medicamentos que han de ser confirmados
+                                JSONArray medicine_list_Array = peticionObject.getJSONArray("medicine_list");
 
-                            // Lista de medicamentos que han de ser confirmados
-                            JSONArray medicine_list_Array = peticionObject.getJSONArray("medicine_list");
+                                // Guardar los valores de los medicamentos del cliente
+                                for (int j = 0; j < medicine_list_Array.length(); j++) {
+                                    JSONArray medicineArray = medicine_list_Array.getJSONArray(j);
+                                    String nationalCode = medicineArray.getString(0);
+                                    String medicine_name = medicineArray.getString(1);
 
-                            // Guardar los valores de los medicamentos del cliente
-                            for (int j = 0; j < medicine_list_Array.length(); j++) {
-                                JSONArray medicineArray = medicine_list_Array.getJSONArray(j);
-                                String nationalCode = medicineArray.getString(0);
-                                String medicine_name = medicineArray.getString(1);
+                                    //System.out.println("Código: " + nationalCode + ", Nombre: " + medicine_name);
 
-                                //System.out.println("Código: " + nationalCode + ", Nombre: " + medicine_name);
+                                    Medicament medicament = new Medicament(nationalCode,medicine_name);
+                                    // Guardar medicamento
+                                    informacion_cliente.setMedicine_list(medicament);
+                                }
 
-                                Medicament medicament = new Medicament(nationalCode,medicine_name);
-                                // Guardar medicamento
-                                informacion_cliente.setMedicine_list(medicament);
+                                arrayList.add(informacion_cliente);
                             }
-
-                            arrayList.add(informacion_cliente);
+                        }
+                        else {
+                            // Mensaje por pantalla
+                            aviso("No has validat cap petició");
                         }
 
                         Creacion_elementos_RecyclerView(arrayList);
@@ -483,5 +497,24 @@ public class HistorialPeticionFragment extends Fragment {
         });
 
         queue.add(jsonObjectRequest);
+    }
+
+    private void aviso(String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(mensaje)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Acciones a realizar al hacer clic en el botón "Aceptar"
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Obtener el botón "Aceptar" del diálogo
+        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        // Establecer la gravedad del botón en el centro
+        positiveButton.setGravity(Gravity.CENTER);
+
     }
 }
