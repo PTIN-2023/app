@@ -125,17 +125,18 @@ public class HistorialPeticionFragment extends Fragment {
         searchView.setOnQueryTextListener(buscador);
 
     }
-    private void Creacion_elementos_RecyclerView(ArrayList<InformacionPeticion> lista_elementos ){
-        //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
+    private void Creacion_elementos_RecyclerView(ArrayList<InformacionPeticion> lista_elementos) {
+        // Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         // Creación del adapter con la nueva lista de elementos búscados
-        PeticionAdapter peticionAdapter = new PeticionAdapter(getActivity(), lista_elementos,codi,getParentFragmentManager());
+        if (!isAdded()) return;
+        PeticionAdapter peticionAdapter = new PeticionAdapter(getActivity(), lista_elementos, codi, getChildFragmentManager());
 
         recyclerView.setAdapter(peticionAdapter);
-
     }
+
 
     //EVENTOS
     private SearchView.OnQueryTextListener buscador = new SearchView.OnQueryTextListener(){
