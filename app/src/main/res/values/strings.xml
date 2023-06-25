@@ -61,7 +61,7 @@
     //bottom_navigation_medico.xml
     <string name="titulo_home">Inici</string>
     <string name="titulo_peticiones">Peticions</string>
-    <string name="titulo_pacientes">Pacients</string>
+    <string name="titulo_recepta">Receptes</string>
     <string name="titulo_usuario">Usuari</string>
 
     //fragment_aprobar.xml

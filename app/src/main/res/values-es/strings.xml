@@ -260,6 +260,7 @@
     <string name="info_receta_text_medicamento">Medicamento</string>
     <string name="info_receta_text_duracio">Duración</string>
     <string name="info_receta_text_nota">Escribe aquí...</string>
+    <string name="titulo_recepta">Recetas</string>
 
 
 </resources>
