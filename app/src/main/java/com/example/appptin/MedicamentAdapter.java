@@ -58,45 +58,11 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
         // Asignar el valor de los componentes
         holder.txtNom.setText(medicament.getMedName());
         holder.txtPvp.setText(String.valueOf(medicament.getPvp()) + "€");
-        // Lògica per assignar la URL imatge basada en el nom del medicament
-        if (medicament.getMedName().equals("Paracetamol")) {
-            Glide.with(holder.imgMedicament.getContext())
-                    .load("https://i.imgur.com/agV04p0.jpg")
-                    .into(holder.imgMedicament);
-        } else if (medicament.getMedName().equals("Ibuprofeno")) {
-            Glide.with(holder.imgMedicament.getContext())
-                    .load("https://i.imgur.com/PLjr0gu.jpg")
-                    .into(holder.imgMedicament);
-        } else if (medicament.getMedName().equals("Amoxicilina")) {
-            Glide.with(holder.imgMedicament.getContext())
-                    .load("https://i.imgur.com/FCCDsUO.jpg")
-                    .into(holder.imgMedicament);
-        } else if (medicament.getMedName().equals("Lorazepam")) {
-            Glide.with(holder.imgMedicament.getContext())
-                    .load("https://i.imgur.com/xZqxJoA.jpg")
-                    .into(holder.imgMedicament);
-        } else if (medicament.getMedName().equals("Diclofenac")) {
-            Glide.with(holder.imgMedicament.getContext())
-                    .load("https://i.imgur.com/JD9FYgu.jpg")
-                    .into(holder.imgMedicament);
-        } else if (medicament.getMedName().equals("Hydrocortisone")) {
-            Glide.with(holder.imgMedicament.getContext())
-                    .load("https://i.imgur.com/1XXgQIM.jpg")
-                    .into(holder.imgMedicament);
-        } else if (medicament.getMedName().equals("Talcum Powder")) {
-            Glide.with(holder.imgMedicament.getContext())
-                    .load("https://i.imgur.com/2rM8RLT.jpg")
-                    .into(holder.imgMedicament);
-        } else if (medicament.getMedName().equals("Jarabe per a la Toss")) {
-            Glide.with(holder.imgMedicament.getContext())
-                    .load("https://i.imgur.com/9RgXjB8.jpg")
-                    .into(holder.imgMedicament);
-        }
 
         //Aquí asignariamos las imagenes con la URL que devuelve la API,
-        /*Glide.with(holder.imgMedicament.getContext())
+        Glide.with(holder.imgMedicament.getContext())
                 .load(medicaments.get(position).getURLimage())
-                .into(holder.imgMedicament);*/
+                .into(holder.imgMedicament);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
