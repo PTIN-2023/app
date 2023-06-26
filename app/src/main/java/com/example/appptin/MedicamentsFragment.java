@@ -267,7 +267,7 @@ public class MedicamentsFragment extends Fragment {
             }
         });
 
-        Button searchButton = view.findViewById(R.id.searchButton);
+        ImageView searchButton = view.findViewById(R.id.searchButton);
         searchValue = view.findViewById(R.id.searchView);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override

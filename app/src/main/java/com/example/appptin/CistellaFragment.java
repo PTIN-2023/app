@@ -320,6 +320,7 @@ public class CistellaFragment extends Fragment {
                 // Mostrar el text en la pantalla home
                 Intent intent = new Intent(getActivity(), PagamentActivity.class);
                 startActivity(intent);
+                popupWindow.dismiss();
             }
         });
     }
