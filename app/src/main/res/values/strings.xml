@@ -147,7 +147,7 @@
 
     //activity_login.xml
     <string name="correu">Correu</string>
-    <string name="contrassenya">Contrassenya</string>
+    <string name="contrassenya">Contrasenya</string>
 
     //activity_registre.xml
     <string name="given_name">Nom Usuari</string>
@@ -155,8 +155,8 @@
     <string name="email">Correu</string>
     <string name="phone">Telèfon</string>
     <string name="Address">Adreça</string>
-    <string name="password">Contrassenya</string>
-    <string name="re_password">Repeteix Contrassenya</string>
+    <string name="password">Contrasenya</string>
+    <string name="re_password">Repeteix Contrasenya</string>
     <string name="bt_antialergics">Registrat</string>
 
     //activity_pagament.xml
@@ -167,7 +167,7 @@
     <string name="card_number_hint">Número de targeta</string>
     <string name="paypal_email_hint">Email</string>
     <string name="paypal_phone_hint">Telèfon</string>
-    <string name="order_summary">Resum de la comanda</string>
+    <string name="order_summary">Resum de la petició</string>
     <string name="dades_comprador">Dades del comprador</string>
 
     //codi_recepta_popup.xml
@@ -203,7 +203,7 @@
     <string name="via">Via:</string>
     <string name="format">Format:</string>
     <string name="oral">Oral</string>
-    <string name="topical">Topica</string>
+    <string name="topical">Tòpica</string>
     <string name="comprimidos">Comprimits</string>
     <string name="pomada">Pomada</string>
     <string name="crema">Crema</string>

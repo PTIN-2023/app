@@ -25,7 +25,7 @@
                 android:fontFamily="@font/rinkart"
                 android:textSize="25sp"
                 android:gravity="center"
-                android:hint="@string/inventari"/>
+                android:hint="Inventari de medicaments"/>
 
 
         </LinearLayout>
