@@ -131,7 +131,7 @@ public class DatosPacienteFragment extends Fragment {
         });
 
         // LISTENERS
-        //iv_regresar.setOnClickListener(regresar);
+        iv_regresar.setOnClickListener(regresar);
         //btn_guardar.setOnClickListener(guardar);
         //setGivenNameListener();
         //setUserNameListener();
