@@ -98,7 +98,7 @@
 
 
     //fragment_historial_peticion.xml
-    <string name="historial_peticions">Historial de Peticions</string>
+    <string name="historial_peticions">Historial Peticions</string>
     <string name="sort_options_nom_a">Nom (ascendent)</string>
     <string name="sort_options_nom_d">Nom (descendent)</string>
     <string name="mes_nou">Més nou</string>

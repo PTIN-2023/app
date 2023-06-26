@@ -101,7 +101,7 @@
     <string name="info_medico_descripcio_tractament">Descripción del tratamiento médico y framacológicos.</string>
 
     //fragment_historial_peticion.xml
-    <string name="historial_peticions">Historial de Peticiones</string>
+    <string name="historial_peticions">Historial Peticiones</string>
     <string name="sort_options_nom_a">Nombre (ascendente)</string>
     <string name="sort_options_nom_d">Nombre (descendente)</string>
     <string name="mes_nou">Más nuevo</string>
