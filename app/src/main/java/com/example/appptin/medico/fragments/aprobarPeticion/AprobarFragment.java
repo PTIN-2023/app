@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
@@ -70,15 +71,15 @@ public class AprobarFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        
         // Obtener resultados recibidos del Fragment principal (Historial peticion)
         getParentFragmentManager().setFragmentResultListener("key_aprobar_peticion", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
 
-                peticion = (InformacionPeticion) result.getSerializable("MiObjeto");
+                peticion = (InformacionPeticion) result.getSerializable("Aprobar");
 
                 // Log.d("JSON", peticion.toString());
 
@@ -106,6 +107,11 @@ public class AprobarFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
 

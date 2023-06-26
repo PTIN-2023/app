@@ -137,7 +137,7 @@ public class HistorialPeticionFragment extends Fragment {
 
         // Creación del adapter con la nueva lista de elementos búscados
         if (!isAdded()) return;
-        PeticionAdapter peticionAdapter = new PeticionAdapter(getActivity(), lista_elementos, codi, getChildFragmentManager());
+        PeticionAdapter peticionAdapter = new PeticionAdapter(getActivity(), lista_elementos, codi, getParentFragmentManager());
 
         recyclerView.setAdapter(peticionAdapter);
     }

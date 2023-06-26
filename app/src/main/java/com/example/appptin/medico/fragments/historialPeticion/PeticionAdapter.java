@@ -77,7 +77,7 @@ public class PeticionAdapter extends RecyclerView.Adapter<PeticionAdapter.MyHold
                 // carga la ventana del fragment según el Nº de código
                 // Lista de peticiones pendientes por confirmar
                 if (codi == 1){
-                    result.putSerializable("MiObjeto", (InformacionPeticion) arrayList.get(position));
+                    result.putSerializable("Aprobar", (InformacionPeticion) arrayList.get(position));
                     activity.setFragmentResult("key_aprobar_peticion", result);
 
                     cambiofragment = new AprobarFragment(activity,context);
