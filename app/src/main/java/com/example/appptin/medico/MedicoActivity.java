@@ -6,6 +6,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
+import com.example.appptin.login;
+import com.example.appptin.login_o_registre;
 import com.example.appptin.medico.fragments.recetaPaciente.RecetaFragment;
 import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
 import com.example.appptin.medico.fragments.perfilmedico.PerfilMedicoFragment;
@@ -13,12 +15,14 @@ import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFr
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -104,6 +108,28 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
 
     }
 
+    /*
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Confirmació de logout")
+                .setMessage("Estàs segur que vols fer logout?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Esborra les dades d'inici de sessió i redirigeix a l'activitat de login
+                        SharedPreferences sharedPreferences = getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
+                        startActivity(new Intent(MedicoActivity.this, login_o_registre.class));
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+*/
     //Función para activar modo oscuro
     public void setDayNight(){
         SharedPreferences sp = getSharedPreferences("SP", this.MODE_PRIVATE);

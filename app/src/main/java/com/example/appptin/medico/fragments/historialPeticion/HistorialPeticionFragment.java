@@ -320,6 +320,7 @@ public class HistorialPeticionFragment extends Fragment {
         }
 
         // Datos devueltos
+        final Context context = getActivity();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -366,7 +367,7 @@ public class HistorialPeticionFragment extends Fragment {
                         else {
                             // Mensaje por pantalla
                             //aviso("No tens peticions assignades");
-                            Toast.makeText(getActivity(),"No tens peticions assignades",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context,"No tens peticions assignades",Toast.LENGTH_SHORT).show();
                         }
 
                         Creacion_elementos_RecyclerView(arrayList);
