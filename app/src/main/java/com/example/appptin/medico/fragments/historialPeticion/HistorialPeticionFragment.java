@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -364,7 +365,8 @@ public class HistorialPeticionFragment extends Fragment {
                         }
                         else {
                             // Mensaje por pantalla
-                            aviso("No tens peticions assignades");
+                            //aviso("No tens peticions assignades");
+                            Toast.makeText(getActivity(),"No tens peticions assignades",Toast.LENGTH_SHORT).show();
                         }
 
                         Creacion_elementos_RecyclerView(arrayList);
@@ -463,7 +465,8 @@ public class HistorialPeticionFragment extends Fragment {
                         }
                         else {
                             // Mensaje por pantalla
-                            aviso("No has validat cap petició");
+                            //aviso("No has validat cap petició");
+                            Toast.makeText(getActivity(),"No has validat cap petició",Toast.LENGTH_SHORT).show();
                         }
 
                         Creacion_elementos_RecyclerView(arrayList);

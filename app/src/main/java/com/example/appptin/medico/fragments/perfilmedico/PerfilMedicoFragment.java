@@ -104,6 +104,7 @@ public class PerfilMedicoFragment extends Fragment {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             ConfigMedicoFragment configMedicoFragment = new ConfigMedicoFragment();
             transaction.replace(R.id.frame_container, configMedicoFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
         }
     };
