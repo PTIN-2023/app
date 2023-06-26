@@ -91,6 +91,7 @@ public class PerfilGestorFragment extends Fragment {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             DatoGestorFragment datosGestorFragment = new DatoGestorFragment();
             transaction.replace(R.id.frame_container, datosGestorFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
 
         }
@@ -102,6 +103,7 @@ public class PerfilGestorFragment extends Fragment {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             ConfigGestorFragment configGestorFragment = new ConfigGestorFragment();
             transaction.replace(R.id.frame_container, configGestorFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
         }
     };
