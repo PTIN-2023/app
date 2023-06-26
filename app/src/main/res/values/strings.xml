@@ -52,6 +52,20 @@
     <string name="hint_valor_numeric">Valor numèric</string>
     <string name="hint_nom_ciutat">Nom Ciutat</string>
 
+    //fragment_add_medicament.xml
+    <string name="afegir_meds">Afegir Medicaments</string>
+    <string name="nom_med">Nom del medicament</string>
+    <string name="codi_nacional">Codi nacional</string>
+    <string name="use_type">Tipus ús</string>
+    <string name="type_of_adm">Tipus administració</string>
+    <string name="pres_need">Necessita recepta? (true/false)</string>
+    <string name="contents">Contingut</string>
+    <string name="form">Format</string>
+    <string name="excipients">Excipients</string>
+    <string name="med_url">URL_imatge</string>
+    <string name="pvp">PVP</string>
+
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,6 +77,7 @@
     <string name="titulo_peticiones">Peticions</string>
     <string name="titulo_recepta">Receptes</string>
     <string name="titulo_usuario">Usuari</string>
+    <string name="titulo_pacientes">Pacients</string>
 
     //fragment_aprobar.xml
     <string name="info_pacient">Informació  Pacient</string>
