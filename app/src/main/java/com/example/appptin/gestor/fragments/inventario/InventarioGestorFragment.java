@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.Medicament;
 import com.example.appptin.R;
+import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +44,7 @@ public class InventarioGestorFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<MedicamentosClass> arrayList;
     ArrayList<MedicamentosClass> searchList;
+    private Button afegir;
 
     Spinner spinnerSort;
     private String opcionSeleccionada = "";
@@ -161,7 +165,7 @@ public class InventarioGestorFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rv_inventario);
         searchView = view.findViewById(R.id.sv_inventario);
         spinnerSort = view.findViewById(R.id.sp_iventario_gestor_ordenar);
-
+        afegir = view.findViewById(R.id.btn_afegir) ;
         //Agregar los elementos del RecyclerView
         Creacion_elementos_RecyclerView(arrayList);
 
@@ -170,6 +174,8 @@ public class InventarioGestorFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSort.setAdapter(adapter);
 
+        //Listener del boton afegir
+        afegir.setOnClickListener(abrirADDmed);
         //Listener del Spiner
         spinnerSort.setOnItemSelectedListener(seleccion_spiner);
 
@@ -177,6 +183,17 @@ public class InventarioGestorFragment extends Fragment {
         searchView.setOnQueryTextListener(buscador);
 
     }
+
+    private View.OnClickListener abrirADDmed = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            AddMedicamentFragment addMedicamentFragmentFragment = new AddMedicamentFragment();
+            transaction.replace(R.id.frame_container, addMedicamentFragmentFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    };
     private void Creacion_elementos_RecyclerView(ArrayList<MedicamentosClass> lista_elementos ){
         //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
