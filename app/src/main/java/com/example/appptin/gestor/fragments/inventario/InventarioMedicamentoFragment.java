@@ -1,19 +1,33 @@
 package com.example.appptin.gestor.fragments.inventario;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
 import com.google.android.gms.common.util.JsonUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -51,10 +65,12 @@ public class InventarioMedicamentoFragment extends Fragment {
         TextView med_form = view.findViewById(R.id.txt_inv_form);
         TextView med_pvp = view.findViewById(R.id.txt_inv_pvp);
         TextView med_recipe = view.findViewById(R.id.txt_inv_recipe);
-
+        Button button = view.findViewById(R.id.button_delete);
         iv_regresar = view.findViewById(R.id.iv_inventario_medicamento_back);
         // LISTENERS
         iv_regresar.setOnClickListener(regresar);
+        button.setOnClickListener(eliminar);
+
         med_nom.setText(med.getNombre_medicamento());
         med_cn.setText(med.getCodiNacional_medicamento());
         System.out.println("tipus: " + med.getUseType_medicamento());
@@ -79,4 +95,55 @@ public class InventarioMedicamentoFragment extends Fragment {
             }
         }
     };
+
+    private View.OnClickListener eliminar = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            RequestQueue queue = Volley.newRequestQueue(getActivity());
+            Resources r = getResources();
+            String apiUrl = r.getString(R.string.api_base_url);
+            String url = apiUrl + "/api/delete_medicine"; // Reemplaça amb l'adreça completa de l'API per obtenir els medicaments disponibles
+            JSONObject postParams = new JSONObject();
+            try {
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+                String session_token = sharedPreferences.getString("session_token", "Valor nulo");  //SI AIXÒ NO FUNCIONA, FER-HO COM LA LINIA DE BAIX
+                //String session_token = login.getSession_token();
+                System.out.println(session_token);
+                postParams.put("session_token", session_token);
+                postParams.put("medicine_identifier", med.getCodiNacional_medicamento());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.POST, url, postParams, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                if (response.getString("result").equals("ok")) {
+                                    // Medicamento eliminado correctamente
+                                    Toast.makeText(getActivity(), "Medicina eliminada exitosamente", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    // Hubo un error al eliminar la medicina
+                                    Toast.makeText(getActivity(), "Error al eliminar medicina", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO: Manejar error
+                            error.printStackTrace();
+                        }
+                    });
+
+            queue.add(jsonObjectRequest);
+        }
+    };
+
+
 }
