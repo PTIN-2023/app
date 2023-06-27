@@ -157,7 +157,7 @@ public class PagamentActivity extends AppCompatActivity {
 
                                     // Utiliza los valores extraídos según sea necesario
                                     if (result.equals("ok")) {
-                                        System.out.println("COmanda realitzada");
+                                        System.out.println("Comanda realitzada");
                                         // Obtiene las SharedPreferences
                                     }
                                     else {

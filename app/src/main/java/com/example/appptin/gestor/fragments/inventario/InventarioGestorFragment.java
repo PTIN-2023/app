@@ -194,16 +194,20 @@ public class InventarioGestorFragment extends Fragment {
             transaction.commit();
         }
     };
-    private void Creacion_elementos_RecyclerView(ArrayList<MedicamentosClass> lista_elementos ){
-        //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
+    private void Creacion_elementos_RecyclerView(ArrayList<MedicamentosClass> lista_elementos) {
+        // Verificar si el fragment està afegit al FragmentManager
+        if (!isAdded()) {
+            return;
+        }
+
+        // Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         // Creación del adapter con la nueva lista de elementos búscados
-        MedicamentosAdapter medicamentosAdapter = new MedicamentosAdapter(getActivity(), lista_elementos,getParentFragmentManager());
+        MedicamentosAdapter medicamentosAdapter = new MedicamentosAdapter(getActivity(), lista_elementos, getParentFragmentManager());
 
         recyclerView.setAdapter(medicamentosAdapter);
-
     }
 
     //EVENTOS
