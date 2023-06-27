@@ -14,14 +14,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5sp">
+        <ImageView
+            android:id="@+id/medicament_image"
+            android:layout_width="120dp"
+            android:layout_height="125dp"
+            android:src="@drawable/avatar_gestor" />
+
         <TextView
             android:id="@+id/txt_medicamento_inventario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:hint="@string/medica"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="42dp"
             android:fontFamily="@font/rinkart_italic"
-            android:textSize="20sp"/>
+            android:hint="@string/medica"
+            android:textSize="24sp" />
 
 
     </RelativeLayout>
