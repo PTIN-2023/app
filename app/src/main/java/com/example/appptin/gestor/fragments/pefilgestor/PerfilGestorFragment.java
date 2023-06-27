@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
+import com.example.appptin.gestor.fragments.CrearUsersFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.DatoGestorFragment;
 import com.example.appptin.login;
@@ -89,8 +90,8 @@ public class PerfilGestorFragment extends Fragment {
         @Override
         public void onClick(View view) {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            DatoGestorFragment datosGestorFragment = new DatoGestorFragment();
-            transaction.replace(R.id.frame_container, datosGestorFragment);
+            CrearUsersFragment crearUsersFragment = new CrearUsersFragment();
+            transaction.replace(R.id.frame_container, crearUsersFragment);
             transaction.addToBackStack(null);
             transaction.commit();
 

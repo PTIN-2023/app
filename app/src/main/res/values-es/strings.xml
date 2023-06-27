@@ -64,6 +64,15 @@
     <string name="med_url">URL_imagen</string>
     <string name="pvp">PVP</string>
 
+    //fragment_flota.xml
+    <string name="flota_titulo">Gestión de Flotas</string>
+    <string name="flota_seleccionar">Seleccionar:</string>
+    <string name="flota_btn_global">GLOBAL</string>
+    <string name="flota_btn_local">LOCAL</string>
+    <string name="flota_btn_user">CREAR USUARI</string>
+
+    //fragment_coches.xml
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -274,6 +283,7 @@
     <string name="info_receta_text_duracio">Duración</string>
     <string name="info_receta_text_nota">Escribe aquí...</string>
     <string name="titulo_recepta">Recetas</string>
+    <string name="flotes">Flotas</string>
 
 
 </resources>

@@ -11,6 +11,7 @@
     <string name="gestions">Gestions</string>
     <string name="mapa">Mapa</string>
     <string name="comandes">Comandes</string>
+    <string name="flotes">Flotes</string>
     <string name="usuari">Usuari</string>
     //fragment_perfil_gestor.xml
     <string name="perfil">Perfil</string>
@@ -271,6 +272,11 @@
     <string name="gel">Gel</string>
     <string name="Pols">Pols</string>
     <string name="Liquid">Liquid</string>
+    <string name="flota_titulo">Gestió de Flotes</string>
+    <string name="flota_seleccionar">Seleccionar:</string>
+    <string name="flota_btn_global">GLOBAL</string>
+    <string name="flota_btn_local">LOCAL</string>
+    <string name="flota_btn_user">CREAR USUARIO</string>
 
 
 </resources>

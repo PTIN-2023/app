@@ -22,6 +22,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
 import com.example.appptin.gestor.fragments.CrearUsersFragment;
+import com.example.appptin.gestor.fragments.flota.FlotaFragment;
 import com.example.appptin.gestor.fragments.inventario.InventarioGestorFragment;
 import com.example.appptin.gestor.fragments.inventario.MapaGestor;
 import com.example.appptin.gestor.fragments.pefilgestor.PerfilGestorFragment;
@@ -36,7 +37,8 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
 
     PerfilGestorFragment gestorFragment;
     InventarioGestorFragment inventarioGestorFragment;
-    CrearUsersFragment crearUsersFragment;
+    //CrearUsersFragment crearUsersFragment;
+    FlotaFragment flotaFragment;
     EstatPeticionsGestorFragment estatPeticionsGestorFragment;
 
     @Override
@@ -58,7 +60,8 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         inventarioGestorFragment = new InventarioGestorFragment(session_token, this);
         gestorFragment = new PerfilGestorFragment();
         estatPeticionsGestorFragment = new EstatPeticionsGestorFragment();
-        crearUsersFragment = new CrearUsersFragment();
+        //crearUsersFragment = new CrearUsersFragment();
+        flotaFragment = new FlotaFragment();
 
         loadFragment(inventarioGestorFragment);
 
@@ -71,7 +74,8 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
                 case R.id.menu_gestionarUsuarios:
-                    loadFragment(crearUsersFragment);
+                    //loadFragment(crearUsersFragment);
+                    loadFragment(flotaFragment);
                     return true;
                 case R.id.menu_inventario:
                     loadFragment(inventarioGestorFragment);
