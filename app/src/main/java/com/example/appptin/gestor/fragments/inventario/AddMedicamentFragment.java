@@ -95,6 +95,7 @@ public class AddMedicamentFragment extends Fragment {
         EditText etExcipients = view.findViewById(R.id.et_excipients);
         EditText etMedUrl = view.findViewById(R.id.et_med_url);
         EditText etPvp = view.findViewById(R.id.et_pvp);
+        EditText etQuant = view.findViewById(R.id.et_quant);
         Button btnAdd = view.findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +104,7 @@ public class AddMedicamentFragment extends Fragment {
                         etUseType.getText().toString(), etTypeOfAdm.getText().toString(),
                         etForm.getText().toString(), etPresNeed.getText().toString(),
                         etContents.getText().toString(), etExcipients.getText().toString(),
-                        etMedUrl.getText().toString(), etPvp.getText().toString());
+                        etMedUrl.getText().toString(), etPvp.getText().toString(), etQuant.getText().toString());
             }
         });
         return view;
@@ -121,7 +122,7 @@ public class AddMedicamentFragment extends Fragment {
 
     private void addMedicine(String medName, String medicineIdentifier, String useType,
                              String typeOfAdm, String form, String presNeed, String contents,
-                             String excipient, String medUrl, String pvp) {
+                             String excipient, String medUrl, String pvp, String quant) {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
@@ -134,16 +135,17 @@ public class AddMedicamentFragment extends Fragment {
             //String session_token = login.getSession_token();
             System.out.println(session_token);
             postParams.put("session_token", session_token);
-            postParams.put("medicine_identifier", medicineIdentifier);
+            postParams.put("national_code", medicineIdentifier);
             postParams.put("medicine_image_url", medUrl);
             postParams.put("med_name", medName);
-            postParams.put("excipient", excipient);
+            postParams.put("excipients", excipient);
             postParams.put("pvp", pvp);
             postParams.put("use_type", useType);
             postParams.put("contents", contents);
             postParams.put("prescription_needed", presNeed);
             postParams.put("form", form);
             postParams.put("type_of_administration", typeOfAdm);
+            postParams.put("quantity_available", Integer.parseInt(quant));
         } catch (JSONException e) {
             e.printStackTrace();
         }

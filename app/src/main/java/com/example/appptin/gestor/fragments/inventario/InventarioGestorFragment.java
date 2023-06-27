@@ -60,7 +60,7 @@ public class InventarioGestorFragment extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue(gestorActivity);
         String apiUrl = "http://147.83.159.195:24105";
-        String url = apiUrl + "/api/list_available_medicines";
+        String url = apiUrl + "/api/list_inventory_meds";
         JSONObject jsonObject = new JSONObject();
 
 
