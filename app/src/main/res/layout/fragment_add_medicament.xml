@@ -286,6 +286,31 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textStyle="bold"
+                        android:text="@string/quantitat"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/et_quant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/quantitat"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+
                 <Button
                     android:id="@+id/btn_add"
                     android:layout_width="match_parent"
