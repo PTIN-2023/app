@@ -6,14 +6,18 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.appptin.R;
 
 import java.util.ArrayList;
@@ -23,13 +27,16 @@ public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapte
     FragmentManager activity;
     ArrayList<MedicamentosClass> arrayList;
     LayoutInflater layoutInflater;
+    private AlertDialog.Builder builder;
 
     //Constructor
-    public MedicamentosAdapter(Context context, ArrayList<MedicamentosClass> arrayList, FragmentManager activity) {
-        this.context = context;
-        this.activity = activity;
+    public MedicamentosAdapter(ArrayList<MedicamentosClass> arrayList, FragmentActivity context) {
         this.arrayList = arrayList;
-        layoutInflater = LayoutInflater.from(context); //Obtener el contexto del activity
+        this.context = context;
+        if (context != null) {
+            builder = new AlertDialog.Builder(context);
+            this.layoutInflater = LayoutInflater.from(context);
+        }
     }
 
     // Crear el objeto "View" a partir del diseño item_file.xml (representa el diseño xml)
@@ -49,11 +56,13 @@ public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapte
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         holder.txt_medicamento.setText(arrayList.get(position).getNombre_medicamento());
 
-//        if(arrayList.get(position).getColor() == "red") holder.txt_medicamento.setTextColor(Color.RED);
-//        else if (arrayList.get(position).getColor() == "green") holder.txt_medicamento.setTextColor(Color.GREEN);
         holder.contenedorElem.setTag(position);
         holder.contenedorElem.setOnClickListener(evento_contenedor);
 
+        //Aquí asignariamos las imagenes con la URL que devuelve la API,
+        Glide.with(holder.imgMedicament.getContext())
+                .load(arrayList.get(position).getURLimage())
+                .into(holder.imgMedicament);
 
     }
 
@@ -88,12 +97,14 @@ public class MedicamentosAdapter extends RecyclerView.Adapter<MedicamentosAdapte
     public class MyHolder extends RecyclerView.ViewHolder {
         TextView txt_medicamento;
         View contenedorElem;
+        private ImageView imgMedicament;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             //Estas referencias son del layout: medicamentos.inventario.xml
             txt_medicamento = itemView.findViewById(R.id.txt_medicamento_inventario);
             contenedorElem = itemView.findViewById(R.id.contenedor_medicamentos);
+            imgMedicament = itemView.findViewById(R.id.medicament_image);
         }
     }
 }

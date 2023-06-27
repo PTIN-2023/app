@@ -15,11 +15,13 @@ public class MedicamentosClass implements Serializable  {
 
     private int cantidad = 0;
 
+    private String URLimage;
 
-    public MedicamentosClass(String medName, String nationalCode, String useType,
+    public MedicamentosClass(String medName, String URLimage, String nationalCode, String useType,
                              String typeOfAdministration, boolean prescriptionNeeded,
                              Double pvp, String form, ArrayList<String> excipients) {
         this.medName = medName;
+        this.URLimage = URLimage;
         this.nationalCode = nationalCode;
         this.useType = useType;
         this.typeOfAdministration = typeOfAdministration;
@@ -28,6 +30,7 @@ public class MedicamentosClass implements Serializable  {
         this.form = form;
         this.excipients = excipients;
     }
+
     public String getNombre_medicamento() {
         return medName;
     }
@@ -56,17 +59,13 @@ public class MedicamentosClass implements Serializable  {
     public String getForm_medicamento() {
         return form;
     }
+
+    public String getURLimage(){return URLimage;}
+
     public void setNombre_medicamento(String nombre_medicamento) {
         this.medName = nombre_medicamento;
     }
 
-//    public String getColor() {
-//        return color;
-//    }
-
-//    public void setColor(String color) {
-//        this.color = color;
-//    }
 }
 
 

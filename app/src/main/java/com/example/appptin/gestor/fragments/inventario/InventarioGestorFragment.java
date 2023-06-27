@@ -96,6 +96,7 @@ public class InventarioGestorFragment extends Fragment {
                             String nationalCode = jsonObject.getString("national_code");
                             String form = jsonObject.getString("form");
                             String medName = jsonObject.getString("medicine_name");
+                            String URLimage = jsonObject.getString("medicine_image_url");
                             String useType = jsonObject.getString("use_type");
                             double pvp = jsonObject.getDouble("pvp");
 
@@ -109,7 +110,7 @@ public class InventarioGestorFragment extends Fragment {
                             //String tipusUs = jsonObject.getString("tipus_us");
 
                             arrayList.add
-                                    (new MedicamentosClass(medName, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
+                                    (new MedicamentosClass(medName, URLimage, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
                             System.out.println(arrayList);
                         }
                         //Agregar los elementos del RecyclerView
@@ -133,14 +134,8 @@ public class InventarioGestorFragment extends Fragment {
         });
 
         queue.add(jsonArrayRequest);
-
-        //Prueba
-//        arrayList = new ArrayList<>();
-//        arrayList.add(new MedicamentosClass("Medicament 1","red"));
-//        arrayList.add(new MedicamentosClass("Medicament 2","green"));
-//        arrayList.add(new MedicamentosClass("Medicament 3","green"));
-//        arrayList.add(new MedicamentosClass("Medicament 4","red"));
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -205,7 +200,7 @@ public class InventarioGestorFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Creación del adapter con la nueva lista de elementos búscados
-        MedicamentosAdapter medicamentosAdapter = new MedicamentosAdapter(getActivity(), lista_elementos, getParentFragmentManager());
+        MedicamentosAdapter medicamentosAdapter = new MedicamentosAdapter(lista_elementos,getActivity());
 
         recyclerView.setAdapter(medicamentosAdapter);
     }
