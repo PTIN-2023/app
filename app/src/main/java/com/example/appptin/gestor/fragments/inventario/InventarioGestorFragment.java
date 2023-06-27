@@ -99,6 +99,7 @@ public class InventarioGestorFragment extends Fragment {
                             String URLimage = jsonObject.getString("medicine_image_url");
                             String useType = jsonObject.getString("use_type");
                             double pvp = jsonObject.getDouble("pvp");
+                            int cantidad = jsonObject.getInt("quantity_available");
 
                             JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipients");
                             ArrayList<String> excipients = new ArrayList<String>();
@@ -110,7 +111,7 @@ public class InventarioGestorFragment extends Fragment {
                             //String tipusUs = jsonObject.getString("tipus_us");
 
                             arrayList.add
-                                    (new MedicamentosClass(medName, URLimage, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
+                                    (new MedicamentosClass(medName, URLimage, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, cantidad, form, excipients));
                             System.out.println(arrayList);
                         }
                         //Agregar los elementos del RecyclerView

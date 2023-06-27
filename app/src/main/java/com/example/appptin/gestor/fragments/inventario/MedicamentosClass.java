@@ -31,6 +31,21 @@ public class MedicamentosClass implements Serializable  {
         this.excipients = excipients;
     }
 
+    public MedicamentosClass(String medName, String URLimage, String nationalCode, String useType,
+                             String typeOfAdministration, boolean prescriptionNeeded,
+                             Double pvp, int cantidad, String form, ArrayList<String> excipients) {
+        this.medName = medName;
+        this.URLimage = URLimage;
+        this.nationalCode = nationalCode;
+        this.useType = useType;
+        this.typeOfAdministration = typeOfAdministration;
+        this.prescriptionNeeded = prescriptionNeeded;
+        this.pvp = pvp;
+        this.cantidad = cantidad;
+        this.form = form;
+        this.excipients = excipients;
+    }
+
     public String getNombre_medicamento() {
         return medName;
     }
@@ -54,6 +69,10 @@ public class MedicamentosClass implements Serializable  {
 
     public String getPvP_medicamento() {
         return Double.toString(pvp) + " €";
+    }
+
+    public int getQuantitat_medicamento(){
+        return cantidad;
     }
 
     public String getForm_medicamento() {

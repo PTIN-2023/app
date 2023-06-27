@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,7 +64,8 @@ public class InventarioMedicamentoFragment extends Fragment {
         TextView med_tipus = view.findViewById(R.id.txt_tipus_medicament);
         TextView med_administration = view.findViewById(R.id.txt_inv_administracio);
         TextView med_form = view.findViewById(R.id.txt_inv_form);
-        TextView med_pvp = view.findViewById(R.id.txt_inv_pvp);
+        EditText med_pvp = view.findViewById(R.id.txt_inv_pvp);
+        EditText med_quant = view.findViewById(R.id.txt_inv_quant);
         TextView med_recipe = view.findViewById(R.id.txt_inv_recipe);
         Button button = view.findViewById(R.id.button_delete);
         iv_regresar = view.findViewById(R.id.iv_inventario_medicamento_back);
@@ -78,6 +80,7 @@ public class InventarioMedicamentoFragment extends Fragment {
         med_administration.setText(med.getAdministration_medicamento());
         med_form.setText(med.getForm_medicamento());
         med_pvp.setText(med.getPvP_medicamento());
+        med_quant.setText(String.valueOf(med.getQuantitat_medicamento()));
         med_recipe.setText(med.getPrescription_medicamento());
 
         return view;
