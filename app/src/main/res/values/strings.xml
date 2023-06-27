@@ -59,6 +59,20 @@
         <!-- Agrega más opciones según sea necesario -->
     </string-array>
 
+    //fragment_add_medicament.xml
+    <string name="afegir_meds">Afegir Medicaments</string>
+    <string name="nom_med">Nom del medicament</string>
+    <string name="codi_nacional">Codi nacional</string>
+    <string name="use_type">Tipus ús</string>
+    <string name="type_of_adm">Tipus administració</string>
+    <string name="pres_need">Necessita recepta? (true/false)</string>
+    <string name="contents">Contingut</string>
+    <string name="form">Format</string>
+    <string name="excipients">Excipients</string>
+    <string name="med_url">URL_imatge</string>
+    <string name="pvp">PVP</string>
+
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +84,7 @@
     <string name="titulo_peticiones">Peticions</string>
     <string name="titulo_recepta">Receptes</string>
     <string name="titulo_usuario">Usuari</string>
+    <string name="titulo_pacientes">Pacients</string>
 
     //fragment_aprobar.xml
     <string name="info_pacient">Informació  Pacient</string>
@@ -139,7 +154,7 @@
 
     //activity_login.xml
     <string name="correu">Correu</string>
-    <string name="contrassenya">Contrassenya</string>
+    <string name="contrassenya">Contrasenya</string>
 
     //activity_registre.xml
     <string name="given_name">Nom Usuari</string>
@@ -147,8 +162,8 @@
     <string name="email">Correu</string>
     <string name="phone">Telèfon</string>
     <string name="Address">Adreça</string>
-    <string name="password">Contrassenya</string>
-    <string name="re_password">Repeteix Contrassenya</string>
+    <string name="password">Contrasenya</string>
+    <string name="re_password">Repeteix Contrasenya</string>
     <string name="bt_antialergics">Registrat</string>
 
     //activity_pagament.xml
@@ -159,7 +174,7 @@
     <string name="card_number_hint">Número de targeta</string>
     <string name="paypal_email_hint">Email</string>
     <string name="paypal_phone_hint">Telèfon</string>
-    <string name="order_summary">Resum de la comanda</string>
+    <string name="order_summary">Resum de la petició</string>
     <string name="dades_comprador">Dades del comprador</string>
 
     //codi_recepta_popup.xml
@@ -195,7 +210,7 @@
     <string name="via">Via:</string>
     <string name="format">Format:</string>
     <string name="oral">Oral</string>
-    <string name="topical">Topica</string>
+    <string name="topical">Tòpica</string>
     <string name="comprimidos">Comprimits</string>
     <string name="pomada">Pomada</string>
     <string name="crema">Crema</string>

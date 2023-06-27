@@ -11,6 +11,24 @@
         android:layout_height="match_parent"
         android:layout_marginTop="32dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/rinkart"
+                android:text="Crear Users"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
         <EditText
             android:id="@+id/city"
             android:layout_width="match_parent"
@@ -35,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="32dp"
             android:backgroundTint="#DDA400"
             android:ems="10"
@@ -170,30 +188,18 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/boton"
             android:fontFamily="@font/rinkart"
             android:onClick="registre"
             android:text="Registra"
             android:textColor="@color/black"
             android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Address" />
 
-        <ImageButton
-            android:id="@+id/google_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/boton"
-            android:scaleType="centerInside"
-            android:onClick="registre_google"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_antialergics"
-            app:srcCompat="@drawable/icons8_google_30" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -130,14 +130,11 @@ public class ConfigGestorFragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            PerfilGestorFragment perfilGestorFragment = new PerfilGestorFragment();
-            //Cambio de Fragment
-            fragmentTransaction.replace(R.id.frame_container, perfilGestorFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Retrocede en la pila de fragmentos
+                fragmentManager.popBackStack();
+            }
         }
     };
 

@@ -25,7 +25,7 @@
                 android:fontFamily="@font/rinkart"
                 android:textSize="25sp"
                 android:gravity="center"
-                android:hint="@string/inventari"/>
+                android:hint="Inventari de medicaments"/>
 
 
         </LinearLayout>
@@ -61,6 +61,14 @@
                 android:text="@string/filtres"
                 android:fontFamily="@font/rinkart"
                 android:layout_alignParentEnd="true" />
+
+            <Button
+                android:id="@+id/btn_afegir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/afegir"
+                android:fontFamily="@font/rinkart"
+                android:layout_alignParentStart="true" />
 
         </RelativeLayout>
 

@@ -51,6 +51,19 @@
     <string name="hint_valor_numeric">Valor numérico</string>
     <string name="hint_nom_ciutat">Nombre Ciudad</string>
 
+    //fragment_add_medicament.xml
+    <string name="afegir_meds">Añadir Medicamentos</string>
+    <string name="nom_med">Nombre del medicamento</string>
+    <string name="codi_nacional">Código nacional</string>
+    <string name="use_type">Tipo de uso</string>
+    <string name="type_of_adm">Tipo de administración</string>
+    <string name="pres_need">Necesita receta? (true/false)</string>
+    <string name="contents">Contenido</string>
+    <string name="form">Formato</string>
+    <string name="excipients">Excipientes</string>
+    <string name="med_url">URL_imagen</string>
+    <string name="pvp">PVP</string>
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
