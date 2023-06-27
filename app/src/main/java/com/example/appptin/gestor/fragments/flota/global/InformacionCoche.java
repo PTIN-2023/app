@@ -1,8 +1,10 @@
 package com.example.appptin.gestor.fragments.flota.global;
 
 
+import java.io.Serializable;
+
 // ESTA CLASE CONTIENE TODOS LOS DATOS DEL COCHE
-public class InformacionCoche {
+public class InformacionCoche implements Serializable {
     private String coche;
     private int estado;
 

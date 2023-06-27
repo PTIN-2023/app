@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.example.appptin.R;
 import com.example.appptin.gestor.fragments.flota.global.CochesFragment;
+import com.example.appptin.gestor.fragments.flota.local.EdgeCiudadFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.DatoGestorFragment;
 
 
@@ -60,9 +61,11 @@ public class FlotaFragment extends Fragment {
     private View.OnClickListener listener_local = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
-            //Pendiente definir
-
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            EdgeCiudadFragment edgeCiudadFragment = new EdgeCiudadFragment();
+            transaction.replace(R.id.frame_container, edgeCiudadFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     };
 

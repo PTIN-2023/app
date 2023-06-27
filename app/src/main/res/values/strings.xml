@@ -75,7 +75,6 @@
     <string name="quantitat">Quantitat</string>
 
 
-
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -275,7 +274,7 @@
     <string name="Pols">Pols</string>
     <string name="Liquid">Liquid</string>
 
-    <string name="flota_titulo">Gestió de Flotes</string>
+    <string name="flota_titulo">Gestins de Flotes</string>
     <string name="flota_seleccionar">Seleccionar:</string>
     <string name="flota_btn_global">GLOBAL</string>
     <string name="flota_btn_local">LOCAL</string>
@@ -283,6 +282,27 @@
 
     //fragment_coches.xml
     <string name="coches_titulo">Cotxes</string>
+
+    //fragment_coche_accion.xml
+    <string name="coche_accion_titulo">Informació cotxe</string>
+    <string name="coche_accion_info">Detalls</string>
+    <string name="coche_accion_bateria">Sense bateria</string>
+    <string name="coche_accion_recollida">Recollida no autoritzada</string>
+    <string name="coche_accion_paquet">Paquet no recollit</string>
+    <string name="coche_accion_fallada">Fallada tècnica</string>
+
+    //fragment_edge_ciudad.xml
+    <string name="ciudades_titulo">Ciutats</string>
+
+    //fragment_dron.xml
+    <string name="dron_titulo">Drones</string>
+
+
+    //fragment_dron_accion.xml
+    <string name="dron_accion_titulo">Informació dron</string>
+    <string name="dron_accion_info">Detalls</string>
+    <string name="dron_accion_bateria">Sense bateria</string>
+    <string name="dron_accion_fallada">Fallada tècnica</string>
 
 
 </resources>
