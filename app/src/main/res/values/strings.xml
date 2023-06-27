@@ -51,6 +51,13 @@
     <string name="hint_numero_esgotat">Número / Esgotat</string>
     <string name="hint_valor_numeric">Valor numèric</string>
     <string name="hint_nom_ciutat">Nom Ciutat</string>
+    //maps_gestor.xml
+    <string-array name="servers">
+        <item>Cloud</item>
+        <item>Edge0</item>
+        <item>Edge1</item>
+        <!-- Agrega más opciones según sea necesario -->
+    </string-array>
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////

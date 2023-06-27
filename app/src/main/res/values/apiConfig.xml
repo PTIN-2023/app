@@ -2,5 +2,9 @@
 
 <resources>
     <string name="api_base_url">https://cloud.ptin2023.rabadan.dev:24143</string>
+    <string name="api_edge0_url">https://edge0.ptin2023.rabadan.dev:24143</string>
+    <string name="api_edge1_url">https://edge1.ptin2023.rabadan.dev:24143</string>
+    <string name="api_edge2_url">https://edge2.ptin2023.rabadan.dev:24143</string>
+
     <string name="api_port">8080</string>
 </resources>
