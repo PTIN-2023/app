@@ -15,7 +15,7 @@ public class Medicament {
 
     private int cantidad = 0;
 
-    public Medicament(String medName, String nationalCode, String useType, String typeOfAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients) {
+    public Medicament(String medName, String nationalCode, String useType, String typeOfAdministration, String ofAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients, int cantidad) {
         this.medName = medName;
         this.nationalCode = nationalCode;
         this.useType = useType;

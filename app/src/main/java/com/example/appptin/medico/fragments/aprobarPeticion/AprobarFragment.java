@@ -213,7 +213,12 @@ public class AprobarFragment extends Fragment {
         try {
             jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
             jsonBody.put("order_identifier", peticion.getOrder_identifier());
-            jsonBody.put("approved", approved);
+            if(approved){
+                jsonBody.put("approved", "yes");
+            }
+            else {
+                jsonBody.put("approved", "no");
+            }
             jsonBody.put("reason", txt_peticion_comentario.getText().toString());
 
         } catch (JSONException e) {

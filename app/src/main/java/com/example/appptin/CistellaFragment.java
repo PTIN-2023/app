@@ -230,6 +230,7 @@ public class CistellaFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     // Acció per a incrementar la quantitat del producte a la cistella
+
                     int novaQuantitat = (int) producte.get("quantitat") + 1;
                     producte.put("quantitat", novaQuantitat);
                     actualitzarCistella(viewPreu);

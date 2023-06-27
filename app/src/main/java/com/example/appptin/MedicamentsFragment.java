@@ -223,6 +223,7 @@ public class MedicamentsFragment extends Fragment {
                             String medName = jsonObject.getString("medicine_name");
                             String useType = jsonObject.getString("use_type");
                             String URLimage = jsonObject.getString("medicine_image_url");
+                            int quantitat = jsonObject.getInt("quantity_available");
                             double pvp = jsonObject.getDouble("pvp");
 
                             JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipients");
@@ -233,11 +234,12 @@ public class MedicamentsFragment extends Fragment {
 
                             boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
                             //String tipusUs = jsonObject.getString("tipus_us");
-
-                            list_medicament.add(new Medicament(medName, nationalCode, URLimage, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients));
-                            System.out.println(list_medicament);
+                            if (quantitat>0) {
+                                list_medicament.add(new Medicament(medName, nationalCode, URLimage, useType, typeOfAdministration, prescriptionNeeded, pvp, form, excipients, quantitat));
+                            }
                         }
                         //Agregar los elementos del RecyclerView
+                        System.out.println(list_medicament);
                         Creacion_elementos_RecyclerView(list_medicament);
                     }
 
