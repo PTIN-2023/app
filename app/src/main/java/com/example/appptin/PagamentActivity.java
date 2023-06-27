@@ -3,6 +3,7 @@ package com.example.appptin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,17 +26,46 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
+
+import java.math.BigDecimal;
+
+
 public class PagamentActivity extends AppCompatActivity {
 
     private LinearLayout cardDetailsLayout;
+
+    private float preuTotal;
+    private TextView preuTotalView;
     private boolean CardLayoutVisible = false;
     private LinearLayout paypalDetailsLayout;
     private boolean paypalLayoutVisible = false;
+
+    private PayPalConfiguration paypalConfig;
+    private Intent paypalIntent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagament);
+
+        // Initialize PayPal configuration
+        paypalConfig = new PayPalConfiguration()
+                .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Use ENVIRONMENT_PRODUCTION for production
+                .clientId("AdShPAIC7Brc2RE9ATEUGqMHe_c3l4AtscaDpdBBtkYcy1ze7AvOGs9uJ18-SoCOSUF8LbSZmGXTt_X2");
+
+
+        preuTotal = getIntent().getFloatExtra("preuTotal", 0.0f);
+
+        preuTotalView = findViewById(R.id.total_price);
+        preuTotalView.setText("Total: " + preuTotal + "€");
+
+        System.out.println("PREU TOTAL --> " + preuTotal);
 
         cardDetailsLayout = findViewById(R.id.card_details_layout);
         paypalDetailsLayout = findViewById(R.id.paypal_details_layout);
@@ -79,9 +110,16 @@ public class PagamentActivity extends AppCompatActivity {
         btnPaypal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Start PayPal service
+                paypalIntent = new Intent(PagamentActivity.this, PayPalService.class);
+                paypalIntent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig);
+                startService(paypalIntent);
+
+                // Show PayPal details or start payment flow
                 showPayPalDetails(v);
             }
         });
+
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,14 +194,39 @@ public class PagamentActivity extends AppCompatActivity {
 
     public void showPayPalDetails(View view) {
 
-        if (paypalLayoutVisible) {
-            paypalDetailsLayout.setVisibility(View.GONE);
-            paypalLayoutVisible = false;
-        } else {
-            paypalDetailsLayout.setVisibility(View.VISIBLE);
-            paypalLayoutVisible = true;
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(preuTotal), "USD", "Payment Description",
+                PayPalPayment.PAYMENT_INTENT_SALE);
+
+        Intent intent = new Intent(this, PaymentActivity.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+                if (confirm != null) {
+                    Log.d("PAYPAL", confirm.toJSONObject().toString());
+                    // Payment completed. Process the result as needed.
+                    // You can access the payment details from confirm.toJSONObject().
+                    // Make necessary API calls or update UI accordingly.
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                Log.d("PAYPAL", "Payment canceled by user.");
+                // Handle payment cancellation as needed.
+            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+                Log.e("PAYPAL", "Invalid PayPal payment or configuration.");
+                // Handle invalid payment or configuration as needed.
+            }
         }
     }
+
+
 
     public void processCardPayment(View view) {
         // Processament pagament amb targeta

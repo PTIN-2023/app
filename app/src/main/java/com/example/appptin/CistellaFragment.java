@@ -47,6 +47,8 @@ public class CistellaFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private float preu;
+
     private LinearLayout linearLayoutCistella;
     private List<HashMap<String, Object>> cistella = new ArrayList<>();
 
@@ -285,6 +287,8 @@ public class CistellaFragment extends Fragment {
         //View preuView = getLayoutInflater().inflate(R.layout.fragment_cistella, null);
         TextView preuTotalView = ViewPreu.findViewById(R.id.preu_total);
         preuTotalView.setText("Preu total: " + preuTotal + "€");
+
+        preu = preuTotal;
     }
 
     private void initPopup() {
@@ -319,6 +323,7 @@ public class CistellaFragment extends Fragment {
             public void onClick(View v) {
                 // Mostrar el text en la pantalla home
                 Intent intent = new Intent(getActivity(), PagamentActivity.class);
+                intent.putExtra("preuTotal", preu);
                 startActivity(intent);
                 popupWindow.dismiss();
             }
