@@ -189,14 +189,40 @@
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
-                    <TextView
+                    <EditText
                         android:id="@+id/txt_inv_pvp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="@string/hint_nom_ciutat"
+                        android:hint="PVP"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart"
+                        android:layout_marginBottom="5sp"
+                        android:text="Quantitat: "
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/txt_inv_quant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:ellipsize="none"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:hint="Quantitat"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
