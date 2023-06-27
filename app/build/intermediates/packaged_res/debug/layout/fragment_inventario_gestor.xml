@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".gestor.fragments.inventario.InventarioGestorFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5sp"
+        android:layout_marginLeft="5sp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txt_titol_inventario"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/rinkart"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:hint="Inventari de medicaments"/>
+
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/sv_inventario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:queryHint="Search Here" />
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/btn_inv_gestor_filtro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filtres"
+                android:fontFamily="@font/rinkart"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:id="@+id/btn_afegir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/afegir"
+                android:fontFamily="@font/rinkart"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp">
+
+            <Spinner
+                android:id="@+id/sp_iventario_gestor_ordenar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rinkart_italic"
+                android:entries="@array/sort_options_inventario"
+                android:layout_alignParentStart="true"/>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_inventario"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/card" />
+
+
+    </LinearLayout>
+
+</FrameLayout>

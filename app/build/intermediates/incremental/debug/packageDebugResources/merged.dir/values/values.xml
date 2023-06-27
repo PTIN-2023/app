@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="servers">
+        <item>Cloud</item>
+        <item>Edge0</item>
+        <item>Edge1</item>
+        
+    </string-array>
+    <string-array name="sort_options">
+        <item>@string/sort_options_nom_a</item>
+        <item>@string/sort_options_nom_d</item>
+        <item>@string/mes_nou</item>
+        <item>@string/mes_antic</item>
+    </string-array>
+    <string-array name="sort_options_inventario">
+        <item>@string/sort_option_medicament_asc</item>
+        <item>@string/sort_option_medicament_desc</item>
+        <item>@string/sort_option_quantitat</item>
+        <item>@string/sort_option_vendes</item>
+        <item>@string/sort_option_ciutat_asc</item>
+    </string-array>
+    <color name="black">#FF000000</color>
+    <color name="blue_100">#BBDEFB</color>
+    <color name="blue_300">#64B5F6</color>
+    <color name="blue_50">#E3F2FD</color>
+    <color name="blue_600">#1E88E5</color>
+    <color name="green_100">#C8E6C9</color>
+    <color name="green_300">#81C784</color>
+    <color name="green_800">#2E7D32</color>
+    <color name="green_900">#1B5E20</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_700">#616161</color>
+    <color name="grey_800">#424242</color>
+    <color name="grey_900">#212121</color>
+    <color name="popup_background">#666666</color>
+    <color name="purple_100">#E1BEE7</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_300">#BA68C8</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="purple_800">#6A1B9A</color>
+    <color name="purple_900">#4A148C</color>
+    <color name="red_100">#FFCDD2</color>
+    <color name="red_300">#E57373</color>
+    <color name="red_600">#E53935</color>
+    <color name="red_800">#C62828</color>
+    <color name="red_900">#B71C1C</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow_100">#FFF9C4</color>
+    <color name="yellow_300">#FFF176</color>
+    <color name="yellow_800">#F9A825</color>
+    <color name="yellow_900">#F57F17</color>
+    <string name="ADRESS">ADREÇA</string>
+    <string name="Address">Adreça</string>
+    <string name="CITY">LOCALITAT / CIUTAT</string>
+    <string name="COUNTRY">PAÍS</string>
+    <string name="Liquid">Liquid</string>
+    <string name="POSTAL_CODE">CODI POSTAL</string>
+    <string name="PROVINCE">PROVÍNCIA</string>
+    <string name="Pols">Pols</string>
+    <string name="address">Adreça</string>
+    <string name="address_book">Llibreta adreces</string>
+    <string name="afegir">Afegir</string>
+    <string name="afegir_codi">Afegir codi</string>
+    <string name="afegir_codi_recepta">Afegir codi de recepta</string>
+    <string name="afegir_meds">Afegir Medicaments</string>
+    <string name="api_base_url">https://cloud.ptin2023.rabadan.dev:24143</string>
+    <string name="api_edge0_url">https://edge0.ptin2023.rabadan.dev:24143</string>
+    <string name="api_edge1_url">https://edge1.ptin2023.rabadan.dev:24143</string>
+    <string name="api_edge2_url">https://edge2.ptin2023.rabadan.dev:24143</string>
+    <string name="api_port">8080</string>
+    <string name="app_name">App PTIN</string>
+    <string name="apply">Aplicar</string>
+    <string name="aprobar">Aprovada:</string>
+    <string name="assigned_doctor">Metge assignat</string>
+    <string name="bt_antialergics">Registrat</string>
+    <string name="capsules">Càpsules</string>
+    <string name="card_number_hint">Número de targeta</string>
+    <string name="card_payment">Targeta de Crèdit</string>
+    <string name="cistella">Cistella</string>
+    <string name="city">Localitat / Ciutat</string>
+    <string name="codi_nacional">Codi nacional</string>
+    <string name="cognoms_info_pacient">Cognoms:</string>
+    <string name="comandes">Comandes</string>
+    <string name="comprimidos">Comprimits</string>
+    <string name="configuració">Configuració</string>
+    <string name="contents">Contingut</string>
+    <string name="contrassenya">Contrasenya</string>
+    <string name="correo_elec">Correu electrónic</string>
+    <string name="correu">Correu</string>
+    <string name="country">País</string>
+    <string name="credencials_medic">Credencials Mèdiques</string>
+    <string name="crema">Crema</string>
+    <string name="crypto_payment">Criptomonedes</string>
+    <string name="dades_comprador">Dades del comprador</string>
+    <string name="dades_personals">Dades Personals</string>
+    <string name="data_compra">Data de compra</string>
+    <string name="detalls">Detalls</string>
+    <string name="drops">Gotes</string>
+    <string name="editar">EDITAR</string>
+    <string name="email">Correu</string>
+    <string name="enviar">Enviar</string>
+    <string name="estat">Estat</string>
+    <string name="excipients">Excipients</string>
+    <string name="filters">Filtres</string>
+    <string name="filtres">Filtres</string>
+    <string name="finalitzar_compra">Finalitzar Compra</string>
+    <string name="form">Format</string>
+    <string name="format">Format:</string>
+    <string name="formatt">Format</string>
+    <string name="gel">Gel</string>
+    <string name="gestions">Gestions</string>
+    <string name="given_name">Nom Usuari</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_nom_ciutat">Nom Ciutat</string>
+    <string name="hint_nom_medicament">Nom del medicament</string>
+    <string name="hint_numero_esgotat">Número / Esgotat</string>
+    <string name="hint_valor_numeric">Valor numèric</string>
+    <string name="historial_peticions">Historial Peticions</string>
+    <string name="id_ciutat">Ciutat</string>
+    <string name="id_cognom_metge">Cognoms del metge</string>
+    <string name="id_cognoms">Cognoms</string>
+    <string name="id_data_naixement">Data de naixement</string>
+    <string name="id_genere">Gènere</string>
+    <string name="id_guardar_canvis">Guardar canvis</string>
+    <string name="id_hint_ciutat">Ciutat origen</string>
+    <string name="id_hint_cognoms">Cognoms del gestor</string>
+    <string name="id_hint_nom">Nom del gestor</string>
+    <string name="id_hint_pais">País origen</string>
+    <string name="id_nom">Nom</string>
+    <string name="id_nom_metge">Nom del metge</string>
+    <string name="id_pais">País</string>
+    <string name="idioma">Idioma</string>
+    <string name="implants">Implants</string>
+    <string name="info_contacte">Informació de Contacte</string>
+    <string name="info_fecha_peticion">Data de petició:</string>
+    <string name="info_pacient">Informació  Pacient</string>
+    <string name="info_pacient_aceptar">Acceptar</string>
+    <string name="info_pacient_nom">Nom del Pacient</string>
+    <string name="info_pacient_rebutjar">Rebutjar</string>
+    <string name="info_receta_duracio">Duració tractament:</string>
+    <string name="info_receta_guardar">Desar canvis</string>
+    <string name="info_receta_medicamento">Codi medicament:</string>
+    <string name="info_receta_nota">Notes:</string>
+    <string name="info_receta_paciente">Nom complet pacient:</string>
+    <string name="info_receta_text_duracio">Duració</string>
+    <string name="info_receta_text_medicamento">Medicament</string>
+    <string name="info_receta_text_nota">Escriu aquí...</string>
+    <string name="info_receta_text_paciente">Pacient</string>
+    <string name="inhalers">Inhaladors</string>
+    <string name="injectable">Injectable</string>
+    <string name="injections">Injeccions</string>
+    <string name="insert_med_name">Inserir nom medicament</string>
+    <string name="intro_codi">Introdueix el codi</string>
+    <string name="intro_codi_recepta">Introdueix el codi de la recepta</string>
+    <string name="inventari">Inventari</string>
+    <string name="inyeccion">Injecció</string>
+    <string name="jarabe">Xarop</string>
+    <string name="liquids">Líquids</string>
+    <string name="llista_medicaments">Llista de medicaments:</string>
+    <string name="logout">Sortir</string>
+    <string name="mapa">Mapa</string>
+    <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoiYXJuYXUxMjMxMiIsImEiOiJjbGhuaWF6cncwOTI0M2RwZXM2MXdpZmk1In0._zPeJDD9HHf_GN5WginUlA</string>
+    <string name="max_price">Max Price</string>
+    <string name="med_name">Nom medicament</string>
+    <string name="med_url">URL_imatge</string>
+    <string name="medica">Medicament</string>
+    <string name="medicam"> Medicaments </string>
+    <string name="mes_antic">Més antic</string>
+    <string name="mes_nou">Més nou</string>
+    <string name="min_price">Min Price</string>
+    <string name="modify_address">Modificar Adreça</string>
+    <string name="n_comanda_info_pacient">Nº Comanda:</string>
+    <string name="n_id_info_pacient">Nº de identificació:</string>
+    <string name="n_ref_comanda">Nº de referència comanda</string>
+    <string name="nom_info_pacient">Nom:</string>
+    <string name="nom_med">Nom del medicament</string>
+    <string name="notificacions">Notificacions</string>
+    <string name="notifications">Historial Peticions</string>
+    <string name="ocular">Ocular</string>
+    <string name="optional">OPCIONAL</string>
+    <string name="oral">Oral</string>
+    <string name="orall">Oral</string>
+    <string name="order_summary">Resum de la petició</string>
+    <string name="password">Contrasenya</string>
+    <string name="payment_method">Mètode de pagament</string>
+    <string name="payment_method_title">Selecciona un mètode de pagament</string>
+    <string name="paypal_email_hint">Email</string>
+    <string name="paypal_payment">PayPal</string>
+    <string name="paypal_phone_hint">Telèfon</string>
+    <string name="perfil">Perfil</string>
+    <string name="personal_data">Dades Personals</string>
+    <string name="phone">Telèfon</string>
+    <string name="pomada">Pomada</string>
+    <string name="popup_finalitzar_compra">Esteu segur de voler continuar amb la seva comanda?</string>
+    <string name="postal_code">Codi postal</string>
+    <string name="pres_need">Necessita recepta? (true/false)</string>
+    <string name="prescription_needed">Necessitat prescripció</string>
+    <string name="price">Preu</string>
+    <string name="producte">Producte</string>
+    <string name="province">Província</string>
+    <string name="pvp">PVP</string>
+    <string name="re_password">Repeteix Contrasenya</string>
+    <string name="receta">Nova recepta</string>
+    <string name="rectal">Rectal</string>
+    <string name="registre">Registre</string>
+    <string name="save_changes">guardar canvis</string>
+    <string name="scanQR">Escanejar QR</string>
+    <string name="settings">Configuració</string>
+    <string name="sort_option_ciutat_asc">Ciutat (ascendent)</string>
+    <string name="sort_option_medicament_asc">Medicament (ascendent)</string>
+    <string name="sort_option_medicament_desc">Medicament (descendent)</string>
+    <string name="sort_option_quantitat">Quantitat (de menor a major)</string>
+    <string name="sort_option_vendes">Vendes (de menor a major)</string>
+    <string name="sort_options_nom_a">Nom (ascendent)</string>
+    <string name="sort_options_nom_d">Nom (descendent)</string>
+    <string name="sortir">Sortir</string>
+    <string name="sublingual">Sublingual</string>
+    <string name="suppositories">Supositoris</string>
+    <string name="tablets">Tabletes</string>
+    <string name="tema_oscuro">Tema Fosc</string>
+    <string name="texto_ciutat_comprat">Ciutat que més ha comprat :</string>
+    <string name="texto_inventari">INVENTARI</string>
+    <string name="texto_medicament">Medicament :</string>
+    <string name="texto_quantitat_magatzem">Quantitat magatzem :</string>
+    <string name="texto_quantitat_venuda">Quantitat venuda :</string>
+    <string name="titulo_home">Inici</string>
+    <string name="titulo_pacientes">Pacients</string>
+    <string name="titulo_peticiones">Peticions</string>
+    <string name="titulo_recepta">Receptes</string>
+    <string name="titulo_usuario">Usuari</string>
+    <string name="topical">Tòpica</string>
+    <string name="topicals">Tòpics</string>
+    <string name="type_of_adm">Tipus administració</string>
+    <string name="use_type">Tipus ús</string>
+    <string name="user_full_name">Nom i cognoms</string>
+    <string name="usuari">Usuari</string>
+    <string name="vaginal">Vaginal</string>
+    <string name="via">Via:</string>
+    <string name="viaa">Via</string>
+    <style name="Text_Font">
+        <item name="fontFamily">@font/rinkart</item>
+    </style>
+    <style name="Theme.AppPTIN" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        
+        <item name="colorPrimary">@color/blue_300</item>
+        <item name="colorPrimaryVariant">@color/blue_50</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/grey_500</item>
+        <item name="colorSecondaryVariant">@color/grey_800</item>
+        <item name="colorOnSecondary">@color/grey_900</item>
+        
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="colorTertiary">@color/red_300</item>
+        <item name="colorTertiaryContainer">@color/red_100</item>
+    </style>
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">55%</item>
+    </style>
+    <style name="style_button" parent="android:Widget.Button">
+        <item name="fontFamily">@font/rinkart</item>
+        <item name="backgroundTint">?colorPrimaryVariant</item>
+    </style>
+</resources>

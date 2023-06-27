@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_X"
+            android:layout_width="67dp"
+            android:layout_height="wrap_content"
+            android:text="X" />
+
+
+        <!-- Price range slider -->
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="26dp"
+            android:text="@string/price"
+            android:textSize="20dp"/>
+
+
+        <!-- Min and Max price input fields -->
+        <EditText
+            android:id="@+id/editTextMinPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/min_price" />
+
+        <EditText
+            android:id="@+id/editTextMaxPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/max_price" />
+
+        <!-- Prescription needed checkbox -->
+        <CheckBox
+            android:id="@+id/checkBoxPrescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="26dp"
+            android:text="@string/prescription_needed" />
+
+        <!-- Pill ingestion methods checkboxes -->
+        <TextView
+            android:id="@+id/textViewVia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/viaa"
+            android:textSize="20dp"/>
+
+        <CheckBox
+            android:id="@+id/checkBoxOral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/orall" />
+
+        <CheckBox
+            android:id="@+id/checkBoxTopicos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/topicals" />
+
+
+        <!-- Pill format checkboxes -->
+        <TextView
+            android:id="@+id/textViewFormat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="26dp"
+            android:text="@string/formatt"
+            android:textSize="20dp"/>
+
+        <CheckBox
+            android:id="@+id/checkBoxTabletas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tablets" />
+
+        <CheckBox
+            android:id="@+id/checkBoxCapsulas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/capsules" />
+
+        <CheckBox
+            android:id="@+id/checkBoxLiquidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/liquids" />
+
+        <CheckBox
+            android:id="@+id/checkBoxGel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gel" />
+
+        <CheckBox
+            android:id="@+id/checkBoxCrema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/crema" />
+
+        <CheckBox
+            android:id="@+id/checkBoxPols"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Pols" />
+
+        <!-- Apply button -->
+        <Button
+            android:id="@+id/buttonApply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aplicar" />
+
+    </LinearLayout>
+
+</ScrollView>

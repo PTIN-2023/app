@@ -1,0 +1,37 @@
+buildscript {
+    ext.kotlin_version = '1.8.22' // Asegúrate de reemplazar '1.5.31' con la versión de Kotlin que desees utilizar
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.4.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.4.2' apply false
+    id 'com.android.library' version '7.4.2' apply false
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        // This private repository is required to resolve the Cardinal SDK transitive dependency.
+        maven {
+            url  "https://cardinalcommerceprod.jfrog.io/artifactory/android"
+            credentials {
+                // Be sure to add these non-sensitive credentials in order to retrieve dependencies from
+                // the private repository.
+                username mavenUsername
+                password mavenPassword
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
