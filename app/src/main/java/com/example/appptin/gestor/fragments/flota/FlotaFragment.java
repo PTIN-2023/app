@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.appptin.R;
+import com.example.appptin.gestor.fragments.flota.global.CochesFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.DatoGestorFragment;
 
 
@@ -48,9 +49,11 @@ public class FlotaFragment extends Fragment {
     private View.OnClickListener listener_global = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
-            //Pendiente definir
-
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            CochesFragment cochesFragment = new CochesFragment();
+            transaction.replace(R.id.frame_container, cochesFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     };
 
