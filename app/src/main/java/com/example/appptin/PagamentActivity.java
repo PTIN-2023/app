@@ -75,10 +75,14 @@ public class PagamentActivity extends AppCompatActivity {
         Button btnContinue = findViewById(R.id.btn_continue);
 
         JSONArray lista_cesta = MainActivity.getListaMedicamentos();
-
+        System.out.println("listacesta" +lista_cesta);
+        System.out.println(lista_cesta);
         JSONArray medicine_identifiers = new JSONArray();
-
+        System.out.println("medident" + medicine_identifiers);
         // Extraer los nationalCode de cada JSONObject en el JSONArray
+
+
+
         for (int i = 0; i < lista_cesta.length(); i++) {
             JSONObject medicament = null;
             try {
@@ -92,8 +96,37 @@ public class PagamentActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
-            medicine_identifiers.put(nationalCode);
+            int quantity = 0;
+            try {
+                quantity = medicament.getInt("quantitat");
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+            JSONArray identifier = new JSONArray();
+            identifier.put(nationalCode);
+            identifier.put(quantity);
+
+            medicine_identifiers.put(identifier);
         }
+        System.out.println("meds"+medicine_identifiers);
+        //for (int i = 0; i < lista_cesta.length(); i++) {
+        //    JSONObject medicament = null;
+//
+        //    //try {
+        //    //    medicament = lista_cesta.getJSONObject(i);
+        //    //} catch (JSONException e) {
+        //    //    throw new RuntimeException(e);
+        //    //}
+        //    //String nationalCode = null;
+        //    //try {
+        //    //    nationalCode = medicament.getString("nationalCode");
+        //    //} catch (JSONException e) {
+        //    //    throw new RuntimeException(e);
+        //    //}
+        //    //medicine_identifiers.put(nationalCode);
+        //}
+
 
         //Fake JSON amb medicaments per sortir del pas
         /*medicine_identifiers.put("841013");
