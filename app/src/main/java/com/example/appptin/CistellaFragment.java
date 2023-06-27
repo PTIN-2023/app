@@ -232,19 +232,29 @@ public class CistellaFragment extends Fragment {
 
             // Sumar Cantidad producto
             btnMes.setOnClickListener(new View.OnClickListener() {
+                private int numClicks = 0;
+
                 @Override
                 public void onClick(View v) {
                     // Acció per a incrementar la quantitat del producte a la cistella
+                    int actualQuantitat = (int) producte.get("quantitat");
+                    int limit = (int) producte.get("limit_disponible");
 
-                    int novaQuantitat = (int) producte.get("quantitat") + 1;
-                    if (novaQuantitat <= (int) producte.get("limit_disponible")) {
-                        producte.put("quantitat", novaQuantitat);
-                        actualitzarCistella(viewPreu);
+                    if (numClicks > 0 && actualQuantitat >= limit) {
+                        // Si es supera el limit, no es fa cap acció
+                        return;
                     }
-                    try {
-                        MainActivity.getCantidadMedicamento(finalI,1);
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
+
+                    numClicks++;
+                    // Increment quantitat si no es supera el limit disponible
+                    if (actualQuantitat < limit) {
+                        producte.put("quantitat", actualQuantitat + 1);
+                        actualitzarCistella(viewPreu);
+                        try {
+                            MainActivity.getCantidadMedicamento(finalI, 1);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             });
@@ -255,6 +265,8 @@ public class CistellaFragment extends Fragment {
 
 
     }
+
+
 
     private List<HashMap<String, Object>> filter(List<HashMap<String, Object>> cistellaOriginal, String query) {
         List<HashMap<String, Object>> filteredCistella = new ArrayList<>();
@@ -337,19 +349,5 @@ public class CistellaFragment extends Fragment {
             }
         });
     }
-
-
-
-    //Dos funcions per a ocultar la barra de cerca en aquest fragment
-    /*@Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-    }*/
 
 }
