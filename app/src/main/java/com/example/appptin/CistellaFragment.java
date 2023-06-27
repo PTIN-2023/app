@@ -151,11 +151,14 @@ public class CistellaFragment extends Fragment {
 
         for (int i = 0; i < lista_cesta.length(); i++) {
             JSONObject jsonObject = lista_cesta.getJSONObject(i);
+            System.out.println("Medicament: "+ jsonObject);
             // Obtener los valores de los campos del objeto JSON
             String nationalCode = jsonObject.getString("nationalCode");
             String medName = jsonObject.getString("medName");
             float pvp = (float) jsonObject.getDouble("pvp");
             int cantidad = jsonObject.getInt("quantitat");
+            int limit_quantity = jsonObject.getInt("quantity_available");
+
 
 
             // Crear HashMap con los valores del OBJECT
@@ -164,6 +167,8 @@ public class CistellaFragment extends Fragment {
             producte.put("nom", medName);
             producte.put("quantitat", cantidad);
             producte.put("preu", pvp);
+            producte.put("limit_disponible", limit_quantity);
+
 
             // Añadirlos a la lista
             cistella.add(producte);
@@ -232,8 +237,10 @@ public class CistellaFragment extends Fragment {
                     // Acció per a incrementar la quantitat del producte a la cistella
 
                     int novaQuantitat = (int) producte.get("quantitat") + 1;
-                    producte.put("quantitat", novaQuantitat);
-                    actualitzarCistella(viewPreu);
+                    if (novaQuantitat <= (int) producte.get("limit_disponible")) {
+                        producte.put("quantitat", novaQuantitat);
+                        actualitzarCistella(viewPreu);
+                    }
                     try {
                         MainActivity.getCantidadMedicamento(finalI,1);
                     } catch (JSONException e) {

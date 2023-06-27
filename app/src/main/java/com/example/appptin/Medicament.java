@@ -11,11 +11,12 @@ public class Medicament {
     private boolean prescriptionNeeded;
     private double pvp;
     private String form;
+    private int limit_quantity;
     private ArrayList<String> excipients;
 
     private int cantidad = 0;
 
-    public Medicament(String medName, String nationalCode, String useType, String typeOfAdministration, String ofAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients) {
+    public Medicament(String medName, String nationalCode, String useType, String typeOfAdministration, String ofAdministration, boolean prescriptionNeeded, double pvp, String form, int limit_quantity, ArrayList<String> excipients) {
         this.medName = medName;
         this.nationalCode = nationalCode;
         this.useType = useType;
@@ -23,10 +24,11 @@ public class Medicament {
         this.prescriptionNeeded = prescriptionNeeded;
         this.pvp = pvp;
         this.form = form;
+        this.limit_quantity = limit_quantity;
         this.excipients = excipients;
     }
 
-    public Medicament(String medName, String nationalCode, String URLimage, String useType, String typeOfAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients, int quantitat) {
+    public Medicament(String medName, String nationalCode, String URLimage, String useType, String typeOfAdministration, boolean prescriptionNeeded, double pvp, String form, ArrayList<String> excipients, int quantitat, int limit_quantity) {
         this.medName = medName;
         this.nationalCode = nationalCode;
         this.URLimage = URLimage;
@@ -35,6 +37,7 @@ public class Medicament {
         this.prescriptionNeeded = prescriptionNeeded;
         this.pvp = pvp;
         this.form = form;
+        this.limit_quantity = limit_quantity;
         this.excipients = excipients;
     }
 
@@ -99,6 +102,8 @@ public class Medicament {
     public int getCantidad() {
         return cantidad;
     }
+
+    public int getLimitQuantity() { return limit_quantity; }
 
     public void setMedName(String medName) {
         this.medName = medName;

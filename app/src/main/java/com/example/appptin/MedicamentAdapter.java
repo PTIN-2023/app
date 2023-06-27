@@ -173,6 +173,7 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
                 objeto.put("medName", medicament.getMedName());
                 objeto.put("pvp", medicament.getPvp());
                 objeto.put("quantitat", 1); //por defecto
+                objeto.put("quantity_available", medicament.getLimitQuantity());
 
                 // Guardar el objeto en el JSONArray publico
                 MainActivity.setListaMedicamentos(objeto);
