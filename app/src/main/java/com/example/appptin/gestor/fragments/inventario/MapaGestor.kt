@@ -68,6 +68,7 @@ class MapaGestor : AppCompatActivity() {
     var selectedEdge: String? = null
 
     var cameraActual = Point.fromLngLat(1.727446, 41.2151504)
+    var zoomActual : Double? = 7.0
 
     //Variables per assegurarnos que tant el mapa com la resposta de la api estan llestos.
     private var isMapViewReady = false
@@ -116,6 +117,7 @@ class MapaGestor : AppCompatActivity() {
                         val latitude = urlObject.getDouble("latitude")
                         val longitude = urlObject.getDouble("longitude")
                         cameraActual = Point.fromLngLat(longitude, latitude)
+                        zoomActual = 13.0
                         ZoomCamera()
                     } else {
                         // No se encontró ningún objeto JSON con la misma URL
@@ -130,6 +132,10 @@ class MapaGestor : AppCompatActivity() {
                     stopUpdatingDronePosition()
                     getCarsPosition()
                     startUpdatingCarsPosition()
+
+                    cameraActual = Point.fromLngLat(1.727446, 41.2151504)
+                    zoomActual = 7.0
+                    ZoomCamera()
                 }
                 println("Server actuak: " + selectedEdge)
 
@@ -171,7 +177,7 @@ class MapaGestor : AppCompatActivity() {
     private fun ZoomCamera(){
         mapView!!.getMapboxMap().setCamera(
                 CameraOptions.Builder().center(cameraActual)
-                        .zoom(13.0)
+                        .zoom(zoomActual)
                         .build()
         )
     }
@@ -197,7 +203,6 @@ class MapaGestor : AppCompatActivity() {
         pointAnnotationManager?.deleteAll()
         markerList.clear()
 
-        println("Ahhhh: " + carLatitudeList.size)
         var carBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.baseline_directions_car_24))
         for (i in 0 until carLongitudeList.size){
             val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
