@@ -90,8 +90,8 @@ public class PerfilGestorFragment extends Fragment {
         @Override
         public void onClick(View view) {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            CrearUsersFragment crearUsersFragment = new CrearUsersFragment();
-            transaction.replace(R.id.frame_container, crearUsersFragment);
+            DatoGestorFragment datosGestorFragment = new DatoGestorFragment();
+            transaction.replace(R.id.frame_container, datosGestorFragment);
             transaction.addToBackStack(null);
             transaction.commit();
 

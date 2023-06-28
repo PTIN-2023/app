@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.appptin.R;
+import com.example.appptin.gestor.fragments.CrearUsersFragment;
 import com.example.appptin.gestor.fragments.flota.global.CochesFragment;
 import com.example.appptin.gestor.fragments.flota.local.EdgeCiudadFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.DatoGestorFragment;
@@ -73,8 +74,8 @@ public class FlotaFragment extends Fragment {
         @Override
         public void onClick(View view) {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            DatoGestorFragment datosGestorFragment = new DatoGestorFragment();
-            transaction.replace(R.id.frame_container, datosGestorFragment);
+            CrearUsersFragment crearUsersFragment = new CrearUsersFragment();
+            transaction.replace(R.id.frame_container, crearUsersFragment);
             transaction.addToBackStack(null);
             transaction.commit();
 
