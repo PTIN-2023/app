@@ -48,6 +48,7 @@ public class RecetaFragment extends Fragment {
     private PopupWindow popupWindow;
 
     private static JSONArray list_meds_recipe;
+    String p_identifier;
     public RecetaFragment() {
         // Required empty public constructor
     }
@@ -149,6 +150,7 @@ public class RecetaFragment extends Fragment {
     };
 
     private View.OnClickListener guardar = new View.OnClickListener() {
+        @SuppressLint("SuspiciousIndentation")
         @Override
         public void onClick(View view) {
             // Verificar que no esté vacio
@@ -160,6 +162,7 @@ public class RecetaFragment extends Fragment {
                 aviso("Omplir totes les dades");
                 // Enviar los datos a la api
             else
+                api_get_prescription_identifier();
                 api_doctor_create_prescription(nom_pacient.getText().toString(),list_meds_recipe,duracio.getText().toString(),notes.getText().toString());
         }
     };
@@ -240,7 +243,63 @@ public class RecetaFragment extends Fragment {
         });
     }
 
+    private void api_get_prescription_identifier() {
+
+        System.out.println("get the prescription identifier");
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/get_prescription_identifier";
+        JSONObject jsonBody = new JSONObject();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+
+        try {
+            jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("MENSAJE: " + response);
+                try {
+                    String result = response.getString("result");
+
+                    // Caso exitoso
+                    if (result.equals("ok")) {
+                        System.out.println("llego el identifier");
+                        System.out.println(response.getString("prescription_identifier"));
+                        p_identifier = response.getString("prescription_identifier");
+                    }
+                    // Caso no exitoso, crear algún dialogo
+                    else{
+                        System.out.println("error");
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Manejo de errores de la solicitud
+                error.printStackTrace();
+                Toast.makeText(getActivity(),"Error en el servidor",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+
+        //api_doctor_create_prescription(nom_pacient.getText().toString(),list_meds_recipe,duracio.getText().toString(),notes.getText().toString());
+    }
+
     private void api_doctor_create_prescription(String paciente, JSONArray list_meds_recipe_full, String duracion, String notas){
+        System.out.println("send the new prescription");
+
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
@@ -249,12 +308,14 @@ public class RecetaFragment extends Fragment {
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
 
+        System.out.println("pidentifiet: " + p_identifier);
+
         // Datos enviados
         try {
             //jsonBody.put("session_token", login.getSession_token());
             jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
             jsonBody.put("user_full_name", paciente);
-
+            jsonBody.put("prescription_identifier",p_identifier);
             //Obtener la lista de códigos:
             jsonBody.put("medicine_list", list_meds_recipe_full);
 
@@ -315,6 +376,5 @@ public class RecetaFragment extends Fragment {
         Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         // Establecer la gravedad del botón en el centro
         positiveButton.setGravity(Gravity.CENTER);
-
     }
 }
