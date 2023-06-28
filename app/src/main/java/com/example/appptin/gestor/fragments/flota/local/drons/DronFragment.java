@@ -28,7 +28,6 @@ public class DronFragment extends Fragment {
     private View view;
     private ImageView iv_regresar;
     private RecyclerView recyclerView_dron;
-    private SearchView searchView_dron;
     private Spinner spinnerSort_dron;
     private String opcionSeleccionada = "";
     boolean ordenAscendente;
@@ -65,8 +64,6 @@ public class DronFragment extends Fragment {
     }
 
     public void Lista(View view) {
-
-        searchView_dron = view.findViewById(R.id.searchView_dron);
         spinnerSort_dron = view.findViewById(R.id.sp_dron);
         iv_regresar = view.findViewById(R.id.iv_dron_back);
 
@@ -82,9 +79,6 @@ public class DronFragment extends Fragment {
 
         //Listener del Spiner
         spinnerSort_dron.setOnItemSelectedListener(seleccion_spiner);
-
-        //Listener del searView
-        searchView_dron.setOnQueryTextListener(buscador);
 
         iv_regresar.setOnClickListener(regresar);
     }
@@ -106,8 +100,6 @@ public class DronFragment extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             opcionSeleccionada = adapterView.getItemAtPosition(i).toString();
-            // Limpiar texto del SearhView
-            searchView_dron.setQuery("", false);
             ordenarArrayList(arrayList);
 
         }
@@ -115,58 +107,6 @@ public class DronFragment extends Fragment {
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
             // Acciones a realizar cuando no se selecciona ninguna opción del Spinner
-        }
-    };
-
-    private SearchView.OnQueryTextListener buscador = new SearchView.OnQueryTextListener(){
-        //Acción al realizar una búsqueda al presionar  el botón de cerca
-        @Override
-        public boolean onQueryTextSubmit(String query) {
-            spinnerSort_dron.setEnabled(false);
-            //Guardar los Objetos de la clase PeticionClass relacionados a la búsqueda
-            searchList = new ArrayList<>();
-            //search_peticiones = new ArrayList<>();
-            if (query.length() > 0) {
-                //Recorrer todos los Objetos (los elementos de la lista)
-                for (int i = 0; i < arrayList.size(); i++) {
-                    if (arrayList.get(i).getNombre_dron().toUpperCase().contains(query.toUpperCase())){
-                        //Afegir element
-                        searchList.add(arrayList.get(i));
-                    }
-                }
-
-                Creacion_elementos_RecyclerView(searchList);
-                //Creacion_elementos_RecyclerView(search_peticiones);
-
-            }
-            //En caso de no localzarse ningún objeto (elementos) se carga la lista de objetos completos
-            else {
-                spinnerSort_dron.setEnabled(true);
-                Creacion_elementos_RecyclerView(arrayList);
-            }
-            return false;
-        }
-
-        //Acción al cambiar el texto de búsqueda
-        @Override
-        public boolean onQueryTextChange(String newText) {
-            spinnerSort_dron.setEnabled(false);
-            searchList = new ArrayList<>();
-            if (newText.length() > 0) {
-                for (int i = 0; i < arrayList.size(); i++) {
-                    if (arrayList.get(i).getNombre_dron().toUpperCase().contains(newText.toUpperCase())){
-
-                        //Afegir element
-                        searchList.add(arrayList.get(i));
-                    }
-                }
-                Creacion_elementos_RecyclerView(searchList);
-
-            } else {
-                spinnerSort_dron.setEnabled(true);
-                Creacion_elementos_RecyclerView(arrayList);
-            }
-            return false;
         }
     };
 
