@@ -4,6 +4,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -197,6 +199,7 @@ public class login extends AppCompatActivity {
                             // Utiliza los valores extraídos según sea necesario
                             if (result.equals("ok")) {
                                 System.out.println("L'usuari existeix");
+                                Toast.makeText(login.this,"Welcome " + given_name + "!",Toast.LENGTH_SHORT).show();
                                 if (role.equals("patient")){
 
                                     navigateToMainActivity(session_token);
@@ -215,6 +218,7 @@ public class login extends AppCompatActivity {
                                 //Fer Pop-Up o algo per notificar l'usuari
                             }
                         } catch (JSONException e) {
+                            showAlert("user/password not found");
                             e.printStackTrace();
                         }
                     }
@@ -259,6 +263,19 @@ public class login extends AppCompatActivity {
         intent.putExtra("session_token", session_token);
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
+    }
+
+    private void showAlert(String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("ERROR")
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 }
