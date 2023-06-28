@@ -68,7 +68,7 @@ public class MedicamentosClass implements Serializable  {
     }
 
     public String getPvP_medicamento() {
-        return Double.toString(pvp) + " €";
+        return Double.toString(pvp);
     }
 
     public int getQuantitat_medicamento(){
