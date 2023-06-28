@@ -2,6 +2,8 @@ package com.example.appptin.gestor.fragments.inventario;
 
 import android.app.Activity;
 import android.app.DownloadManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -45,6 +47,7 @@ public class InventarioGestorFragment extends Fragment {
     ArrayList<MedicamentosClass> arrayList;
     ArrayList<MedicamentosClass> searchList;
     private Button afegir;
+    private Button filtre;
 
     Spinner spinnerSort;
     private String opcionSeleccionada = "";
@@ -67,12 +70,6 @@ public class InventarioGestorFragment extends Fragment {
 
         try {
             jsonObject.put("session_token", session_token);
-
-//            JSONObject filtre = new JSONObject();
-//            filtre.put("meds_per_page", 6);
-//            filtre.put("page", 1);
-//
-//            jsonObject.put("filter", filtre);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,12 +144,142 @@ public class InventarioGestorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_inventario_gestor, container, false);
-
+        ArrayList<MedicamentosClass> list_medicament = new ArrayList<>();
         //Por defecto ordenar por nombre Ascendiente de medicamentos
         opcionSeleccionada = getResources().getStringArray(R.array.sort_options_inventario)[0];
-
         asignar_elementos(vista);
+        // Agafar filtres
+        String medName = null;
+        String pvpMin = null;
+        String pvpMax = null;
+        boolean prescriptionNeeded = false;
+        ArrayList typeOfAdministration = null;
+        ArrayList form = null;
 
+        Bundle args = getArguments();
+        if (args != null) {
+            if(args.containsKey("medName")) {
+                medName = args.getString("medName");
+            }
+            pvpMin = args.getString("minPrice");
+            pvpMax = args.getString("maxPrice");
+            prescriptionNeeded = args.getBoolean("prescriptionNeeded");
+            typeOfAdministration = args.getStringArrayList("via"); //això ha de ser un json amb els tipus
+
+
+            System.out.println("tipus"+ new JSONArray(typeOfAdministration));
+            form = args.getStringArrayList("format"); //això ha de ser un json amb els formats
+
+            // mostrem resultats
+            System.out.println("Nom Medicament: " + medName + "\nMin Price: " + pvpMin + "\nMax Price: " + pvpMax + "\nPrescription Needed: " + prescriptionNeeded);
+            System.out.println("Via: ");
+            for(int i = 0; i < typeOfAdministration.size(); i++){
+                System.out.println(typeOfAdministration.get(i));
+            }
+            System.out.println("Format: ");
+            for(int i = 0; i < form.size(); i++){
+                System.out.println(form.get(i));
+            }
+        }
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String apiUrl = "http://147.83.159.195:24105";
+        String url = apiUrl + "/api/list_inventory_meds";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+            String session_token = sharedPreferences.getString("session_token", "Valor nulo");  //SI AIXÒ NO FUNCIONA, FER-HO COM LA LINIA DE BAIX
+            //String session_token = login.getSession_token();
+            System.out.println(session_token);
+
+            jsonObject.put("session_token", session_token);
+            //jsonObject.put("filter", false);
+
+            JSONObject filtre = new JSONObject();
+            filtre.put("meds_per_page", 8);
+            filtre.put("page", 1);
+
+            if (medName != null && !medName.isEmpty()) {
+                filtre.put("med_name", medName);
+            }
+            if (pvpMin != null && !pvpMin.isEmpty()) {
+                filtre.put("pvp_min", pvpMin);
+            }
+            if (pvpMax != null && !pvpMax.isEmpty()) {
+                filtre.put("pvp_max", pvpMax);
+            }
+            if (prescriptionNeeded != false) {
+                filtre.put("prescription_needed", prescriptionNeeded);
+            }
+            if (form != null && !form.isEmpty()) {
+                filtre.put("form", new JSONArray(form));
+            }
+            if (typeOfAdministration != null && !typeOfAdministration.isEmpty()) {
+                //typeOfAdministration = ["Topical", "Oral"];
+                filtre.put("type_of_administration", new JSONArray(typeOfAdministration));
+            }
+            System.out.println("Això és el filtro" + filtre);
+            jsonObject.put("filter", filtre);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        arrayList = new ArrayList<>();
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println(response);
+                try {
+                    String result = response.getString("result");
+                    System.out.println("resultat: " + result);
+                    if (result.equals("ok")) {
+                        JSONArray arraymed = response.getJSONArray("medicines");
+                        System.out.println(arraymed);
+                        for (int i = 0; i < arraymed.length(); i++) {
+                            JSONObject jsonObject = arraymed.getJSONObject(i);
+
+                            // Acceder a los campos del objeto JSON
+                            String typeOfAdministration = jsonObject.getString("type_of_administration");
+                            String nationalCode = jsonObject.getString("national_code");
+                            String form = jsonObject.getString("form");
+                            String medName = jsonObject.getString("medicine_name");
+                            String URLimage = jsonObject.getString("medicine_image_url");
+                            String useType = jsonObject.getString("use_type");
+                            double pvp = jsonObject.getDouble("pvp");
+                            int cantidad = jsonObject.getInt("quantity_available");
+
+                            JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipients");
+                            ArrayList<String> excipients = new ArrayList<String>();
+                            for (int j = 0; j < jsonarray_prospecto.length(); j++) {
+                                excipients.add(jsonarray_prospecto.getString(j));
+                            }
+
+                            boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
+                            //String tipusUs = jsonObject.getString("tipus_us");
+
+                            arrayList.add
+                                    (new MedicamentosClass(medName, URLimage, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, cantidad, form, excipients));
+                            System.out.println(arrayList);
+                        }
+                        //Agregar los elementos del RecyclerView
+                        Creacion_elementos_RecyclerView(arrayList);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Manejo de errores de la solicitud
+                error.printStackTrace();
+            }
+        });
+
+        queue.add(jsonArrayRequest);
         return vista;
     }
 
@@ -162,6 +289,7 @@ public class InventarioGestorFragment extends Fragment {
         searchView = view.findViewById(R.id.sv_inventario);
         spinnerSort = view.findViewById(R.id.sp_iventario_gestor_ordenar);
         afegir = view.findViewById(R.id.btn_afegir) ;
+        filtre = view.findViewById(R.id.btn_inv_gestor_filtro);
         //Agregar los elementos del RecyclerView
         Creacion_elementos_RecyclerView(arrayList);
 
@@ -172,6 +300,8 @@ public class InventarioGestorFragment extends Fragment {
 
         //Listener del boton afegir
         afegir.setOnClickListener(abrirADDmed);
+        //Listener del boton filtre
+        filtre.setOnClickListener(filtreMED);
         //Listener del Spiner
         spinnerSort.setOnItemSelectedListener(seleccion_spiner);
 
@@ -186,6 +316,16 @@ public class InventarioGestorFragment extends Fragment {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             AddMedicamentFragment addMedicamentFragmentFragment = new AddMedicamentFragment();
             transaction.replace(R.id.frame_container, addMedicamentFragmentFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    };
+    private View.OnClickListener filtreMED = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            FiltreGestorFragment filtreGestorFragmentFragment = new FiltreGestorFragment();
+            transaction.replace(R.id.frame_container,  filtreGestorFragmentFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
