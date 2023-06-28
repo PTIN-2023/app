@@ -121,33 +121,33 @@ public class PeticioGestorAdapter extends RecyclerView.Adapter<PeticioGestorAdap
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Detalls dels medicaments");
 
-        ArrayList<JSONObject> medicines = peticio.getMedicines();
+        //ArrayList<JSONObject> medicines = peticio.getMedicines();
         StringBuilder stringBuilder = new StringBuilder();
-
-        String mail = peticio.getEmail();
-        stringBuilder.append("Correu electrònic: ").append(mail).append("\n\n");
-        for (JSONObject medicine : medicines) {
-            try {
-                String medName = medicine.getString("med_name");
-                String form = medicine.getString("form");
-                String typeOfAdministration = medicine.getString("type_of_administration");
-                boolean prescriptionNeeded = medicine.getBoolean("prescription_needed");
-                double pvp = medicine.getDouble("pvp");
-
-                stringBuilder.append("Nom del medicament: ").append(medName).append("\n");
-                stringBuilder.append("Forma: ").append(form).append("\n");
-                stringBuilder.append("Administració: ").append(typeOfAdministration).append("\n");
-                if (prescriptionNeeded == true) {
-                    stringBuilder.append("Prescripció requerida: ").append("Sí").append("\n");
-                }
-                else {
-                    stringBuilder.append("Prescripció requerida: ").append("No").append("\n");
-                }
-                stringBuilder.append("Preu: ").append(pvp).append("" + "€").append("\n\n");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+//
+        //String mail = peticio.getEmail();
+        //stringBuilder.append("Correu electrònic: ").append(mail).append("\n\n");
+        //for (JSONObject medicine : medicines) {
+        //    try {
+        //        String medName = medicine.getString("med_name");
+        //        String form = medicine.getString("form");
+        //        String typeOfAdministration = medicine.getString("type_of_administration");
+        //        boolean prescriptionNeeded = medicine.getBoolean("prescription_needed");
+        //        double pvp = medicine.getDouble("pvp");
+//
+        //        stringBuilder.append("Nom del medicament: ").append(medName).append("\n");
+        //        stringBuilder.append("Forma: ").append(form).append("\n");
+        //        stringBuilder.append("Administració: ").append(typeOfAdministration).append("\n");
+        //        if (prescriptionNeeded == true) {
+        //            stringBuilder.append("Prescripció requerida: ").append("Sí").append("\n");
+        //        }
+        //        else {
+        //            stringBuilder.append("Prescripció requerida: ").append("No").append("\n");
+        //        }
+        //        stringBuilder.append("Preu: ").append(pvp).append("" + "€").append("\n\n");
+        //    } catch (JSONException e) {
+        //        e.printStackTrace();
+        //    }
+        //}
 
         builder.setMessage(stringBuilder.toString());
         builder.setPositiveButton("Acceptar", null);

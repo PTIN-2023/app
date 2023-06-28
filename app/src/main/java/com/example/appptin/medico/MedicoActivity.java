@@ -137,7 +137,7 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
         System.out.println("GetUserInfo ST: " + session_token);
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("token", session_token);
+            jsonBody.put("session_token", session_token);
         } catch (JSONException e) {
             e.printStackTrace();
         }

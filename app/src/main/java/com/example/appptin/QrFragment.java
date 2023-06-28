@@ -334,7 +334,7 @@ public class                                              QrFragment extends Fra
 
     private void getRecipe(String prescription_identifier) {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = apiUrl + "/api/get_prescription_meds";
+        String url = apiUrl + "/api/get_meds_prescription";
         JSONObject jsonBody = new JSONObject();
         try {
             //int content = Integer.parseInt(resultant);
@@ -355,7 +355,8 @@ public class                                              QrFragment extends Fra
                         System.out.println("Resposta: " + response);
                         try {
                             resultat = response.getString("result");
-                        } catch (JSONException e) {
+                        }
+                        catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
 

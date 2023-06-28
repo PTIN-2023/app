@@ -154,7 +154,7 @@ public class EstatPeticionsGestorFragment extends Fragment {
                                         // Imprimir otros detalles del medicamento
                                     }*/
 
-                                    list_peticions.add(new Peticio(email_pacient, orderIdentifier, date, state, medicineData));
+                                    //list_peticions.add(new Peticio(email_pacient, orderIdentifier, date, state, medicineData));
                                 }
                                 Creacio_elements_RecyclerView(list_peticions);
                             }

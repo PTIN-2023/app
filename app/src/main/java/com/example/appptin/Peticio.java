@@ -12,7 +12,7 @@ public class Peticio {
     private String date;
     private String state;
     //private boolean prescriptionNeeded;
-    private ArrayList<JSONArray> medicineList;
+    private JSONArray medicineList;
 
     public Peticio(String email, int ID, String date, String state, JSONArray medicineList) {
         this.ID = ID;
@@ -52,7 +52,7 @@ public class Peticio {
         return prescriptionNeeded;
     }*/
 
-    public ArrayList<JSONArray> getMedicines() {
+    public JSONArray getMedicines() {
         return medicineList;
     }
 

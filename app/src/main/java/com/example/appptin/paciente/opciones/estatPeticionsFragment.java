@@ -139,6 +139,7 @@ public class estatPeticionsFragment extends Fragment {
 
                             String result = response.getString("result");
                             if (result.equals("ok")) {
+                                System.out.println("aquí 142");
                                 JSONArray orders = response.getJSONArray("orders");
                                 for (int i = 0; i < orders.length(); i++) {
                                     JSONObject order = orders.getJSONObject(i);
@@ -153,7 +154,7 @@ public class estatPeticionsFragment extends Fragment {
                                     for (int j = 0; j < medicineList.length(); j++) {
                                         JSONArray medicineData = medicineList.getJSONArray(j);
                                         System.out.println("medicina" + medicineData.getJSONObject(0));
-                                        System.out.println("cantitat" + medicineData.getJSONObject(1));
+                                        System.out.println("cantitat" + medicineData.getInt(1));
 
                                         medicines.add(medicineList.getJSONArray(j));
 
@@ -168,7 +169,7 @@ public class estatPeticionsFragment extends Fragment {
                                         System.out.println("Medicine: " + medicine.getName());
                                         // Imprimir otros detalles del medicamento
                                     }*/
-                                    list_peticions.add(new Peticio(et_email, orderIdentifier, date, state, medicines));
+                                    list_peticions.add(new Peticio(et_email, orderIdentifier, date, state, order.getJSONArray("medicine_list")));
                                 }
                                 Creacio_elements_RecyclerView(list_peticions);
                             }

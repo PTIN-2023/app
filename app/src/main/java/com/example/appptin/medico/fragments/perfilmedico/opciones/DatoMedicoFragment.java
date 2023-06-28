@@ -231,7 +231,7 @@ public class DatoMedicoFragment extends Fragment {
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("token", sharedPreferences.getString("session_token", "No value"));
+            jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
             jsonBody.put("user_full_name", et_user_given_name.getText());
             jsonBody.put("user_given_name", et_user_full_name.getText());
             jsonBody.put("user_email", et_email.getText());

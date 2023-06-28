@@ -139,13 +139,13 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Detalls dels medicaments");
 
-        ArrayList<JSONArray> medicines = peticio.getMedicines();
+        JSONArray medicinesss = peticio.getMedicines();
         StringBuilder stringBuilder = new StringBuilder();
-
-        for (JSONArray mediciness : medicines) {
+//
+        for (int i = 0; i < medicinesss.length(); i++) {
             try {
-                JSONObject medicine = mediciness.getJSONObject(0);
-                String medName = medicine.getString("med_name");
+                JSONObject medicine = medicinesss.getJSONArray(i).getJSONObject(0);
+                String medName = medicine.getString("medicine_name");
                 String form = medicine.getString("form");
                 String typeOfAdministration = medicine.getString("type_of_administration");
                 boolean prescriptionNeeded = medicine.getBoolean("prescription_needed");
@@ -160,8 +160,8 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
                     stringBuilder.append("Prescripció requerida: ").append("No").append("\n");
                 }
                 stringBuilder.append("Preu: ").append(pvp).append("" + "€").append("\n\n");
-
-                stringBuilder.append("Quantitat: ").append(mediciness.getJSONObject(1)).append("\n\n");
+                System.out.println("medicine" + medicine);
+                stringBuilder.append("Quantitat: ").append(medicinesss.getJSONArray(i).getInt(1)).append("\n\n");
 
             } catch (JSONException e) {
                 e.printStackTrace();
