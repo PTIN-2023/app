@@ -5,6 +5,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.MainActivity;
 import com.example.appptin.R;
 import com.example.appptin.login;
 import com.example.appptin.login_o_registre;
@@ -12,6 +13,7 @@ import com.example.appptin.medico.fragments.recetaPaciente.RecetaFragment;
 import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
 import com.example.appptin.medico.fragments.perfilmedico.PerfilMedicoFragment;
 import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
+import com.example.appptin.welcome_page;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +31,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -108,28 +111,6 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
 
     }
 
-    /*
-    @Override
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setTitle("Confirmació de logout")
-                .setMessage("Estàs segur que vols fer logout?")
-                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Esborra les dades d'inici de sessió i redirigeix a l'activitat de login
-                        SharedPreferences sharedPreferences = getSharedPreferences("UserPref", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.clear();
-                        editor.apply();
-                        startActivity(new Intent(MedicoActivity.this, login_o_registre.class));
-                        finish();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
-*/
     //Función para activar modo oscuro
     public void setDayNight(){
         SharedPreferences sp = getSharedPreferences("SP", this.MODE_PRIVATE);
@@ -209,6 +190,78 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
                     }
                 });
         queue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Cerrar Sesión")
+                .setMessage("Seguro que quieres salir de tu sesión?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        logout();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private boolean logout() {
+        boolean exists = false;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
+        String url = apiUrl + "/api/logout"; // Reemplaza con la dirección de tu API
+        System.out.println(url);
+        JSONObject jsonBody = new JSONObject();
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+        try {
+            System.out.println("Token logout: " + sharedPreferences.getString("session_token", "No value"));
+            jsonBody.put("session_token", sharedPreferences.getString("session_token", "No value"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            System.out.println("MENSAJE: " + response);
+                            String result = response.getString("result");
+
+                            // Utiliza los valores extraídos según sea necesario
+                            if (result.equals("ok")) {
+                                System.out.println("S'ha tancat la sessió");
+                                Toast.makeText(MedicoActivity.this,"Sessió tancada",Toast.LENGTH_SHORT).show();
+                                //Borrar SharedPreferences
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.clear();
+                                editor.apply(); // O también puedes usar editor.commit();
+
+                                Intent intent = new Intent(MedicoActivity.this, welcome_page.class);
+                                startActivity(intent);
+
+                            } else {
+                                System.out.println("Token de sesió incorrecte");
+                                //Fer Pop-Up o algo per notificar l'usuari
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Error al realizar la solicitud
+                        error.printStackTrace();
+                    }
+                });
+
+        queue.add(jsonObjectRequest);
+        return exists;
     }
 
 }
