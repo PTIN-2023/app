@@ -28,7 +28,6 @@ public class CochesFragment extends Fragment {
     private View view;
     private ImageView iv_regresar;
     private RecyclerView recyclerView_coches;
-    private SearchView searchView_coches;
     private Spinner spinnerSort_coches;
     private String opcionSeleccionada = "";
     boolean ordenAscendente;
@@ -68,8 +67,7 @@ public class CochesFragment extends Fragment {
     }
 
     public void Lista(View view) {
-        
-        searchView_coches = view.findViewById(R.id.searchView_coches);
+
         spinnerSort_coches = view.findViewById(R.id.sp_coches);
         iv_regresar = view.findViewById(R.id.iv_coche_back);
 
@@ -85,9 +83,6 @@ public class CochesFragment extends Fragment {
 
         //Listener del Spiner
         spinnerSort_coches.setOnItemSelectedListener(seleccion_spiner);
-
-        //Listener del searView
-        searchView_coches.setOnQueryTextListener(buscador);
 
         iv_regresar.setOnClickListener(regresar);
     }
@@ -110,7 +105,6 @@ public class CochesFragment extends Fragment {
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             opcionSeleccionada = adapterView.getItemAtPosition(i).toString();
             // Limpiar texto del SearhView
-            searchView_coches.setQuery("", false);
             ordenarArrayList(arrayList);
 
         }
@@ -118,59 +112,6 @@ public class CochesFragment extends Fragment {
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
             // Acciones a realizar cuando no se selecciona ninguna opción del Spinner
-        }
-    };
-
-    private SearchView.OnQueryTextListener buscador = new SearchView.OnQueryTextListener(){
-        //Acción al realizar una búsqueda al presionar  el botón de cerca
-        @Override
-        public boolean onQueryTextSubmit(String query) {
-            spinnerSort_coches.setEnabled(false);
-            //Guardar los Objetos de la clase PeticionClass relacionados a la búsqueda
-            searchList = new ArrayList<>();
-            //search_peticiones = new ArrayList<>();
-            if (query.length() > 0) {
-                //Recorrer todos los Objetos (los elementos de la lista)
-                for (int i = 0; i < arrayList.size(); i++) {
-                    // Comprobar si coincide el texto con algún elemento ya sea por DNI, nombre o apellidos
-                    if (arrayList.get(i).getCoche().toUpperCase().contains(query.toUpperCase())){
-                        //Afegir element
-                        searchList.add(arrayList.get(i));
-                    }
-                }
-
-                Creacion_elementos_RecyclerView(searchList);
-                //Creacion_elementos_RecyclerView(search_peticiones);
-
-            }
-            //En caso de no localzarse ningún objeto (elementos) se carga la lista de objetos completos
-            else {
-                spinnerSort_coches.setEnabled(true);
-                Creacion_elementos_RecyclerView(arrayList);
-            }
-            return false;
-        }
-
-        //Acción al cambiar el texto de búsqueda
-        @Override
-        public boolean onQueryTextChange(String newText) {
-            spinnerSort_coches.setEnabled(false);
-            searchList = new ArrayList<>();
-            if (newText.length() > 0) {
-                for (int i = 0; i < arrayList.size(); i++) {
-                    if (arrayList.get(i).getCoche().toUpperCase().contains(newText.toUpperCase())){
-
-                        //Afegir element
-                        searchList.add(arrayList.get(i));
-                    }
-                }
-                Creacion_elementos_RecyclerView(searchList);
-
-            } else {
-                spinnerSort_coches.setEnabled(true);
-                Creacion_elementos_RecyclerView(arrayList);
-            }
-            return false;
         }
     };
 
