@@ -284,7 +284,7 @@
     <string name="coches_titulo">Cotxes</string>
 
     //fragment_coche_accion.xml
-    <string name="coche_accion_titulo">Informació cotxe</string>
+    <string name="coche_accion_titulo">Informació</string>
     <string name="coche_accion_info">Detalls</string>
     <string name="coche_accion_bateria">Sense bateria</string>
     <string name="coche_accion_recollida">Recollida no autoritzada</string>
@@ -299,7 +299,7 @@
 
 
     //fragment_dron_accion.xml
-    <string name="dron_accion_titulo">Informació dron</string>
+    <string name="dron_accion_titulo">Informació</string>
     <string name="dron_accion_info">Detalls</string>
     <string name="dron_accion_bateria">Sense bateria</string>
     <string name="dron_accion_fallada">Fallada tècnica</string>

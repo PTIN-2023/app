@@ -1,5 +1,6 @@
 package com.example.appptin.gestor.fragments.flota.local.drons;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -42,7 +43,7 @@ public class DronAdapter extends RecyclerView.Adapter<DronAdapter.MyHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DronAdapter.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DronAdapter.MyHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txt_nombre.setText(arrayList.get(position).getNombre_dron());
 
         //Tratar los colores para el estado
@@ -64,13 +65,12 @@ public class DronAdapter extends RecyclerView.Adapter<DronAdapter.MyHolder>{
 
                 DronAccionFragment dronAccionFragment = new DronAccionFragment();
 
-                /*
+
                 //Enviar datos a CocheAccionFragment
                 Bundle result = new Bundle();
                 result.putSerializable("Info_dron", arrayList.get(position));
                 activity.setFragmentResult("key_info_dron", result);
 
-                 */
 
 
                 // Abrir ventana --> CocheAccionFragment
@@ -87,7 +87,7 @@ public class DronAdapter extends RecyclerView.Adapter<DronAdapter.MyHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arrayList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

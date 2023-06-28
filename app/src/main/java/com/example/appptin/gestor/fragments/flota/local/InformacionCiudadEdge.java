@@ -16,4 +16,11 @@ public class InformacionCiudadEdge implements Serializable {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
+
+    @Override
+    public String toString() {
+        return "InformacionCiudadEdge{" +
+                "ciudad='" + ciudad + '\'' +
+                '}';
+    }
 }

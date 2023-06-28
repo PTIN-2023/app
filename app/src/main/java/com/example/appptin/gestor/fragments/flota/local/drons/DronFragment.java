@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,12 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.appptin.R;
-import com.example.appptin.gestor.fragments.flota.global.CocheAdapter;
-import com.example.appptin.gestor.fragments.flota.global.InformacionCoche;
-import com.example.appptin.gestor.fragments.flota.local.InformacionCiudadEdge;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,15 +25,16 @@ import java.util.Comparator;
 
 public class DronFragment extends Fragment {
 
-    View view;
-    RecyclerView recyclerView_dron;
-    SearchView searchView_dron;
-    Spinner spinnerSort_dron;
+    private View view;
+    private ImageView iv_regresar;
+    private RecyclerView recyclerView_dron;
+    private SearchView searchView_dron;
+    private Spinner spinnerSort_dron;
     private String opcionSeleccionada = "";
     boolean ordenAscendente;
 
-    ArrayList<InformacionDron> arrayList;
-    ArrayList<InformacionDron> searchList;
+    private ArrayList<InformacionDron> arrayList;
+    private ArrayList<InformacionDron> searchList;
     public DronFragment() {
         //Quitar cuando se implemente método para obtener los datos de la api
         arrayList = new ArrayList<>();
@@ -56,7 +57,7 @@ public class DronFragment extends Fragment {
 
         //Por defecto ordenar por nombre Ascendiente
         opcionSeleccionada = getResources().getStringArray(R.array.sort_options_flotas)[0];
-        recyclerView_dron = view.findViewById(R.id.recyclerView_coches);
+        recyclerView_dron = view.findViewById(R.id.recyclerView_dron);
 
         Lista(view);
 
@@ -67,6 +68,7 @@ public class DronFragment extends Fragment {
 
         searchView_dron = view.findViewById(R.id.searchView_dron);
         spinnerSort_dron = view.findViewById(R.id.sp_dron);
+        iv_regresar = view.findViewById(R.id.iv_dron_back);
 
         // Quitar cuando se implemente la llamada a la API - Ubicar método justo despues de obtener los datos de la api
         Creacion_elementos_RecyclerView(arrayList);
@@ -83,7 +85,21 @@ public class DronFragment extends Fragment {
 
         //Listener del searView
         searchView_dron.setOnQueryTextListener(buscador);
+
+        iv_regresar.setOnClickListener(regresar);
     }
+
+    private View.OnClickListener regresar = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Retrocede en la pila de fragmentos
+                fragmentManager.popBackStack();
+            }
+        }
+    };
 
     private AdapterView.OnItemSelectedListener seleccion_spiner = new AdapterView.OnItemSelectedListener(){
 

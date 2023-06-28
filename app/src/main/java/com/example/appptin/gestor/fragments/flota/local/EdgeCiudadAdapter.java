@@ -14,9 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appptin.R;
-import com.example.appptin.gestor.fragments.flota.global.CocheAdapter;
-import com.example.appptin.gestor.fragments.flota.global.InformacionCoche;
-import com.example.appptin.gestor.fragments.flota.global.accion.CocheAccionFragment;
+
 import com.example.appptin.gestor.fragments.flota.local.drons.DronFragment;
 
 import java.util.ArrayList;
@@ -73,9 +71,10 @@ public class EdgeCiudadAdapter extends RecyclerView.Adapter<EdgeCiudadAdapter.My
 
     }
 
+
     @Override
     public int getItemCount() {
-        return 0;
+        return arrayList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

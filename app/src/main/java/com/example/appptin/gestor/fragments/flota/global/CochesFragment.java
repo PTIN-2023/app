@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.appptin.R;
@@ -23,15 +25,16 @@ import java.util.Comparator;
 
 public class CochesFragment extends Fragment {
 
-    View view;
-    RecyclerView recyclerView_coches;
-    SearchView searchView_coches;
-    Spinner spinnerSort_coches;
+    private View view;
+    private ImageView iv_regresar;
+    private RecyclerView recyclerView_coches;
+    private SearchView searchView_coches;
+    private Spinner spinnerSort_coches;
     private String opcionSeleccionada = "";
     boolean ordenAscendente;
 
-    ArrayList<InformacionCoche> arrayList;
-    ArrayList<InformacionCoche> searchList;
+    private ArrayList<InformacionCoche> arrayList;
+    private ArrayList<InformacionCoche> searchList;
 
     public CochesFragment() {
         // Required empty public constructor
@@ -68,6 +71,7 @@ public class CochesFragment extends Fragment {
         
         searchView_coches = view.findViewById(R.id.searchView_coches);
         spinnerSort_coches = view.findViewById(R.id.sp_coches);
+        iv_regresar = view.findViewById(R.id.iv_coche_back);
 
         // Quitar cuando se implemente la llamada a la API - Ubicar método justo despues de obtener los datos de la api
         Creacion_elementos_RecyclerView(arrayList);
@@ -84,7 +88,21 @@ public class CochesFragment extends Fragment {
 
         //Listener del searView
         searchView_coches.setOnQueryTextListener(buscador);
+
+        iv_regresar.setOnClickListener(regresar);
     }
+
+    private View.OnClickListener regresar = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Retrocede en la pila de fragmentos
+                fragmentManager.popBackStack();
+            }
+        }
+    };
 
     private AdapterView.OnItemSelectedListener seleccion_spiner = new AdapterView.OnItemSelectedListener(){
 

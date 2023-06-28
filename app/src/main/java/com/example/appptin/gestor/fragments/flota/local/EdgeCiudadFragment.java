@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.appptin.R;
@@ -27,6 +29,7 @@ public class EdgeCiudadFragment extends Fragment {
 
     View view;
     RecyclerView recyclerView_ciudad;
+    private ImageView iv_regresar;
     SearchView searchView_ciudad;
     Spinner spinnerSort_ciudad;
     private String opcionSeleccionada = "";
@@ -67,6 +70,7 @@ public class EdgeCiudadFragment extends Fragment {
 
         searchView_ciudad = view.findViewById(R.id.searchView_ciudades);
         spinnerSort_ciudad = view.findViewById(R.id.sp_ciudades);
+        iv_regresar = view.findViewById(R.id.iv_edge_ciudad_back);
 
         // Quitar cuando se implemente la llamada a la API - Ubicar método justo despues de obtener los datos de la api
         Creacion_elementos_RecyclerView(arrayList);
@@ -83,7 +87,21 @@ public class EdgeCiudadFragment extends Fragment {
 
         //Listener del searView
         searchView_ciudad.setOnQueryTextListener(buscador);
+
+        iv_regresar.setOnClickListener(regresar);
     }
+
+    private View.OnClickListener regresar = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Retrocede en la pila de fragmentos
+                fragmentManager.popBackStack();
+            }
+        }
+    };
 
     private AdapterView.OnItemSelectedListener seleccion_spiner = new AdapterView.OnItemSelectedListener(){
 

@@ -75,7 +75,7 @@
     <string name="coches_titulo">Coches</string>
 
     //fragment_coche_accion.xml
-    <string name="coche_accion_titulo">Información coche</string>
+    <string name="coche_accion_titulo">Información</string>
     <string name="coche_accion_info">Detalles</string>
     <string name="coche_accion_bateria">Sin batería</string>
     <string name="coche_accion_recollida">Recogida no autorizada</string>
@@ -89,7 +89,7 @@
     <string name="dron_titulo">Drones</string>
 
     //fragment_dron_accion.xml
-    <string name="dron_accion_titulo">Información dron</string>
+    <string name="dron_accion_titulo">Información</string>
     <string name="dron_accion_info">Detalles</string>
     <string name="dron_accion_bateria">Sin batería</string>
     <string name="dron_accion_fallada">Fallo técnico</string>
