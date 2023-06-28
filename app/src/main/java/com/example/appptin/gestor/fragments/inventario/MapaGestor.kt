@@ -3,18 +3,16 @@ package com.example.appptin.gestor.fragments.inventario
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.drawable.AdaptiveIconDrawable
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.appptin.R
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
@@ -23,18 +21,17 @@ import com.mapbox.maps.Style
 import com.mapbox.maps.plugin.annotation.AnnotationConfig
 import com.mapbox.maps.plugin.annotation.AnnotationPlugin
 import com.mapbox.maps.plugin.annotation.annotations
-import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager
-import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
-import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.mapbox.maps.plugin.annotation.generated.*
+import com.mapbox.maps.plugin.gestures.addOnMapClickListener
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.pow
 
 
 class MapaGestor : AppCompatActivity() {
@@ -78,6 +75,47 @@ class MapaGestor : AppCompatActivity() {
 
     //Temporitzador per actualitzar la posició dels vehicles cada x temps
     private var timer: Timer? = null
+
+    // Arrays per emmagatzemar les posicions
+    private val carPositions: MutableList<CarData> = mutableListOf()
+    private val dronePositions: MutableList<DronData> = mutableListOf()
+    private val beehivePositions: MutableList<BeehiveData> = mutableListOf()
+
+    //private var carBitmap: Bitmap? = null
+    //private var droneBitmap: Bitmap? = null
+
+    data class CarData(
+        val id: Int,
+        val matricula: String,
+        val statusText: String,
+        val bateria: String,
+        val ultim_manteniment: String,
+        val paquets: Array<String>,
+        val puntInici: Point,
+        val puntDesti: Point,
+        val position: Point,
+
+        )
+
+    data class DronData(
+        val id: Int,
+        val statusText: String,
+        val bateria: String,
+        val ultim_manteniment: String,
+        val autonomia: String,
+        val id_order: Int,
+        val beehive: Int,
+        val puntInici: Point,
+        val puntDesti: Point,
+        val position: Point,
+
+        )
+
+    data class BeehiveData(
+        val id: Int,
+        val position: Point,
+
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -196,17 +234,49 @@ class MapaGestor : AppCompatActivity() {
 
     }
 
+    private fun clearAnnotation(){
+        markerList = ArrayList()
+        pointAnnotationManager?.deleteAll()
+    }
+
     //Funcio per afegir marcador
     private fun createMarkerOnMap() {
 
         // Remueve todos los marcadores
-        pointAnnotationManager?.deleteAll()
-        markerList.clear()
+        //pointAnnotationManager?.deleteAll()
+        //markerList.clear()
+        clearAnnotation()
+
+        //Click event de marcadors
+        pointAnnotationManager?.addClickListener(OnPointAnnotationClickListener {
+            annotation:PointAnnotation ->
+            onMarkerItemClick(annotation)
+            true
+        })
+
+        // Click event de marcadors
+        pointAnnotationManager?.addClickListener(OnPointAnnotationClickListener { annotation ->
+            onMarkerItemClick(annotation)
+            true
+        })
+
+        // Implementa el touch listener para el mapa
+        mapView?.getMapboxMap()?.addOnMapClickListener { point ->
+            // Obtén las coordenadas del punto en el que se hizo clic
+            val latitude = point.latitude()
+            val longitude = point.longitude()
+
+            // Haz algo con las coordenadas
+            // Por ejemplo, puedes mostrar un mensaje con las coordenadas en la consola
+            println("Clic en: $latitude, $longitude")
+            true
+        }
 
         var carBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.baseline_directions_car_24))
         for (i in 0 until carLongitudeList.size){
             val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
-                .withPoint(Point.fromLngLat(carLongitudeList.get(i), carLatitudeList.get(i)))
+                //.withPoint(Point.fromLngLat(carLongitudeList.get(i), carLatitudeList.get(i)))
+                .withPoint(carPositions[i].position)
                 .withIconImage(carBitmap!!)
 
             markerList.add(pointAnnotationOptions)
@@ -215,7 +285,8 @@ class MapaGestor : AppCompatActivity() {
         var droneBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.baseline_airplanemode_active_24))
         for (i in 0 until droneLongitudeList.size){
             val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
-                .withPoint(Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i)))
+                //.withPoint(Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i)))
+                .withPoint(dronePositions[i].position)
                 .withIconImage(droneBitmap!!)
 
             markerList.add(pointAnnotationOptions)
@@ -224,13 +295,134 @@ class MapaGestor : AppCompatActivity() {
         var beehiveBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.beehive_icon))
         for (i in 0 until beehiveLongitudeList.size){
             val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
-                .withPoint(Point.fromLngLat(beehiveLongitudeList.get(i), beehiveLatitudeList.get(i)))
+                //.withPoint(Point.fromLngLat(beehiveLongitudeList.get(i), beehiveLatitudeList.get(i)))
+                .withPoint(beehivePositions[i].position)
                 .withIconImage(beehiveBitmap!!)
 
             markerList.add(pointAnnotationOptions)
         }
         pointAnnotationManager?.create(markerList)
 
+    }
+
+    private fun onMarkerItemClick(marker: PointAnnotation){
+            var trobat: Boolean = false
+            val clickedPosition = LatLng(marker.geometry.latitude(), marker.geometry.longitude())
+            println("Clic en: $clickedPosition")
+
+            for (carPosition in carPositions) {
+                println("Posicions de:${carPosition.position.latitude()}, ${carPosition.position.longitude()}")
+                val carLatLng = LatLng(carPosition.position.latitude(), carPosition.position.longitude())
+                val distance = calculateDistance(clickedPosition, carLatLng)
+                println("Distancia de:$distance")
+
+                // Ajustar tolerància distància entre click i marker
+                val thresholdDistance = 0.01 // Exemple: 0.01 graus
+
+                if (distance <= thresholdDistance) {
+                    trobat = true
+                    // És una posició de cotxe propera al clic
+                    val message = "Matrícula: " + carPosition.matricula + "\n" +
+                            "Estat: " + carPosition.statusText + "\n" +
+                            "Bateria: " + carPosition.bateria + "\n" +
+                            "Data últim manteniment: " + carPosition.ultim_manteniment + "\n" +
+                            "Posició actual: [" + carPosition.position.latitude() + ", " + carPosition.position.longitude() + "]\n" +
+                            "Posició d'inici: [" + carPosition.puntInici.latitude() + ", " + carPosition.puntInici.longitude() + "]\n" +
+                            "Posició destí: [" + carPosition.puntDesti.latitude() + ", " + carPosition.puntDesti.longitude() + "]"
+                    AlertDialog.Builder(this)
+                        .setTitle("Informació cotxe " + carPosition.id)
+                        .setMessage(message)
+                        .setPositiveButton("Ok") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }
+            }
+
+        for (dronPosition in dronePositions) {
+            println("Posicions de:${dronPosition.position.latitude()}, ${dronPosition.position.longitude()}")
+            val dronLatLng = LatLng(dronPosition.position.latitude(), dronPosition.position.longitude())
+            val distance = calculateDistance(clickedPosition, dronLatLng)
+            println("Distancia de:$distance")
+
+            // Ajustar tolerància distància entre click i marker
+            val thresholdDistance = 0.01 // Exemple: 0.01 graus
+
+            if (distance <= thresholdDistance) {
+                trobat = true
+                // És una posició de cotxe propera al clic
+                val message = "ID comanda: " + dronPosition.id_order + "\n" +
+                        "ID colmena: " + dronPosition.beehive + "\n" +
+                        "Estat: " + dronPosition.statusText + "\n" +
+                        "Bateria: " + dronPosition.bateria + "\n" +
+                        "Autonomia: " + dronPosition.autonomia + "\n" +
+                        "Data últim manteniment: " + dronPosition.ultim_manteniment + "\n" +
+                        "Posició actual: [" + dronPosition.position.latitude() + ", " + dronPosition.position.longitude() + "]\n" +
+                        "Posició d'inici: [" + dronPosition.puntInici.latitude() + ", " + dronPosition.puntInici.longitude() + "]\n" +
+                        "Posició destí: [" + dronPosition.puntDesti.latitude() + ", " + dronPosition.puntDesti.longitude() + "]"
+                AlertDialog.Builder(this)
+                    .setTitle("Informació drone " + dronPosition.id)
+                    .setMessage(message)
+                    .setPositiveButton("Ok") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+        }
+
+        for (beehivePosition in beehivePositions) {
+            println("Posicions de:${beehivePosition.position.latitude()}, ${beehivePosition.position.longitude()}")
+            val carLatLng = LatLng(beehivePosition.position.latitude(), beehivePosition.position.longitude())
+            val distance = calculateDistance(clickedPosition, carLatLng)
+            println("Distancia de:$distance")
+
+            // Ajustar tolerància distància entre click i marker
+            val thresholdDistance = 0.01 // Exemple: 0.01 graus
+
+            if (distance <= thresholdDistance) {
+                trobat = true
+                // És una posició de cotxe propera al clic
+                val message = "Posició actual: [" + beehivePosition.position.latitude() + ", " + beehivePosition.position.longitude() + "]\n"
+                AlertDialog.Builder(this)
+                    .setTitle("Informació colmena " + beehivePosition.id)
+                    .setMessage(message)
+                    .setPositiveButton("Ok") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+        }
+
+
+            true
+        /*if (iconImageBitmap == carBitmap) {
+            // La anotación es un carbitmap
+            AlertDialog.Builder(this)
+                .setTitle("Car Marker Click")
+                .setMessage("Car Marker Clicked")
+                .setPositiveButton("Ok") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }*/
+    }
+
+    //Calcular distància entre punts
+    private fun calculateDistance(start: LatLng, end: LatLng): Double {
+        val lat1 = Math.toRadians(start.latitude)
+        val lon1 = Math.toRadians(start.longitude)
+        val lat2 = Math.toRadians(end.latitude)
+        val lon2 = Math.toRadians(end.longitude)
+
+        val dlon = lon2 - lon1
+        val dlat = lat2 - lat1
+
+        val a = (Math.sin(dlat / 2).pow(2)
+                + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2).pow(2))
+        val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+        val radius = 6371 // Radi de la Terra en quilòmetres
+
+        return radius * c
     }
 
     //Funcio per convertir de Drawable a Bitmap
@@ -281,14 +473,40 @@ class MapaGestor : AppCompatActivity() {
                 println("Numero de cotxes: " + carsArray.length())
                 for (i in 0 until carsArray.length()) {
                     val carObject = carsArray.getJSONObject(i)
+                    val identificador = carObject.getInt("id_car")
+                    val matricula = carObject.getString("license_plate")
+                    val estat = carObject.getString("status_text")
+                    val bateria = carObject.getString("battery")
+                    val ultim_manteniment = carObject.getString("last_maintenance_date")
+                    val paquets = carObject.getJSONArray("packages")
+
+                    val punt_inici = carObject.getJSONObject("location_in ")
+                    val latitude_inici = punt_inici.getDouble("latitude")
+                    val longitude_inici = punt_inici.getDouble("longitude")
+
+                    val punt_desti = carObject.getJSONObject("location_end")
+                    val latitude_desti = punt_desti.getDouble("latitude")
+                    val longitude_desti = punt_desti.getDouble("longitude")
+
                     val locationAct = carObject.getJSONObject("location_act")
                     val latitude = locationAct.getDouble("latitude")
                     val longitude = locationAct.getDouble("longitude")
+
                     println("Coordenades del cotxe " + carObject.getInt("id_car") + ": "
                     + latitude + ", " + longitude)
 
+                    println("Dades cotxe: " + identificador + ", " + matricula + ", "
+                            + estat + ", " + bateria + ", " + ultim_manteniment + ", " + paquets + ", " + punt_inici + ", " + punt_desti)
+
                     carLatitudeList.add(latitude)
                     carLongitudeList.add(longitude)
+
+                    //Guarda posicio drone en el array de posicions dels drones
+                    val pointInici = Point.fromLngLat(longitude_inici, latitude_inici)
+                    val pointDesti = Point.fromLngLat(longitude_desti, latitude_desti)
+                    val point = Point.fromLngLat(longitude, latitude)
+                    val carData = MapaGestor.CarData(identificador, matricula, estat, bateria, ultim_manteniment, arrayOf(), pointInici, pointDesti, point)
+                    carPositions.add(carData)
                 }
 
                 // Después de añadir las coordenadas, crea los marcadores en el mapa
@@ -325,6 +543,22 @@ class MapaGestor : AppCompatActivity() {
                     println("Numero de drones: " + droneArray.length())
                     for (i in 0 until droneArray.length()) {
                         val droneObject = droneArray.getJSONObject(i)
+                        val identificador = droneObject.getInt("id_dron")
+                        val autonomia = droneObject.getString("autonomy")
+                        val estat = droneObject.getString("status")
+                        val bateria = droneObject.getString("battery")
+                        val ultim_manteniment = droneObject.getString("last_maintenance_date")
+                        val id_order = droneObject.getInt("order_identifier")
+                        val id_beehive = droneObject.getInt("id_beehive")
+
+                        val punt_inici = droneObject.getJSONObject("location_in ")
+                        val latitude_inici = punt_inici.getDouble("latitude")
+                        val longitude_inici = punt_inici.getDouble("longitude")
+
+                        val punt_desti = droneObject.getJSONObject("location_end")
+                        val latitude_desti = punt_desti.getDouble("latitude")
+                        val longitude_desti = punt_desti.getDouble("longitude")
+
                         val locationAct = droneObject.getJSONObject("location_act")
                         val latitude = locationAct.getDouble("latitude")
                         val longitude = locationAct.getDouble("longitude")
@@ -333,6 +567,13 @@ class MapaGestor : AppCompatActivity() {
 
                         droneLatitudeList.add(latitude)
                         droneLongitudeList.add(longitude)
+
+                        //Guarda posicio drons en el array de posicions dels drons
+                        val pointInici = Point.fromLngLat(longitude_inici, latitude_inici)
+                        val pointDesti = Point.fromLngLat(longitude_desti, latitude_desti)
+                        val point = Point.fromLngLat(longitude, latitude)
+                        val dronData = MapaGestor.DronData(identificador, estat, bateria, ultim_manteniment, autonomia, id_order, id_beehive, pointInici, pointDesti, point)
+                        dronePositions.add(dronData)
                     }
 
                     // Después de añadir las coordenadas, crea los marcadores en el mapa
@@ -380,6 +621,7 @@ class MapaGestor : AppCompatActivity() {
 
                 for (i in 0 until beehivesArray.length()) {
                     val beehiveObject = beehivesArray.getJSONObject(i)
+                    val id_beehive = beehiveObject.getInt("id_beehive")
                     val latitude = beehiveObject.getDouble("latitude")
                     val longitude = beehiveObject.getDouble("longitude")
                     val url_beehive = beehiveObject.getString("url_beehive")
@@ -398,6 +640,11 @@ class MapaGestor : AppCompatActivity() {
                     if(!spinner_edges.contains(url_beehive)){
                         spinner_edges.add(url_beehive)
                     }
+
+                    //Guarda posicio beehive en el array de posicions dels beehives
+                    val point = Point.fromLngLat(longitude, latitude)
+                    val beehiveData = MapaGestor.BeehiveData(id_beehive, point)
+                    beehivePositions.add(beehiveData)
 
                 }
 
