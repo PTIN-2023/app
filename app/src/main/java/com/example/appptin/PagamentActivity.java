@@ -1,7 +1,11 @@
 package com.example.appptin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.appptin.paciente.opciones.DatosPacienteFragment;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -33,6 +39,7 @@ import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 
 import java.math.BigDecimal;
+import com.example.appptin.R;
 
 
 public class PagamentActivity extends AppCompatActivity {
@@ -47,7 +54,6 @@ public class PagamentActivity extends AppCompatActivity {
 
     private PayPalConfiguration paypalConfig;
     private Intent paypalIntent;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +165,6 @@ public class PagamentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Hara falta obtener el metodo de pago
                 JSONArray lista_cesta = MainActivity.getListaMedicamentos();
-
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 Resources r = getResources();
                 String apiUrl = r.getString(R.string.api_base_url);
@@ -192,12 +197,17 @@ public class PagamentActivity extends AppCompatActivity {
                                     if (result.equals("ok")) {
                                         System.out.println("Comanda realitzada");
                                         // Obtiene las SharedPreferences
+                                        Toast.makeText(getBaseContext(), "Comanda realitzada", Toast.LENGTH_SHORT).show();
+                                        volver_cesta();
+
                                     }
                                     else {
                                         System.out.println("Error");
+                                        Toast.makeText(getBaseContext(), "No realizat comanda", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 catch (JSONException ex) {
+                                    Toast.makeText(getBaseContext(), "Error en la respota", Toast.LENGTH_SHORT).show();
                                     throw new RuntimeException(ex);
                                 }
                             }
@@ -205,6 +215,7 @@ public class PagamentActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // Error al realizar la solicitud
+                                Toast.makeText(getBaseContext(), "Error servidor", Toast.LENGTH_SHORT).show();
                                 error.printStackTrace();
                                 Log.w("Error login", "ATENCION: Ha habido un error, el pedido no se ha realizado.");
                             }
@@ -259,9 +270,38 @@ public class PagamentActivity extends AppCompatActivity {
         }
     }
 
+    public void volver_cesta(){
+
+        // Eliminar todos los elementos de la cesta
+        MainActivity.deleteCesta();
+
+        /*
+        FragmentManager fragmentManager = this.getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            // Retrocede en la pila de fragmentos
+            fragmentManager.popBackStack();
+        }*/
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        //Cambio de Fragment - CISTELLA
+        CistellaFragment cistellaFragment = new CistellaFragment();
+        FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frameLayout, cistellaFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+
+
+
+    }
+
 
 
     public void processCardPayment(View view) {
         // Processament pagament amb targeta
     }
+
+
+
 }

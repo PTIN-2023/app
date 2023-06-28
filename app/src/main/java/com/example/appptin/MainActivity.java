@@ -171,6 +171,11 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
     public static void deleteToCart(int indice){
         lista_cesta.remove(indice);
     }
+    public static void deleteCesta(){
+        for (int i = lista_cesta.length() - 1; i >= 0; i--) {
+            deleteToCart(i);
+        }
+    }
 
     public static int existeMedicamento(String codi_nacional) throws JSONException {
 
