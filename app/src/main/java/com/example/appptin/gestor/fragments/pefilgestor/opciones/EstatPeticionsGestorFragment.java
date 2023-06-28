@@ -135,12 +135,12 @@ public class EstatPeticionsGestorFragment extends Fragment {
                                     String date = order.getString("date");
                                     String state = order.getString("state");
                                     String email_pacient = order.getString("patient_email");
-
+                                    JSONArray medicineData = null;
                                     JSONArray medicineList = order.getJSONArray("medicine_list");
-                                    ArrayList<JSONObject> medicines = new ArrayList<>();
+                                    //JSONArray medicines = new JSONArray<>();
                                     for (int j = 0; j < medicineList.length(); j++) {
-                                        medicines.add(medicineList.getJSONObject(j));
-                                        System.out.println("Medicine: " + medicines.get(j));
+                                        medicineData = medicineList.getJSONArray(j);
+                                        //System.out.println("Medicine: " + medicines.get(j));
                                         //JSONObject medicine = medicineList.getJSONObject(j);
                                     }
 
@@ -153,7 +153,8 @@ public class EstatPeticionsGestorFragment extends Fragment {
                                         System.out.println("Medicine: " + medicine.getName());
                                         // Imprimir otros detalles del medicamento
                                     }*/
-                                    list_peticions.add(new Peticio(email_pacient, orderIdentifier, date, state, medicines));
+
+                                    list_peticions.add(new Peticio(email_pacient, orderIdentifier, date, state, medicineData));
                                 }
                                 Creacio_elements_RecyclerView(list_peticions);
                             }

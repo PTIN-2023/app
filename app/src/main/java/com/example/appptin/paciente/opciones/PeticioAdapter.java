@@ -33,6 +33,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.appptin.Peticio;
 import com.example.appptin.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -138,11 +139,12 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Detalls dels medicaments");
 
-        ArrayList<JSONObject> medicines = peticio.getMedicines();
+        ArrayList<JSONArray> medicines = peticio.getMedicines();
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (JSONObject medicine : medicines) {
+        for (JSONArray mediciness : medicines) {
             try {
+                JSONObject medicine = mediciness.getJSONObject(0);
                 String medName = medicine.getString("med_name");
                 String form = medicine.getString("form");
                 String typeOfAdministration = medicine.getString("type_of_administration");
@@ -158,6 +160,9 @@ public void onBindViewHolder(@NonNull PeticioViewHolder holder, int position) {
                     stringBuilder.append("Prescripció requerida: ").append("No").append("\n");
                 }
                 stringBuilder.append("Preu: ").append(pvp).append("" + "€").append("\n\n");
+
+                stringBuilder.append("Quantitat: ").append(mediciness.getJSONObject(1)).append("\n\n");
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -138,7 +138,7 @@ public class estatPeticionsFragment extends Fragment {
                             //System.out.println("result: " + response.getString("result"));
 
                             String result = response.getString("result");
-                            if (result.equals("success")) {
+                            if (result.equals("ok")) {
                                 JSONArray orders = response.getJSONArray("orders");
                                 for (int i = 0; i < orders.length(); i++) {
                                     JSONObject order = orders.getJSONObject(i);
@@ -147,11 +147,17 @@ public class estatPeticionsFragment extends Fragment {
                                     String state = order.getString("state");
 
                                     JSONArray medicineList = order.getJSONArray("medicine_list");
-                                    ArrayList<JSONObject> medicines = new ArrayList<>();
+                                    ArrayList<JSONArray> medicines = new ArrayList<>();
+                                    System.out.println(orderIdentifier);
+
                                     for (int j = 0; j < medicineList.length(); j++) {
-                                        medicines.add(medicineList.getJSONObject(j));
-                                        System.out.println("Medicine: " + medicines.get(j));
-                                        //JSONObject medicine = medicineList.getJSONObject(j);
+                                        JSONArray medicineData = medicineList.getJSONArray(j);
+                                        System.out.println("medicina" + medicineData.getJSONObject(0));
+                                        System.out.println("cantitat" + medicineData.getJSONObject(1));
+
+                                        medicines.add(medicineList.getJSONArray(j));
+
+                                        // Aquí pots realitzar les operacions addicionals que necessitis amb el national code i la quantitat
                                     }
 
                                     System.out.println("Order Identifier: " + orderIdentifier);
@@ -190,7 +196,7 @@ public class estatPeticionsFragment extends Fragment {
         //Creación de LayoutManager que se encarga de la disposición de los elementos del RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerPeticions.setLayoutManager(layoutManager);
-
+        System.out.println("llista peticions" + list_peticions);
         // Creación del adapter con la nueva lista de elementos búscados
         PeticioAdapter adapter = new PeticioAdapter(list_peticions,getActivity());
 

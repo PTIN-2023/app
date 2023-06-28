@@ -1,6 +1,6 @@
 package com.example.appptin;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,9 @@ public class Peticio {
     private String date;
     private String state;
     //private boolean prescriptionNeeded;
-    private ArrayList<JSONObject> medicineList;
+    private ArrayList<JSONArray> medicineList;
 
-    public Peticio(String email, int ID, String date, String state, ArrayList<JSONObject> medicineList) {
+    public Peticio(String email, int ID, String date, String state, JSONArray medicineList) {
         this.ID = ID;
         this.email = email;
         //this.typeOfAdministration = typeOfAdministration;
@@ -52,7 +52,7 @@ public class Peticio {
         return prescriptionNeeded;
     }*/
 
-    public ArrayList<JSONObject> getMedicines() {
+    public ArrayList<JSONArray> getMedicines() {
         return medicineList;
     }
 
