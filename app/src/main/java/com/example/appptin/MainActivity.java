@@ -187,7 +187,11 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
         return existe;
     }
 
-    public static void getCantidadMedicamento(int i, int elem) throws JSONException {
+    public static int getCantidadMedicamento(int i) throws JSONException {
+        JSONObject objeto = lista_cesta.getJSONObject(i);
+        return objeto.getInt("quantitat");
+    }
+    public static void setCantidadMedicamento(int i, int elem) throws JSONException {
         if(i > -1){
             JSONObject objeto = lista_cesta.getJSONObject(i);
             int cantidad = objeto.getInt("quantitat");

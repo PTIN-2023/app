@@ -6,17 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -222,7 +218,7 @@ public class CistellaFragment extends Fragment {
                         producte.put("quantitat", novaQuantitat);
                         actualitzarCistella(viewPreu);
                         try {
-                            MainActivity.getCantidadMedicamento(finalI,-1);
+                            MainActivity.setCantidadMedicamento(finalI,-1);
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
@@ -251,7 +247,7 @@ public class CistellaFragment extends Fragment {
                         producte.put("quantitat", actualQuantitat + 1);
                         actualitzarCistella(viewPreu);
                         try {
-                            MainActivity.getCantidadMedicamento(finalI, 1);
+                            MainActivity.setCantidadMedicamento(finalI, 1);
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }

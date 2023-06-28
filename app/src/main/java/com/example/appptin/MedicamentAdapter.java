@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -180,7 +179,10 @@ public class MedicamentAdapter extends RecyclerView.Adapter<MedicamentAdapter.Me
 
                 Toast.makeText(itemView.getContext(), "Afegit " + medicament.getMedName(), Toast.LENGTH_SHORT).show();
             } else {
-                MainActivity.getCantidadMedicamento(indice, 1);
+                if(medicament.getLimitQuantity()>MainActivity.getCantidadMedicamento(indice))
+                    MainActivity.setCantidadMedicamento(indice, 1);
+                else
+                    Toast.makeText(itemView.getContext(), "No és possible afegir més", Toast.LENGTH_SHORT).show();
             }
         }
 
