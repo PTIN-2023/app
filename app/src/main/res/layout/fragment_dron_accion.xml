@@ -93,6 +93,24 @@
                         android:textSize="25sp"/>
 
                     <Button
+                        android:id="@+id/btn_dron_accion_recollida"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:fontFamily="@font/rinkart"
+                        android:text="@string/dron_accion_recollida"
+                        android:textSize="25sp"/>
+
+                    <Button
+                        android:id="@+id/btn_dron_accion_paquet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:fontFamily="@font/rinkart"
+                        android:text="@string/dron_accion_paquet"
+                        android:textSize="25sp"/>
+
+                    <Button
                         android:id="@+id/btn_dron_accion_fallada"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

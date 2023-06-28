@@ -23,7 +23,7 @@ import com.example.appptin.gestor.fragments.flota.local.drons.InformacionDron;
 
 public class DronAccionFragment extends Fragment {
 
-    private Button btn_info, btn_bateria, btn_fallada;
+    private Button btn_info, btn_bateria, btn_recollida, btn_paquet, btn_fallada;
     private TextView txt_titulo;
     private ImageView iv_regresar;
     private View view;
@@ -45,12 +45,16 @@ public class DronAccionFragment extends Fragment {
         txt_titulo = view.findViewById(R.id.txt_dron_accion_titulo);
         btn_info = view.findViewById(R.id.btn_dron_accion_info);
         btn_bateria = view.findViewById(R.id.btn_dron_accion_bateria);
+        btn_recollida = view.findViewById(R.id.btn_dron_accion_recollida);
+        btn_paquet = view.findViewById(R.id.btn_dron_accion_paquet);
         btn_fallada = view.findViewById(R.id.btn_dron_accion_fallada);
 
         //Listener
         iv_regresar.setOnClickListener(regresar);
         btn_info.setOnClickListener(listener_info);
         btn_bateria.setOnClickListener(listener_bateria);
+        btn_recollida.setOnClickListener(listener_recollida);
+        btn_paquet.setOnClickListener(listener_paquet);
         btn_fallada.setOnClickListener(listener_fallada);
 
         return view;

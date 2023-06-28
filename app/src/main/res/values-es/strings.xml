@@ -78,8 +78,6 @@
     <string name="coche_accion_titulo">Información</string>
     <string name="coche_accion_info">Detalles</string>
     <string name="coche_accion_bateria">Sin batería</string>
-    <string name="coche_accion_recollida">Recogida no autorizada</string>
-    <string name="coche_accion_paquet">Paquete no recogido</string>
     <string name="coche_accion_fallada">Fallo técnico</string>
 
     //fragment_edge_ciudad.xml
@@ -92,6 +90,8 @@
     <string name="dron_accion_titulo">Información</string>
     <string name="dron_accion_info">Detalles</string>
     <string name="dron_accion_bateria">Sin batería</string>
+    <string name="dron_accion_recollida">Recogida no autorizada</string>
+    <string name="dron_accion_paquet">Paquete no recogido</string>
     <string name="dron_accion_fallada">Fallo técnico</string>
 
     ///////////////////////////////////////////////////////////////////////////////////////////////

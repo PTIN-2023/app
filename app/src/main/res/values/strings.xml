@@ -287,9 +287,8 @@
     <string name="coche_accion_titulo">Informació</string>
     <string name="coche_accion_info">Detalls</string>
     <string name="coche_accion_bateria">Sense bateria</string>
-    <string name="coche_accion_recollida">Recollida no autoritzada</string>
-    <string name="coche_accion_paquet">Paquet no recollit</string>
     <string name="coche_accion_fallada">Fallada tècnica</string>
+
 
     //fragment_edge_ciudad.xml
     <string name="ciudades_titulo">Ciutats</string>
@@ -299,9 +298,12 @@
 
 
     //fragment_dron_accion.xml
+
     <string name="dron_accion_titulo">Informació</string>
     <string name="dron_accion_info">Detalls</string>
     <string name="dron_accion_bateria">Sense bateria</string>
+    <string name="dron_accion_recollida">Recollida no autoritzada</string>
+    <string name="dron_accion_paquet">Paquet no recollit</string>
     <string name="dron_accion_fallada">Fallada tècnica</string>
 
 
