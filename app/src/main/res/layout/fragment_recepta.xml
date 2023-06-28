@@ -29,7 +29,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,21 +66,35 @@
                     android:layout_marginTop="20sp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rinkart_italic"
-                        android:textStyle="bold"
-                        android:text="@string/info_receta_medicamento"
-                        android:textSize="20sp"/>
-
-                    <EditText
-                        android:id="@+id/et_receta_medicamento"
+                    <LinearLayout
+                        android:id="@+id/horizontal_meds_recepta"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/info_receta_text_medicamento"
-                        android:fontFamily="@font/rinkart_italic"
-                        android:textSize="20sp"/>
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/rinkart_italic"
+                            android:text="@string/info_receta_medicamento"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btn_afegir_nou_med_recepta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="7dp"
+                            android:text="@string/button_receta" />
+
+                    </LinearLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_meds_recipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
 

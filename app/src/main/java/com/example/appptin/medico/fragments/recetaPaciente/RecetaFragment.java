@@ -9,6 +9,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -41,7 +44,10 @@ public class RecetaFragment extends Fragment {
 
     EditText nom_pacient, nom_medicament, duracio;
     TextInputEditText notes;
-    Button btn_guardar;
+    Button btn_guardar, btn_afegir;
+    private PopupWindow popupWindow;
+
+    private static JSONArray list_meds_recipe;
     public RecetaFragment() {
         // Required empty public constructor
     }
@@ -59,37 +65,102 @@ public class RecetaFragment extends Fragment {
 
         // Asociar elementos del layout
         nom_pacient = view.findViewById(R.id.et_receta_paciente);
-        nom_medicament = view.findViewById(R.id.et_receta_medicamento);
+        //nom_medicament = view.findViewById(R.id.et_receta_medicamento);
         duracio = view.findViewById(R.id.et_receta_duracion);
         notes = view.findViewById(R.id.txt_receta_notas);
         btn_guardar = view.findViewById(R.id.btn_recepta_guardar);
+        btn_afegir = view.findViewById(R.id.btn_afegir_nou_med_recepta);
 
         //Por defecto botón "Guardar desactivado"
         btn_guardar.setEnabled(false);
 
         //Listeners
         btn_guardar.setOnClickListener(guardar);
+        btn_afegir.setOnClickListener(afegir);
         setNom_PacientListener();
-        setNom_MedicamentListener();
+
+        //setNom_MedicamentListener();
         setDuracioListener();
         setNotesListener();
 
+        //nueva lista
+        list_meds_recipe = new JSONArray();
+
+        //arranar el recycler view
+        //initRecyclerView(view);
+
         return view;
     }
+
+//    private void initRecyclerView(View view) {
+//        RecyclerView recyclerView = view.findViewById(R.id.recycler_meds_recipe);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+//
+//        recyclerView.setLayoutManager(layoutManager);
+//
+//        recyclerView.setAdapter();
+//    }
+
+    private View.OnClickListener afegir = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //abrir popup en el que meter la info de un nuevo medicamento
+            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View popupView = inflater.inflate(R.layout.fragment_recepta_popup_nou_med, null);
+
+            popupWindow = new PopupWindow(
+                    popupView,
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    true
+            );
+
+            popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+            Button btn_acceptar = popupView.findViewById(R.id.btn_recepta_acceptar_nou_med);
+            Button btn_cancelar = popupView.findViewById(R.id.btn_recepta_cancelar_nou_med);
+
+            btn_acceptar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //obtenemos lost elementos del medicamento y los añadimos al objeto para el recycler view
+                    EditText editTextCodi = popupView.findViewById(R.id.txt_receta_codi_popup);
+                    EditText editTextQuant = popupView.findViewById(R.id.txt_receta_quant_popup);
+
+                    JSONArray med = new JSONArray();
+                    med.put(editTextCodi.getText().toString());
+                    med.put(Integer.parseInt(editTextQuant.getText().toString()));
+                    System.out.println(med);
+
+                    list_meds_recipe.put(med);
+                    popupWindow.dismiss();
+                    System.out.println(list_meds_recipe);
+                }
+            });
+
+            btn_cancelar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //se cancela lo de añadir y se cierra el popup
+                    popupWindow.dismiss();
+                }
+            });
+        }
+    };
 
     private View.OnClickListener guardar = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             // Verificar que no esté vacio
             if(nom_pacient.getText().toString().isEmpty()
-                    || nom_medicament.getText().toString().isEmpty()
                     || duracio.getText().toString().isEmpty()
                     || notes.getText().toString().isEmpty()
-              )
+                    || list_meds_recipe.length() == 0
+            )
                 aviso("Omplir totes les dades");
-            // Enviar los datos a la api
+                // Enviar los datos a la api
             else
-                api_doctor_create_prescription(nom_pacient.getText().toString(),nom_medicament.getText().toString(),duracio.getText().toString(),notes.getText().toString());
+                api_doctor_create_prescription(nom_pacient.getText().toString(),list_meds_recipe,duracio.getText().toString(),notes.getText().toString());
         }
     };
 
@@ -111,7 +182,7 @@ public class RecetaFragment extends Fragment {
             }
         });
     }
-
+/*
     private void setNom_MedicamentListener(){
         nom_medicament.addTextChangedListener(new TextWatcher() {
             @Override
@@ -129,7 +200,7 @@ public class RecetaFragment extends Fragment {
 
             }
         });
-    }
+    }*/
 
     private void setDuracioListener(){
         duracio.addTextChangedListener(new TextWatcher() {
@@ -169,7 +240,7 @@ public class RecetaFragment extends Fragment {
         });
     }
 
-    private void api_doctor_create_prescription(String paciente, String medicamento, String duracion, String notas){
+    private void api_doctor_create_prescription(String paciente, JSONArray list_meds_recipe_full, String duracion, String notas){
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Resources r = getResources();
         String apiUrl = r.getString(R.string.api_base_url);
@@ -185,9 +256,7 @@ public class RecetaFragment extends Fragment {
             jsonBody.put("user_full_name", paciente);
 
             //Obtener la lista de códigos:
-            String[] codigos = medicamento.split(",");
-            JSONArray jsonArray = new JSONArray(codigos);
-            jsonBody.put("medicine_list", jsonArray);
+            jsonBody.put("medicine_list", list_meds_recipe_full);
 
             jsonBody.put("duration", duracion);
             jsonBody.put("notes", notas);
