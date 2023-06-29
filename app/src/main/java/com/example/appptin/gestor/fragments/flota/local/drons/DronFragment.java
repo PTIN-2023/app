@@ -49,7 +49,7 @@ public class DronFragment extends Fragment {
     private ArrayList<InformacionDron> searchList;
 
     public DronFragment(int numedge) {
-        numedge = numedge;
+        numEdge = numedge;
     }
     //public DronFragment(int edge) {
     //    //Quitar cuando se implemente método para obtener los datos de la api
@@ -105,6 +105,7 @@ public class DronFragment extends Fragment {
                                 // Maneja la respuesta de la API
                                 System.out.println(response);
                                 JSONArray droneArray = response.getJSONArray("drones");
+                                System.out.println(url);
                                 System.out.println("Numero de drones: " + droneArray.length());
                                 for (int i = 0; i < droneArray.length(); i++) {
                                     JSONObject droneObject = droneArray.getJSONObject(i);
@@ -135,7 +136,7 @@ public class DronFragment extends Fragment {
                                     //Guarda posicio drons en el array de posicions dels drons
 
                                 }
-
+                                Creacion_elementos_RecyclerView(arrayList);
                                 // Después de añadir las coordenadas, crea los marcadores en el mapa
 
                             }
@@ -172,6 +173,7 @@ public class DronFragment extends Fragment {
         recyclerView_dron = view.findViewById(R.id.recyclerView_dron);
          //CANVIAR
         getDronePosition(numEdge, getActivity());
+
         Lista(view);
 
         return view;
@@ -182,7 +184,7 @@ public class DronFragment extends Fragment {
         iv_regresar = view.findViewById(R.id.iv_dron_back);
 
         // Quitar cuando se implemente la llamada a la API - Ubicar método justo despues de obtener los datos de la api
-        Creacion_elementos_RecyclerView(arrayList);
+        //
 
         //Adapter para el SPINER
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sort_options_flotas, android.R.layout.simple_spinner_item);
