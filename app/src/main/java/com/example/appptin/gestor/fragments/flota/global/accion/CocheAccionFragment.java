@@ -1,5 +1,7 @@
 package com.example.appptin.gestor.fragments.flota.global.accion;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,8 @@ import com.example.appptin.R;
 import com.example.appptin.gestor.fragments.flota.global.CochesFragment;
 import com.example.appptin.gestor.fragments.flota.global.InformacionCoche;
 import com.example.appptin.medico.fragments.historialPeticion.InformacionPeticion;
+
+import org.json.JSONException;
 
 import java.util.Map;
 
@@ -90,7 +94,7 @@ public class CocheAccionFragment extends Fragment {
     private View.OnClickListener listener_info = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(),"No implementado 1",Toast.LENGTH_SHORT).show();
+            Dialogo_info();
 
         }
     };
@@ -122,4 +126,42 @@ public class CocheAccionFragment extends Fragment {
             Toast.makeText(getContext(),"No implementado 5",Toast.LENGTH_SHORT).show();
         }
     };
+
+    private void Dialogo_info(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Información coche");
+
+        StringBuilder message = new StringBuilder();
+        message.append("Identificador: ").append(peticion.getIdentificador()).append("\n");
+        message.append("Matrícula: ").append(peticion.getMatricula()).append("\n");
+        message.append("Estat: ").append(peticion.getEstat()).append("\n");
+        message.append("Batería: ").append(peticion.getBateria()).append("\n");
+        message.append("Último mantenimiento: ").append(peticion.getUltim_manteniment()).append("\n");
+        message.append("Paquetes: ").append("\n");
+        if (peticion.getPaquets() != null && peticion.getPaquets().length() > 0) {
+            for (int i = 0; i < peticion.getPaquets().length(); i++) {
+                try {
+                    String paquet = peticion.getPaquets().getString(i);
+                    message.append("   - ").append(paquet).append("\n");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            message.append("   No hay paquets disponibles").append("\n");
+        }
+        message.append("Posición actual:").append("\n");
+        message.append("    Latitud: ").append(peticion.getLatitude()).append("\n");
+        message.append("    Longitud: ").append(peticion.getLongitude()).append("\n");
+
+        builder.setMessage(message.toString());
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Acciones al hacer clic en el botón Aceptar
+            }
+        });
+
+        builder.show();
+    }
 }
