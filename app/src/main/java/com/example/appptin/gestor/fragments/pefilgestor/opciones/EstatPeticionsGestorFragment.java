@@ -134,7 +134,7 @@ public class EstatPeticionsGestorFragment extends Fragment {
                                     int orderIdentifier = order.getInt("order_identifier");
                                     String date = order.getString("date");
                                     String state = order.getString("state");
-                                    String email_pacient = order.getString("patient_email");
+                                    //String email_pacient = order.getString("patient_email");
                                     //JSONArray medicineData = null;
                                     //JSONArray medicineList = order.getJSONArray("medicine_list");
                                     //JSONArray medicines = new JSONArray<>();
