@@ -312,6 +312,11 @@
     <string name="coche_accion_info">Detalls</string>
     <string name="coche_accion_bateria">Sense bateria</string>
     <string name="coche_accion_fallada">Fallada tècnica</string>
+    // Opciones para spiner
+    <string name="coche_set_battery_10">set_battery_10</string>
+    <string name="coche_set_battery_5">set_battery_5</string>
+    <string name="coche_breakdown">breakdown</string>
+
 
 
     //fragment_edge_ciudad.xml
@@ -329,6 +334,24 @@
     <string name="dron_accion_recollida">Recollida no autoritzada</string>
     <string name="dron_accion_paquet">Paquet no recollit</string>
     <string name="dron_accion_fallada">Fallada tècnica</string>
+    // Opciones para spiner
+    <string name="dron_set_battery_10">set_battery_10</string>
+    <string name="dron_set_battery_5">set_battery_5</string>
+    <string name="dron_make_rain">make_rain</string>
+    <string name="dron_make_thunder">make_thunder</string>
+    <string name="dron_make_high_temp">make_high_temp</string>
+    <string name="dron_make_low_temp">make_low_temp</string>
+    <string name="dron_make_unkown_climate">make_unkown_climate</string>
+    <string name="dron_explode_drone">explode_drone</string>
+    <string name="dron_break_engine">break_engine</string>
+    <string name="dron_break_helix">break_helix</string>
+    <string name="dron_break_sensor">break_sensor</string>
+    <string name="dron_uncomunicate">uncomunicate</string>
+    <string name="dron_put_obstacle">put_obstacle</string>
+    <string name="dron_lose_parcel">lose_parcel</string>
+    <string name="dron_cancel_betrayal">cancel_betrayal</string>
+    <string name="dron_noshow_betrayal">noshow_betrayal</string>
+    <string name="dron_impostor_betrayal">impostor_betrayal</string>
 
 
 </resources>

@@ -30,8 +30,8 @@ public class InformacionCoche implements Serializable {
     // GETTERS
 
 
-    public String getCoche() {
-        return String.valueOf(identificador) + " - " + matricula;
+    public String geNombreCoche() {
+        return "Coche "+String.valueOf(identificador);
     }
 
     public int getIdentificador() {

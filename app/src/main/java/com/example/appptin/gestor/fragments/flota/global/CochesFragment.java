@@ -1,13 +1,10 @@
 package com.example.appptin.gestor.fragments.flota.global;
 
-import static java.sql.DriverManager.println;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -137,10 +134,10 @@ public class CochesFragment extends Fragment {
         public int compare(InformacionCoche t1, InformacionCoche t2) {
             //Ascendiente
             if(ordenAscendente)
-                return t1.getCoche().compareTo(t2.getCoche());
+                return t1.geNombreCoche().compareTo(t2.geNombreCoche());
                 //Descendiente
             else
-                return t2.getCoche().compareTo(t1.getCoche());
+                return t2.geNombreCoche().compareTo(t1.geNombreCoche());
         }
 
     };

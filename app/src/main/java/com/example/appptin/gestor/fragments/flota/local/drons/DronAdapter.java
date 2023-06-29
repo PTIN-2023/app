@@ -49,11 +49,11 @@ public class DronAdapter extends RecyclerView.Adapter<DronAdapter.MyHolder>{
         //Tratar los colores para el estado
         int colorRGreen;
         int color;
-        if(arrayList.get(position).getEstado() == 1){
+        if(arrayList.get(position).getEstat() == "wait"){
             colorRGreen = R.color.green_300;
             color = ContextCompat.getColor(context, colorRGreen);
             holder.view_estado.setBackgroundColor(color);
-        } else if (arrayList.get(position).getEstado() == 2) {
+        } else if (arrayList.get(position).getEstat() != "wait") {
             colorRGreen = R.color.red_300;
             color = ContextCompat.getColor(context, colorRGreen);
             holder.view_estado.setBackgroundColor(color);

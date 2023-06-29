@@ -131,7 +131,7 @@ public class DronFragment extends Fragment {
                                     System.out.println("Coordenades del drone " + droneObject.getInt("id_dron") + ": "
                                             + latitude + ", " + longitude);
 
-                                    arrayList.add(new InformacionDron(identificador, autonomia, estat, bateria, ultim_manteniment, id_order, id_beehive, punt_inici, punt_desti, locationAct));
+                                    arrayList.add(new InformacionDron(identificador, id_beehive,autonomia, estat, bateria, ultim_manteniment, id_order, punt_inici, punt_desti, locationAct));
 
                                     //Guarda posicio drons en el array de posicions dels drons
 

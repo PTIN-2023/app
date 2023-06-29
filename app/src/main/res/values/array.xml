@@ -17,4 +17,31 @@
         <item>@string/sort_option_vendes</item>
         <item>@string/sort_option_ciutat_asc</item>
     </string-array>
+    <!-- OPCIONES PARA LAS ANOMALIAS DEL COCHE -->
+    <string-array name="opciones_anomalias_coche">
+        <item>@string/coche_set_battery_10</item>
+        <item>@string/coche_set_battery_5</item>
+        <item>@string/coche_breakdown</item>
+    </string-array>
+    <!-- OPCIONES PARA LAS ANOMALIAS DEL DRON -->
+    <string-array name="opciones_anomalias_dron">
+        <item>@string/dron_set_battery_10</item>
+        <item>@string/dron_set_battery_5</item>
+        <item>@string/dron_make_rain</item>
+        <item>@string/dron_make_thunder</item>
+        <item>@string/dron_make_high_temp</item>
+        <item>@string/dron_make_low_temp</item>
+        <item>@string/dron_make_unkown_climate</item>
+        <item>@string/dron_explode_drone</item>
+        <item>@string/dron_break_engine</item>
+        <item>@string/dron_break_helix</item>
+        <item>@string/dron_break_sensor</item>
+        <item>@string/dron_uncomunicate</item>
+        <item>@string/dron_put_obstacle</item>
+        <item>@string/dron_lose_parcel</item>
+        <item>@string/dron_cancel_betrayal</item>
+        <item>@string/dron_noshow_betrayal</item>
+        <item>@string/dron_impostor_betrayal</item>
+
+    </string-array>
 </resources>

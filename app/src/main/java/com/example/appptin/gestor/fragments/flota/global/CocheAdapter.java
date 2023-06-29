@@ -46,7 +46,7 @@ public class CocheAdapter extends RecyclerView.Adapter<CocheAdapter.MyHolder>{
     @SuppressLint({"ResourceAsColor", "RecyclerView"})
     @Override
     public void onBindViewHolder(@NonNull CocheAdapter.MyHolder holder, int position) {
-        holder.txt_nombre.setText(arrayList.get(position).getCoche());
+        holder.txt_nombre.setText(arrayList.get(position).geNombreCoche());
 
         //Tratar los colores para el estado
         int colorRGreen;
