@@ -65,6 +65,9 @@
     <string name="pvp">PVP</string>
     <string name="quantitat">Cantidad</string>
 
+    //fragment_mapa.xml
+    <string name="mapes_titulo">Gestiones de Mapas</string>
+
     //fragment_flota.xml
     <string name="flota_titulo">Gestiones de Flotas</string>
     <string name="flota_seleccionar">Seleccionar:</string>

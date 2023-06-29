@@ -35,12 +35,11 @@ public class MapaFragment extends Fragment {
 
         btn_global = v.findViewById(R.id.button_global);
         btn_local = v.findViewById(R.id.button_local);
-        btn_usuario = v.findViewById(R.id.button_crear_usuario);
 
         //Listener
         btn_global.setOnClickListener(listener_global);
         btn_local.setOnClickListener(listener_local);
-        btn_usuario.setOnClickListener(listener_usuario);
+
         return v;
     }
 
