@@ -82,6 +82,7 @@ public class EdgeMapaCiudadAdapter extends RecyclerView.Adapter<EdgeMapaCiudadAd
                 Context context = v.getContext();
                 int numEdge = arrayList.get(position).getNumEdge();
                 Intent intent = new Intent(context, MapaGestorEdge.class);
+                System.out.println("num Edge: " + numEdge);
                 intent.putExtra("parametreInt", numEdge);
                 context.startActivity(intent);
                     //DronFragment dronFragment = new DronFragment();

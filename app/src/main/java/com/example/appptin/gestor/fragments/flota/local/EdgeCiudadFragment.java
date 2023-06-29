@@ -39,9 +39,9 @@ public class EdgeCiudadFragment extends Fragment {
     public EdgeCiudadFragment() {
         //Quitar cuando se implemente método para obtener los datos de la api
         arrayList = new ArrayList<>();
-        arrayList.add(new InformacionCiudadEdge("ED 1 - Barcelona"));
-        arrayList.add(new InformacionCiudadEdge("ED 2 - Vilanova i la Geltrú"));
-        arrayList.add(new InformacionCiudadEdge("ED 3 - Martorell"));
+        arrayList.add(new InformacionCiudadEdge("Vilanova i la Geltrú"));
+        arrayList.add(new InformacionCiudadEdge("Barcelona"));
+        arrayList.add(new InformacionCiudadEdge("Cubelles"));
     }
 
     @Override

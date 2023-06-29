@@ -42,6 +42,9 @@ class MapaGestorEdge : AppCompatActivity() {
     lateinit var annotationConfig: AnnotationConfig
     var layerIDD = "map_annotation" //Hard-coded
 
+    //val edgeNumber = intent?.getIntExtra("parametreInt", 0)
+
+
     var pointAnnotationManager : PointAnnotationManager? = null
 
     //Array per mostrar diferentes anotacions
@@ -104,7 +107,7 @@ class MapaGestorEdge : AppCompatActivity() {
         val bateria: String,
         val ultim_manteniment: String,
         val autonomia: String,
-        val id_order: Int,
+        val id_order: String,
         val beehive: Int,
         val puntInici: Point,
         val puntDesti: Point,
@@ -128,16 +131,18 @@ class MapaGestorEdge : AppCompatActivity() {
 
         val spinner = findViewById<Spinner>(R.id.mapSpinner)
 
-        val edgeNumber = intent.getIntExtra("edge", 0)
+        val edgeNumber = intent.getIntExtra("parametreInt", 0)
         println("Valor de edge: $edgeNumber")
 
-        setMapLocation(edgeNumber)
+
 
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedEdge = spinner.getItemAtPosition(position).toString()
-
+                selectedEdge = spinner.getItemAtPosition(edgeNumber).toString()
+                //if(edgeNumber==1){
+                //    selectedEdge = resources.getString(R.string.api_edge1_url)
+                //}
                 if(selectedEdge != resources.getString(R.string.api_base_url)){
 
                     //Netejem les coordenades dels cotxes per nomes mostrar els drones
@@ -170,6 +175,7 @@ class MapaGestorEdge : AppCompatActivity() {
                 }
                 else{
                     //Netejem les coordenades dels drones per nomes mostrar els cotxes
+                    println("edge " + edgeNumber)
                     isDroneApiResponseReady = false
                     droneLatitudeList.clear()
                     droneLongitudeList.clear()
@@ -178,9 +184,10 @@ class MapaGestorEdge : AppCompatActivity() {
                     getCarsPosition()
                     startUpdatingCarsPosition()
 
-                    cameraActual = Point.fromLngLat(1.727446, 41.2151504)
-                    zoomActual = 7.0
-                    ZoomCamera()
+                    setMapLocation(edgeNumber)
+                    //cameraActual = Point.fromLngLat(1.727446, 41.2151504)
+                    //zoomActual = 7.0
+
                 }
                 println("Server actuak: " + selectedEdge)
 
@@ -222,8 +229,10 @@ class MapaGestorEdge : AppCompatActivity() {
     private fun setMapLocation(edgeNumber: Int) {
         when (edgeNumber) {
             1 -> {
-                cameraActual = Point.fromLngLat(1.727446, 41.2151504)
+
+                cameraActual = Point.fromLngLat(2.171944, 41.399858)
                 zoomActual = 7.0
+                ZoomCamera()
             }
             2 -> {
                 cameraActual = Point.fromLngLat(2.0, 42.0) // Ubicación específica para edge 2
@@ -578,7 +587,7 @@ class MapaGestorEdge : AppCompatActivity() {
                         val estat = droneObject.getString("status")
                         val bateria = droneObject.getString("battery")
                         val ultim_manteniment = droneObject.getString("last_maintenance_date")
-                        val id_order = droneObject.getInt("order_identifier")
+                        val id_order = droneObject.getString("order_identifier")
                         val id_beehive = droneObject.getInt("id_beehive")
 
                         val punt_inici = droneObject.getJSONObject("location_in ")
@@ -717,7 +726,7 @@ class MapaGestorEdge : AppCompatActivity() {
                     getCarsPosition()
                 }
             }
-        }, 0, 2000) // Actualiza cada 20 segundos (20,000 milisegundos)
+        }, 0, 20000) // Actualiza cada 20 segundos (20,000 milisegundos)
     }
 
     private fun stopUpdatingCarsPosition() {
