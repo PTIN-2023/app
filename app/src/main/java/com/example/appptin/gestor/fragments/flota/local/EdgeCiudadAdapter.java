@@ -33,10 +33,7 @@ public class EdgeCiudadAdapter extends RecyclerView.Adapter<EdgeCiudadAdapter.My
         this.activity = activity;
         layoutInflater = LayoutInflater.from(context); //Obtener el contexto del activity
     }
-    private void configurarMapa(int numEdge) {
-        MapaGestorEdge mapaGestor = new MapaGestorEdge();
-        mapaGestor.configurarMapa(numEdge);
-    }
+
     @NonNull
     @Override
     public EdgeCiudadAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -54,7 +51,10 @@ public class EdgeCiudadAdapter extends RecyclerView.Adapter<EdgeCiudadAdapter.My
             @Override
             public void onClick(View v) {
 
-                DronFragment dronFragment = new DronFragment();
+                DronFragment dronFragment;
+                int numedge;
+                numedge= arrayList.get(position).getNumEdge();
+                dronFragment = new DronFragment(numedge);
 
                 /*
                 //Enviar datos a CocheAccionFragment

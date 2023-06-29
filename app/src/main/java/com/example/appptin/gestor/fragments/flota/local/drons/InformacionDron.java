@@ -1,13 +1,15 @@
 package com.example.appptin.gestor.fragments.flota.local.drons;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class InformacionDron implements Serializable {
     private String nombre_dron;
     private int estado;
 
-    public InformacionDron(String nombre_dron, int estado) {
-        this.nombre_dron = nombre_dron;
+    public InformacionDron(int identificador, String nombre_dron, String estat, String bateria, String ultim_manteniment, String id_order, int estado, JSONObject punt_inici, JSONObject punt_desti, JSONObject locationAct) {
+        this.nombre_dron = ("DRON "+ Integer.toString(identificador));
         this.estado = estado;
     }
 
