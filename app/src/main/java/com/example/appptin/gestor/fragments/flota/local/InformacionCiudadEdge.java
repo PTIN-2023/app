@@ -23,4 +23,12 @@ public class InformacionCiudadEdge implements Serializable {
                 "ciudad='" + ciudad + '\'' +
                 '}';
     }
+
+    public int getNumEdge() {
+        if (ciudad == "Barcelona") return 0;
+        else if (ciudad == "Cubelles") return 1;
+        else if (ciudad == "Vilanova") return 2;
+        return 0;
+    }
+
 }

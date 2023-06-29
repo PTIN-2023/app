@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appptin.R;
 
 import com.example.appptin.gestor.fragments.flota.local.drons.DronFragment;
+import com.example.appptin.gestor.fragments.inventario.MapaGestorEdge;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,10 @@ public class EdgeCiudadAdapter extends RecyclerView.Adapter<EdgeCiudadAdapter.My
         this.activity = activity;
         layoutInflater = LayoutInflater.from(context); //Obtener el contexto del activity
     }
-
+    private void configurarMapa(int numEdge) {
+        MapaGestorEdge mapaGestor = new MapaGestorEdge();
+        mapaGestor.configurarMapa(numEdge);
+    }
     @NonNull
     @Override
     public EdgeCiudadAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,6 +50,7 @@ public class EdgeCiudadAdapter extends RecyclerView.Adapter<EdgeCiudadAdapter.My
 
 
         holder.contenedorElem.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 

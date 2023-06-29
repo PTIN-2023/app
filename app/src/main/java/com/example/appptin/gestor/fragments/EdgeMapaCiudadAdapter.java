@@ -1,6 +1,8 @@
 package com.example.appptin.gestor.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +20,30 @@ import com.example.appptin.gestor.fragments.EdgeMapaCiudadFragment;
 import com.example.appptin.gestor.fragments.flota.local.EdgeCiudadAdapter;
 import com.example.appptin.gestor.fragments.flota.local.InformacionCiudadEdge;
 import com.example.appptin.gestor.fragments.flota.local.drons.DronFragment;
+import com.example.appptin.gestor.fragments.inventario.MapaGestor;
+import com.example.appptin.gestor.fragments.inventario.MapaGestorEdge;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.appptin.R;
+import com.example.appptin.gestor.fragments.flota.global.CochesFragment;
+import com.example.appptin.gestor.fragments.flota.local.EdgeCiudadFragment;
+import com.example.appptin.gestor.fragments.inventario.MapaGestor;
 
 import java.util.ArrayList;
 
 public class EdgeMapaCiudadAdapter extends RecyclerView.Adapter<EdgeMapaCiudadAdapter.MyHolder>{
 
 
+    private FragmentActivity fragmentActivity;
     ArrayList<InformacionCiudadEdge> arrayList;
     LayoutInflater layoutInflater;
     Context context;
@@ -36,7 +56,13 @@ public class EdgeMapaCiudadAdapter extends RecyclerView.Adapter<EdgeMapaCiudadAd
         layoutInflater = LayoutInflater.from(context); //Obtener el contexto del activity
     }
 
-
+    public EdgeMapaCiudadAdapter(Context context, ArrayList<InformacionCiudadEdge> arrayList, FragmentManager activity, FragmentActivity fragmentActivity) {
+        this.arrayList = arrayList;
+        this.context = context;
+        this.activity = activity;
+        this.fragmentActivity = fragmentActivity; // Afegit el paràmetre fragmentActivity
+        layoutInflater = LayoutInflater.from(context);
+    }
 
     @NonNull
     @Override
@@ -53,22 +79,30 @@ public class EdgeMapaCiudadAdapter extends RecyclerView.Adapter<EdgeMapaCiudadAd
         holder.contenedorElem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context context = v.getContext();
+                int numEdge = arrayList.get(position).getNumEdge();
+                Intent intent = new Intent(context, MapaGestorEdge.class);
+                intent.putExtra("parametreInt", numEdge);
+                context.startActivity(intent);
+                    //DronFragment dronFragment = new DronFragment();
 
-                DronFragment dronFragment = new DronFragment();
 
-                /*
-                //Enviar datos a CocheAccionFragment
-                Bundle result = new Bundle();
-                result.putSerializable("Info_coche", arrayList.get(position));
-                activity.setFragmentResult("key_info_coche", result);
-                 */
 
-                // Abrir ventana --> CocheAccionFragment
-                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_container, dronFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                //DronFragment dronFragment = new DronFragment();
+
+                ///*
+                ////Enviar datos a CocheAccionFragment
+                //Bundle result = new Bundle();
+                //result.putSerializable("Info_coche", arrayList.get(position));
+                //activity.setFragmentResult("key_info_coche", result);
+                // */
+//
+                //// Abrir ventana --> CocheAccionFragment
+                //FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+                //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                //fragmentTransaction.replace(R.id.frame_container, dronFragment);
+                //fragmentTransaction.addToBackStack(null);
+                //fragmentTransaction.commit();
 
             }
         });

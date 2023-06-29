@@ -129,6 +129,7 @@
             <!-- otras configuraciones de la actividad -->
         </activity>
 
+        <activity android:name="com.example.appptin.gestor.fragments.inventario.MapaGestorEdge" />
     </application>
 
 </manifest>
