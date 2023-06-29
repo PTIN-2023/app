@@ -25,6 +25,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appptin.R;
 import com.example.appptin.gestor.fragments.CrearUsersFragment;
+import com.example.appptin.gestor.fragments.MapaFragment;
 import com.example.appptin.gestor.fragments.flota.FlotaFragment;
 import com.example.appptin.gestor.fragments.inventario.InventarioGestorFragment;
 import com.example.appptin.gestor.fragments.inventario.MapaGestor;
@@ -32,6 +33,7 @@ import com.example.appptin.gestor.fragments.pefilgestor.PerfilGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.EstatPeticionsGestorFragment;
 import com.example.appptin.medico.MedicoActivity;
+import com.example.appptin.gestor.fragments.MapaFragment;
 import com.example.appptin.welcome_page;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -45,6 +47,8 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
     //CrearUsersFragment crearUsersFragment;
     FlotaFragment flotaFragment;
     EstatPeticionsGestorFragment estatPeticionsGestorFragment;
+
+    MapaFragment mapaFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +71,11 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         estatPeticionsGestorFragment = new EstatPeticionsGestorFragment();
         //crearUsersFragment = new CrearUsersFragment();
         flotaFragment = new FlotaFragment();
+        mapaFragment = new MapaFragment();
 
         loadFragment(inventarioGestorFragment);
+
+
 
         setDayNight();
 
@@ -92,9 +99,11 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
                     loadFragment(estatPeticionsGestorFragment);
                     return true;
                 case R.id.menu_mapa:
-                    Intent intent = new Intent(GestorActivity.this, MapaGestor.class);
-                    startActivity(intent);
+                    loadFragment(mapaFragment);
                     return true;
+                    /*Intent intent = new Intent(GestorActivity.this, MapaGestor.class);
+                    startActivity(intent);
+                    return true;*/
             }
             return false;
         }

@@ -135,26 +135,33 @@ public class EstatPeticionsGestorFragment extends Fragment {
                                     String date = order.getString("date");
                                     String state = order.getString("state");
                                     String email_pacient = order.getString("patient_email");
-                                    JSONArray medicineData = null;
-                                    JSONArray medicineList = order.getJSONArray("medicine_list");
+                                    //JSONArray medicineData = null;
+                                    //JSONArray medicineList = order.getJSONArray("medicine_list");
                                     //JSONArray medicines = new JSONArray<>();
+                                    JSONArray medicineList = order.getJSONArray("medicine_list");
+                                    ArrayList<JSONArray> medicines = new ArrayList<>();
+                                    System.out.println(orderIdentifier);
+
                                     for (int j = 0; j < medicineList.length(); j++) {
-                                        medicineData = medicineList.getJSONArray(j);
-                                        //System.out.println("Medicine: " + medicines.get(j));
-                                        //JSONObject medicine = medicineList.getJSONObject(j);
+                                        JSONArray medicineData = medicineList.getJSONArray(j);
+                                        System.out.println("medicina" + medicineData.getJSONObject(0));
+                                        System.out.println("cantitat" + medicineData.getInt(1));
+
+                                        medicines.add(medicineList.getJSONArray(j));
+
+                                        // Aquí pots realitzar les operacions addicionals que necessitis amb el national code i la quantitat
                                     }
 
                                     System.out.println("Order Identifier: " + orderIdentifier);
                                     System.out.println("Date: " + date);
                                     System.out.println("State: " + state);
-                                    System.out.println("email: " + email_pacient);
                                     // Imprimir los detalles de los medicamentos
                                     /*for (Medicine medicine : medicines) {
                                         System.out.println("Medicine: " + medicine.getName());
                                         // Imprimir otros detalles del medicamento
                                     }*/
-
-                                    //list_peticions.add(new Peticio(email_pacient, orderIdentifier, date, state, medicineData));
+                                    String et_email = null;
+                                    list_peticions.add(new Peticio(et_email, orderIdentifier, date, state, order.getJSONArray("medicine_list")));
                                 }
                                 Creacio_elements_RecyclerView(list_peticions);
                             }
