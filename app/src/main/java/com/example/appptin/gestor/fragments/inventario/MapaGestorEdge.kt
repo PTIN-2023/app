@@ -85,6 +85,9 @@ class MapaGestorEdge : AppCompatActivity() {
     private val dronePositions: MutableList<DronData> = mutableListOf()
     private val beehivePositions: MutableList<BeehiveData> = mutableListOf()
 
+    private var popupDisplayedCotxe = false
+    private var popupDisplayedDron = false
+
     //private var carBitmap: Bitmap? = null
     //private var droneBitmap: Bitmap? = null
 
@@ -330,7 +333,7 @@ class MapaGestorEdge : AppCompatActivity() {
             markerList.add(pointAnnotationOptions)
         }
 
-        var droneBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.baseline_airplanemode_active_24))
+        var droneBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.dron))
         for (i in 0 until droneLongitudeList.size){
             val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
                 //.withPoint(Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i)))
@@ -365,7 +368,7 @@ class MapaGestorEdge : AppCompatActivity() {
                 println("Distancia de:$distance")
 
                 // Ajustar tolerància distància entre click i marker
-                val thresholdDistance = 0.01 // Exemple: 0.01 graus
+                val thresholdDistance = 0.001 // Exemple: 0.01 graus
 
                 if (distance <= thresholdDistance) {
                     trobat = true
@@ -377,13 +380,17 @@ class MapaGestorEdge : AppCompatActivity() {
                             "Posició actual: [" + carPosition.position.latitude() + ", " + carPosition.position.longitude() + "]\n" +
                             "Posició d'inici: [" + carPosition.puntInici.latitude() + ", " + carPosition.puntInici.longitude() + "]\n" +
                             "Posició destí: [" + carPosition.puntDesti.latitude() + ", " + carPosition.puntDesti.longitude() + "]"
-                    AlertDialog.Builder(this)
-                        .setTitle("Informació cotxe " + carPosition.id)
-                        .setMessage(message)
-                        .setPositiveButton("Ok") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                        .show()
+                    if (!popupDisplayedCotxe) {
+                        popupDisplayedCotxe = true
+                        AlertDialog.Builder(this)
+                            .setTitle("Informació cotxe ${carPosition.id}")
+                            .setMessage(message)
+                            .setPositiveButton("Ok") { dialog, _ ->
+                                dialog.dismiss()
+                                popupDisplayedCotxe = false
+                            }
+                            .show()
+                    }
                 }
             }
 
@@ -394,11 +401,11 @@ class MapaGestorEdge : AppCompatActivity() {
             println("Distancia de:$distance")
 
             // Ajustar tolerància distància entre click i marker
-            val thresholdDistance = 0.01 // Exemple: 0.01 graus
+            val thresholdDistance = 0.001 // Exemple: 0.01 graus
 
             if (distance <= thresholdDistance) {
                 trobat = true
-                // És una posició de cotxe propera al clic
+                // És una posició de drone propera al clic
                 val message = "ID comanda: " + dronPosition.id_order + "\n" +
                         "ID colmena: " + dronPosition.beehive + "\n" +
                         "Estat: " + dronPosition.statusText + "\n" +
@@ -408,13 +415,17 @@ class MapaGestorEdge : AppCompatActivity() {
                         "Posició actual: [" + dronPosition.position.latitude() + ", " + dronPosition.position.longitude() + "]\n" +
                         "Posició d'inici: [" + dronPosition.puntInici.latitude() + ", " + dronPosition.puntInici.longitude() + "]\n" +
                         "Posició destí: [" + dronPosition.puntDesti.latitude() + ", " + dronPosition.puntDesti.longitude() + "]"
-                AlertDialog.Builder(this)
-                    .setTitle("Informació drone " + dronPosition.id)
-                    .setMessage(message)
-                    .setPositiveButton("Ok") { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .show()
+                if (!popupDisplayedDron) {
+                    popupDisplayedDron = true
+                    AlertDialog.Builder(this)
+                        .setTitle("Informació dron ${dronPosition.id}")
+                        .setMessage(message)
+                        .setPositiveButton("Ok") { dialog, _ ->
+                            dialog.dismiss()
+                            popupDisplayedDron = false
+                        }
+                        .show()
+                }
             }
         }
 
@@ -425,7 +436,7 @@ class MapaGestorEdge : AppCompatActivity() {
             println("Distancia de:$distance")
 
             // Ajustar tolerància distància entre click i marker
-            val thresholdDistance = 0.01 // Exemple: 0.01 graus
+            val thresholdDistance = 0.001 // Exemple: 0.01 graus
 
             if (distance <= thresholdDistance) {
                 trobat = true
