@@ -140,9 +140,18 @@ class MapaGestorEdge : AppCompatActivity() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedEdge = spinner.getItemAtPosition(edgeNumber).toString()
-                //if(edgeNumber==1){
-                //    selectedEdge = resources.getString(R.string.api_edge1_url)
-                //}
+                println("selected edge:" + selectedEdge)
+                if(edgeNumber==1){              //AIXÒ ES POT MILLORAR
+                    selectedEdge = resources.getString(R.string.api_edge1_url)
+                }
+                else if(edgeNumber==0){
+                    selectedEdge = resources.getString(R.string.api_edge0_url)
+                }
+
+                else if(edgeNumber==2){
+                    selectedEdge = resources.getString(R.string.api_edge2_url)
+                }
+
                 if(selectedEdge != resources.getString(R.string.api_base_url)){
 
                     //Netejem les coordenades dels cotxes per nomes mostrar els drones
@@ -162,7 +171,9 @@ class MapaGestorEdge : AppCompatActivity() {
                     getDronePosition()
                     startUpdatingDronePosition()
 
-                    val urlObject = getUrlObject(spinner.getItemAtPosition(position).toString())
+
+                    setMapLocation(edgeNumber)
+                    /*val urlObject = getUrlObject(spinner.getItemAtPosition(position).toString())
                     if (urlObject != null) {
                         val latitude = urlObject.getDouble("latitude")
                         val longitude = urlObject.getDouble("longitude")
@@ -171,7 +182,7 @@ class MapaGestorEdge : AppCompatActivity() {
                         ZoomCamera()
                     } else {
                         // No se encontró ningún objeto JSON con la misma URL
-                    }
+                    }*/
                 }
                 else{
                     //Netejem les coordenades dels drones per nomes mostrar els cotxes
@@ -184,7 +195,6 @@ class MapaGestorEdge : AppCompatActivity() {
                     getCarsPosition()
                     startUpdatingCarsPosition()
 
-                    setMapLocation(edgeNumber)
                     //cameraActual = Point.fromLngLat(1.727446, 41.2151504)
                     //zoomActual = 7.0
 
@@ -228,24 +238,23 @@ class MapaGestorEdge : AppCompatActivity() {
 
     private fun setMapLocation(edgeNumber: Int) {
         when (edgeNumber) {
-            1 -> {
+            1 -> { //BARCELONA
 
                 cameraActual = Point.fromLngLat(2.171944, 41.399858)
-                zoomActual = 7.0
+                zoomActual = 13.0
+                println("1 1")
                 ZoomCamera()
             }
-            2 -> {
-                cameraActual = Point.fromLngLat(2.0, 42.0) // Ubicación específica para edge 2
-                zoomActual = 10.0
+            0 -> {  //VILANOVA I LA GELTRÚ 41.221858, 1.726042
+                cameraActual = Point.fromLngLat(1.726042, 41.221858) // Ubicación específica para edge 0
+                zoomActual = 15.0
+                ZoomCamera()
             }
-            3 -> {
-                cameraActual = Point.fromLngLat(3.0, 43.0) // Ubicación específica para edge 3
-                zoomActual = 12.0
+            2 -> { //CUBELLES 41.206857, 1.675534
+                cameraActual = Point.fromLngLat(1.675534, 41.206857) // Ubicación específica para edge 2
+                zoomActual = 16.0
             }
-            else -> {
-                cameraActual = Point.fromLngLat(1.727446, 41.2151504)
-                zoomActual = 7.0
-            }
+
         }
 
         ZoomCamera()
