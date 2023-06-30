@@ -42,7 +42,7 @@ import org.json.JSONObject;
 
 public class RecetaFragment extends Fragment {
 
-    EditText nom_pacient, nom_medicament, duracio;
+    EditText nom_pacient, nom_medicament, duracio, renovacio;
     TextInputEditText notes;
     Button btn_guardar, btn_afegir;
     private PopupWindow popupWindow;
@@ -71,6 +71,7 @@ public class RecetaFragment extends Fragment {
         notes = view.findViewById(R.id.txt_receta_notas);
         btn_guardar = view.findViewById(R.id.btn_recepta_guardar);
         btn_afegir = view.findViewById(R.id.btn_afegir_nou_med_recepta);
+        renovacio = view.findViewById(R.id.et_receta_renovacio);
 
         //Por defecto botón "Guardar desactivado"
         btn_guardar.setEnabled(false);
@@ -163,7 +164,7 @@ public class RecetaFragment extends Fragment {
                 // Enviar los datos a la api
             else
                 api_get_prescription_identifier();
-                api_doctor_create_prescription(nom_pacient.getText().toString(),list_meds_recipe,duracio.getText().toString(),notes.getText().toString());
+                //api_doctor_create_prescription(nom_pacient.getText().toString(),list_meds_recipe,duracio.getText().toString(),notes.getText().toString(), renovacio.getText().toString());
         }
     };
 
@@ -260,8 +261,6 @@ public class RecetaFragment extends Fragment {
             e.printStackTrace();
         }
 
-
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -274,6 +273,7 @@ public class RecetaFragment extends Fragment {
                         System.out.println("llego el identifier");
                         System.out.println(response.getString("prescription_identifier"));
                         p_identifier = response.getString("prescription_identifier");
+                        api_doctor_create_prescription(nom_pacient.getText().toString(),list_meds_recipe,duracio.getText().toString(),notes.getText().toString(), renovacio.getText().toString());
                     }
                     // Caso no exitoso, crear algún dialogo
                     else{
@@ -297,7 +297,7 @@ public class RecetaFragment extends Fragment {
         //api_doctor_create_prescription(nom_pacient.getText().toString(),list_meds_recipe,duracio.getText().toString(),notes.getText().toString());
     }
 
-    private void api_doctor_create_prescription(String paciente, JSONArray list_meds_recipe_full, String duracion, String notas){
+    private void api_doctor_create_prescription(String paciente, JSONArray list_meds_recipe_full, String duracion, String notas, String renovacio){
         System.out.println("send the new prescription");
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -321,6 +321,7 @@ public class RecetaFragment extends Fragment {
 
             jsonBody.put("duration", duracion);
             jsonBody.put("notes", notas);
+            jsonBody.put("renawal", renovacio);
             System.out.println("Mensaje a enviar: " + jsonBody);
 
         } catch (JSONException e) {

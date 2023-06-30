@@ -131,11 +131,13 @@
     <string name="info_receta_paciente">Nom complet pacient:</string>
     <string name="info_receta_medicamento">Medicaments:</string>
     <string name="info_receta_duracio">Duració tractament:</string>
+    <string name="info_receta_renovacio">Renovació tractament:</string>
     <string name="info_receta_nota">Notes:</string>
     <string name="info_receta_guardar">Desar canvis</string>
     <string name="info_receta_text_paciente">Pacient</string>
     <string name="info_receta_text_medicamento">Medicament</string>
     <string name="info_receta_text_duracio">Duració</string>
+    <string name="info_receta_text_renovacio">Renovació</string>
     <string name="info_receta_text_nota">Escriu aquí...</string>
     <string name="info_receta_popup">Afegir medicament a la recepta</string>
     <string name="info_receta_popup_aceptar">Acceptar</string>
