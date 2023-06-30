@@ -122,13 +122,35 @@
 
                 </LinearLayout>
 
-            <LinearLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textStyle="bold"
+                        android:text="@string/info_receta_renovacio"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/et_receta_renovacio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/info_receta_text_renovacio"
+                        android:fontFamily="@font/rinkart_italic"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+                <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
                 android:orientation="vertical">
 
-                <TextView
+                    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rinkart_italic"

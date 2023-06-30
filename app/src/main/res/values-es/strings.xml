@@ -325,6 +325,7 @@
     <string name="info_receta_paciente">Nombre completo paciente:</string>
     <string name="info_receta_medicamento">Medicamentos:</string>
     <string name="info_receta_duracio">Duración tratamiento:</string>
+    <string name="info_receta_renovacio">Renovación tratamiento:</string>
     <string name="info_receta_nota">Notas:</string>
     <string name="info_receta_guardar">Guardar cambios</string>
     <string name="info_receta_text_paciente">Paciente</string>
@@ -332,6 +333,7 @@
     <string name="info_receta_popup_aceptar">Aceptar</string>
     <string name="info_receta_popup_cancelar">Cancelar</string>
     <string name="info_receta_text_duracio">Duración</string>
+    <string name="info_receta_text_renovacio">Renovación</string>
     <string name="info_receta_text_nota">Escribe aquí...</string>
     <string name="titulo_recepta">Recetas</string>
     <string name="info_receta_popup_codi">Código del medicamento</string>
