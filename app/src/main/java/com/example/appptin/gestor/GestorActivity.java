@@ -66,7 +66,7 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         getUserInfo(session_token);
 
         //Crear los fragments para el menú
-        inventarioGestorFragment = new InventarioGestorFragment(session_token, this);
+        inventarioGestorFragment = new InventarioGestorFragment();
         gestorFragment = new PerfilGestorFragment();
         estatPeticionsGestorFragment = new EstatPeticionsGestorFragment();
         //crearUsersFragment = new CrearUsersFragment();

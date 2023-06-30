@@ -57,83 +57,6 @@ public class InventarioGestorFragment extends Fragment {
         // Constructor vacío requerido para los fragmentos.
     }
 
-    public InventarioGestorFragment(String session_token, Activity gestorActivity) {
-        System.out.println("session token inventario: " + session_token);
-        System.out.println("activit inventario: " + gestorActivity);
-
-        RequestQueue queue = Volley.newRequestQueue(gestorActivity);
-        String apiUrl = "http://147.83.159.195:24105";
-        String url = apiUrl + "/api/list_inventory_meds";
-        JSONObject jsonObject = new JSONObject();
-
-
-
-        try {
-            jsonObject.put("session_token", session_token);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        arrayList = new ArrayList<>();
-        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                System.out.println(response);
-                try {
-                    String result = response.getString("result");
-                    System.out.println("resultat: " + result);
-                    if (result.equals("ok")) {
-                        JSONArray arraymed = response.getJSONArray("medicines");
-                        System.out.println(arraymed);
-                        for (int i = 0; i < arraymed.length(); i++) {
-                            JSONObject jsonObject = arraymed.getJSONObject(i);
-
-                            // Acceder a los campos del objeto JSON
-                            String typeOfAdministration = jsonObject.getString("type_of_administration");
-                            String nationalCode = jsonObject.getString("national_code");
-                            String form = jsonObject.getString("form");
-                            String medName = jsonObject.getString("medicine_name");
-                            String URLimage = jsonObject.getString("medicine_image_url");
-                            String useType = jsonObject.getString("use_type");
-                            double pvp = jsonObject.getDouble("pvp");
-                            int cantidad = jsonObject.getInt("quantity_available");
-
-                            JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipients");
-                            ArrayList<String> excipients = new ArrayList<String>();
-                            for (int j = 0; j < jsonarray_prospecto.length(); j++) {
-                                excipients.add(jsonarray_prospecto.getString(j));
-                            }
-
-                            boolean prescriptionNeeded = jsonObject.getBoolean("prescription_needed");
-                            //String tipusUs = jsonObject.getString("tipus_us");
-
-                            arrayList.add
-                                    (new MedicamentosClass(medName, URLimage, nationalCode, useType, typeOfAdministration, prescriptionNeeded, pvp, cantidad, form, excipients));
-                            System.out.println(arrayList);
-                        }
-                        //Agregar los elementos del RecyclerView
-                        Creacion_elementos_RecyclerView(arrayList);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Manejo de errores de la solicitud
-                error.printStackTrace();
-            }
-        });
-
-        queue.add(jsonArrayRequest);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -195,7 +118,7 @@ public class InventarioGestorFragment extends Fragment {
             //jsonObject.put("filter", false);
 
             JSONObject filtre = new JSONObject();
-            filtre.put("meds_per_page", 8);
+            filtre.put("meds_per_page", 20);
             filtre.put("page", 1);
 
             if (medName != null && !medName.isEmpty()) {
