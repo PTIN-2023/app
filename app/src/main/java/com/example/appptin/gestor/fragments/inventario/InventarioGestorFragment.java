@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -105,7 +106,8 @@ public class InventarioGestorFragment extends Fragment {
             }
         }
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String apiUrl = "http://147.83.159.195:24105";
+        Resources r = getResources();
+        String apiUrl = r.getString(R.string.api_base_url);
         String url = apiUrl + "/api/list_inventory_meds";
         JSONObject jsonObject = new JSONObject();
         try {
