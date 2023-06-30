@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
 
     implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
+    implementation 'com.airbnb.android:lottie:3.4.1'
 
     // Michael Zerpa - 25/05/2023 - dependencia para fotos circulares
     implementation 'de.hdodenhof:circleimageview:3.1.0'

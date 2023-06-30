@@ -181,7 +181,7 @@ public class login extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             //showAlert("user/password not found");
-                            //showerror("L'usuari NO existeix. Crea un compte");
+                            showerror("L'usuari NO existeix. Crea un compte");
                             //e.printStackTrace();
                         }
                     }
