@@ -3,12 +3,14 @@ package com.example.appptin;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -54,18 +56,14 @@ public class login extends AppCompatActivity {
 
     private static String session_token;
 
+    private ProgressDialog progressDialog;
+    private boolean progressDialogShowing = false;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        // Inicializar el cliente de inicio de sesión de Google
-        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
     }
 
     public void login(View view) throws JSONException {
@@ -92,19 +90,32 @@ public class login extends AppCompatActivity {
         */
         // Aqui fem la consulta amb la API a la base de dades per veure si existeix el usuari
 
-        if(_correu != "admin@1234" && _contrassenya != "1234"){
-            login(_correu, _contrassenya);
-        }
         //!_correu.contains("@")
-        else if(_correu.isEmpty() || _correu != "admin@1234"){
-            showerror(inputcorreu, "El correu es incorrecte o està buit");
+        if(_correu.isEmpty() && _contrassenya.isEmpty()){
+            showerror(inputcorreu, "El correu esta buit");
+            showerror(input_contrassenya, "La contrassenya està buida");
         }
 
-        else if(_contrassenya.isEmpty() || _contrassenya != "1234"){
-            showerror(input_contrassenya, "La contrassenya està buida o es incorrecta");
+        else if(_contrassenya.isEmpty()){
+            showerror(input_contrassenya, "La contrassenya està buida");
         }
+
+        else if(_correu.isEmpty()){
+            showerror(inputcorreu, "El correu esta buit");
+        }
+
+        else if(!_correu.contains("@")){
+            showerror(inputcorreu, "El correu no conté '@'");
+        }
+
         else {
-            Toast.makeText(this, "Call Registration Method", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Call Registration Method", Toast.LENGTH_SHORT).show();
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Logging in...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            login(_correu, _contrassenya);
+
         }
     }
 
@@ -113,58 +124,8 @@ public class login extends AppCompatActivity {
         input.requestFocus();
     }
 
-    public void loginWithGoogle(View view) {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
     private static final int RC_SIGN_IN = 9001;
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Resultado del inicio de sesión de Google
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Inicio de sesión exitoso
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-
-                // Obtener el token de OAuth 2.0
-                String oauthToken = account.getIdToken();
-
-                // Guardar el token en una variable
-                // Puedes usar una variable global o una SharedPreferences
-                // En este ejemplo, se guarda en una variable global llamada oauthToken
-                this.oauthToken = oauthToken;
-
-                // Aquí se puede obtener el nombre, correo electrónico y otros datos del usuario de la cuenta de Google
-                // y utilizarlos para el inicio de sesión en la aplicación
-                SharedPreferences preferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("email", account.getEmail());
-                editor.apply();
-
-                // Guardamos en variables el correo y el password para acceder a la base de datos
-                String email = preferences.getString("email", "");
-
-                login(email, oauthToken);
-
-                // Cambiamos de actividad
-                // Aquí se puede obtener el nombre, correo electrónico y otros datos del usuario de la cuenta de Google
-                // y utilizarlos para el inicio de sesión en la aplicación
-                //Intent intent = new Intent(this, Welcome_popup.class); // Reemplaza NuevaActividad con el nombre de la actividad a la que quieres ir
-                //startActivity(intent);
-
-            } catch (ApiException e) {
-                // Inicio de sesión fallido
-                Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 
     private boolean login(String email, String password) throws JSONException {
 
@@ -216,10 +177,12 @@ public class login extends AppCompatActivity {
                             } else {
                                 System.out.println("L'usuari NO existeix");
                                 //Fer Pop-Up o algo per notificar l'usuari
+                                showerror("L'usuari NO existeix. Crea un compte");
                             }
                         } catch (JSONException e) {
-                            showAlert("user/password not found");
-                            e.printStackTrace();
+                            //showAlert("user/password not found");
+                            //showerror("L'usuari NO existeix. Crea un compte");
+                            //e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -241,7 +204,41 @@ public class login extends AppCompatActivity {
                     }
                 });
         queue.add(jsonObjectRequest);
+
+        // Dismiss the progress dialog after 2 seconds
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dismissProgressDialog();
+            }
+        }, 2000);
+
         return exists;
+    }
+
+    private void dismissProgressDialog() {
+        try {
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        } catch (IllegalArgumentException e) {
+            // Catch the exception to handle the case when the activity is already destroyed or not attached to the window
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        dismissProgressDialog();
+    }
+
+    private void showerror(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Error");
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", null);
+        builder.show();
     }
 
     private void navigateToMainActivity(String session_token) {
