@@ -174,7 +174,7 @@ public class MedicamentsFragment extends Fragment {
             //jsonObject.put("filter", false);
 
             JSONObject filtre = new JSONObject();
-            filtre.put("meds_per_page", 8);
+            filtre.put("meds_per_page", 20);
             filtre.put("page", 1);
 
             if (medName != null && !medName.isEmpty()) {

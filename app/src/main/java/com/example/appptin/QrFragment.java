@@ -365,7 +365,8 @@ public class                                              QrFragment extends Fra
 
                             JSONArray medsArray = null;  // Assuming the array of medications is under key "meds_details"
                             try {
-                                medsArray = response.getJSONArray("meds_details");
+                                medsArray = response.getJSONArray("medicine_list");
+                                System.out.println("medicine list: " + medsArray);
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }
@@ -374,10 +375,10 @@ public class                                              QrFragment extends Fra
                                 JSONObject medicament = new JSONObject();
                                 try {
                                     medObject = medsArray.getJSONObject(i);
-                                    medicament.put("nationalCode", medObject.getString("national_code"));
-                                    medicament.put("medName", medObject.getString("med_name"));
+                                    medicament.put("nationalCode", medObject.getString("medicine_identifier"));
+                                    medicament.put("medName", medObject.getString("medicine_name"));
                                     medicament.put("pvp", medObject.getString("pvp"));
-                                    medicament.put("quantitat", 1);
+                                    medicament.put("quantitat", Integer.parseInt(medObject.getString("quantitat")));
                                     //JSONObject medId = medObject("_id"); // Assuming the ID is under key "_id"
                                     MainActivity.setListaMedicamentos(medicament);
                                 } catch (JSONException e) {
