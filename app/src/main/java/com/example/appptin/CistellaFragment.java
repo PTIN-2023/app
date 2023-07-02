@@ -154,7 +154,7 @@ public class CistellaFragment extends Fragment {
             String medName = jsonObject.getString("medName");
             float pvp = (float) jsonObject.getDouble("pvp");
             int cantidad = jsonObject.getInt("quantitat");
-            int limit_quantity = jsonObject.getInt("quantity_available");
+            //int limit_quantity = jsonObject.getInt("quantity_available");
 
 
 
@@ -164,7 +164,7 @@ public class CistellaFragment extends Fragment {
             producte.put("nom", medName);
             producte.put("quantitat", cantidad);
             producte.put("preu", pvp);
-            producte.put("limit_disponible", limit_quantity);
+            //producte.put("limit_disponible", limit_quantity);
 
 
             // Añadirlos a la lista

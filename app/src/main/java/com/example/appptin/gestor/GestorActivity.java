@@ -201,6 +201,7 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Cerrar Sesión")

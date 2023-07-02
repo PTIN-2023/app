@@ -275,6 +275,7 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Cerrar Sesión")
