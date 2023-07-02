@@ -81,7 +81,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:text="@string/dron_accion_info"
-                        android:textSize="25sp"/>
+                        android:textSize="25sp"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <Spinner
                         android:id="@+id/spinner_options_dron"
@@ -89,7 +90,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30sp"
                         android:fontFamily="@font/rinkart"
-                        android:entries="@array/opciones_anomalias_coche" />
+                        android:entries="@array/opciones_anomalias_coche"
+                        app:layout_constraintTop_toBottomOf="@id/btn_dron_accion_info" />
 
                     <Button
                         android:id="@+id/btn_validate_dron"
@@ -97,7 +99,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:text="Confirmar"
-                        android:textSize="25sp"/>
+                        android:textSize="25sp"
+                        app:layout_constraintTop_toBottomOf="@id/spinner_options_dron" />
 
                 </LinearLayout>
 

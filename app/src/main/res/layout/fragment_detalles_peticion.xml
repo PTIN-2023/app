@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,8 +20,8 @@
             android:background="?attr/colorPrimary"
             android:textSize="22dp"
             android:textStyle="bold"
-            android:text="@string/info_pacient">
-        </TextView>
+            android:text="@string/info_pacient"
+            android:layout_gravity="start" />
 
         <GridLayout
             android:id="@+id/grid_layout_primero"
@@ -41,7 +42,8 @@
                 android:layout_margin="5dp"
                 android:fontFamily="@font/rinkart"
                 android:textSize="18dp"
-                android:text="@string/nom_info_pacient" />
+                android:text="@string/nom_info_pacient"
+                android:layout_gravity="start" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -53,7 +55,8 @@
                 android:layout_margin="5dp"
                 android:fontFamily="@font/rinkart"
                 android:textSize="18dp"
-                android:text="@string/aprobar" />
+                android:text="@string/aprobar"
+                android:layout_gravity="start" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -65,7 +68,8 @@
                 android:layout_margin="5dp"
                 android:fontFamily="@font/rinkart"
                 android:textSize="18dp"
-                android:text="@string/info_fecha_peticion" />
+                android:text="@string/info_fecha_peticion"
+                android:layout_gravity="start" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -77,7 +81,8 @@
                 android:layout_margin="5dp"
                 android:fontFamily="@font/rinkart"
                 android:textSize="18dp"
-                android:text="@string/n_comanda_info_pacient" />
+                android:text="@string/n_comanda_info_pacient"
+                android:layout_gravity="start" />
 
             <TextView
                 android:id="@+id/txt_nombre_historial"
@@ -88,7 +93,8 @@
                 android:layout_column="1"
                 android:layout_margin="5dp"
                 android:textSize="18dp"
-                android:hint="@string/info_pacient_nom" />
+                android:hint="@string/info_pacient_nom"
+                android:layout_gravity="start" />
 
             <TextView
                 android:id="@+id/txt_apellido_historial"
@@ -99,7 +105,8 @@
                 android:layout_column="1"
                 android:layout_margin="5dp"
                 android:textSize="18dp"
-                android:hint="Yes" />
+                android:hint="Yes"
+                android:layout_gravity="start" />
 
             <TextView
                 android:id="@+id/txt_dni_historial"
@@ -110,7 +117,8 @@
                 android:layout_column="1"
                 android:layout_margin="5dp"
                 android:textSize="18dp"
-                android:hint="DNI o NIF" />
+                android:hint="DNI o NIF"
+                android:layout_gravity="start" />
 
             <TextView
                 android:id="@+id/txt_detalles_pedido"
@@ -121,8 +129,10 @@
                 android:layout_column="1"
                 android:layout_margin="5dp"
                 android:textSize="18dp"
-                android:hint="@string/n_ref_comanda" />
+                android:hint="@string/n_ref_comanda"
+                android:layout_gravity="start" />
         </GridLayout>
+
         <TextView
             android:id="@+id/textView13"
             android:layout_width="match_parent"
@@ -132,7 +142,8 @@
             android:fontFamily="@font/rinkart"
             android:textSize="22dp"
             android:textStyle="bold"
-            android:text="@string/llista_medicaments" />
+            android:text="@string/llista_medicaments"
+            android:layout_gravity="start" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ListView_Peticion"

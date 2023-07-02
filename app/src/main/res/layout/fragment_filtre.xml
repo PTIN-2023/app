@@ -1,131 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/bt_X"
             android:layout_width="67dp"
             android:layout_height="wrap_content"
-            android:text="X" />
+            android:text="X"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPrice" />
 
-
-        <!-- Price range slider -->
         <TextView
             android:id="@+id/textViewPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="26dp"
             android:text="@string/price"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/bt_X"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-
-        <!-- Min and Max price input fields -->
         <EditText
             android:id="@+id/editTextMinPrice"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/min_price" />
+            android:hint="@string/min_price"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
             android:id="@+id/editTextMaxPrice"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/max_price" />
+            android:hint="@string/max_price"
+            app:layout_constraintTop_toBottomOf="@+id/editTextMinPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Prescription needed checkbox -->
         <CheckBox
             android:id="@+id/checkBoxPrescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="26dp"
-            android:text="@string/prescription_needed" />
+            android:text="@string/prescription_needed"
+            app:layout_constraintTop_toBottomOf="@+id/editTextMaxPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Pill ingestion methods checkboxes -->
         <TextView
             android:id="@+id/textViewVia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/viaa"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxPrescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/checkBoxOral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/orall" />
+            android:text="@string/orall"
+            app:layout_constraintTop_toBottomOf="@+id/textViewVia"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/checkBoxTopicos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/topicals" />
+            android:text="@string/topicals"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxOral"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-
-        <!-- Pill format checkboxes -->
         <TextView
             android:id="@+id/textViewFormat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="26dp"
             android:text="@string/formatt"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxTopicos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/checkBoxTabletas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tablets" />
+            android:text="@string/tablets"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFormat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/checkBoxCapsulas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/capsules" />
+            android:text="@string/capsules"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxTabletas"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/checkBoxLiquidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/liquids" />
+            android:text="@string/liquids"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxCapsulas"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/checkBoxGel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/gel" />
+            android:text="@string/gel"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxLiquidos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/checkBoxCrema"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/crema" />
+            android:text="@string/crema"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxGel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/checkBoxPols"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Pols" />
+            android:text="@string/Pols"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxCrema"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Apply button -->
         <Button
             android:id="@+id/buttonApply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aplicar" />
+            android:text="Aplicar"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxPols"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

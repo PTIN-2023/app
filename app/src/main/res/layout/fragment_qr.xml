@@ -31,14 +31,14 @@
         android:id="@+id/button_recepta"
         android:layout_width="281dp"
         android:layout_height="69dp"
-        android:text="@string/afegir_codi"
         android:fontFamily="@font/rinkart"
+        android:text="@string/afegir_codi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintTop_toBottomOf="@+id/txtResultant"
+        app:layout_constraintVertical_bias="0.26" />
 
     <EditText
         android:id="@+id/txtResultant"

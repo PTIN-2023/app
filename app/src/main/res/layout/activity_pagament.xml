@@ -1,46 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/payment_method_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="@string/payment_method_title"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="24dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_card_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:drawableLeft="@drawable/baseline_credit_card_24"
         android:text="@string/card_payment"
-        android:textSize="18sp"
         android:textColor="#ffffff"
-        android:layout_marginBottom="32dp"
-        android:drawableLeft="@drawable/baseline_credit_card_24"/>
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_method_title" />
 
     <LinearLayout
         android:id="@+id/card_details_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/btn_card_payment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Visibility "gone" amaga el layout fins que no es crida -->
-        <!-- Camps a ingressar de la targeta -->
+        <!-- Visibility "gone" hides the layout until it's called -->
+        <!-- Fields to enter card details -->
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/card_number_hint"
             android:inputType="text" />
 
-        <!--  -->
+        <!-- Add more card details fields here -->
 
     </LinearLayout>
 
@@ -48,20 +58,26 @@
         android:id="@+id/btn_paypal_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/paypal"
         android:text="@string/paypal_payment"
-        android:textSize="18sp"
         android:textColor="#ffffff"
-        android:layout_marginBottom="32dp"
-        android:drawableLeft="@drawable/paypal"/>
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_card_payment" />
 
     <LinearLayout
         android:id="@+id/paypal_details_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/btn_paypal_payment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Visibility "gone" amaga el layout fins que no es crida -->
+        <!-- Visibility "gone" hides the layout until it's called -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +86,8 @@
             android:textStyle="bold"
             android:textColor="#000000"
             android:layout_marginBottom="24dp"/>
-        <!-- Camps a ingressar de la targeta -->
+
+        <!-- Fields to enter PayPal details -->
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,20 +107,27 @@
         android:id="@+id/crypto_payment_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/baseline_currency_bitcoin_24"
         android:text="@string/crypto_payment"
         android:textColor="#ffffff"
         android:textSize="18sp"
-        android:layout_marginBottom="24dp"
-        android:drawableLeft="@drawable/baseline_currency_bitcoin_24"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_paypal_payment" />
 
     <TextView
+        android:id="@+id/order_summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
         android:text="@string/order_summary"
+        android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/crypto_payment_button" />
 
     <TextView
         android:id="@+id/total_price"
@@ -112,12 +136,21 @@
         android:layout_marginTop="8dp"
         android:text="Total: 0.00 €"
         android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/order_summary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/btn_continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CONTINUA" />
+        android:layout_marginTop="10dp"
+        android:text="CONTINUA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_price"
+        app:layout_constraintVertical_bias="0.0" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
