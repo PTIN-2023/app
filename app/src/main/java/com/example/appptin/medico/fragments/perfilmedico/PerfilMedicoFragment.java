@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.appptin.MainActivity;
 import com.example.appptin.R;
 import com.example.appptin.login;
+import com.example.appptin.login_o_registre;
 import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
 import com.example.appptin.medico.fragments.perfilmedico.opciones.DatoMedicoFragment;
 import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
@@ -161,7 +162,7 @@ public class PerfilMedicoFragment extends Fragment {
                                 editor.clear();
                                 editor.apply(); // O también puedes usar editor.commit();
 
-                                Intent intent = new Intent(getActivity(), welcome_page.class);
+                                Intent intent = new Intent(getActivity(), login_o_registre.class);
                                 startActivity(intent);
 
                             } else {

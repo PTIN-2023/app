@@ -30,6 +30,7 @@ import com.example.appptin.gestor.fragments.CrearUsersFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.ConfigGestorFragment;
 import com.example.appptin.gestor.fragments.pefilgestor.opciones.DatoGestorFragment;
 import com.example.appptin.login;
+import com.example.appptin.login_o_registre;
 import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
 import com.example.appptin.welcome_page;
 
@@ -85,6 +86,7 @@ public class PerfilGestorFragment extends Fragment {
             logout();
         }
     };
+
 
     private View.OnClickListener abrirFragmentDatos = new View.OnClickListener() {
         @Override
@@ -160,7 +162,7 @@ public class PerfilGestorFragment extends Fragment {
                                 editor.clear();
                                 editor.apply(); // O también puedes usar editor.commit();
 
-                                Intent intent = new Intent(getActivity(), welcome_page.class);
+                                Intent intent = new Intent(getActivity(), login_o_registre.class);
                                 startActivity(intent);
 
                             } else {
@@ -180,6 +182,7 @@ public class PerfilGestorFragment extends Fragment {
                 });
 
         queue.add(jsonObjectRequest);
+
         return exists;
     }
 
