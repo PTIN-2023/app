@@ -36,20 +36,9 @@
 
         </RelativeLayout>
 
-        <Switch
-            android:id="@+id/switchTema"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="300dp"
-            android:fontFamily="@font/rinkart"
-            android:text="@string/tema_oscuro"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
@@ -68,6 +57,32 @@
 
             <Spinner
                 android:id="@+id/sp_paciente_idioma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rinkart_italic"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="400dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/linear"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rinkart_italic"
+                android:text="@string/tema_oscuro"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/sp_switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rinkart_italic"
