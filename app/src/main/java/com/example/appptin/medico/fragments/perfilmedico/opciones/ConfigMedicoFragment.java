@@ -104,6 +104,7 @@ public class ConfigMedicoFragment extends Fragment {
         final MedicoActivity ma = (MedicoActivity) getActivity();
         SharedPreferences sp = ma.getSharedPreferences("SP", ma.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sp.edit();
+        final int oldTheme = sp.getInt("Theme",1);
 
         // Establecer el adaptador del spinner del tema
         ArrayAdapter<String> themeAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, new String[]{"Light", "Dark"});
@@ -123,13 +124,19 @@ public class ConfigMedicoFragment extends Fragment {
         sp_theme.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int newTheme;
                 if(position == 0) { // Light
                     editor.putInt("Theme",1);
+                    newTheme = 1;
                 } else { // Dark
                     editor.putInt("Theme",0);
+                    newTheme = 0;
                 }
-                editor.commit();
-                ma.setDayNight();
+                if (newTheme != oldTheme) {
+                    editor.commit();
+                    ma.setDayNight();
+                    ma.onLanguageChanged();
+                }
             }
 
             @Override
