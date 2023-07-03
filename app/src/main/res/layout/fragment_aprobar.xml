@@ -154,7 +154,7 @@
                     android:fontFamily="@font/rinkart"
                     android:background="?attr/colorPrimary"
                     android:textSize="22dp"
-                    android:text="Opinió:"
+                    android:text="@string/info_opinion"
                     />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -172,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart_italic"
                         android:textStyle="bold"
-                        android:hint="Escriu el teu comentari aquí" />
+                        android:hint="@string/info_comentari" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>

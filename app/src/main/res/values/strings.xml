@@ -117,6 +117,8 @@
     <string name="llista_medicaments">Llista de medicaments:</string>
     <string name="info_pacient_aceptar">Acceptar</string>
     <string name="info_pacient_rebutjar">Rebutjar</string>
+    <string name="info_opinion">Opinió:</string>
+    <string name="info_comentari">Escriu el teu comentari aquí</string>
 
     //fragment_datos_medicos.xml
     <string name="id_nom_metge">Nom del metge</string>
@@ -306,7 +308,7 @@
     <string name="flota_seleccionar">Seleccionar:</string>
     <string name="flota_btn_global">GLOBAL</string>
     <string name="flota_btn_local">LOCAL</string>
-    <string name="flota_btn_user">CREAR USUARIO</string>
+    <string name="flota_btn_user">CREAR USUARI</string>
 
     //fragment_coches.xml
     <string name="coches_titulo">Cotxes</string>

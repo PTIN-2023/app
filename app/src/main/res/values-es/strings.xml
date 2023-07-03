@@ -73,7 +73,7 @@
     <string name="flota_seleccionar">Seleccionar:</string>
     <string name="flota_btn_global">GLOBAL</string>
     <string name="flota_btn_local">LOCAL</string>
-    <string name="flota_btn_user">CREAR USUARI</string>
+    <string name="flota_btn_user">CREAR USUARIO</string>
 
     //fragment_coches.xml
     <string name="coches_titulo">Coches</string>
@@ -145,6 +145,8 @@
     <string name="llista_medicaments">Lista de medicamentos:</string>
     <string name="info_pacient_aceptar">Aceptar</string>
     <string name="info_pacient_rebutjar">Rechazar</string>
+    <string name="info_opinion">Opinión:</string>
+    <string name="info_comentari">Escrive tu comentario aquí</string>
 
     //fragment_datos_medicos.xml
     <string name="id_nom_metge">Nombre del médico</string>
@@ -183,6 +185,7 @@
     //fragment_perfil_medico.xml
     <string name="credencials_medic">Credenciales Médicas</string>
     <string name="info_contacte">Información de Contacto</string>
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
