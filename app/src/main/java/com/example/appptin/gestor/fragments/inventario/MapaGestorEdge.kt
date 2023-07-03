@@ -310,8 +310,9 @@ class MapaGestorEdge : AppCompatActivity() {
         // Remueve todos los marcadores
         //pointAnnotationManager?.deleteAll()
         //markerList.clear()
-        clearAnnotation()
 
+        clearAnnotation()
+        println(droneLongitudeList)
         //Click event de marcadors
         pointAnnotationManager?.addClickListener(OnPointAnnotationClickListener {
             annotation:PointAnnotation ->
@@ -337,21 +338,23 @@ class MapaGestorEdge : AppCompatActivity() {
             true
         }
 
-        var carBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.baseline_directions_car_24))
-        for (i in 0 until carLongitudeList.size){
-            val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
-                //.withPoint(Point.fromLngLat(carLongitudeList.get(i), carLatitudeList.get(i)))
-                .withPoint(carPositions[i].position)
-                .withIconImage(carBitmap!!)
-
-            markerList.add(pointAnnotationOptions)
-        }
+        //var carBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.baseline_directions_car_24))
+        //for (i in 0 until carLongitudeList.size){
+        //    val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
+        //        //.withPoint(Point.fromLngLat(carLongitudeList.get(i), carLatitudeList.get(i)))
+        //        .withPoint(carPositions[i].position)
+        //        .withIconImage(carBitmap!!)
+//
+        //    markerList.add(pointAnnotationOptions)
+        //}
 
         var droneBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.dron))
         for (i in 0 until droneLongitudeList.size){
             val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
-                //.withPoint(Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i)))
-                .withPoint(dronePositions[i].position)
+                .withPoint(Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i)))
+               //    val position = Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i))
+               //            dronePositions[i] = position
+               //.withPoint(dronePositions[i].position)
                 .withIconImage(droneBitmap!!)
 
             markerList.add(pointAnnotationOptions)
@@ -367,6 +370,10 @@ class MapaGestorEdge : AppCompatActivity() {
             markerList.add(pointAnnotationOptions)
         }
         pointAnnotationManager?.create(markerList)
+        droneLatitudeList.clear()
+        droneLongitudeList.clear()
+        markerList.clear()
+        println("Limpiar")
 
     }
 
@@ -519,11 +526,11 @@ class MapaGestorEdge : AppCompatActivity() {
     }
 
     private fun checkIfReadyToDrawMarkers() {
-        if (isMapViewReady && (isCarsApiResponseReady || isDroneApiResponseReady) && isBeehivesApiResponseReady) {
+        //if (isMapViewReady && (isCarsApiResponseReady || isDroneApiResponseReady) && isBeehivesApiResponseReady) {
 
             //Crida a la funcio que dibuixa els marcadors
             createMarkerOnMap()
-        }
+        //}
     }
 
     private fun getCarsPosition() {
@@ -604,7 +611,8 @@ class MapaGestorEdge : AppCompatActivity() {
         val sessionToken = sharedPref.getString("session_token", "Valor nulo")  // SI ESTO NO FUNCIONA, UTILIZA LA LÍNEA DE ABAJO
         //val sessionToken = login.sessionToken
         println(sessionToken)
-
+        //droneLatitudeList.clear()
+        //droneLongitudeList.clear()
         jsonObject.put("session_token", sessionToken)
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
@@ -757,6 +765,7 @@ class MapaGestorEdge : AppCompatActivity() {
             override fun run() {
                 runOnUiThread {
                     // Lógica para actualizar la posición de los coches
+
                     getCarsPosition()
                 }
             }

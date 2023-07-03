@@ -161,6 +161,7 @@ class MapaGestor : AppCompatActivity() {
                         cameraActual = Point.fromLngLat(longitude, latitude)
                         zoomActual = 13.0
                         ZoomCamera()
+                        startUpdatingCarsPosition()
                     } else {
                         // No se encontró ningún objeto JSON con la misma URL
                     }
@@ -275,12 +276,12 @@ class MapaGestor : AppCompatActivity() {
             println("Clic en: $latitude, $longitude")
             true
         }
-
+        println("Longitud cotxe" + carLongitudeList)
         var carBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.baseline_directions_car_24))
         for (i in 0 until carLongitudeList.size){
             val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
-                //.withPoint(Point.fromLngLat(carLongitudeList.get(i), carLatitudeList.get(i)))
-                .withPoint(carPositions[i].position)
+                .withPoint(Point.fromLngLat(carLongitudeList.get(i), carLatitudeList.get(i)))
+                //.withPoint(carPositions[i].position)
                 .withIconImage(carBitmap!!)
 
             markerList.add(pointAnnotationOptions)
@@ -305,7 +306,13 @@ class MapaGestor : AppCompatActivity() {
 
             markerList.add(pointAnnotationOptions)
         }
+
         pointAnnotationManager?.create(markerList)
+        carLatitudeList.clear()
+        carLongitudeList.clear()
+        markerList.clear()
+        carPositions.clear()
+        println("Limpiar i carposiition" + carPositions)
 
     }
 
@@ -474,7 +481,8 @@ class MapaGestor : AppCompatActivity() {
         val sessionToken = sharedPref.getString("session_token", "Valor nulo")  // SI ESTO NO FUNCIONA, UTILIZA LA LÍNEA DE ABAJO
         //val sessionToken = login.sessionToken
         println(sessionToken)
-
+        carLatitudeList.clear()
+        carLongitudeList.clear()
         jsonObject.put("session_token", sessionToken)
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
@@ -536,70 +544,71 @@ class MapaGestor : AppCompatActivity() {
 
     private fun getDronePosition() {
         val queue = Volley.newRequestQueue(this)
-        val url = selectedEdge + "/api/drones_full_info" // Reemplaza con la URL de tu API
-        val jsonObject = JSONObject()
+        //val url = selectedEdge + "/api/drones_full_info" // Reemplaza con la URL de tu API
+        //val jsonObject = JSONObject()
+//
+        //val sharedPref = getSharedPreferences("UserPref", Context.MODE_PRIVATE)
+        //val sessionToken = sharedPref.getString("session_token", "Valor nulo")  // SI ESTO NO FUNCIONA, UTILIZA LA LÍNEA DE ABAJO
+        ////val sessionToken = login.sessionToken
+        //println(sessionToken)
+        //droneLatitudeList.clear()
+        //droneLongitudeList.clear()
+        //jsonObject.put("session_token", sessionToken)
+        //val jsonObjectRequest = JsonObjectRequest(
+        //    Request.Method.POST, url, jsonObject,
+        //    { response ->
+        //        if (response.get("result") == "ok"){
+        //            // Maneja la respuesta de la API
+        //            println(response)
+        //            val droneArray = response.getJSONArray("drones")
+        //            println("Numero de drones: " + droneArray.length())
+        //            for (i in 0 until droneArray.length()) {
+        //                val droneObject = droneArray.getJSONObject(i)
+        //                val identificador = droneObject.getInt("id_dron")
+        //                val autonomia = droneObject.getString("autonomy")
+        //                val estat = droneObject.getString("status")
+        //                val bateria = droneObject.getString("battery")
+        //                val ultim_manteniment = droneObject.getString("last_maintenance_date")
+        //                val id_order = droneObject.getInt("order_identifier")
+        //                val id_beehive = droneObject.getInt("id_beehive")
+//
+        //                val punt_inici = droneObject.getJSONObject("location_in ")
+        //                val latitude_inici = punt_inici.getDouble("latitude")
+        //                val longitude_inici = punt_inici.getDouble("longitude")
+//
+        //                val punt_desti = droneObject.getJSONObject("location_end")
+        //                val latitude_desti = punt_desti.getDouble("latitude")
+        //                val longitude_desti = punt_desti.getDouble("longitude")
+//
+        //                val locationAct = droneObject.getJSONObject("location_act")
+        //                val latitude = locationAct.getDouble("latitude")
+        //                val longitude = locationAct.getDouble("longitude")
+        //                println("Coordenades del drone " + droneObject.getInt("id_dron") + ": "
+        //                        + latitude + ", " + longitude)
+//
+        //                droneLatitudeList.add(latitude)
+        //                droneLongitudeList.add(longitude)
+//
+        //                //Guarda posicio drons en el array de posicions dels drons
+        //                val pointInici = Point.fromLngLat(longitude_inici, latitude_inici)
+        //                val pointDesti = Point.fromLngLat(longitude_desti, latitude_desti)
+        //                val point = Point.fromLngLat(longitude, latitude)
+        //                val dronData = MapaGestor.DronData(identificador, estat, bateria, ultim_manteniment, autonomia, id_order, id_beehive, pointInici, pointDesti, point)
+        //                dronePositions.add(dronData)
+        //            }
+//
+        //            // Después de añadir las coordenadas, crea los marcadores en el mapa
+        //            isDroneApiResponseReady = true
+        //            checkIfReadyToDrawMarkers()
+        //        }
+        //    },
+        //    { error ->
+        //        // Maneja el error de la solicitud
+        //        println(error)
+        //    }
+        //)
 
-        val sharedPref = getSharedPreferences("UserPref", Context.MODE_PRIVATE)
-        val sessionToken = sharedPref.getString("session_token", "Valor nulo")  // SI ESTO NO FUNCIONA, UTILIZA LA LÍNEA DE ABAJO
-        //val sessionToken = login.sessionToken
-        println(sessionToken)
-
-        jsonObject.put("session_token", sessionToken)
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, url, jsonObject,
-            { response ->
-                if (response.get("result") == "ok"){
-                    // Maneja la respuesta de la API
-                    println(response)
-                    val droneArray = response.getJSONArray("drones")
-                    println("Numero de drones: " + droneArray.length())
-                    for (i in 0 until droneArray.length()) {
-                        val droneObject = droneArray.getJSONObject(i)
-                        val identificador = droneObject.getInt("id_dron")
-                        val autonomia = droneObject.getString("autonomy")
-                        val estat = droneObject.getString("status")
-                        val bateria = droneObject.getString("battery")
-                        val ultim_manteniment = droneObject.getString("last_maintenance_date")
-                        val id_order = droneObject.getInt("order_identifier")
-                        val id_beehive = droneObject.getInt("id_beehive")
-
-                        val punt_inici = droneObject.getJSONObject("location_in ")
-                        val latitude_inici = punt_inici.getDouble("latitude")
-                        val longitude_inici = punt_inici.getDouble("longitude")
-
-                        val punt_desti = droneObject.getJSONObject("location_end")
-                        val latitude_desti = punt_desti.getDouble("latitude")
-                        val longitude_desti = punt_desti.getDouble("longitude")
-
-                        val locationAct = droneObject.getJSONObject("location_act")
-                        val latitude = locationAct.getDouble("latitude")
-                        val longitude = locationAct.getDouble("longitude")
-                        println("Coordenades del drone " + droneObject.getInt("id_dron") + ": "
-                                + latitude + ", " + longitude)
-
-                        droneLatitudeList.add(latitude)
-                        droneLongitudeList.add(longitude)
-
-                        //Guarda posicio drons en el array de posicions dels drons
-                        val pointInici = Point.fromLngLat(longitude_inici, latitude_inici)
-                        val pointDesti = Point.fromLngLat(longitude_desti, latitude_desti)
-                        val point = Point.fromLngLat(longitude, latitude)
-                        val dronData = MapaGestor.DronData(identificador, estat, bateria, ultim_manteniment, autonomia, id_order, id_beehive, pointInici, pointDesti, point)
-                        dronePositions.add(dronData)
-                    }
-
-                    // Después de añadir las coordenadas, crea los marcadores en el mapa
-                    isDroneApiResponseReady = true
-                    checkIfReadyToDrawMarkers()
-                }
-            },
-            { error ->
-                // Maneja el error de la solicitud
-                println(error)
-            }
-        )
-
-        queue.add(jsonObjectRequest)
+        //queue.add(jsonObjectRequest)
     }
 
     private fun getGlobalBeehivesPosition() {
@@ -642,6 +651,7 @@ class MapaGestor : AppCompatActivity() {
 
                     beehiveLatitudeList.add(latitude)
                     beehiveLongitudeList.add(longitude)
+                    //carPositions.add()
 
                     val edgeObject = JSONObject()
                     edgeObject.put("url", url_beehive)

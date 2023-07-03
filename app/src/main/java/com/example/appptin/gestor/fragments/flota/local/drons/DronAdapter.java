@@ -46,18 +46,29 @@ public class DronAdapter extends RecyclerView.Adapter<DronAdapter.MyHolder>{
     public void onBindViewHolder(@NonNull DronAdapter.MyHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txt_nombre.setText(arrayList.get(position).getNombre_dron());
 
-        //Tratar los colores para el estado
-        int colorRGreen;
-        int color;
-        if(arrayList.get(position).getEstat() == "wait"){
-            colorRGreen = R.color.green_300;
-            color = ContextCompat.getColor(context, colorRGreen);
-            holder.view_estado.setBackgroundColor(color);
-        } else if (arrayList.get(position).getEstat() != "wait") {
-            colorRGreen = R.color.red_300;
-            color = ContextCompat.getColor(context, colorRGreen);
-            holder.view_estado.setBackgroundColor(color);
+        //Tratar los colores para el estado del dron
+        int color = 0;
+        if (arrayList.get(position).getEstat().equals("loading")) {
+            color = ContextCompat.getColor(context, R.color.green_300);
+        } else if (arrayList.get(position).getEstat().equals("unloading")) {
+            color = ContextCompat.getColor(context, R.color.purple_300);
+        } else if (arrayList.get(position).getEstat().equals("delivering")) {
+            color = ContextCompat.getColor(context, R.color.green_300);
+        } else if (arrayList.get(position).getEstat().equals("returning")) {
+            color = ContextCompat.getColor(context, R.color.green_300);
+        } else if (arrayList.get(position).getEstat().equals("waits")) {
+            color = ContextCompat.getColor(context, R.color.yellow_300);
+        } else if (arrayList.get(position).getEstat().equals("awaiting")) {
+            color = ContextCompat.getColor(context, R.color.purple_100);
+        } else if (arrayList.get(position).getEstat().equals("alert")) {
+            color = ContextCompat.getColor(context, R.color.red_900);
+        }else if (arrayList.get(position).getEstat().equals("repairing")) {
+            color = ContextCompat.getColor(context, R.color.blue_300);
+        }else {
+            color = ContextCompat.getColor(context, R.color.grey_900);
         }
+
+        holder.view_estado.setBackgroundColor(color);
 
         holder.contenedorElem.setOnClickListener(new View.OnClickListener() {
             @Override
