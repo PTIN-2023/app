@@ -1,4 +1,4 @@
-package com.example.appptin.medico.fragments.recetaPaciente;
+package com.example.appptin.medico.fragments.recetas.crear;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -42,9 +44,10 @@ import org.json.JSONObject;
 
 public class RecetaFragment extends Fragment {
 
-    EditText nom_pacient, nom_medicament, duracio, renovacio;
-    TextInputEditText notes;
-    Button btn_guardar, btn_afegir;
+    private EditText nom_pacient, nom_medicament, duracio, renovacio;
+    private ImageView iv_regresar;
+    private TextInputEditText notes;
+    private Button btn_guardar, btn_afegir;
     private PopupWindow popupWindow;
 
     private static JSONArray list_meds_recipe;
@@ -72,6 +75,7 @@ public class RecetaFragment extends Fragment {
         btn_guardar = view.findViewById(R.id.btn_recepta_guardar);
         btn_afegir = view.findViewById(R.id.btn_afegir_nou_med_recepta);
         renovacio = view.findViewById(R.id.et_receta_renovacio);
+        iv_regresar = view.findViewById(R.id.iv_receta_crear_back);
 
         //Por defecto botón "Guardar desactivado"
         btn_guardar.setEnabled(false);
@@ -88,6 +92,8 @@ public class RecetaFragment extends Fragment {
         //nueva lista
         list_meds_recipe = new JSONArray();
 
+        iv_regresar.setOnClickListener(regresar);
+
         //arranar el recycler view
         //initRecyclerView(view);
 
@@ -103,6 +109,17 @@ public class RecetaFragment extends Fragment {
 //        recyclerView.setAdapter();
 //    }
 
+    private View.OnClickListener regresar = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Retrocede en la pila de fragmentos
+                fragmentManager.popBackStack();
+            }
+        }
+    };
     private View.OnClickListener afegir = new View.OnClickListener() {
         @Override
         public void onClick(View view) {

@@ -184,6 +184,15 @@
     <string name="credencials_medic">Credencials Mèdiques</string>
     <string name="info_contacte">Informació de Contacte</string>
 
+    // fragment_receta_consultar_crear.xml
+    <string name="receta_crear_consultar_titulo">Gestions de Receptes</string>
+    <string name="receta_crear_consultar_seleccionar">Seleccionar:</string>
+    <string name="receta_crear_consultar_crear">Crear</string>
+    <string name="receta_crear_consultar_historial">Historial</string>
+
+    //fragment_historial_receta.xml
+    <string name="receta_hitorial_titulo">Historial de Receptes</string>
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -345,7 +354,6 @@
     <string name="coche_set_battery_10">set_battery_10</string>
     <string name="coche_set_battery_5">set_battery_5</string>
     <string name="coche_breakdown">breakdown</string>
-
 
 
     //fragment_edge_ciudad.xml

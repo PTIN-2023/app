@@ -1,4 +1,4 @@
-package com.example.appptin.medico.fragments.recetaPaciente;
+package com.example.appptin.medico.fragments.recetas.crear;
 import com.example.appptin.medico.conexion.InformacionBase;
 
 
