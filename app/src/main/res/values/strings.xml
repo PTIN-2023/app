@@ -42,6 +42,7 @@
     <string name="sort_option_quantitat">Quantitat (de menor a major)</string>
     <string name="sort_option_vendes">Vendes (de menor a major)</string>
     <string name="sort_option_ciutat_asc">Ciutat (ascendent)</string>
+    <string name="texto_inventario">Inventari de medicaments</string>
     //fragment_inventaro_medicamento.xml
     <string name="texto_inventari">INVENTARI</string>
     <string name="texto_medicament">Medicament :</string>
@@ -52,6 +53,17 @@
     <string name="hint_numero_esgotat">Número / Esgotat</string>
     <string name="hint_valor_numeric">Valor numèric</string>
     <string name="hint_nom_ciutat">Nom Ciutat</string>
+    <string name="texto_codi">Codi Nacional: </string>
+    <string name="texto_tipo">Tipus: </string>
+    <string name="tipus_med">tipus med</string>
+    <string name="tipus_adminis">Administració: </string>
+    <string name="tipus_administ">Administració</string>
+    <string name="formaa">Forma</string>
+    <string name="preu_venta">Preu de venta: </string>
+    <string name="cuanti">Quantitat</string>
+    <string name="recepta">Recepta: </string>
+    <string name="receptaa">Recepta</string>
+    <string name="actualizar">Actualitzar</string>
     //maps_gestor.xml
     <string-array name="servers">
         <item>Cloud</item>
@@ -252,6 +264,7 @@
 
     //fragment_medicaments.xml
     <string name="medicam"> Medicaments </string>
+    <string name="cerca"> Cerca aquí </string>
 
     //fragment_popup_finalitzar_compra.xml
     <string name="popup_finalitzar_compra">Esteu segur de voler continuar amb la seva comanda?</string>

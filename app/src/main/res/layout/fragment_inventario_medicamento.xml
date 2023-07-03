@@ -80,7 +80,7 @@
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
                         android:layout_marginRight="10dp"
-                        android:text="Codi Nacional: "
+                        android:text="@string/texto_codi"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -107,7 +107,7 @@
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
                         android:layout_marginRight="10dp"
-                        android:text="Tipus: "
+                        android:text="@string/texto_tipo"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -118,7 +118,7 @@
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="tipus med"
+                        android:hint="@string/tipus_med"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -133,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
-                        android:text="Administració: "
+                        android:text="@string/tipus_adminis"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -144,7 +144,7 @@
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="@string/hint_nom_ciutat"
+                        android:hint="@string/tipus_administ"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -170,7 +170,7 @@
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="@string/hint_nom_ciutat"
+                        android:hint="@string/formaa"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -185,7 +185,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
-                        android:text="Preu de venta: "
+                        android:text="@string/preu_venta"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -211,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
-                        android:text="Quantitat: "
+                        android:text="@string/cuanti"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -222,7 +222,7 @@
                         android:maxLines="2"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="Quantitat"
+                        android:hint="@string/quantitat"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -237,7 +237,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rinkart"
                         android:layout_marginBottom="5sp"
-                        android:text="Recepta: "
+                        android:text="@string/recepta"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
 
@@ -248,7 +248,7 @@
                         android:maxLines="1"
                         android:ellipsize="none"
                         android:fontFamily="@font/rinkart_italic"
-                        android:hint="@string/hint_nom_ciutat"
+                        android:hint="@string/receptaa"
                         android:textSize="20sp"/>
 
                 </LinearLayout>
@@ -267,7 +267,7 @@
             android:id="@+id/button_actualitzar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Actualitzar" />
+            android:text="@string/actualizar" />
     </LinearLayout>
 
 </FrameLayout>
