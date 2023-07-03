@@ -159,6 +159,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/checkBoxCrema" />
 
+        <TextView
+            android:id="@+id/textQuantitat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="26dp"
+            android:text="@string/quantitat"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkBoxPols" />
+
+        <!-- Min and Max price input fields -->
+        <EditText
+            android:id="@+id/editTextquantitat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/quantitat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textQuantitat" />
+
         <!-- Apply button -->
         <Button
             android:id="@+id/buttonApply"
@@ -167,7 +190,7 @@
             android:text="Aplicar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxPols" />
+            app:layout_constraintTop_toBottomOf="@id/editTextquantitat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
