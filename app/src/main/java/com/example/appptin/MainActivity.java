@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
     // Variable utilizada para alacenar la lista de medicamentos añadidos para mostrar en la cesta
     private static JSONArray lista_cesta;
 
+    public interface MyCallback {
+        void onSuccess();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +80,20 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
         setDayNight();
 
         //Al iniciar app volem que obri directament pantalla Home
-        replaceFragments(new MedicamentsFragment());
+        //replaceFragments(new MedicamentsFragment());
+        loadData(new MainActivity.MyCallback() {
+            @Override
+            public void onSuccess() {
+                // Carga el fragmento después de que los datos se hayan cargado
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        replaceFragments(new MedicamentsFragment());
+                    }
+                });
+            }
+        });
+
         listView.setVisibility(listView.INVISIBLE);
 
         lista_cesta = new JSONArray();
@@ -114,6 +131,21 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
 
     }
 
+    public void loadData(MyCallback myCallback) {
+        // Aquí es donde cargarías los datos. Esto es solo un ejemplo
+        new Thread(() -> {
+            // simula una operación de red
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // llama al método onSuccess cuando la carga de datos está completa
+            myCallback.onSuccess();
+        }).start();
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
 
@@ -137,11 +169,12 @@ public class MainActivity extends AppCompatActivity  implements ConfigPacienteFr
     }
 
     private void replaceFragments(Fragment fragment){
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout,fragment);
-        fragmentTransaction.commit();
+        if(!isFinishing() && !isDestroyed()) { // Comprobar si la actividad sigue activa
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, fragment);
+            fragmentTransaction.commit();
+        }
     }
 
     //Función para activar modo oscuro

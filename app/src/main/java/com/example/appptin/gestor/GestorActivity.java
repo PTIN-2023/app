@@ -23,6 +23,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appptin.MainActivity;
+import com.example.appptin.MedicamentsFragment;
 import com.example.appptin.R;
 import com.example.appptin.gestor.fragments.CrearUsersFragment;
 import com.example.appptin.gestor.fragments.MapaFragment;
@@ -50,6 +52,10 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
 
     MapaFragment mapaFragment;
 
+    public interface MyCallback {
+        void onSuccess();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +79,38 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         flotaFragment = new FlotaFragment();
         mapaFragment = new MapaFragment();
 
-        loadFragment(inventarioGestorFragment);
-
+        //loadFragment(inventarioGestorFragment);
+        loadData(new GestorActivity.MyCallback() {
+            @Override
+            public void onSuccess() {
+                // Carga el fragmento después de que los datos se hayan cargado
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadFragment(inventarioGestorFragment);
+                    }
+                });
+            }
+        });
 
 
         setDayNight();
 
+    }
+
+    public void loadData(MyCallback myCallback) {
+        // Aquí es donde cargarías los datos. Esto es solo un ejemplo
+        new Thread(() -> {
+            // simula una operación de red
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // llama al método onSuccess cuando la carga de datos está completa
+            myCallback.onSuccess();
+        }).start();
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener nOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -110,10 +142,11 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
     };
 
     public void loadFragment(Fragment fragment){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_container, fragment);
-        transaction.commit();
-
+        if(!isFinishing() && !isDestroyed()) { // Comprobar si la actividad sigue activa
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_container, fragment);
+            transaction.commit();
+        }
     }
 
     //Función para activar modo oscuro
