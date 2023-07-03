@@ -191,16 +191,16 @@ public class login extends AppCompatActivity {
                         // Error al realizar la solicitud
                         error.printStackTrace();
                         Log.w("Error login", "ATENCION: Ha habido un error, se procedera a cargar una sesion de prueba");
-                        Patient patient = new Patient(
-                                "45hgghhbhkkK9*^¨cDDG",
-                                "Manolo de los Palotes",
-                                "Manolin",
-                                "manolo@gmail.com",
-                                "608745633",
-                                "Villalgordo",
-                                "Calle para siempre 6",
-                                null);
-                        navigateToMainActivity("45hgghhbhkkK9*^¨cDDG");
+                        //Patient patient = new Patient(
+                        //        "45hgghhbhkkK9*^¨cDDG",
+                        //        "Manolo de los Palotes",
+                        //        "Manolin",
+                        //        "manolo@gmail.com",
+                        //        "608745633",
+                        //        "Villalgordo",
+                        //        "Calle para siempre 6",
+                        //        null);
+                        //navigateToMainActivity("45hgghhbhkkK9*^¨cDDG");
                     }
                 });
         queue.add(jsonObjectRequest);
@@ -244,6 +244,7 @@ public class login extends AppCompatActivity {
     private void navigateToMainActivity(String session_token) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("session_token", session_token);
+        System.out.println("AAA "+ session_token);
         startActivity(intent);
         finish(); // Esto cerrará la actividad actual (LoginActivity, por ejemplo)
     }

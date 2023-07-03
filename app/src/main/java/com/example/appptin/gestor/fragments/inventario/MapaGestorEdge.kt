@@ -747,7 +747,7 @@ class MapaGestorEdge : AppCompatActivity() {
                     getCarsPosition()
                 }
             }
-        }, 0, 20000) // Actualiza cada 20 segundos (20,000 milisegundos)
+        }, 0, 700) // Actualiza cada 20 segundos (20,000 milisegundos)
     }
 
     private fun stopUpdatingCarsPosition() {
@@ -770,7 +770,7 @@ class MapaGestorEdge : AppCompatActivity() {
                     getDronePosition()
                 }
             }
-        }, 0, 20000) // Actualiza cada 20 segundos (20,000 milisegundos)
+        }, 0, 700) // Actualiza cada 20 segundos (20,000 milisegundos)
     }
 
     private fun stopUpdatingDronePosition() {
