@@ -226,6 +226,7 @@ public class MedicamentsFragment extends Fragment {
                             int quantitat = jsonObject.getInt("quantity_available");
                             double pvp = jsonObject.getDouble("pvp");
                             int limit_quantity = jsonObject.getInt("quantity_available");
+                            System.out.println("Quantity_available" + limit_quantity);
 
                             JSONArray jsonarray_prospecto = jsonObject.getJSONArray("excipients");
                             ArrayList<String> excipients = new ArrayList<String>();

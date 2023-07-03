@@ -73,6 +73,9 @@ public class InventarioGestorFragment extends Fragment {
         opcionSeleccionada = getResources().getStringArray(R.array.sort_options_inventario)[0];
         asignar_elementos(vista);
         // Agafar filtres
+        SharedPreferences sharedPreferencess = getActivity().getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+        String session_tokenn = sharedPreferencess.getString("session_token", "Valor nulo");
+        System.out.println("session token actual: " + session_tokenn);
         String medName = null;
         String pvpMin = null;
         String pvpMax = null;

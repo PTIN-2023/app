@@ -699,7 +699,7 @@ class MapaGestor : AppCompatActivity() {
                     getCarsPosition()
                 }
             }
-        }, 0, 2000) // Actualiza cada 20 segundos (20,000 milisegundos)
+        }, 0, 700) // Actualiza cada 20 segundos (20,000 milisegundos)
     }
 
     private fun stopUpdatingCarsPosition() {
