@@ -78,7 +78,7 @@ class MapaGestor : AppCompatActivity() {
     private var timer: Timer? = null
 
     // Arrays per emmagatzemar les posicions
-    private val carPositions: MutableList<CarData> = mutableListOf()
+    private var carPositions: MutableList<CarData> = mutableListOf()
     private val dronePositions: MutableList<DronData> = mutableListOf()
     private val beehivePositions: MutableList<BeehiveData> = mutableListOf()
 
@@ -179,7 +179,6 @@ class MapaGestor : AppCompatActivity() {
     private fun clearAnnotation(){
         markerList = ArrayList()
         pointAnnotationManager?.deleteAll()
-        carPositions.clear()
     }
 
     //Funcio per afegir marcador
@@ -429,6 +428,7 @@ class MapaGestor : AppCompatActivity() {
                 println("Resposta: " + response)
                 carsArray = response.getJSONArray("cars")
                 println("Numero de cotxes: " + carsArray.length())
+                val carPositionsAux: MutableList<CarData> = mutableListOf()
                 for (i in 0 until carsArray.length()) {
                     val carObject = carsArray.getJSONObject(i)
                     val identificador = carObject.getInt("id_car")
@@ -464,8 +464,10 @@ class MapaGestor : AppCompatActivity() {
                     val pointDesti = Point.fromLngLat(longitude_desti, latitude_desti)
                     val point = Point.fromLngLat(longitude, latitude)
                     val carData = MapaGestor.CarData(identificador, matricula, estat, bateria, ultim_manteniment, arrayOf(), pointInici, pointDesti, point)
-                    carPositions.add(carData)
+                    //carPositions.add(carData)
+                    carPositionsAux.add(carData)
                 }
+                carPositions = carPositionsAux
 
                 // Después de añadir las coordenadas, crea los marcadores en el mapa
                 isCarsApiResponseReady = true
