@@ -16,6 +16,7 @@
         <item>@string/sort_option_quantitat</item>
         <item>@string/sort_option_vendes</item>
         <item>@string/sort_option_ciutat_asc</item>
+        <item>@string/sort_option_ciutat_des</item>
     </string-array>
     <!-- OPCIONES PARA LAS ANOMALIAS DEL COCHE -->
     <string-array name="opciones_anomalias_coche">
