@@ -311,23 +311,25 @@ public class                                              QrFragment extends Fra
             public void onClick(View v) {
                 String code = editText.getText().toString();
 
-                if (code.charAt(0) == '0') {
-                    // Recipe code
-                    code = code.substring(1);
-                    getRecipe(code);
-
-                } else if (code.charAt(0) == '1') {
-                    // Order code
-                    code = code.substring(1);
-                    confirmOrder(code);
+                if (!code.isEmpty()) {
+                    if (code.charAt(0) == '0') {
+                        // Recipe code
+                        code = code.substring(1);
+                        getRecipe(code);
+                    } else if (code.charAt(0) == '1') {
+                        // Order code
+                        code = code.substring(1);
+                        confirmOrder(code);
+                    } else {
+                        showPopupDialog("Codi incorrecte", "Revisa el codi que has introduit per confirmar que és el correcte.");
+                    }
                 } else {
-                    showPopupDialog("Codi incorrecte", "Revisa el codi que has introduit per confirmar que és el correcte.");
+                    // Handle empty code here
+                    showPopupDialog("Codi buit", "Introdueix un codi vàlid per a continuar.");
                 }
+
                 // Mostrar el text en la pantalla home
-
                 popupWindow.dismiss();
-
-
             }
         });
     }

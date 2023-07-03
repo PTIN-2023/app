@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     android:padding="4dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5sp"
+        android:layout_marginLeft="5sp"
+        android:orientation="vertical">
+
     <TextView
         android:id="@+id/cistella_text"
         android:layout_width="wrap_content"
@@ -39,21 +46,21 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ScrollView
-        android:layout_width="399dp"
-        android:layout_height="430dp"
-        app:layout_constraintTop_toBottomOf="@id/card"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_layout">
+        <ScrollView
+            android:layout_width="399dp"
+            android:layout_height="461dp"
+            app:layout_constraintBottom_toTopOf="@id/button_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card">
 
-        <LinearLayout
-            android:id="@+id/linearLayout_cistella"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            <LinearLayout
+                android:id="@+id/linearLayout_cistella"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
-    </ScrollView>
+        </ScrollView>
 
     <LinearLayout
         android:id="@+id/button_layout"
@@ -66,20 +73,23 @@
 
         <Button
             android:id="@+id/btn_finalitzar_compra"
-            android:layout_width="0dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:fontFamily="@font/rinkart"
             android:text="@string/finalitzar_compra" />
 
         <TextView
             android:id="@+id/preu_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="142dp"
+            android:layout_height="37dp"
             android:fontFamily="@font/rinkart"
+            android:gravity="right"
             android:hint="Total: 0€"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
