@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.gms.maps.model.LatLng
 import com.mapbox.maps.plugin.annotation.generated.*
 import com.mapbox.maps.plugin.gestures.addOnMapClickListener
+import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
@@ -87,6 +88,7 @@ class MapaGestor : AppCompatActivity() {
     //private var carBitmap: Bitmap? = null
     //private var droneBitmap: Bitmap? = null
 
+    private lateinit var carsArray: JSONArray
     data class CarData(
         val id: Int,
         val matricula: String,
@@ -131,64 +133,14 @@ class MapaGestor : AppCompatActivity() {
         val spinner = findViewById<Spinner>(R.id.mapSpinner)
         spinner.visibility = View.INVISIBLE
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedEdge = spinner.getItemAtPosition(position).toString()
+        println("Llistes buides: " + carLatitudeList.isEmpty() + ", " + carLongitudeList.isEmpty())
 
-                if(selectedEdge != resources.getString(R.string.api_base_url)){
+        getCarsPosition()
+        startUpdatingCarsPosition()
 
-                    //Netejem les coordenades dels cotxes per nomes mostrar els drones
-                    isCarsApiResponseReady = false
-                    carLatitudeList.clear()
-                    carLongitudeList.clear()
-
-                    //Netejem les coordenades dels drones per nomes mostrar els cotxes
-                    isDroneApiResponseReady = false
-                    droneLatitudeList.clear()
-                    droneLongitudeList.clear()
-
-                    println("Llistes buides: " + carLatitudeList.isEmpty() + ", " + carLongitudeList.isEmpty())
-
-                    //Deixem d'actualitzar la posicio dels cotxes
-                    stopUpdatingCarsPosition()
-                    getDronePosition()
-                    startUpdatingDronePosition()
-
-                    val urlObject = getUrlObject(spinner.getItemAtPosition(position).toString())
-                    if (urlObject != null) {
-                        val latitude = urlObject.getDouble("latitude")
-                        val longitude = urlObject.getDouble("longitude")
-                        cameraActual = Point.fromLngLat(longitude, latitude)
-                        zoomActual = 13.0
-                        ZoomCamera()
-                        startUpdatingCarsPosition()
-                    } else {
-                        // No se encontró ningún objeto JSON con la misma URL
-                    }
-                }
-                else{
-                    //Netejem les coordenades dels drones per nomes mostrar els cotxes
-                    isDroneApiResponseReady = false
-                    droneLatitudeList.clear()
-                    droneLongitudeList.clear()
-
-                    stopUpdatingDronePosition()
-                    getCarsPosition()
-                    startUpdatingCarsPosition()
-
-                    cameraActual = Point.fromLngLat(1.727446, 41.2151504)
-                    zoomActual = 7.0
-                    ZoomCamera()
-                }
-                println("Server actuak: " + selectedEdge)
-
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Este método se llama cuando no se selecciona ninguna opción del Spinner
-                // Puedes manejarlo según tus necesidades
-            }
-        }
+        cameraActual = Point.fromLngLat(1.727446, 41.2151504)
+        zoomActual = 7.0
+        ZoomCamera()
 
         //Funcio de prova per posar marcadors
         //createDummyAList()
@@ -213,8 +165,7 @@ class MapaGestor : AppCompatActivity() {
                         checkIfReadyToDrawMarkers()
                         startUpdatingCarsPosition()
                     }
-                }
-        )
+                });
     }
 
     private fun ZoomCamera(){
@@ -225,23 +176,10 @@ class MapaGestor : AppCompatActivity() {
         )
     }
 
-    //Llista d'exemple de lat lng
-    private fun createDummyAList() {
-        carLatitudeList.add(41.224950)
-        carLongitudeList.add(1.733128)
-
-        carLatitudeList.add(41.224950)
-        carLongitudeList.add(1.743128)
-
-        carLatitudeList.add(41.234950)
-        carLongitudeList.add(1.733128)
-
-
-    }
-
     private fun clearAnnotation(){
         markerList = ArrayList()
         pointAnnotationManager?.deleteAll()
+        carPositions.clear()
     }
 
     //Funcio per afegir marcador
@@ -311,7 +249,7 @@ class MapaGestor : AppCompatActivity() {
         carLatitudeList.clear()
         carLongitudeList.clear()
         markerList.clear()
-        carPositions.clear()
+        //carPositions.clear()
         println("Limpiar i carposiition" + carPositions)
 
     }
@@ -320,9 +258,9 @@ class MapaGestor : AppCompatActivity() {
             var trobat: Boolean = false
             val clickedPosition = LatLng(marker.geometry.latitude(), marker.geometry.longitude())
             println("Clic en: $clickedPosition")
-
+            println("Car positions: ${carPositions.size}")
             for (carPosition in carPositions) {
-                println("Posicions de:${carPosition.position.latitude()}, ${carPosition.position.longitude()}")
+                println("Posicions de: ${carPosition.id}, ${carPosition.position.longitude()}")
                 val carLatLng = LatLng(carPosition.position.latitude(), carPosition.position.longitude())
                 val distance = calculateDistance(clickedPosition, carLatLng)
                 println("Distancia de:$distance")
@@ -489,7 +427,7 @@ class MapaGestor : AppCompatActivity() {
             { response ->
                 // Maneja la respuesta de la API
                 println("Resposta: " + response)
-                val carsArray = response.getJSONArray("cars")
+                carsArray = response.getJSONArray("cars")
                 println("Numero de cotxes: " + carsArray.length())
                 for (i in 0 until carsArray.length()) {
                     val carObject = carsArray.getJSONObject(i)
