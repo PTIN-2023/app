@@ -266,6 +266,8 @@
     <string name="jarabe">Jarabe</string>
     <string name="inyeccion">Inyección</string>
     <string name="apply">Aplicar</string>
+    <string name="ophthalmic">Oftálmico</string>
+    <string name="inhalation">Inhalador</string>
 
     //fragment_medicaments.xml
     <string name="medicam"> Medicamentos </string>

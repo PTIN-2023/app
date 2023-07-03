@@ -93,6 +93,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/checkBoxOral" />
 
+        <CheckBox
+            android:id="@+id/checkBoxInhalation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inhalation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkBoxTopicos" />
+
+        <CheckBox
+            android:id="@+id/checkBoxOphthalmic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ophthalmic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkBoxInhalation" />
+
         <!-- Pill format checkboxes -->
         <TextView
             android:id="@+id/textViewFormat"
@@ -103,7 +121,7 @@
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxTopicos" />
+            app:layout_constraintTop_toBottomOf="@id/checkBoxOphthalmic" />
 
         <CheckBox
             android:id="@+id/checkBoxTabletas"
@@ -159,28 +177,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/checkBoxCrema" />
 
-        <TextView
-            android:id="@+id/textQuantitat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="26dp"
-            android:text="@string/quantitat"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxPols" />
-
-        <!-- Min and Max price input fields -->
-        <EditText
-            android:id="@+id/editTextquantitat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/quantitat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textQuantitat" />
 
         <!-- Apply button -->
         <Button
@@ -190,7 +186,7 @@
             android:text="Aplicar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextquantitat" />
+            app:layout_constraintTop_toBottomOf="@id/checkBoxPols" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

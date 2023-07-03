@@ -298,6 +298,8 @@
     <string name="gel">Gel</string>
     <string name="Pols">Pols</string>
     <string name="Liquid">Liquid</string>
+    <string name="ophthalmic">Oftàlmic</string>
+    <string name="inhalation">Inhalador</string>
 
     <string name="mapes_titulo">Gestions de Mapes</string>
     <string name="flota_titulo">Gestions de Flotes</string>
