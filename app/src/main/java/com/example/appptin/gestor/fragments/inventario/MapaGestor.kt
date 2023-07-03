@@ -129,6 +129,7 @@ class MapaGestor : AppCompatActivity() {
         mapView = findViewById(R.id.mapView)
 
         val spinner = findViewById<Spinner>(R.id.mapSpinner)
+        spinner.visibility = View.INVISIBLE
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -659,7 +660,7 @@ class MapaGestor : AppCompatActivity() {
 
                 }
 
-                val spinner = findViewById<Spinner>(R.id.mapSpinner)
+                //val spinner = findViewById<Spinner>(R.id.mapSpinner)
 
                 // Crear un adaptador personalizat
                 val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinner_edges)
@@ -668,7 +669,7 @@ class MapaGestor : AppCompatActivity() {
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
                 // Asignar l'adaptador al Spinner
-                spinner.adapter = adapter
+                //spinner.adapter = adapter
 
                 // Después de añadir las coordenadas, crea los marcadores de colmenas en el mapa
                 isBeehivesApiResponseReady = true

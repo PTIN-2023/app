@@ -133,6 +133,7 @@ class MapaGestorEdge : AppCompatActivity() {
         mapView = findViewById(R.id.mapView)
 
         val spinner = findViewById<Spinner>(R.id.mapSpinner)
+        spinner.visibility = View.INVISIBLE;
 
         val edgeNumber = intent.getIntExtra("parametreInt", 0)
         println("Valor de edge: $edgeNumber")
@@ -176,7 +177,7 @@ class MapaGestorEdge : AppCompatActivity() {
 
 
                     setMapLocation(edgeNumber)
-                    /*val urlObject = getUrlObject(spinner.getItemAtPosition(position).toString())
+                    val urlObject = getUrlObject(spinner.getItemAtPosition(position).toString())
                     if (urlObject != null) {
                         val latitude = urlObject.getDouble("latitude")
                         val longitude = urlObject.getDouble("longitude")
@@ -185,7 +186,7 @@ class MapaGestorEdge : AppCompatActivity() {
                         ZoomCamera()
                     } else {
                         // No se encontró ningún objeto JSON con la misma URL
-                    }*/
+                    }
                 }
                 else{
                     //Netejem les coordenades dels drones per nomes mostrar els cotxes
@@ -707,7 +708,7 @@ class MapaGestorEdge : AppCompatActivity() {
 
                 }
 
-                val spinner = findViewById<Spinner>(R.id.mapSpinner)
+                //val spinner = findViewById<Spinner>(R.id.mapSpinner)
 
                 // Crear un adaptador personalizat
                 val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinner_edges)
@@ -716,7 +717,7 @@ class MapaGestorEdge : AppCompatActivity() {
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
                 // Asignar l'adaptador al Spinner
-                spinner.adapter = adapter
+                //spinner.adapter = adapter
 
                 // Después de añadir las coordenadas, crea los marcadores de colmenas en el mapa
                 isBeehivesApiResponseReady = true
