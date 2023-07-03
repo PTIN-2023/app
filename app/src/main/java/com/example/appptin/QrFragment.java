@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -363,6 +364,7 @@ public class                                              QrFragment extends Fra
                         }
 
                         if (resultat.equals("ok")) {
+                            int indice=1;
                             System.out.println("Tot ha anat bé");
 
                             JSONArray medsArray = null;  // Assuming the array of medications is under key "meds_details"
@@ -381,14 +383,23 @@ public class                                              QrFragment extends Fra
                                     medicament.put("medName", medObject.getString("medicine_name"));
                                     medicament.put("pvp", medObject.getString("pvp"));
                                     medicament.put("quantitat", Integer.parseInt(medObject.getString("quantitat")));
-                                    medicament.put("quantity_available", Integer.parseInt(medObject.getString("quantitat")));
+                                    medicament.put("quantity_available", Integer.parseInt(medObject.getString("quantity_available")));
                                     //JSONObject medId = medObject("_id"); // Assuming the ID is under key "_id"
-                                    MainActivity.setListaMedicamentos(medicament);
+
+
+
+                                    //Comprobar si el elemento existe
+                                    indice = MainActivity.existeMedicamento(medicament.getString("nationalCode"));
+                                    if (indice < 0) {
+                                        MainActivity.setListaMedicamentos(medicament);
+                                    }
+
                                 } catch (JSONException e) {
                                     throw new RuntimeException(e);
                                 }
                             }
-                            showPopupDialog("Els medicaments de la recepta s'han afegit a la cistella.","");
+                            if (indice<0) showPopupDialog("Els medicaments de la recepta s'han afegit a la cistella.","");
+                            else showPopupDialog("Els medicaments ja es troben afegits a la cistella","");
                         } else {
                             System.out.println("Alguna cosa ha fallat");
                             //Fer Pop-Up o algo per notificar l'usuari

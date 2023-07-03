@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -229,20 +230,18 @@ public class CistellaFragment extends Fragment {
 
             // Sumar Cantidad producto
             btnMes.setOnClickListener(new View.OnClickListener() {
-                private int numClicks = 0;
-
                 @Override
                 public void onClick(View v) {
                     // Acció per a incrementar la quantitat del producte a la cistella
                     int actualQuantitat = (int) producte.get("quantitat");
                     int limit = (int) producte.get("limit_disponible");
 
-                    if (numClicks > 0 && actualQuantitat >= limit) {
+                    if (actualQuantitat >= limit) {
                         // Si es supera el limit, no es fa cap acció
+                        Toast.makeText(getContext(), "No és possible afegir més", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    numClicks++;
                     // Increment quantitat si no es supera el limit disponible
                     if (actualQuantitat < limit) {
                         producte.put("quantitat", actualQuantitat + 1);
