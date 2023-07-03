@@ -381,6 +381,7 @@ public class                                              QrFragment extends Fra
                                     medicament.put("medName", medObject.getString("medicine_name"));
                                     medicament.put("pvp", medObject.getString("pvp"));
                                     medicament.put("quantitat", Integer.parseInt(medObject.getString("quantitat")));
+                                    medicament.put("quantity_available", Integer.parseInt(medObject.getString("quantitat")));
                                     //JSONObject medId = medObject("_id"); // Assuming the ID is under key "_id"
                                     MainActivity.setListaMedicamentos(medicament);
                                 } catch (JSONException e) {
