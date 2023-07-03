@@ -111,7 +111,7 @@ public class DronFragment extends Fragment {
                                     JSONObject droneObject = droneArray.getJSONObject(i);
                                     int identificador = droneObject.getInt("id_dron");
                                     String autonomia = droneObject.getString("autonomy");
-                                    String estat = droneObject.getString("status");
+                                    String estat = droneObject.getString("status_text");
                                     String bateria = droneObject.getString("battery");
                                     String ultim_manteniment = droneObject.getString("last_maintenance_date");
                                     String id_order = droneObject.getString("order_identifier");
