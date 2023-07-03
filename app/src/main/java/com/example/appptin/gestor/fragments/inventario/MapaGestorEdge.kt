@@ -158,7 +158,7 @@ class MapaGestorEdge : AppCompatActivity() {
 
                 if(selectedEdge != resources.getString(R.string.api_base_url)){
 
-                    //Netejem les coordenades dels cotxes per nomes mostrar els drones
+/*                    //Netejem les coordenades dels cotxes per nomes mostrar els drones
                     isCarsApiResponseReady = false
                     carLatitudeList.clear()
                     carLongitudeList.clear()
@@ -166,17 +166,20 @@ class MapaGestorEdge : AppCompatActivity() {
                     //Netejem les coordenades dels drones per nomes mostrar els cotxes
                     isDroneApiResponseReady = false
                     droneLatitudeList.clear()
-                    droneLongitudeList.clear()
+                    droneLongitudeList.clear()*/
 
                     println("Llistes buides: " + carLatitudeList.isEmpty() + ", " + carLongitudeList.isEmpty())
 
                     //Deixem d'actualitzar la posicio dels cotxes
-                    stopUpdatingCarsPosition()
+                    //stopUpdatingCarsPosition()
                     getDronePosition()
                     startUpdatingDronePosition()
+                    getCarsPosition()
+                    startUpdatingCarsPosition()
 
 
                     setMapLocation(edgeNumber)
+                    
                     val urlObject = getUrlObject(spinner.getItemAtPosition(position).toString())
                     if (urlObject != null) {
                         val latitude = urlObject.getDouble("latitude")
@@ -287,6 +290,16 @@ class MapaGestorEdge : AppCompatActivity() {
     }
 
     private fun clearAnnotation(){
+        //Netejem les coordenades dels cotxes per nomes mostrar els drones
+        isCarsApiResponseReady = false
+        carLatitudeList.clear()
+        carLongitudeList.clear()
+
+        //Netejem les coordenades dels drones per nomes mostrar els cotxes
+        isDroneApiResponseReady = false
+        droneLatitudeList.clear()
+        droneLongitudeList.clear()
+
         markerList = ArrayList()
         pointAnnotationManager?.deleteAll()
     }
