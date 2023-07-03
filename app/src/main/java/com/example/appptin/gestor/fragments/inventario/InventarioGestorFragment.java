@@ -357,6 +357,32 @@ public class InventarioGestorFragment extends Fragment {
 
     };
 
+    Comparator<MedicamentosClass> comparadorCantidad = new Comparator<MedicamentosClass>() {
+        @Override
+        //Comparar por nombre
+        public int compare(MedicamentosClass t1, MedicamentosClass t2) {
+            //Cantidad
+            if(ordenAscendente)
+            return Integer.compare(t1.getQuantitat_medicamento(), t2.getQuantitat_medicamento());
+            else
+                return Integer.compare(t2.getQuantitat_medicamento(), t1.getQuantitat_medicamento());
+        }
+    };
+
+    Comparator<MedicamentosClass> comparadorPVP = new Comparator<MedicamentosClass>() {
+        @Override
+        //Comparar por precio
+        public int compare(MedicamentosClass t1, MedicamentosClass t2) {
+            //Ascendiente
+            if(ordenAscendente)
+                return t1.getPvP_medicamento().compareTo(t2.getPvP_medicamento());
+                //Descendiente
+            else
+                return t2.getPvP_medicamento().compareTo(t1.getPvP_medicamento());
+        }
+
+    };
+
     private void ordenarArrayList(ArrayList<MedicamentosClass> lista_elementos) {
         //Lee las opciones del fichero values/arrays.xml
         String[] opciones = getResources().getStringArray(R.array.sort_options_inventario);
@@ -371,6 +397,30 @@ public class InventarioGestorFragment extends Fragment {
             // Ordenar por nombre descendiente
             ordenAscendente = false;
             if (arrayList != null) Collections.sort(arrayList, comparadorNombre);
+            Creacion_elementos_RecyclerView(lista_elementos);
+        }
+        else if (opcionSeleccionada.equals(opciones[2])) {
+            // Ordenar por cantidad
+            ordenAscendente = true;
+            if (arrayList != null) Collections.sort(arrayList, comparadorCantidad);
+            Creacion_elementos_RecyclerView(lista_elementos);
+        }
+        else if (opcionSeleccionada.equals(opciones[3])) {
+            // Ordenar por cantidad
+            ordenAscendente = false;
+            if (arrayList != null) Collections.sort(arrayList, comparadorCantidad);
+            Creacion_elementos_RecyclerView(lista_elementos);
+        }
+        else if (opcionSeleccionada.equals(opciones[4])) {
+            // Ordenar por cantidad
+            ordenAscendente = true;
+            if (arrayList != null) Collections.sort(arrayList, comparadorPVP);
+            Creacion_elementos_RecyclerView(lista_elementos);
+        }
+        else if (opcionSeleccionada.equals(opciones[5])) {
+            // Ordenar por cantidad
+            ordenAscendente = false;
+            if (arrayList != null) Collections.sort(arrayList, comparadorPVP);
             Creacion_elementos_RecyclerView(lista_elementos);
         }
     }

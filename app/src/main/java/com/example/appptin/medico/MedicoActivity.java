@@ -5,11 +5,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appptin.MainActivity;
 import com.example.appptin.R;
-import com.example.appptin.login;
-import com.example.appptin.login_o_registre;
-import com.example.appptin.medico.fragments.recetaPaciente.RecetaFragment;
+import com.example.appptin.medico.fragments.recetas.RecetaConsultarCrearFragment;
+import com.example.appptin.medico.fragments.recetas.crear.RecetaFragment;
 import com.example.appptin.medico.fragments.historialPeticion.HistorialPeticionFragment;
 import com.example.appptin.medico.fragments.perfilmedico.PerfilMedicoFragment;
 import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFragment;
@@ -44,7 +42,7 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
     //AprobarFragment aprobarFragment = new AprobarFragment();
     HistorialPeticionFragment aprobarFragment;
     HistorialPeticionFragment peticionFragment;
-    RecetaFragment historialPacienteFragment;
+    RecetaConsultarCrearFragment fragment_opcion_receta;
     PerfilMedicoFragment medicoFragment;
 
 
@@ -77,7 +75,7 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        historialPacienteFragment = new RecetaFragment();
+        fragment_opcion_receta = new RecetaConsultarCrearFragment();
 
         medicoFragment = new PerfilMedicoFragment();
 
@@ -117,7 +115,7 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
                     loadFragment(peticionFragment);
                     return true;
                 case R.id.menu_historialPaciente:
-                    loadFragment(historialPacienteFragment);
+                    loadFragment(fragment_opcion_receta);
                     return true;
                 case R.id.menu_perfilMedico:
                     loadFragment(medicoFragment);

@@ -117,10 +117,6 @@ public class PeticionAdapter extends RecyclerView.Adapter<PeticionAdapter.MyHold
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            /*dni = itemView.findViewById(R.id.txt_dni);
-            nombre = itemView.findViewById(R.id.txt_nombre);
-            apellido = itemView.findViewById(R.id.txt_apellido);
-             */
             full_name = itemView.findViewById(R.id.txt_full_name);
             fecha_peticion = itemView.findViewById(R.id.txt_fecha_peticion);
 

@@ -40,8 +40,9 @@
     <string name="sort_option_medicament_asc">Medicament (ascendent)</string>
     <string name="sort_option_medicament_desc">Medicament (descendent)</string>
     <string name="sort_option_quantitat">Quantitat (de menor a major)</string>
-    <string name="sort_option_vendes">Vendes (de menor a major)</string>
-    <string name="sort_option_ciutat_asc">Ciutat (ascendent)</string>
+    <string name="sort_option_vendes">Quantitat (de major a menor</string>
+    <string name="sort_option_ciutat_asc">PVP (de menor a major)</string>
+    <string name="sort_option_ciutat_des">PVP (de major a menor)</string>
     <string name="texto_inventario">Inventari de medicaments</string>
     //fragment_inventaro_medicamento.xml
     <string name="texto_inventari">INVENTARI</string>
@@ -183,7 +184,14 @@
     //fragment_perfil_medico.xml
     <string name="credencials_medic">Credencials Mèdiques</string>
     <string name="info_contacte">Informació de Contacte</string>
+    // fragment_receta_consultar_crear.xml
+    <string name="receta_crear_consultar_titulo">Gestions de Receptes</string>
+    <string name="receta_crear_consultar_seleccionar">Seleccionar:</string>
+    <string name="receta_crear_consultar_crear">Crear</string>
+    <string name="receta_crear_consultar_historial">Historial</string>
 
+    //fragment_historial_receta.xml
+    <string name="receta_hitorial_titulo">Historial de Receptes</string>
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
