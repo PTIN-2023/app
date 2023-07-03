@@ -97,15 +97,63 @@ public class AddMedicamentFragment extends Fragment {
         EditText etPvp = view.findViewById(R.id.et_pvp);
         EditText etQuant = view.findViewById(R.id.et_quant);
         Button btnAdd = view.findViewById(R.id.btn_add);
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addMedicine(etNomMed.getText().toString(), etCodiNacional.getText().toString(),
-                        etUseType.getText().toString(), etTypeOfAdm.getText().toString(),
-                        etForm.getText().toString(), etPresNeed.getText().toString(),
-                        etContents.getText().toString(), etExcipients.getText().toString(),
-                        etMedUrl.getText().toString(), etPvp.getText().toString(), etQuant.getText().toString());
-            }
+                String _etNomMed = (etNomMed.getText()).toString();
+                String _etCodiNacional = (etCodiNacional.getText()).toString();
+                String _etUseType = (etUseType.getText()).toString();
+                String _etTypeOfAdm = (etTypeOfAdm.getText()).toString();
+                String _etForm = (etForm.getText()).toString();
+                String _etPresNeed = (etPresNeed.getText()).toString();
+                String _etContents = (etContents.getText()).toString();
+                String _etExcipients = (etExcipients.getText()).toString();
+                String _etMedUrl = (etMedUrl.getText()).toString();
+                String _etPvp = (etPvp.getText()).toString();
+                String _etQuant = (etQuant.getText()).toString();
+
+                if(_etNomMed.isEmpty()) {
+                    showerror(etNomMed, "El nom és buit");
+                }
+                else if(_etCodiNacional.isEmpty()) {
+                    showerror(etCodiNacional, "El codi és buit");
+                }
+                else if(_etUseType.isEmpty()) {
+                    showerror(etUseType, "El tipus d'ús és buit");
+                }
+                else if(_etTypeOfAdm.isEmpty()) {
+                    showerror(etTypeOfAdm, "El tipus d'administració és buit");
+                }
+                else if(_etPresNeed.isEmpty()) {
+                    showerror(etPresNeed, "La prescripció és buida");
+                }
+                else if(_etContents.isEmpty()) {
+                    showerror(etContents, "Els contents son buits");
+                }
+                else if(_etForm.isEmpty()) {
+                    showerror(etForm, "La forma és buida");
+                }
+                else if(_etExcipients.isEmpty()) {
+                    showerror(etExcipients, "Els excipients son buits");
+                }
+                else if(_etPvp.isEmpty()) {
+                    showerror(etPvp, "El preu és buit");
+                }
+                else if(_etMedUrl.isEmpty()) {
+                    showerror(etMedUrl, "La URL és buida");
+                }
+                else if(_etQuant.isEmpty()) {
+                    showerror(etQuant, "La quantitat és buida");
+                }
+                else {
+                    addMedicine(etNomMed.getText().toString(), etCodiNacional.getText().toString(),
+                            etUseType.getText().toString(), etTypeOfAdm.getText().toString(),
+                            etForm.getText().toString(), etPresNeed.getText().toString(),
+                            etContents.getText().toString(), etExcipients.getText().toString(),
+                            etMedUrl.getText().toString(), etPvp.getText().toString(), etQuant.getText().toString());
+                }
+                }
         });
         return view;
     }
@@ -119,6 +167,11 @@ public class AddMedicamentFragment extends Fragment {
             }
         }
     };
+
+    public void showerror(EditText input, String s){
+        input.setError(s);
+        input.requestFocus();
+    }
 
     private void addMedicine(String medName, String medicineIdentifier, String useType,
                              String typeOfAdm, String form, String presNeed, String contents,

@@ -275,13 +275,13 @@ public class PagamentActivity extends AppCompatActivity {
         // Eliminar todos los elementos de la cesta
         MainActivity.deleteCesta();
 
-        /*
+
         FragmentManager fragmentManager = this.getSupportFragmentManager(); // Si estás en un Fragment, utiliza getFragmentManager()
         if (fragmentManager.getBackStackEntryCount() > 0) {
             // Retrocede en la pila de fragmentos
             fragmentManager.popBackStack();
-        }*/
-        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        }
+        //FragmentManager fragmentManager = this.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         //Cambio de Fragment - CISTELLA

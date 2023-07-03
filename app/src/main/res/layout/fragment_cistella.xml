@@ -75,16 +75,15 @@
             android:id="@+id/btn_finalitzar_compra"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_weight="1"
             android:fontFamily="@font/rinkart"
             android:text="@string/finalitzar_compra" />
 
         <TextView
             android:id="@+id/preu_total"
-            android:layout_width="142dp"
-            android:layout_height="37dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/rinkart"
-            android:gravity="right"
             android:hint="Total: 0€"
             android:textSize="20sp"
             android:textStyle="bold" />
