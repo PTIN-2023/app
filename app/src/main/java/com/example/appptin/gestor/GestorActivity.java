@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -93,8 +94,27 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
             }
         });
 
-
         setDayNight();
+        //Agrega el callback para el botón de retroceso
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Aquí puedes manejar el botón de retroceso de la forma que prefieras
+                new AlertDialog.Builder(GestorActivity.this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Cerrar Sesión")
+                        .setMessage("Seguro que quieres salir de tu sesión?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                setEnabled(false); // Esto permitirá que el evento de retroceso se propague de nuevo al sistema, lo que resultará en que tu actividad se cierre
+                                logout();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
 
     }
 
@@ -232,22 +252,6 @@ public class GestorActivity extends AppCompatActivity  implements ConfigGestorFr
         queue.add(jsonObjectRequest);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Cerrar Sesión")
-                .setMessage("Seguro que quieres salir de tu sesión?")
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        logout();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
 
     private boolean logout() {
         boolean exists = false;
