@@ -246,13 +246,13 @@
                         android:text="@string/id_ciutat"
                         android:textSize="20sp"/>
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/et_user_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/id_ciutat"
                         android:fontFamily="@font/rinkart_italic"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:entries="@array/cities" />
 
                 </LinearLayout>
 

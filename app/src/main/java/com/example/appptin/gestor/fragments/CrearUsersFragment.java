@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,7 +41,8 @@ public class CrearUsersFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private EditText userFullName, userGivenName, userEmail, userPhone, userCity, userAddress, userPassword, userRole;
+    private EditText userFullName, userGivenName, userEmail, userPhone, userAddress, userPassword, userRole;
+    private Spinner userCity;
     private Button btnRegister;
 
 
@@ -102,7 +104,7 @@ public class CrearUsersFragment extends Fragment {
                 String givenName = userGivenName.getText().toString();
                 String email = userEmail.getText().toString();
                 String phone = userPhone.getText().toString();
-                String city = userCity.getText().toString();
+                String city = userCity.getSelectedItem().toString();
                 String address = userAddress.getText().toString();
                 String password = userPassword.getText().toString();
                 String role = userRole.getText().toString();

@@ -60,6 +60,13 @@
         <!-- Agrega más opciones según sea necesario -->
     </string-array>
 
+    <string-array name="cities">
+        <item>vilanova i la geltru</item>
+        <item>cubelles</item>
+        <item>barcelona</item>
+        <!-- Agrega más opciones según sea necesario -->
+    </string-array>
+
     //fragment_add_medicament.xml
     <string name="afegir_meds">Afegir Medicaments</string>
     <string name="nom_med">Nom del medicament</string>

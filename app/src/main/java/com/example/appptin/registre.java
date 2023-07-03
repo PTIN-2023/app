@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,8 +42,8 @@ import com.example.appptin.login;
 
 public class registre extends AppCompatActivity {
 
-    EditText input_given_name, input_full_name, input_email, input_password, input_re_password, input_phone, input_city, input_address;
-
+    EditText input_given_name, input_full_name, input_email, input_password, input_re_password, input_phone, input_address;
+    Spinner input_city;
     GoogleSignInClient googleSignInClient;
     private String oauthToken;
 
@@ -68,7 +69,7 @@ public class registre extends AppCompatActivity {
         input_phone = findViewById(R.id.phone);
         input_password = findViewById(R.id.password);
         input_re_password = findViewById(R.id.re_password);
-        input_city = findViewById(R.id.city);
+        input_city = findViewById(R.id.citySpinner);
         input_address = findViewById(R.id.Address);
 
         String given_name = input_given_name.getText().toString();
@@ -77,7 +78,7 @@ public class registre extends AppCompatActivity {
         String phone = input_phone.getText().toString();
         String password = input_password.getText().toString();
         String re_password = input_re_password.getText().toString();
-        String city = input_city.getText().toString();
+        String city = input_city.getSelectedItem().toString();
         String address = input_address.getText().toString();
 
         // Aqui hem de fer la consulta amb la API a la base de dades per veure si existeix el usuari

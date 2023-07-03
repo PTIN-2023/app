@@ -53,7 +53,8 @@ public class DatoGestorFragment extends Fragment {
 
     private DatePickerDialog datePickerDialog;
 
-    private EditText et_user_given_name, et_user_full_name, et_city, et_address , et_email;
+    private EditText et_user_given_name, et_user_full_name, et_address , et_email;
+    private Spinner sp_city;
 
     public DatoGestorFragment() {
         // Required empty public constructor
@@ -81,7 +82,7 @@ public class DatoGestorFragment extends Fragment {
         et_user_given_name = view.findViewById(R.id.et_user_given_name);
         et_user_full_name = view.findViewById(R.id.et_user_name);
         et_email = view.findViewById(R.id.et_email);
-        et_city = view.findViewById(R.id.et_user_city);
+        sp_city = view.findViewById(R.id.et_user_city);
         et_address = view.findViewById(R.id.et_user_address);;
         btn_guardar = view.findViewById(R.id.btn_dato_paciente_guardar);
 
@@ -93,7 +94,15 @@ public class DatoGestorFragment extends Fragment {
         et_user_given_name.setText(sharedPreferences.getString("user_given_name", "Valor vacio"));
         et_user_full_name.setText(sharedPreferences.getString("user_full_name", "Valor vacio"));
         et_email.setText(sharedPreferences.getString("user_email", "Valor vacio"));
-        et_city.setText(sharedPreferences.getString("user_city", "Valor vacio"));
+
+        //Para el spinner de ciudad
+        ArrayAdapter cityAdapt = (ArrayAdapter) sp_city.getAdapter();
+        int spinnerPosition = cityAdapt.getPosition(sharedPreferences.getString("user_email", "Valor vacio")); // busca la posición del valor en el adaptador
+
+        // establece la posición seleccionada en el spinner
+        if(spinnerPosition != -1) {
+            sp_city.setSelection(spinnerPosition);
+        }
         et_address.setText(sharedPreferences.getString("user_address", "Valor vacio"));
 
         //Asignar valores
@@ -309,7 +318,7 @@ public class DatoGestorFragment extends Fragment {
             jsonBody.put("user_given_name", et_user_full_name.getText());
             jsonBody.put("user_email", et_email.getText());
             jsonBody.put("user_phone", "609078022");
-            jsonBody.put("user_city", et_city.getText());
+            jsonBody.put("user_city", sp_city.getSelectedItem().toString());
             jsonBody.put("user_address", et_address.getText());
             //jsonBody.put("user_password", password);
         } catch (JSONException e) {
@@ -333,7 +342,7 @@ public class DatoGestorFragment extends Fragment {
 
                                 editor.putString("user_full_name", et_user_full_name.getText().toString());
                                 editor.putString("user_given_name", et_user_given_name.getText().toString());
-                                editor.putString("user_city", et_city.getText().toString());
+                                editor.putString("user_city", sp_city.getSelectedItem().toString());
                                 editor.putString("user_address", et_address.getText().toString());
 
 
