@@ -101,7 +101,7 @@ public class                                              QrFragment extends Fra
         // Inflate the layout for this fragment
         //((AppCompatActivity)getActivity()).getSupportActionBar().show();
         View rootView = inflater.inflate(R.layout.fragment_qr, container, false);
-        TextView txtResultant = rootView.findViewById(R.id.txtResultant);
+        //TextView txtResultant = rootView.findViewById(R.id.txtResultant);
         Button btnScan = rootView.findViewById(R.id.btnScan);
         Button button_recepta = rootView.findViewById(R.id.button_recepta);
 
@@ -124,7 +124,7 @@ public class                                              QrFragment extends Fra
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button btnScan = view.findViewById(R.id.btnScan);
-        txtResultant = view.findViewById(R.id.txtResultant);
+        //txtResultant = view.findViewById(R.id.txtResultant);
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

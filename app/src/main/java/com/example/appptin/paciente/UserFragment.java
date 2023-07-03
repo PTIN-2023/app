@@ -42,7 +42,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserFragment extends Fragment {
     private CircleImageView foto_perfil;
-    private RelativeLayout rl_salir, rl_dades, rl_config, rl_direccion, rl_notificacions;
+    private RelativeLayout rl_salir, rl_dades, rl_config, rl_notificacions;
     private Patient patient;
     Button editar_foto;
     View view;
@@ -75,9 +75,6 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        //((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-
         view = inflater.inflate(R.layout.fragment_user, container, false);
 
         foto_perfil = view.findViewById(R.id.profile_image);
@@ -85,7 +82,6 @@ public class UserFragment extends Fragment {
         rl_dades = view.findViewById(R.id.rl_perfil_usuario_datos);
         rl_salir = view.findViewById(R.id.rl_perfil_usuario_salir);
         rl_config = view.findViewById(R.id.rl_perfil_usuario_config);
-        rl_direccion = view.findViewById(R.id.rl_perfil_usuario_direccion);
         editar_foto = view.findViewById(R.id.btn_perfil_user_foto);
         //Relative layout notificacions
         rl_notificacions = view.findViewById(R.id.rl_notificacions);
@@ -94,7 +90,6 @@ public class UserFragment extends Fragment {
         rl_salir.setOnClickListener(salirClickListener);
         rl_dades.setOnClickListener(abrirFragmentDatos);
         rl_config.setOnClickListener(abrirFragmentConfig);
-        rl_direccion.setOnClickListener(abrirFragmentDireccion);
         editar_foto.setOnClickListener(asignarImagen);
         rl_notificacions.setOnClickListener(obrirNotificacions);
 
