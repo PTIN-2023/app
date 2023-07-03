@@ -202,13 +202,13 @@
     <string name="credencials_medic">Credenciales Médicas</string>
     <string name="info_contacte">Información de Contacto</string>
     // fragment_receta_consultar_crear.xml
-    <string name="receta_crear_consultar_titulo">Gestions de Receptes</string>
+    <string name="receta_crear_consultar_titulo">Gestiones de Recetas</string>
     <string name="receta_crear_consultar_seleccionar">Seleccionar:</string>
     <string name="receta_crear_consultar_crear">Crear</string>
     <string name="receta_crear_consultar_historial">Historial</string>
 
     //fragment_historial_receta.xml
-    <string name="receta_hitorial_titulo">Historial de Receptes</string>
+    <string name="receta_hitorial_titulo">Historial de Recetas</string>
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
