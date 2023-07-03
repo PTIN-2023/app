@@ -258,7 +258,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/pvp"
                         android:fontFamily="@font/rinkart_italic"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:inputType="number"/>
 
                 </LinearLayout>
 
@@ -306,7 +307,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/quantitat"
                         android:fontFamily="@font/rinkart_italic"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:inputType="number"/>
 
                 </LinearLayout>
 

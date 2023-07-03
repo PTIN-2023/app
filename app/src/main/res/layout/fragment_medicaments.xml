@@ -62,7 +62,7 @@
                     android:layout_toEndOf="@id/searchButton"
                     android:background="@color/white"
                     android:gravity="center_vertical"
-                    android:hint="Cerca aquí" />
+                    android:hint="@string/cerca" />
 
             </RelativeLayout>
 

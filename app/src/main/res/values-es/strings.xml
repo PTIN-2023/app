@@ -40,6 +40,7 @@
     <string name="sort_option_quantitat">Cantidad (de menor a mayor)</string>
     <string name="sort_option_vendes">Ventas (de menor a mayor)</string>
     <string name="sort_option_ciutat_asc">Ciudad (ascendente)</string>
+    <string name="texto_inventario">Inventario de medicamentos</string>
     //fragment_inventario_medicamento.xml
     <string name="texto_inventari">INVENTARIO</string>
     <string name="texto_medicament">Medicamento :</string>
@@ -50,6 +51,17 @@
     <string name="hint_numero_esgotat">Número / Agotado</string>
     <string name="hint_valor_numeric">Valor numérico</string>
     <string name="hint_nom_ciutat">Nombre Ciudad</string>
+    <string name="texto_codi">Código Nacional: </string>
+    <string name="texto_tipo">Tipos: </string>
+    <string name="tipus_med">tipos med</string>
+    <string name="tipus_adminis">Administración: </string>
+    <string name="tipus_administ">Administración</string>
+    <string name="formaa">Forma</string>
+    <string name="preu_venta">Precio de venta: </string>
+    <string name="cuanti">Cantidad</string>
+    <string name="recepta">Receta: </string>
+    <string name="receptaa">Receta</string>
+    <string name="actualizar">Actualizar</string>
 
     //fragment_add_medicament.xml
     <string name="afegir_meds">Añadir Medicamentos</string>
@@ -73,7 +85,7 @@
     <string name="flota_seleccionar">Seleccionar:</string>
     <string name="flota_btn_global">GLOBAL</string>
     <string name="flota_btn_local">LOCAL</string>
-    <string name="flota_btn_user">CREAR USUARI</string>
+    <string name="flota_btn_user">CREAR USUARIO</string>
 
     //fragment_coches.xml
     <string name="coches_titulo">Coches</string>
@@ -121,6 +133,9 @@
     <string name="dron_noshow_betrayal">noshow_betrayal</string>
     <string name="dron_impostor_betrayal">impostor_betrayal</string>
 
+    //fragment_estat_peticions_gestor.xml
+    <string name="peticions_pacients">Peticiones de Pacientes</string>
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,6 +160,8 @@
     <string name="llista_medicaments">Lista de medicamentos:</string>
     <string name="info_pacient_aceptar">Aceptar</string>
     <string name="info_pacient_rebutjar">Rechazar</string>
+    <string name="info_opinion">Opinión:</string>
+    <string name="info_comentari">Escrive tu comentario aquí</string>
 
     //fragment_datos_medicos.xml
     <string name="id_nom_metge">Nombre del médico</string>
@@ -183,6 +200,7 @@
     //fragment_perfil_medico.xml
     <string name="credencials_medic">Credenciales Médicas</string>
     <string name="info_contacte">Información de Contacto</string>
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -271,6 +289,7 @@
 
     //fragment_medicaments.xml
     <string name="medicam"> Medicamentos </string>
+    <string name="cerca"> Busca aquí </string>
 
     //fragment_popup_finalitzar_compra.xml
     <string name="popup_finalitzar_compra">Está seguro de querer continuar con su comanda?</string>

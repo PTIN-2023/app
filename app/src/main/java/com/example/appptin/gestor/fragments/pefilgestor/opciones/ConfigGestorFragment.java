@@ -88,6 +88,7 @@ public class ConfigGestorFragment extends Fragment {
 
         iv_regresar = view.findViewById(R.id.iv_config_gestor_back);
         sp_idioma = view.findViewById(R.id.sp_gestor_idioma);
+        final Spinner sp_theme = view.findViewById(R.id.sp_switch); // Nuestro spinner de tema
 
         // LISTENERS
         iv_regresar.setOnClickListener(regresar);
@@ -98,28 +99,37 @@ public class ConfigGestorFragment extends Fragment {
         final GestorActivity ga = (GestorActivity) getActivity();
         SharedPreferences sp = ga.getSharedPreferences("SP", ga.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sp.edit();
-        final Switch swi = view.findViewById(R.id.switchTema);
 
-        //Aquí gestionamos que el switch vaya acompasado
+        // Establecer el adaptador del spinner del tema
+        ArrayAdapter<String> themeAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, new String[]{"Light", "Dark"});
+        themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_theme.setAdapter(themeAdapter);
+
+        //Aquí gestionamos que el spinner vaya acompasado
         int theme = sp.getInt("Theme",1);
         if(theme==1){
-            swi.setChecked(false);
+            sp_theme.setSelection(0); // Light
         }
         else{
-            swi.setChecked(true);
+            sp_theme.setSelection(1); // Dark
         }
-        //Aquí ambiamos el tema y hacemos que el usuario recuerde al inciar la aplicación
-        swi.setOnClickListener(new View.OnClickListener() {
+
+        //Aquí cambiamos el tema y hacemos que el usuario recuerde al iniciar la aplicación
+        sp_theme.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                if(swi.isChecked()){
-                    editor.putInt("Theme",0);
-                }
-                else {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) { // Light
                     editor.putInt("Theme",1);
+                } else { // Dark
+                    editor.putInt("Theme",0);
                 }
                 editor.commit();
                 ga.setDayNight();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Acciones a realizar cuando no se selecciona ninguna opción del Spinner
             }
         });
 

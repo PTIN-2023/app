@@ -55,7 +55,7 @@
             android:backgroundTint="#DDA400"
             android:ems="10"
             android:fontFamily="@font/rinkart"
-            android:hint="Nom Usuari"
+            android:hint="@string/given_name"
             android:inputType="textPersonName"
             android:textColorHint="@color/black"
             app:endIconMode="clear_text"

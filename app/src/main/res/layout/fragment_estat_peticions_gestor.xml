@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/rinkart"
-                android:text="Peticions de Pacients"
+                android:text="@string/peticions_pacients"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
