@@ -68,7 +68,7 @@ public class CochesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_coches, container, false);
-
+        arrayList = new ArrayList<>();
         //Por defecto ordenar por nombre Ascendiente
         opcionSeleccionada = getResources().getStringArray(R.array.sort_options_flotas)[0];
         recyclerView_coches = view.findViewById(R.id.recyclerView_coches);
