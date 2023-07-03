@@ -99,7 +99,7 @@ public class ConfigGestorFragment extends Fragment {
         final GestorActivity ga = (GestorActivity) getActivity();
         SharedPreferences sp = ga.getSharedPreferences("SP", ga.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sp.edit();
-        final int oldTheme = sp.getInt("Theme",1);
+
         // Establecer el adaptador del spinner del tema
         ArrayAdapter<String> themeAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, new String[]{"Light", "Dark"});
         themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -118,19 +118,13 @@ public class ConfigGestorFragment extends Fragment {
         sp_theme.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int newTheme;
                 if(position == 0) { // Light
                     editor.putInt("Theme",1);
-                    newTheme = 1;
                 } else { // Dark
                     editor.putInt("Theme",0);
-                    newTheme = 0;
                 }
-                if (newTheme != oldTheme) {
-                    editor.commit();
-                    ga.setDayNight();
-                    ga.onLanguageChanged();
-                }
+                editor.commit();
+                ga.setDayNight();
             }
 
             @Override
