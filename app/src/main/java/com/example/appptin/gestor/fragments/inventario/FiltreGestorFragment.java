@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.service.quickaccesswallet.QuickAccessWalletService;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,10 @@ public class FiltreGestorFragment extends Fragment {
 
     private EditText editTextMinPrice;
     private EditText editTextMaxPrice;
-    private EditText editTextMedName;
     private CheckBox checkBoxPrescription;
     private CheckBox checkBoxOral;
+    private CheckBox checkBoxInhalation;
+    private CheckBox checkBoxOphthalmic;
 
     private CheckBox checkBoxTabletas;
     private CheckBox checkBoxLiquidos;
@@ -116,6 +118,8 @@ public class FiltreGestorFragment extends Fragment {
         // medicaments via
         checkBoxOral = view.findViewById(R.id.checkBoxOral);
         checkBoxTopicos = view.findViewById(R.id.checkBoxTopicos);
+        checkBoxInhalation = view.findViewById(R.id.checkBoxInhalation);
+        checkBoxOphthalmic = view.findViewById(R.id.checkBoxOphthalmic);
 
 
         // medicaments format
@@ -147,10 +151,17 @@ public class FiltreGestorFragment extends Fragment {
                 boolean oralSelected = checkBoxOral.isChecked();
                 if (oralSelected)
                     via.add ("Oral");
-
                 boolean TopicosSelected = checkBoxTopicos.isChecked();
                 if (TopicosSelected)
                     via.add("Topical");
+                boolean InhalatorSelected = checkBoxInhalation.isChecked();
+                if (InhalatorSelected) {
+                    via.add("Inhalation");
+                }
+                boolean OphthalmicSelected = checkBoxOphthalmic.isChecked();
+                if (OphthalmicSelected) {
+                    via.add("Ophthalmic");
+                }
 
                 // obtenim format - type of administration
                 boolean TabletasSelected = checkBoxTabletas.isChecked();
@@ -171,7 +182,6 @@ public class FiltreGestorFragment extends Fragment {
                 boolean PolsSelected = checkBoxPols.isChecked();
                 if (PolsSelected)
                     format.add("Powder");
-
 
                 // Create a bundle and set the selected values as arguments
                 Bundle bundle = new Bundle();
