@@ -722,7 +722,7 @@ class MapaGestor : AppCompatActivity() {
                     getDronePosition()
                 }
             }
-        }, 0, 20000) // Actualiza cada 20 segundos (20,000 milisegundos)
+        }, 0, 700) // Actualiza cada 0'7 segundos (700 milisegundos)
     }
 
     private fun stopUpdatingDronePosition() {
