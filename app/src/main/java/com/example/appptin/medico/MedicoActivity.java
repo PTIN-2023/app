@@ -16,6 +16,7 @@ import com.example.appptin.medico.fragments.perfilmedico.opciones.ConfigMedicoFr
 import com.example.appptin.welcome_page;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -81,6 +82,28 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
         medicoFragment = new PerfilMedicoFragment();
 
         loadFragment(aprobarFragment);
+
+        //Agrega el callback para el botón de retroceso
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Aquí puedes manejar el botón de retroceso de la forma que prefieras
+                new AlertDialog.Builder(MedicoActivity.this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Cerrar Sesión")
+                        .setMessage("Seguro que quieres salir de tu sesión?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                setEnabled(false); // Esto permitirá que el evento de retroceso se propague de nuevo al sistema, lo que resultará en que tu actividad se cierre
+                                logout();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
+
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener nOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -192,22 +215,6 @@ public class MedicoActivity extends AppCompatActivity implements ConfigMedicoFra
         queue.add(jsonObjectRequest);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Cerrar Sesión")
-                .setMessage("Seguro que quieres salir de tu sesión?")
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        logout();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
 
     private boolean logout() {
         boolean exists = false;
