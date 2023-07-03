@@ -172,22 +172,27 @@ public class RecetaConsultarCrearFragment extends Fragment {
                     String result = response.getString("result");
                     if (result.equals("ok")) {
                         prescriptionsArray = response.getJSONArray("prescriptions");
+                        if(prescriptionsArray.length()>0) {
+                            for (int i = 0; i < prescriptionsArray.length(); i++) {
+                                JSONObject prescriptionObject = prescriptionsArray.getJSONObject(i);
 
-                        for (int i = 0; i < prescriptionsArray.length(); i++) {
-                            JSONObject prescriptionObject = prescriptionsArray.getJSONObject(i);
+                                InformacionPreinscripciones prescription_datos = new InformacionPreinscripciones();
+                                prescription_datos.setDuration(prescriptionObject.getString("duration"));
+                                prescription_datos.setLastUsed(prescriptionObject.getString("last_used"));
+                                prescription_datos.setNotes(prescriptionObject.getString("notes"));
+                                prescription_datos.setPrescriptionIdentifier(prescriptionObject.getString("prescription_identifier"));
+                                prescription_datos.setRenewal(prescriptionObject.getString("renewal"));
+                                prescription_datos.setMedicineList(prescriptionObject.getJSONArray("medicine_list"));
+                                prescription_datos.setCont(i + 1);
 
-                            InformacionPreinscripciones prescription_datos = new InformacionPreinscripciones();
-                            prescription_datos.setDuration(prescriptionObject.getString("duration"));
-                            prescription_datos.setLastUsed(prescriptionObject.getString("last_used"));
-                            prescription_datos.setNotes(prescriptionObject.getString("notes"));
-                            prescription_datos.setPrescriptionIdentifier(prescriptionObject.getString("prescription_identifier"));
-                            prescription_datos.setRenewal(prescriptionObject.getString("renewal"));
-                            prescription_datos.setMedicineList(prescriptionObject.getJSONArray("medicine_list"));
-                            prescription_datos.setCont(i+1);
-
-                            arrayList.add(prescription_datos);
+                                arrayList.add(prescription_datos);
+                            }
+                            llamar_historial_receta(arrayList);
                         }
-                        llamar_historial_receta(arrayList);
+                        // Eliminar si los de la api quitan el mail por defecto
+                        else{
+                            Toast.makeText(getContext(), "Pacient sense receptes", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else{
                         Toast.makeText(getContext(), "No existeix el pacient", Toast.LENGTH_SHORT).show();

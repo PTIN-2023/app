@@ -31,6 +31,7 @@ import com.example.appptin.MainActivity;
 import com.example.appptin.R;
 import com.example.appptin.paciente.opciones.ClienteDireccionFragment;
 import com.example.appptin.paciente.opciones.ConfigPacienteFragment;
+import com.example.appptin.paciente.opciones.RecetasPacienteFragment;
 import com.example.appptin.welcome_page;
 import com.example.appptin.paciente.opciones.DatosPacienteFragment;
 import com.example.appptin.paciente.opciones.estatPeticionsFragment;
@@ -42,7 +43,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserFragment extends Fragment {
     private CircleImageView foto_perfil;
-    private RelativeLayout rl_salir, rl_dades, rl_config, rl_notificacions;
+    private RelativeLayout rl_salir, rl_dades, rl_config, rl_notificacions, rl_recetas;
     private Patient patient;
     Button editar_foto;
     View view;
@@ -83,6 +84,7 @@ public class UserFragment extends Fragment {
         rl_salir = view.findViewById(R.id.rl_perfil_usuario_salir);
         rl_config = view.findViewById(R.id.rl_perfil_usuario_config);
         editar_foto = view.findViewById(R.id.btn_perfil_user_foto);
+        rl_recetas = view.findViewById(R.id.rl_perfil_usuario_recetas);
         //Relative layout notificacions
         rl_notificacions = view.findViewById(R.id.rl_notificacions);
 
@@ -92,9 +94,21 @@ public class UserFragment extends Fragment {
         rl_config.setOnClickListener(abrirFragmentConfig);
         editar_foto.setOnClickListener(asignarImagen);
         rl_notificacions.setOnClickListener(obrirNotificacions);
+        rl_recetas.setOnClickListener(ListenerRecetas);
 
         return view;
     }
+
+    private View.OnClickListener ListenerRecetas = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            RecetasPacienteFragment recetasPacienteFragment = new RecetasPacienteFragment();
+            transaction.replace(R.id.frameLayout, recetasPacienteFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    };
 
     private View.OnClickListener salirClickListener = new View.OnClickListener() {
         @Override

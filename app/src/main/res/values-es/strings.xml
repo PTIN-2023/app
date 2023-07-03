@@ -315,6 +315,7 @@
     <string name="assigned_doctor">Médico asignado</string>
     <string name="notifications">Historial Peticiones</string>
     <string name="settings">Configuración</string>
+    <string name="user_receta">Recetas</string>
     <string name="logout">Salir</string>
 
     //fragment_estat_paquets.xml // peticio_item.xml

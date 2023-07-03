@@ -1,4 +1,4 @@
-package com.example.appptin.medico.fragments.recetas.historial;
+package com.example.appptin.paciente.opciones;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -15,22 +15,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appptin.R;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class HistorialRecetaAdapter extends RecyclerView.Adapter<HistorialRecetaAdapter.MyHolder>{
+public class RecetasPacienteAdapter extends RecyclerView.Adapter<RecetasPacienteAdapter.MyHolder>{
 
     Context context;
     FragmentManager activity;
 
-    ArrayList<InformacionPreinscripciones> arrayList;
+    ArrayList<InformacionRecetaPAciente> arrayList;
 
     LayoutInflater layoutInflater;
 
     //Constructor
-    public HistorialRecetaAdapter(Context context, ArrayList<InformacionPreinscripciones> arrayList, FragmentManager activity) {
+    public RecetasPacienteAdapter(Context context, ArrayList<InformacionRecetaPAciente> arrayList, FragmentManager activity) {
         this.arrayList = arrayList;
         this.context = context;
         this.activity = activity;
@@ -39,13 +40,14 @@ public class HistorialRecetaAdapter extends RecyclerView.Adapter<HistorialReceta
 
     @NonNull
     @Override
-    public HistorialRecetaAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecetasPacienteAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.contenedor_receta_historial, parent, false);
-        return new HistorialRecetaAdapter.MyHolder(view);
+        return new RecetasPacienteAdapter.MyHolder(view);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull HistorialRecetaAdapter.MyHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull RecetasPacienteAdapter.MyHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.fecha_uso_receta.setText("Recepta "+arrayList.get(position).getCont());
 
         holder.contenedorElem.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +66,8 @@ public class HistorialRecetaAdapter extends RecyclerView.Adapter<HistorialReceta
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
-        public TextView fecha_uso_receta;
-        public View contenedorElem;
+        TextView fecha_uso_receta;
+        View contenedorElem;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             fecha_uso_receta = itemView.findViewById(R.id.txt_fecha_uso);
@@ -74,7 +76,7 @@ public class HistorialRecetaAdapter extends RecyclerView.Adapter<HistorialReceta
             contenedorElem = itemView.findViewById(R.id.layout_elementos_receta);
         }
 
-        public void showPrescriptionDialog(InformacionPreinscripciones prescription) {
+        private void showPrescriptionDialog(InformacionRecetaPAciente prescription) {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Información de la receta");
 
@@ -112,6 +114,4 @@ public class HistorialRecetaAdapter extends RecyclerView.Adapter<HistorialReceta
             builder.show();
         }
     }
-
-
 }

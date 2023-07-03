@@ -45,8 +45,6 @@ public class HistorialRecetaFragment extends Fragment {
     private View view;
     private ImageView iv_regresar;
     private RecyclerView recyclerView_receta;
-    private String email;
-
     ArrayList<InformacionPreinscripciones> arrayList;
     public HistorialRecetaFragment(ArrayList<InformacionPreinscripciones>  inf_recetas) {
         // Required empty public constructor

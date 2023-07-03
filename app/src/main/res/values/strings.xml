@@ -297,6 +297,7 @@
     <string name="assigned_doctor">Metge assignat</string>
     <string name="notifications">Historial Peticions</string>
     <string name="settings">Configuració</string>
+    <string name="user_receta">Receptes</string>
     <string name="logout">Sortir</string>
 
     //fragment_estat_paquets.xml // peticio_item.xml
@@ -353,7 +354,6 @@
     <string name="coche_set_battery_10">set_battery_10</string>
     <string name="coche_set_battery_5">set_battery_5</string>
     <string name="coche_breakdown">breakdown</string>
-
 
 
     //fragment_edge_ciudad.xml
