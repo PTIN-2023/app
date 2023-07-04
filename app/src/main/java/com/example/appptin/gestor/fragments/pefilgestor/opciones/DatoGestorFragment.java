@@ -317,6 +317,7 @@ public class DatoGestorFragment extends Fragment {
             jsonBody.put("user_full_name", et_user_given_name.getText());
             jsonBody.put("user_given_name", et_user_full_name.getText());
             jsonBody.put("user_email", et_email.getText());
+            jsonBody.put("user_password", "1234");
             jsonBody.put("user_phone", "609078022");
             jsonBody.put("user_city", sp_city.getSelectedItem().toString());
             jsonBody.put("user_address", et_address.getText());

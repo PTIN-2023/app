@@ -400,6 +400,7 @@ public class DatosPacienteFragment extends Fragment {
             jsonBody.put("user_given_name", et_user_full_name.getText());
             jsonBody.put("user_email", et_email.getText());
             jsonBody.put("user_phone", "609078022");
+            jsonBody.put("user_password", "Pest2023@");
             jsonBody.put("user_city", et_city.getText());
             jsonBody.put("user_address", et_address.getText());
             //jsonBody.put("user_password", password);

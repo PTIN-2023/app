@@ -236,6 +236,7 @@ public class DatoMedicoFragment extends Fragment {
             jsonBody.put("user_given_name", et_user_full_name.getText());
             jsonBody.put("user_email", et_email.getText());
             jsonBody.put("user_phone", "609078022");
+            jsonBody.put("user_password", "Dest2023@");
             jsonBody.put("user_city", et_city.getText());
             jsonBody.put("user_address", et_address.getText());
             //jsonBody.put("user_password", password);
@@ -260,6 +261,7 @@ public class DatoMedicoFragment extends Fragment {
 
                                 editor.putString("user_full_name", et_user_full_name.getText().toString());
                                 editor.putString("user_given_name", et_user_given_name.getText().toString());
+                                editor.putString("user_password", "Dest2023@");
                                 editor.putString("user_city", et_city.getText().toString());
                                 editor.putString("user_address", et_address.getText().toString());
 

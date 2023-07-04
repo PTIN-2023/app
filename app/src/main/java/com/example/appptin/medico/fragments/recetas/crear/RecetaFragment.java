@@ -338,7 +338,7 @@ public class RecetaFragment extends Fragment {
 
             jsonBody.put("duration", duracion);
             jsonBody.put("notes", notas);
-            jsonBody.put("renawal", renovacio);
+            jsonBody.put("renewal", renovacio);
             System.out.println("Mensaje a enviar: " + jsonBody);
 
         } catch (JSONException e) {

@@ -74,9 +74,9 @@
     </string-array>
 
     <string-array name="cities">
-        <item>vilanova i la geltru</item>
-        <item>cubelles</item>
-        <item>barcelona</item>
+        <item>Vilanova i la Geltrú</item>
+        <item>Cubelles</item>
+        <item>Barcelona</item>
         <!-- Agrega más opciones según sea necesario -->
     </string-array>
 

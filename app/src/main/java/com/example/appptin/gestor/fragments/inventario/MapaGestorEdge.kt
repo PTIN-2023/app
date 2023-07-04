@@ -174,8 +174,8 @@ class MapaGestorEdge : AppCompatActivity() {
                     //stopUpdatingCarsPosition()
                     getDronePosition()
                     startUpdatingDronePosition()
-                    getCarsPosition()
-                    startUpdatingCarsPosition()
+                    //getCarsPosition()
+                    //startUpdatingCarsPosition()
 
 
                     setMapLocation(edgeNumber)
@@ -311,7 +311,7 @@ class MapaGestorEdge : AppCompatActivity() {
         //pointAnnotationManager?.deleteAll()
         //markerList.clear()
 
-        clearAnnotation()
+        //clearAnnotation()
         println(droneLongitudeList)
         //Click event de marcadors
         pointAnnotationManager?.addClickListener(OnPointAnnotationClickListener {
@@ -351,10 +351,10 @@ class MapaGestorEdge : AppCompatActivity() {
         var droneBitmap = convertDrawableToBitMap(AppCompatResources.getDrawable(this, R.drawable.dron))
         for (i in 0 until droneLongitudeList.size){
             val pointAnnotationOptions : PointAnnotationOptions = PointAnnotationOptions()
-                .withPoint(Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i)))
+                //.withPoint(Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i)))
                //    val position = Point.fromLngLat(droneLongitudeList.get(i), droneLatitudeList.get(i))
                //            dronePositions[i] = position
-               //.withPoint(dronePositions[i].position)
+               .withPoint(dronePositions[i].position)
                 .withIconImage(droneBitmap!!)
 
             markerList.add(pointAnnotationOptions)
@@ -372,6 +372,7 @@ class MapaGestorEdge : AppCompatActivity() {
         pointAnnotationManager?.create(markerList)
         droneLatitudeList.clear()
         droneLongitudeList.clear()
+        dronePositions.clear()
         markerList.clear()
         println("Limpiar")
 
